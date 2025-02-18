@@ -1,0 +1,64 @@
+using System;
+using Godot;
+
+public abstract partial class CustomButtonBase : Button
+{
+    [Export] public Texture2D CustomIcon;
+    [Export] public float Cooldown = 0.2f;
+
+    protected Func<bool> IsEnabledFunc = () => true;
+
+    protected TextureRect _icon;
+    protected TextureRect _iconShadow;
+
+    private Timer _cooldownTimer;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        ButtonDown += HandleButtonDownInternal;
+        ButtonUp += HandleButtonUpInternal;
+
+        _cooldownTimer = new() { WaitTime = Cooldown, OneShot = true, Autostart = false };
+        AddChild(_cooldownTimer);
+    
+        _icon = GetNode<TextureRect>("Icon");
+        _icon.Texture = CustomIcon;
+        _iconShadow = GetNode<TextureRect>("IconShadow");
+        _iconShadow.Texture = CustomIcon;
+    }
+
+    private void OnClickInternal()
+    {
+        if (!IsEnabled()) return;
+        OnClick();
+    }
+
+    private void HandleButtonDownInternal()
+    {
+        if (IsEnabled())
+        {
+            Modulate = new Color(.8f, .8f, .8f);
+            HandleButtonDown();
+        }
+    }
+
+    private void HandleButtonUpInternal()
+    {
+        if (IsEnabled())
+        {
+            Modulate = new Color(1, 1, 1);
+            HandleButtonUp();
+            OnClickInternal();
+
+            _cooldownTimer.Start();
+        }
+    }
+
+    protected virtual bool IsEnabled() => _cooldownTimer.TimeLeft == 0 && IsEnabledFunc();
+    
+    protected virtual void OnClick(){}
+    protected abstract void HandleButtonDown();
+    protected abstract void HandleButtonUp();
+}

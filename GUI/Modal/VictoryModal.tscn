@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd260fteh3kf7"]
+
+[ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_su3ki"]
+[ext_resource type="Script" path="res://GUI/Button/NextLevelButton.cs" id="3_hihcu"]
+[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="3_ski6i"]
+[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="4_urm6t"]
+[ext_resource type="Texture2D" uid="uid://g3t66braolnn" path="res://Assets/Icons/White/2x/arrowRight.png" id="6_8n8sa"]
+[ext_resource type="Script" path="res://GUI/Button/JumpTenLevelsButton.cs" id="7_1ay8v"]
+[ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="7_83r62"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
+[ext_resource type="Texture2D" uid="uid://dydpui5gcpa8j" path="res://Assets/Icons/White/2x/movie.png" id="8_wob1t"]
+
+[node name="VictoryModal" type="Node2D"]
+
+[node name="Modal" parent="." instance=ExtResource("1_su3ki")]
+BannerText = "VICTORY!"
+
+[node name="HomeButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = -432.0
+offset_top = 288.0
+offset_right = -64.0
+offset_bottom = 432.0
+script = ExtResource("3_ski6i")
+CustomIcon = ExtResource("4_urm6t")
+
+[node name="NextLevelButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = 72.0
+offset_top = 288.0
+offset_right = 432.0
+offset_bottom = 432.0
+script = ExtResource("3_hihcu")
+CustomIcon = ExtResource("6_8n8sa")
+
+[node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = -432.0
+offset_top = 72.0
+offset_right = -72.0
+offset_bottom = 216.0
+script = ExtResource("7_1ay8v")
+CustomIcon = ExtResource("8_wob1t")
+
+[node name="SmallBackground" type="Sprite2D" parent="Modal"]
+self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
+position = Vector2(4, -124)
+scale = Vector2(1.8, 1.6)
+texture = ExtResource("7_83r62")

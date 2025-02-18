@@ -1,0 +1,150 @@
+[gd_scene load_steps=15 format=3 uid="uid://ced8wfge2ycg"]
+
+[ext_resource type="Script" path="res://GUI/Modal/SettingsModal.cs" id="1_e8rg8"]
+[ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_o1l77"]
+[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="4_cpjx0"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="4_r6oil"]
+[ext_resource type="Texture2D" uid="uid://dmvs0hmblt85u" path="res://Assets/Icons/White/2x/audioOn.png" id="5_qavbu"]
+[ext_resource type="Texture2D" uid="uid://b1ywfx6mcf1iw" path="res://Assets/Icons/White/2x/audioOff.png" id="6_2682k"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
+[ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="8_e1tpc"]
+[ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="9_x7sst"]
+[ext_resource type="Texture2D" uid="uid://dqkkug8lm18xy" path="res://Assets/Icons/White/2x/cross.png" id="10_tqrjv"]
+[ext_resource type="Script" path="res://GUI/Button/RestartSaveButtonDEV.cs" id="11_aa1ta"]
+[ext_resource type="Texture2D" uid="uid://dvney40okxkrn" path="res://Assets/Icons/White/2x/power.png" id="11_d6ees"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4hnx"]
+shader = ExtResource("4_cpjx0")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 6.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j05n"]
+shader = ExtResource("4_cpjx0")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 6.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[node name="SettingsModal" type="Node2D"]
+script = ExtResource("1_e8rg8")
+
+[node name="Modal" parent="." instance=ExtResource("1_o1l77")]
+BannerText = "SETTINGS"
+
+[node name="SmallBackground" type="Sprite2D" parent="Modal"]
+self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
+position = Vector2(4, -124)
+scale = Vector2(1.8, 1.6)
+texture = ExtResource("9_x7sst")
+
+[node name="MusicVolume" type="Node2D" parent="Modal"]
+material = SubResource("ShaderMaterial_w4hnx")
+
+[node name="IconMusicOn" type="Sprite2D" parent="Modal/MusicVolume"]
+use_parent_material = true
+position = Vector2(390, -172)
+texture = ExtResource("5_qavbu")
+
+[node name="IconMusicOff" type="Sprite2D" parent="Modal/MusicVolume"]
+use_parent_material = true
+position = Vector2(390, -172)
+texture = ExtResource("6_2682k")
+
+[node name="MusicLabel" type="RichTextLabel" parent="Modal/MusicVolume"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -206.0
+offset_right = 40.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_r6oil")
+theme_override_font_sizes/normal_font_size = 52
+bbcode_enabled = true
+text = "MUSIC"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Modal/MusicVolume"]
+offset_left = -20.0
+offset_top = -214.0
+offset_right = 320.0
+offset_bottom = -134.0
+focus_mode = 0
+theme = ExtResource("4_r6oil")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SoundEffectsVolume" type="Node2D" parent="Modal"]
+material = SubResource("ShaderMaterial_1j05n")
+
+[node name="IconMusicOn" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
+use_parent_material = true
+position = Vector2(390, -72)
+texture = ExtResource("5_qavbu")
+
+[node name="IconMusicOff" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
+use_parent_material = true
+position = Vector2(390, -72)
+texture = ExtResource("6_2682k")
+
+[node name="SoundEffectLabel" type="RichTextLabel" parent="Modal/SoundEffectsVolume"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -110.0
+offset_right = 40.0
+offset_bottom = -40.0
+mouse_filter = 2
+theme = ExtResource("4_r6oil")
+theme_override_font_sizes/normal_font_size = 52
+bbcode_enabled = true
+text = "EFFECTS"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="Modal/SoundEffectsVolume"]
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 320.0
+offset_bottom = -34.0
+focus_mode = 0
+theme = ExtResource("4_r6oil")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="CloseModalButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = -432.0
+offset_top = 288.0
+offset_right = -72.0
+offset_bottom = 440.0
+script = ExtResource("8_e1tpc")
+Color = Color(0.6, 0.482353, 0.443137, 1)
+CustomIcon = ExtResource("10_tqrjv")
+
+[node name="ResetProgressButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = 72.0
+offset_top = 288.0
+offset_right = 432.0
+offset_bottom = 432.0
+script = ExtResource("11_aa1ta")
+Color = Color(0.6, 0.482353, 0.443137, 1)
+CustomIcon = ExtResource("11_d6ees")

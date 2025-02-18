@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://byatslmwbvorg"]
+
+[ext_resource type="Script" path="res://Entities/Food/Food.cs" id="1_4jjr8"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_g8mv4"]
+[ext_resource type="Texture2D" uid="uid://cqm48umc22es0" path="res://Assets/white_food.png" id="2_rcyfn"]
+[ext_resource type="Texture2D" uid="uid://cpjqma7dublnd" path="res://Assets/shadow.png" id="4_yed14"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="5_ivlgm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68teg"]
+resource_local_to_scene = true
+shader = ExtResource("2_g8mv4")
+shader_parameter/maxLineWidth = 12.0
+shader_parameter/minLineWidth = 8.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 12.0
+shader_parameter/color = null
+shader_parameter/tolerance = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmim1"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_ok2kh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41aqa"]
+resource_name = "float"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1.45, 1, 1.45),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1.45, 1, 1.45),
+"update": 0,
+"values": [Vector2(0.7, 1.1), Vector2(0.65, 1), Vector2(0.7, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0twg"]
+_data = {
+"RESET": SubResource("Animation_ok2kh"),
+"float": SubResource("Animation_41aqa")
+}
+
+[node name="Food" type="Node2D"]
+script = ExtResource("1_4jjr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_68teg")
+position = Vector2(0, -1.85305)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rcyfn")
+
+[node name="LastFoodIndicator" type="Sprite2D" parent="Sprite2D"]
+visible = false
+self_modulate = Color(1, 1, 0.164706, 1)
+position = Vector2(0, -4)
+texture = ExtResource("5_ivlgm")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 88)
+texture = ExtResource("4_yed14")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mmim1")
+debug_color = Color(0, 0.6, 0.701961, 0.0823529)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y0twg")
+}

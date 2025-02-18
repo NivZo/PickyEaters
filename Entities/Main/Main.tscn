@@ -1,0 +1,180 @@
+[gd_scene load_steps=22 format=3 uid="uid://dorca4gdxnr1c"]
+
+[ext_resource type="Script" path="res://Entities/Main/Main.cs" id="1_hxws4"]
+[ext_resource type="Texture2D" uid="uid://oovxbjb7pqkj" path="res://Assets/outline.png" id="2_aa13p"]
+[ext_resource type="Shader" path="res://Shaders/Checkerboard.gdshader" id="2_rqwvo"]
+[ext_resource type="Shader" path="res://Shaders/BalatroBackground.gdshader" id="2_tskco"]
+[ext_resource type="Texture2D" uid="uid://dfcbcj2b8tg2x" path="res://Assets/GUI/polka.png" id="3_711tk"]
+[ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="3_r8aly"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="4_xg10b"]
+[ext_resource type="PackedScene" uid="uid://bskdropmc6asw" path="res://GUI/Indicators/CoinsIndicator.tscn" id="6_aj3fp"]
+[ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="6_ctjmt"]
+[ext_resource type="Shader" path="res://Shaders/ColorCurves.gdshader" id="10_qutjm"]
+[ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="11_ntej4"]
+[ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
+[ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
+[ext_resource type="Script" path="res://Entities/SignalProvider/SignalProvider.cs" id="15_vnkmn"]
+[ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="18_bgvm0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14780"]
+shader = ExtResource("2_tskco")
+shader_parameter/spin_rotation_speed = 0.5
+shader_parameter/move_speed = 2.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.934351, 0.898214, 0.886279, 1)
+shader_parameter/colour_2 = Color(0.973304, 0.958462, 0.95357, 1)
+shader_parameter/colour_3 = Color(1, 1, 1, 1)
+shader_parameter/contrast = 3.5
+shader_parameter/lighting = 0.4
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 2560.0
+shader_parameter/is_rotating = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pt7y"]
+shader = ExtResource("2_rqwvo")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 300)
+shader_parameter/sine_speed = Vector2(0, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blsp2"]
+shader = ExtResource("4_xg10b")
+shader_parameter/maxLineWidth = 8.0
+shader_parameter/minLineWidth = 6.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 100.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="Gradient" id="Gradient_qyh32"]
+offsets = PackedFloat32Array(0.113281, 0.660156)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ekliq"]
+gradient = SubResource("Gradient_qyh32")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6s11"]
+shader = ExtResource("10_qutjm")
+shader_parameter/mix_strength = 0.2
+shader_parameter/opacity = 1.0
+shader_parameter/blend_mode = 2
+shader_parameter/hue_shift = 0.0
+shader_parameter/gradient_texture = SubResource("GradientTexture1D_ekliq")
+
+[node name="Main" type="Node"]
+script = ExtResource("1_hxws4")
+SaveLocally = true
+
+[node name="SignalProvider" type="Node" parent="."]
+script = ExtResource("15_vnkmn")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.0201618, 0.0126892, 1)
+metadata/_edit_lock_ = true
+
+[node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
+self_modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("ShaderMaterial_14780")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.392157)
+metadata/_edit_lock_ = true
+
+[node name="PolkaDots" type="TextureRect" parent="BackgroundLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.156863)
+material = SubResource("ShaderMaterial_3pt7y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_711tk")
+stretch_mode = 1
+
+[node name="OverlayTop" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2560.0
+offset_bottom = -2400.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="ScreenLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="BorderLayer" type="CanvasLayer" parent="."]
+
+[node name="Outline" type="Sprite2D" parent="BorderLayer"]
+material = SubResource("ShaderMaterial_blsp2")
+position = Vector2(-8, -8)
+texture = ExtResource("2_aa13p")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="HLineTopBorder" parent="BorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 8)
+
+[node name="HLineOverlayBottom" parent="BorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 160)
+
+[node name="HLineBottomBorder" parent="BorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 2554)
+
+[node name="VLineLeftBorder" parent="BorderLayer" instance=ExtResource("6_ctjmt")]
+
+[node name="VLineRightBorder" parent="BorderLayer" instance=ExtResource("6_ctjmt")]
+position = Vector2(1440, 0)
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="CoinsIndicator" parent="GUILayer" instance=ExtResource("6_aj3fp")]
+position = Vector2(992, 40)
+
+[node name="SettingsButton" parent="GUILayer" instance=ExtResource("11_ntej4")]
+offset_left = 50.0
+offset_top = 36.0
+offset_right = -41.36
+offset_bottom = -55.84
+script = ExtResource("12_cmqsi")
+CustomIcon = ExtResource("13_4lg4f")
+
+[node name="ModalLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="Colors" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_r6s11")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_bgvm0")
+autoplay = true
+parameters/looping = true
+
+[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]

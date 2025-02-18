@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://orwk32ls7xjf"]
+
+[ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
+[ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
+[ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_jsudd"]
+[ext_resource type="FontFile" uid="uid://b1vd851hgo5bb" path="res://Fonts/Fredoka.ttf" id="5_q0agu"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
+[ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5g82"]
+shader = ExtResource("2_4cnfy")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 0.15
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pjkq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bud2l"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_gf2r7")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="HLineTop" parent="Borders" instance=ExtResource("2_cmngc")]
+visible = false
+position = Vector2(0, 1379)
+
+[node name="HLineBottom" parent="Borders" instance=ExtResource("2_cmngc")]
+visible = false
+position = Vector2(0, 2200)
+
+[node name="Title" type="Control" parent="."]
+material = SubResource("ShaderMaterial_h5g82")
+layout_mode = 3
+anchor_right = 0.978
+offset_top = -176.0
+offset_right = -1408.32
+offset_bottom = -176.0
+
+[node name="BG1" type="ColorRect" parent="Title"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 440.0
+offset_right = 1240.0
+offset_bottom = 720.0
+color = Color(0.415686, 0.682353, 0.415686, 0.705882)
+
+[node name="BG2" type="ColorRect" parent="Title"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 480.0
+offset_right = 1290.0
+offset_bottom = 760.0
+color = Color(0.415686, 0.682353, 0.415686, 0.705882)
+
+[node name="GameTitle" type="RichTextLabel" parent="Title"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 216.0
+offset_top = 464.0
+offset_right = 1224.0
+offset_bottom = 728.0
+grow_horizontal = 2
+theme = ExtResource("2_jsudd")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.0666667)
+theme_override_fonts/normal_font = ExtResource("5_q0agu")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]COLOKO[/font][/wave][/center]"
+scroll_active = false
+
+[node name="CurrentLevel" type="Node2D" parent="."]
+position = Vector2(0, -72)
+
+[node name="LevelLabel" type="RichTextLabel" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 360.0
+offset_top = 1050.0
+offset_right = 1080.0
+offset_bottom = 1190.0
+grow_horizontal = 2
+theme = ExtResource("2_jsudd")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]LEVEL[/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="NumberLabel" type="RichTextLabel" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 360.0
+offset_top = 1100.0
+offset_right = 1080.0
+offset_bottom = 1368.0
+grow_horizontal = 2
+theme = ExtResource("2_jsudd")
+theme_override_font_sizes/normal_font_size = 220
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=15]10[/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="PlayButton" parent="." instance=ExtResource("8_004r3")]
+material = SubResource("ShaderMaterial_bud2l")
+offset_left = 144.0
+offset_top = 1656.0
+offset_right = 72.0
+offset_bottom = 1655.36
+theme = ExtResource("2_jsudd")
+script = ExtResource("9_et2y7")
+CustomText = "PLAY"
+Color = Color(0.529412, 0.894118, 0.615686, 1)

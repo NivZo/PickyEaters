@@ -1,0 +1,162 @@
+[gd_scene load_steps=4 format=3 uid="32"]
+
+[ext_resource type="Script" path="res://Levels/Level.cs" id="lvlid"]
+[ext_resource type="PackedScene" uid="uid://byatslmwbvorg" path="res://Entities/Food/Food.tscn" id="foodid"]
+[ext_resource type="PackedScene" uid="uid://dd570jgysudow" path="res://Entities/Eater/Eater.tscn" id="eaterid"]
+
+[node name="Level" type="Node"]
+script = ExtResource("lvlid")
+
+[node name="Food" type="Node" parent="."]
+
+[node name="Eaters" type="Node" parent="."]
+
+[node name="Food0_0" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(192.0, 580.0)
+FoodType = 2
+IsLast = false
+
+[node name="Food0_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 580.0)
+FoodType = 2
+IsLast = true
+
+[node name="Food0_2" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(720.0, 580.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food0_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(984.0, 580.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food0_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 580.0)
+FoodType = 3
+IsLast = true
+
+[node name="Food1_0" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(192.0, 844.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food1_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 844.0)
+FoodType = 1
+IsLast = true
+
+[node name="Food1_2" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(720.0, 844.0)
+FoodType = 1
+IsLast = false
+
+[node name="Eater1_3" parent="Eaters" instance=ExtResource("eaterid")]
+position = Vector2(984.0, 844.0)
+EaterType = 1
+ValidFoodTypes = [0, 2]
+
+[node name="Food1_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 844.0)
+FoodType = 1
+IsLast = false
+
+[node name="Eater2_0" parent="Eaters" instance=ExtResource("eaterid")]
+position = Vector2(192.0, 1108.0)
+EaterType = 2
+ValidFoodTypes = [0, 3]
+
+[node name="Food2_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 1108.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food2_2" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(720.0, 1108.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food2_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(984.0, 1108.0)
+FoodType = 2
+IsLast = false
+
+[node name="Food2_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 1108.0)
+FoodType = 2
+IsLast = false
+
+[node name="Food3_0" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(192.0, 1372.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food3_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 1372.0)
+FoodType = 0
+IsLast = false
+
+[node name="Eater3_2" parent="Eaters" instance=ExtResource("eaterid")]
+position = Vector2(720.0, 1372.0)
+EaterType = 0
+ValidFoodTypes = [0, 1]
+
+[node name="Food3_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(984.0, 1372.0)
+FoodType = 1
+IsLast = false
+
+[node name="Food3_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 1372.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food4_0" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(192.0, 1636.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food4_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 1636.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food4_2" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(720.0, 1636.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food4_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(984.0, 1636.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food4_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 1636.0)
+FoodType = 0
+IsLast = false
+
+[node name="Food5_0" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(192.0, 1900.0)
+FoodType = 2
+IsLast = false
+
+[node name="Food5_1" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(456.0, 1900.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food5_2" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(720.0, 1900.0)
+FoodType = 1
+IsLast = false
+
+[node name="Food5_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(984.0, 1900.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food5_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1248.0, 1900.0)
+FoodType = 2
+IsLast = false

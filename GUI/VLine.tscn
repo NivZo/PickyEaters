@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0ovsr23o254s"]
+
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="1_kkvtp"]
+[ext_resource type="Texture2D" uid="uid://bfp81qtdixak0" path="res://Assets/v_line.png" id="2_hb0vi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_153hw"]
+shader = ExtResource("1_kkvtp")
+shader_parameter/maxLineWidth = 8.0
+shader_parameter/minLineWidth = 4.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 12.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[node name="VLine" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Outline" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_153hw")
+position = Vector2(0, 1280)
+texture = ExtResource("2_hb0vi")
+metadata/_edit_lock_ = true
+
+[node name="Color" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 1280)
+texture = ExtResource("2_hb0vi")
+metadata/_edit_lock_ = true

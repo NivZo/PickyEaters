@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bskdropmc6asw"]
+
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="1_fvwyn"]
+[ext_resource type="Script" path="res://GUI/Indicators/CoinsIndicator.cs" id="1_grsph"]
+[ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="1_sgwdd"]
+[ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="2_yrv5h"]
+[ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="4_wpxit"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rqbfu"]
+shader = ExtResource("1_sgwdd")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 0.15
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+
+[node name="CoinsIndicator" type="Node2D"]
+script = ExtResource("1_grsph")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.396078, 0.396078, 0.396078, 0.54902)
+position = Vector2(192, 48)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("4_wpxit")
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(360, 48)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_yrv5h")
+
+[node name="Text" type="RichTextLabel" parent="."]
+material = SubResource("ShaderMaterial_rqbfu")
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 14.0
+offset_right = 312.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_fvwyn")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center][wave amp=12.0 freq=9.0 connected=1][font gl=15]0[/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
