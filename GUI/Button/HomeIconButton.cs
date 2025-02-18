@@ -1,4 +1,4 @@
-public partial class HomeButton : CustomButton
+public partial class HomeIconButton : CustomIconButton
 {
     public override void _Ready()
     {

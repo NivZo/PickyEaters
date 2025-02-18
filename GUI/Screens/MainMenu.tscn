@@ -73,7 +73,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0.0666667)
 theme_override_fonts/normal_font = ExtResource("5_q0agu")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]COLOKO[/font][/wave][/center]"
+text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]COLOCO[/font][/wave][/center]"
 scroll_active = false
 
 [node name="CurrentLevel" type="Node2D" parent="."]
@@ -119,7 +119,7 @@ text_direction = 2
 
 [node name="PlayButton" parent="." instance=ExtResource("8_004r3")]
 material = SubResource("ShaderMaterial_bud2l")
-offset_left = 144.0
+offset_left = 216.0
 offset_top = 1656.0
 offset_right = 72.0
 offset_bottom = 1655.36

@@ -11,7 +11,7 @@ public abstract partial class CustomButton : CustomButtonBase
     private TextureRect _bg;
     private TextureRect _pressedBg;
     private RichTextLabel _textLabel;
-    private Vector2 _pressOffset = new Vector2(0, 28);
+    private Vector2 _pressOffset = new(0, 28);
 
     public override void _Ready()
     {

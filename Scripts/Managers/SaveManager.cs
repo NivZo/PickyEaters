@@ -36,9 +36,10 @@ public class SaveManager
 
     public static void EraseSave()
     {
-        ResourceSaver.Save(new SaveData() {
+        ActiveSave = new SaveData() {
                 LevelReached = 1,
-            }, SAVEFILE);
+            };
+        ResourceSaver.Save(ActiveSave, SAVEFILE);
         LoadGame();
     }
 

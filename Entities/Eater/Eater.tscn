@@ -13,7 +13,7 @@ shader_parameter/maxLineWidth = 8.0
 shader_parameter/minLineWidth = 4.0
 shader_parameter/speed = 2.0
 shader_parameter/blockSize = 48.0
-shader_parameter/color = null
+shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jpfc"]
@@ -112,6 +112,7 @@ ValidFoodTypes = []
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
+z_index = -1
 position = Vector2(0, 88)
 scale = Vector2(1.5, 1)
 texture = ExtResource("7_j888w")

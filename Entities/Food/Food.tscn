@@ -74,7 +74,7 @@ script = ExtResource("1_4jjr8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_68teg")
-position = Vector2(0, -1.85305)
+position = Vector2(0, -1.9999)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_rcyfn")
 
@@ -86,6 +86,7 @@ texture = ExtResource("5_ivlgm")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
+z_index = -1
 position = Vector2(0, 88)
 texture = ExtResource("4_yed14")
 

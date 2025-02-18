@@ -21,6 +21,7 @@ offset_top = 288.0
 offset_right = -64.0
 offset_bottom = 432.0
 script = ExtResource("3_ski6i")
+Color = Color(1, 0.835294, 0.309804, 1)
 CustomIcon = ExtResource("4_urm6t")
 
 [node name="NextLevelButton" parent="Modal" instance=ExtResource("8_004r3")]
@@ -29,6 +30,7 @@ offset_top = 288.0
 offset_right = 432.0
 offset_bottom = 432.0
 script = ExtResource("3_hihcu")
+Color = Color(0.529412, 0.894118, 0.615686, 1)
 CustomIcon = ExtResource("6_8n8sa")
 
 [node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
@@ -37,6 +39,7 @@ offset_top = 72.0
 offset_right = -72.0
 offset_bottom = 216.0
 script = ExtResource("7_1ay8v")
+Color = Color(0.152941, 0.486275, 0.494118, 1)
 CustomIcon = ExtResource("8_wob1t")
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]

@@ -63,7 +63,6 @@ shader_parameter/gradient_texture = SubResource("GradientTexture1D_ekliq")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hxws4")
-SaveLocally = true
 
 [node name="SignalProvider" type="Node" parent="."]
 script = ExtResource("15_vnkmn")

@@ -9,8 +9,8 @@ public static class TweenUtils
     public static void Pop(Node node, float scale, float duration = 0.5f)
         => AddPropertyTween(node, "scale", new Vector2(scale, scale), duration, Tween.TransitionType.Elastic);
 
-    public static void Travel(Node node, Vector2 to, float duration = 0.5f)
-        => AddPropertyTween(node, "global_position", to, duration, Tween.TransitionType.Quint);
+    public static void Travel(Node node, Vector2 to, float duration = 0.5f, Tween.TransitionType transitionType = Tween.TransitionType.Quint)
+        => AddPropertyTween(node, "global_position", to, duration, transitionType);
 
     public static void BoldOutline(Node node, int min, int max, float duration = 0.5f)
     {

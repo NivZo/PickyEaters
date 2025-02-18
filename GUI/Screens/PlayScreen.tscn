@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cx640cucayxt5" path="res://Assets/Icons/White/2x/return.png" id="7_7g63y"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/UndoButton.cs" id="8_y0i11"]
+[ext_resource type="Script" path="res://GUI/Button/HomeIconButton.cs" id="10_lo5wp"]
 [ext_resource type="Script" path="res://GUI/Button/ResetButton.cs" id="10_x7tej"]
 [ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="11_08cr1"]
-[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="13_fcvsn"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="14_3iq26"]
 [ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="15_frctr"]
 
@@ -28,8 +28,21 @@ script = ExtResource("1_svmxk")
 
 [node name="GUI" type="Node" parent="."]
 
+[node name="BackgroundOverlayOutline" type="ColorRect" parent="GUI"]
+material = SubResource("ShaderMaterial_kv26v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 204.0
+offset_right = -60.0
+offset_bottom = -244.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.68, 0.68, 0.68, 0.126)
+
 [node name="BackgroundOverlay" type="ColorRect" parent="GUI"]
-self_modulate = Color(1, 1, 1, 0.331)
 material = SubResource("ShaderMaterial_kv26v")
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +54,7 @@ offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(1, 1, 1, 0.234)
 
 [node name="OverlayBottom" type="ColorRect" parent="GUI"]
 anchors_preset = 12
@@ -95,7 +109,7 @@ offset_left = 180.0
 offset_top = 36.0
 offset_right = 88.64
 offset_bottom = -55.84
-script = ExtResource("13_fcvsn")
+script = ExtResource("10_lo5wp")
 CustomIcon = ExtResource("11_08cr1")
 metadata/_edit_lock_ = true
 

@@ -49,11 +49,9 @@ public class ModalManager
 
     private void OpenModal()
     {
-        _currentModal.Scale = new Vector2(0.3f, 0.3f);
-        _currentModal.Position = SizeUtils.ScreenCenter;
-
+        _currentModal.GlobalPosition = SizeUtils.ScreenCenter + new Vector2(0, SizeUtils.ScreenH);
         _modalLayer.AddChild(_currentModal);
-        TweenUtils.Pop(_currentModal, 1);
+        TweenUtils.Travel(_currentModal, SizeUtils.ScreenCenter, 0.4f, Tween.TransitionType.Circ);
     }
 
     public enum ModalType

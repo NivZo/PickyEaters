@@ -10,7 +10,7 @@ public partial class Modal : Node2D
     {
         base._Ready();
 
-        var bannerText = GetNode<RichTextLabel>("Banner/BannerText");
+        var bannerText = GetNode<RichTextLabel>("BannerText");
         bannerText.Text = TextUtils.WaveString(BannerText);
         GetNode<Area2D>("ClickArea").MouseEntered += () => _mouseOutside = false;
         GetNode<Area2D>("ClickArea").MouseExited += () => _mouseOutside = true;

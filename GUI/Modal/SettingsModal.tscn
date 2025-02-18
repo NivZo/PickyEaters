@@ -38,7 +38,7 @@ script = ExtResource("1_e8rg8")
 BannerText = "SETTINGS"
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
-self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
+self_modulate = Color(0.345766, 0.423177, 0.359951, 0.392)
 position = Vector2(4, -124)
 scale = Vector2(1.8, 1.6)
 texture = ExtResource("9_x7sst")
