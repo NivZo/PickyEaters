@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Godot;
 
 public class ScreenManager
@@ -20,11 +21,8 @@ public class ScreenManager
 
     public static void LoadFirstScreen()
     {
-        Main.ErrorDisplay = "LoadFirst1";
         _screenToLoad = ScreenType.MainMenu;
-        Main.ErrorDisplay = "LoadFirst2";
         PerformTransition();
-        Main.ErrorDisplay = "LoadFirst3";
     }
     
     public static void TransitionToScreen(ScreenType screenType)
@@ -35,24 +33,16 @@ public class ScreenManager
 
     private static void PerformTransition()
     {
-        Main.ErrorDisplay = "Perf1";
         foreach (var child in _screenLayer.GetChildren())
         {
             child.QueueFree();
         }
-        Main.ErrorDisplay = "Perf2";
-        
         CurrentScreen = _screenToLoad;
-        Main.ErrorDisplay = $"MainMenu - {GD.Load($"res://GUI/Screens/MainMenu.tscn") == null} , PlayScreen - {GD.Load($"res://GUI/Screens/PlayScreen.tscn") == null} , Collection - {GD.Load($"res://GUI/Screens/Collection.tscn") == null}";
         _currentScreen = GetScreen(CurrentScreen);
-        Main.ErrorDisplay = "Perf4";
         _screenLayer.AddChild(_currentScreen);
-        Main.ErrorDisplay = "Perf5";
         _transitionScreen.FadeIn();
-        Main.ErrorDisplay = "Perf6";
 
         SignalProvider.Emit(SignalProvider.SignalName.CoinsValueChanged);
-        Main.ErrorDisplay = "Perf7";
     }
 
     private static Node GetScreen(ScreenType screenType)

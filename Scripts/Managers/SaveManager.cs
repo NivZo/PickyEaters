@@ -22,15 +22,10 @@ public class SaveManager
 
     public static void LoadGame()
     {
-        Main.ErrorDisplay = "Load1";
         ActiveSave = GetCurrentSave();
-        Main.ErrorDisplay = "Load2";
         AudioManager.AdjustMusicVolume(ActiveSave.MusicVolumeScale);
-        Main.ErrorDisplay = "Load3";
         AudioManager.AdjustSoundEffectsVolume(ActiveSave.SoundEffectsVolumeScale);
-        Main.ErrorDisplay = "Load4";
         ScreenManager.LoadFirstScreen();
-        Main.ErrorDisplay = "Load5";
     }
 
     public static void EraseSave()
