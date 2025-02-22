@@ -6,12 +6,12 @@
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="4_r6oil"]
 [ext_resource type="Texture2D" uid="uid://dmvs0hmblt85u" path="res://Assets/Icons/White/2x/audioOn.png" id="5_qavbu"]
 [ext_resource type="Texture2D" uid="uid://b1ywfx6mcf1iw" path="res://Assets/Icons/White/2x/audioOff.png" id="6_2682k"]
-[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
-[ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="8_e1tpc"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_v0yov"]
+[ext_resource type="Texture2D" uid="uid://dxiwij7hwrw3d" path="res://Assets/Icons/White/2x/export.png" id="9_rxatc"]
+[ext_resource type="Script" path="res://GUI/Button/RestartSaveButtonDEV.cs" id="9_vicnn"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="9_x7sst"]
-[ext_resource type="Texture2D" uid="uid://dqkkug8lm18xy" path="res://Assets/Icons/White/2x/cross.png" id="10_tqrjv"]
-[ext_resource type="Script" path="res://GUI/Button/RestartSaveButtonDEV.cs" id="11_aa1ta"]
-[ext_resource type="Texture2D" uid="uid://dvney40okxkrn" path="res://Assets/Icons/White/2x/power.png" id="11_d6ees"]
+[ext_resource type="Texture2D" uid="uid://dvney40okxkrn" path="res://Assets/Icons/White/2x/power.png" id="10_b3cci"]
+[ext_resource type="Script" path="res://GUI/Button/OverrideSaveDEV.cs" id="10_iayy7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w4hnx"]
 shader = ExtResource("4_cpjx0")
@@ -78,6 +78,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Modal/MusicVolume"]
+self_modulate = Color(0.347234, 0.218982, 0.609682, 1)
 offset_left = -20.0
 offset_top = -214.0
 offset_right = 320.0
@@ -121,6 +122,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="SoundEffectsVolumeSlider" type="HSlider" parent="Modal/SoundEffectsVolume"]
+self_modulate = Color(0.34902, 0.219608, 0.607843, 1)
 offset_left = -20.0
 offset_top = -114.0
 offset_right = 320.0
@@ -131,20 +133,20 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="CloseModalButton" parent="Modal" instance=ExtResource("8_004r3")]
-offset_left = -432.0
-offset_top = 288.0
+[node name="Erase" parent="." instance=ExtResource("8_v0yov")]
+offset_left = -504.0
+offset_top = 216.0
 offset_right = -72.0
-offset_bottom = 440.0
-script = ExtResource("8_e1tpc")
-Color = Color(0.6, 0.482353, 0.443137, 1)
-CustomIcon = ExtResource("10_tqrjv")
+offset_bottom = 324.0
+script = ExtResource("9_vicnn")
+Color = Color(0.364706, 0.364706, 0.364706, 1)
+CustomIcon = ExtResource("10_b3cci")
 
-[node name="ResetProgressButton" parent="Modal" instance=ExtResource("8_004r3")]
+[node name="Override" parent="." instance=ExtResource("8_v0yov")]
 offset_left = 72.0
-offset_top = 288.0
-offset_right = 432.0
-offset_bottom = 432.0
-script = ExtResource("11_aa1ta")
-Color = Color(0.6, 0.482353, 0.443137, 1)
-CustomIcon = ExtResource("11_d6ees")
+offset_top = 216.0
+offset_right = 504.0
+offset_bottom = 324.0
+script = ExtResource("10_iayy7")
+Color = Color(0.364706, 0.364706, 0.364706, 1)
+CustomIcon = ExtResource("9_rxatc")

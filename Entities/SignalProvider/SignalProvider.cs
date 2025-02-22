@@ -2,8 +2,8 @@ using Godot;
 
 public partial class SignalProvider : Node
 {
-    [Signal]
-    public delegate void CoinsValueChangedEventHandler();
+    [Signal] public delegate void CoinsValueChangedEventHandler();
+    [Signal] public delegate void FadeOutTranistionFinishedEventHandler();
 
     public static SignalProvider Instance { get; private set; }
 

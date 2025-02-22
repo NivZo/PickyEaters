@@ -7,8 +7,8 @@ public partial class SettingsButton : CustomIconButton
     
     protected override void OnClick()
     {
-        AudioManager.Instance.PlayAudio(AudioType.Undo);
-        ModalManager.Instance.OpenSettingsModal();
+        AudioManager.PlayAudio(AudioType.Undo);
+        ModalManager.OpenSettingsModal();
     }
 
 }

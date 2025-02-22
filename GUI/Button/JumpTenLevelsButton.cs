@@ -11,14 +11,14 @@ public partial class JumpTenLevelsButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.Instance.PlayAudio(AudioType.Undo);
+        AudioManager.PlayAudio(AudioType.Undo);
         
         LevelManager.Instance.NextTenLevels();
         SaveManager.SaveGame();
 
-        if (ModalManager.Instance.CurrentOpenModal !=ModalManager.ModalType.None)
+        if (ModalManager.CurrentOpenModal !=ModalManager.ModalType.None)
         {
-            ModalManager.Instance.CloseModal();
+            ModalManager.CloseModal();
         }
     }
 

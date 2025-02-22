@@ -8,9 +8,8 @@ public partial class RestartSaveButtonDEV : CustomButton
     protected override void OnClick()
     {
         SaveManager.EraseSave();
-        AudioManager.Instance.PlayAudio(AudioType.Undo);
-
-        SaveManager.LoadGame();
+        AudioManager.PlayAudio(AudioType.Undo);
+        ModalManager.CloseModal();
     }
 
 }

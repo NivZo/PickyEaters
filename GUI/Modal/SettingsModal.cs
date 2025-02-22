@@ -19,14 +19,14 @@ public partial class SettingsModal : Node2D
 
     private void OnMusicSlide(double value)
     {
-        AudioManager.Instance.AdjustMusicVolume(value);
+        AudioManager.AdjustMusicVolume(value);
         GetNode<Sprite2D>("Modal/MusicVolume/IconMusicOn").Visible = value != 0;
         GetNode<Sprite2D>("Modal/MusicVolume/IconMusicOff").Visible = value == 0;
     }
 
     private void OnSoundEffectsSlide(double value)
     {
-        AudioManager.Instance.AdjustSoundEffectsVolume(value);
+        AudioManager.AdjustSoundEffectsVolume(value);
         GetNode<Sprite2D>("Modal/SoundEffectsVolume/IconMusicOn").Visible = value != 0;
         GetNode<Sprite2D>("Modal/SoundEffectsVolume/IconMusicOff").Visible = value == 0;
     }

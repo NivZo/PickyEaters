@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd570jgysudow"]
+[gd_scene load_steps=12 format=3 uid="uid://dd570jgysudow"]
 
 [ext_resource type="Script" path="res://Entities/Eater/Eater.cs" id="1_es8yf"]
 [ext_resource type="Texture2D" uid="uid://dxn6kxn8n3gyn" path="res://Assets/green_eater_body.png" id="2_4axc0"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_xop0a"]
+[ext_resource type="Texture2D" uid="uid://cbbcpj0nxdr5w" path="res://Assets/Entities/eater_body.png" id="4_2o8r6"]
 [ext_resource type="Texture2D" uid="uid://b2auke0yk40i3" path="res://Assets/smile_face.png" id="6_64vqw"]
 [ext_resource type="Texture2D" uid="uid://cpjqma7dublnd" path="res://Assets/shadow.png" id="7_j888w"]
 
@@ -120,13 +121,14 @@ texture = ExtResource("7_j888w")
 [node name="Body" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_rl6o3")
 position = Vector2(0, 6)
-texture = ExtResource("2_4axc0")
+texture = ExtResource("4_2o8r6")
 
 [node name="Outline" type="Sprite2D" parent="Body"]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("2_4axc0")
+metadata/_edit_lock_ = true
 
 [node name="Face" type="Sprite2D" parent="."]
 position = Vector2(0, 4.752)

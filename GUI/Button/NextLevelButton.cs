@@ -9,13 +9,13 @@ public partial class NextLevelButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.Instance.PlayAudio(AudioType.Undo);
+        AudioManager.PlayAudio(AudioType.Undo);
         
         LevelManager.Instance.NextLevel();
 
-        if (ModalManager.Instance.CurrentOpenModal !=ModalManager.ModalType.None)
+        if (ModalManager.CurrentOpenModal !=ModalManager.ModalType.None)
         {
-            ModalManager.Instance.CloseModal(overideUnclosable: true);
+            ModalManager.CloseModal(overideUnclosable: true);
         }
     }
 

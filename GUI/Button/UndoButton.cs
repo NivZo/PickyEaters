@@ -9,7 +9,7 @@ public partial class UndoButton : CustomButton
     protected override void OnClick()
     {
         HistoryManager.Instance.UndoMove();
-        AudioManager.Instance.PlayAudio(AudioType.Undo);
+        AudioManager.PlayAudio(AudioType.Undo);
     }
 
 }

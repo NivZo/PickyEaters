@@ -15,9 +15,9 @@ public partial class PlayScreen : Node
     {
         base._Process(delta);
 
-        if (ModalManager.Instance.CurrentOpenModal == ModalManager.ModalType.None && LevelManager.Instance.IsVictory())
+        if (ModalManager.CurrentOpenModal == ModalManager.ModalType.None && LevelManager.Instance.IsVictory())
         {
-            ModalManager.Instance.OpenVictoryModal();
+            ModalManager.OpenVictoryModal();
             
             CoinsManager.Instance.AddCoins(100);
             SignalProvider.Emit(SignalProvider.SignalName.CoinsValueChanged);

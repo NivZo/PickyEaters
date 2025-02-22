@@ -25,4 +25,18 @@ public static class EaterTypeExtensions
             _ => throw new System.NotImplementedException(),
         };
     }
+
+    public static Color GetEaterTypeBodyModulate(this EaterType eaterType)
+    {
+        return eaterType switch
+        {
+            EaterType.Green => new Color("98fa9d"),
+            EaterType.Blue => new Color("58b4ef"),
+            EaterType.Red => new Color("ff7991"),
+            EaterType.Yellow => new Color("ffd54f"),
+            EaterType.Purple => new Color("ab00f7"),
+            EaterType.Pink => new Color("ff7dff"),
+            _ => throw new System.NotImplementedException(),
+        };
+    }
 }

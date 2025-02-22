@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
 
-public class DragSelectComponent<TCategory> : IDisposable
+public class SelectComponent<TCategory> : IDisposable
 {
     public bool IsSelected { get => _isSelected; }
-    private static List<DragSelectComponent<TCategory>> _selectComponents = new();
+    private static List<SelectComponent<TCategory>> _selectComponents = new();
     private bool _isSelected = false;
     private bool _isSelectable = true;
     private Func<bool> _selectCondition;
@@ -15,7 +14,7 @@ public class DragSelectComponent<TCategory> : IDisposable
     private List<Action> _onSelectAction = new();
     private List<Action> _onDeselectAction = new();
 
-    public DragSelectComponent(CollisionObject2D collider, Func<bool> selectCondition = null)
+    public SelectComponent(CollisionObject2D collider, Func<bool> selectCondition = null)
     {
         _collider = collider;
         _collider.InputEvent += HandleInput;

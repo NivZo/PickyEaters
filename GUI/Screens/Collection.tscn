@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuo25u4308ma0"]
+
+[ext_resource type="Script" path="res://GUI/Screens/Collection.cs" id="1_v5rii"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="6_2id02"]
+[ext_resource type="Texture2D" uid="uid://dxn6kxn8n3gyn" path="res://Assets/green_eater_body.png" id="6_03uwh"]
+[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="6_qeqdq"]
+[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="7_hk2di"]
+[ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="7_pn5fx"]
+[ext_resource type="Texture2D" uid="uid://d4j2lsyrh72f7" path="res://Assets/Icons/White/2x/shoppingCart.png" id="9_n68k8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjog0"]
+size = Vector2(1296, 2005)
+
+[node name="Collection" type="Node"]
+script = ExtResource("1_v5rii")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Home" parent="GUILayer" instance=ExtResource("6_2id02")]
+offset_left = 864.0
+offset_top = 2376.0
+offset_right = 216.0
+offset_bottom = 2087.36
+script = ExtResource("6_qeqdq")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("7_hk2di")
+
+[node name="Shop" parent="GUILayer" instance=ExtResource("6_2id02")]
+offset_left = 72.0
+offset_top = 2376.0
+offset_right = -576.0
+offset_bottom = 2087.36
+script = ExtResource("7_pn5fx")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("9_n68k8")
+
+[node name="ScrollAreaMask" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 72.0
+offset_top = 216.0
+offset_right = 1368.0
+offset_bottom = 2232.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ScrollContent" type="Node2D" parent="ScrollAreaMask"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ScrollAreaMask/ScrollContent"]
+position = Vector2(360, 216)
+texture = ExtResource("6_03uwh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ScrollAreaMask/ScrollContent"]
+position = Vector2(360, 936)
+texture = ExtResource("6_03uwh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ScrollAreaMask/ScrollContent"]
+position = Vector2(360, 1800)
+texture = ExtResource("6_03uwh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ScrollAreaMask/ScrollContent"]
+position = Vector2(360, 2592)
+texture = ExtResource("6_03uwh")
+
+[node name="ScrollArea" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrollArea"]
+position = Vector2(720, 1229.5)
+shape = SubResource("RectangleShape2D_vjog0")
+metadata/_edit_lock_ = true

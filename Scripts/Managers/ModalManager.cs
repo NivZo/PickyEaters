@@ -5,19 +5,18 @@ using Godot;
 public class ModalManager
 {
     private static ModalType[] UNCLOSABLE_MODALS = new ModalType[] { ModalType.Victory };
-    public static ModalManager Instance { get; } = new ModalManager();
 
-    private Node2D _currentModal = null;
-    private CanvasLayer _modalLayer;
+    private static Node2D _currentModal = null;
+    private static CanvasLayer _modalLayer;
 
-    public ModalType CurrentOpenModal = ModalType.None;
+    public static ModalType CurrentOpenModal = ModalType.None;
 
-    public void Setup(CanvasLayer modalLayer)
+    public static void Setup(CanvasLayer modalLayer)
     {
         _modalLayer = modalLayer;
     }
     
-    public void OpenVictoryModal()
+    public static void OpenVictoryModal()
     {
         LevelManager.Instance.IncreaseLevelReached();
 
@@ -27,7 +26,7 @@ public class ModalManager
         OpenModal();
     }
 
-    public void OpenSettingsModal()
+    public static void OpenSettingsModal()
     {
         _currentModal = GD.Load<PackedScene>("res://GUI/Modal/SettingsModal.tscn").Instantiate<Node2D>();
         CurrentOpenModal = ModalType.Settings;
@@ -35,7 +34,7 @@ public class ModalManager
         OpenModal();
     }
 
-    public void CloseModal(bool overideUnclosable = false)
+    public static void CloseModal(bool overideUnclosable = false)
     {
         if (_currentModal != null && (overideUnclosable || !UNCLOSABLE_MODALS.Contains(CurrentOpenModal)))
         {
@@ -47,7 +46,7 @@ public class ModalManager
         }
     }
 
-    private void OpenModal()
+    private static void OpenModal()
     {
         _currentModal.GlobalPosition = SizeUtils.ScreenCenter + new Vector2(0, SizeUtils.ScreenH);
         _modalLayer.AddChild(_currentModal);

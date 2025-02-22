@@ -8,14 +8,8 @@ public class SaveManager
     private const string LOCAL_SAVEFILE = "res://savegame.tres";
 
     private static string SAVEFILE => SaveLocally ? LOCAL_SAVEFILE : USER_SAVEFILE;
-    
-    private static Lazy<SaveData> _activeSaveLazy = new(() => GetCurrentSave());
 
-    public static SaveData ActiveSave {
-        get => _activeSaveLazy.Value;
-        set => _activeSaveLazy = new(() => value);
-    }
-
+    public static SaveData ActiveSave = new();
     public static bool SaveLocally = false;
 
     public static void SaveGame()
@@ -28,10 +22,15 @@ public class SaveManager
 
     public static void LoadGame()
     {
+        Main.ErrorDisplay = "Load1";
         ActiveSave = GetCurrentSave();
-
-        AudioManager.Instance.AdjustMusicVolume(ActiveSave.MusicVolumeScale);
-        AudioManager.Instance.AdjustSoundEffectsVolume(ActiveSave.SoundEffectsVolumeScale);
+        Main.ErrorDisplay = "Load2";
+        AudioManager.AdjustMusicVolume(ActiveSave.MusicVolumeScale);
+        Main.ErrorDisplay = "Load3";
+        AudioManager.AdjustSoundEffectsVolume(ActiveSave.SoundEffectsVolumeScale);
+        Main.ErrorDisplay = "Load4";
+        ScreenManager.LoadFirstScreen();
+        Main.ErrorDisplay = "Load5";
     }
 
     public static void EraseSave()
@@ -40,22 +39,39 @@ public class SaveManager
                 LevelReached = 1,
             };
         ResourceSaver.Save(ActiveSave, SAVEFILE);
-        LoadGame();
+        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
+    }
+
+    public static void OverrideDevSave()
+    {
+        ActiveSave = new SaveData()
+        {
+            LevelReached = 101,
+            Coins = 2475,
+            UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.Vampire, EaterFace.CatEyes, EaterFace.CatEyes, EaterFace.CuteFang, EaterFace.WideOpenSmile },
+        };
+        ResourceSaver.Save(ActiveSave, SAVEFILE);
+        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
     }
 
     private static SaveData GetCurrentSave()
     {
-        if (ResourceLoader.Exists(SAVEFILE))
+        try
         {
-            var currSave = ResourceLoader.Load<SaveData>(SAVEFILE, null, ResourceLoader.CacheMode.Ignore);
-            GD.Print("Loaded ", currSave.LevelReached);
-            return currSave;
+            if (ResourceLoader.Exists(SAVEFILE))
+            {
+                var currSave = ResourceLoader.Load<SaveData>(SAVEFILE, null, ResourceLoader.CacheMode.Ignore);
+                GD.Print("Loaded ", currSave.LevelReached);
+                return currSave;
+            }
+            else
+            {
+                return new();
+            }
         }
-        else
+        catch
         {
-            return new() {
-                LevelReached = 1,
-            };
+            return new();
         }
     }
 }

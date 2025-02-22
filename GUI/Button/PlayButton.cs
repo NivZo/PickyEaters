@@ -7,8 +7,8 @@ public partial class PlayButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.Instance.PlayAudio(AudioType.FoodConsumed);
-        ScreenManager.Instance.TransitionToScreen(ScreenManager.ScreenType.PlayScreen);
+        AudioManager.PlayAudio(AudioType.FoodConsumed);
+        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.PlayScreen);
     }
 
 }

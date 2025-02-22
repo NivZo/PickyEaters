@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=23 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Entities/Main/Main.cs" id="1_hxws4"]
+[ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
 [ext_resource type="Texture2D" uid="uid://oovxbjb7pqkj" path="res://Assets/outline.png" id="2_aa13p"]
 [ext_resource type="Shader" path="res://Shaders/Checkerboard.gdshader" id="2_rqwvo"]
 [ext_resource type="Shader" path="res://Shaders/BalatroBackground.gdshader" id="2_tskco"]
@@ -63,6 +64,7 @@ shader_parameter/gradient_texture = SubResource("GradientTexture1D_ekliq")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hxws4")
+metadata/_edit_horizontal_guides_ = [-3168.0]
 
 [node name="SignalProvider" type="Node" parent="."]
 script = ExtResource("15_vnkmn")
@@ -76,7 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0.0201618, 0.0126892, 1)
+color = Color(0.573747, 0.636568, 0.919668, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
@@ -117,6 +119,18 @@ grow_vertical = 0
 mouse_filter = 2
 color = Color(0.169245, 0.169245, 0.169245, 1)
 
+[node name="OverlayBottom" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.168627, 0.168627, 0.168627, 1)
+metadata/_edit_lock_ = true
+
 [node name="ScreenLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -134,6 +148,9 @@ position = Vector2(0, 8)
 
 [node name="HLineOverlayBottom" parent="BorderLayer" instance=ExtResource("3_r8aly")]
 position = Vector2(0, 160)
+
+[node name="HLineBottom" parent="BorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 2348)
 
 [node name="HLineBottomBorder" parent="BorderLayer" instance=ExtResource("3_r8aly")]
 position = Vector2(0, 2554)
@@ -156,6 +173,14 @@ offset_bottom = -55.84
 script = ExtResource("12_cmqsi")
 CustomIcon = ExtResource("13_4lg4f")
 
+[node name="Exception" type="RichTextLabel" parent="GUILayer"]
+offset_left = 72.0
+offset_top = 216.0
+offset_right = 1368.0
+offset_bottom = 2304.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 40
+
 [node name="ModalLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -170,6 +195,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_bgvm0")

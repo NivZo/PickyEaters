@@ -7,7 +7,7 @@ public partial class Eater : Node2D
 {
     [Export] public EaterType EaterType { get; set; }
     [Export] public Godot.Collections.Array<FoodType> ValidFoodTypes { get; set; }
-    private DragSelectComponent<Eater> _dragSelectComponent;
+    private SelectComponent<Eater> _selectComponent;
     public TargetPositionComponent TargetPositionComponent;
     
     private CollisionObject2D _collider;
@@ -17,6 +17,7 @@ public partial class Eater : Node2D
 
     private Sprite2D _body;
     private Sprite2D _face;
+    private EaterFace _eaterFace;
     private bool _isTakingAction = false;
 
 
@@ -25,14 +26,17 @@ public partial class Eater : Node2D
         base._Ready();
 
         _face = GetNode<Sprite2D>("Face");
+        _eaterFace = EnumUtils.GetRandomValueOutOf(SaveManager.ActiveSave.UnlockedFaces.ToList());
+        _face.Texture = _eaterFace.GetEaterFaceTexture();
         _body = GetNode<Sprite2D>("Body");
         _body.Texture = EaterType.GetEaterTypeBodyTexture();
+        // _body.SelfModulate = EaterType.GetEaterTypeBodyModulate();
 
         _collider = GetNode<Area2D>("Area2D");
         _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-        _dragSelectComponent = new(_collider, ActionManager.Instance.IsActionAvailable);
-        _dragSelectComponent.Select += OnSelect;
-        _dragSelectComponent.Deselect += OnDeselect;
+        _selectComponent = new(_collider, ActionManager.Instance.IsActionAvailable);
+        _selectComponent.Select += OnSelect;
+        _selectComponent.Deselect += OnDeselect;
         TargetPositionComponent = new(this);
         TargetPositionComponent.SetPinPosition();
 
@@ -49,7 +53,7 @@ public partial class Eater : Node2D
     {
         base._PhysicsProcess(delta);
 
-        if (_dragSelectComponent.IsSelected)
+        if (_selectComponent.IsSelected)
         {
             var currentDirection = GetCurrentDirection();
             var shouldResetNudge = true;
@@ -90,12 +94,12 @@ public partial class Eater : Node2D
     {
         base._UnhandledInput(@event);
 
-        if (_dragSelectComponent.IsSelected && @event is InputEventMouseButton inputEventMouseButton
+        if (_selectComponent.IsSelected && @event is InputEventMouseButton inputEventMouseButton
             && inputEventMouseButton.ButtonIndex == MouseButton.Left)
         {
             if (inputEventMouseButton.IsReleased())
             {
-                _dragSelectComponent.ManualDeselection();
+                _selectComponent.ManualDeselection();
             }
         }
     }
@@ -104,12 +108,12 @@ public partial class Eater : Node2D
     private void OnSelect()
     {
         _clickPositionAnchor = GlobalPosition;
-        _face.Texture = FaceTypeExtensions.GetFaceTypeTexture(FaceType.Excited);
+        _face.Texture = _eaterFace.GetEaterActiveFaceTexture();
         TweenUtils.Pop(this, 1.3f);
         TweenUtils.BoldOutline(_body, 8, 12);
         ZIndex = 1;
 
-        AudioManager.Instance.PlayAudio(AudioType.SelectEater);
+        AudioManager.PlayAudio(AudioType.SelectEater);
     }
 
     private void OnDeselect()
@@ -121,7 +125,7 @@ public partial class Eater : Node2D
             TweenUtils.BoldOutline(collision?.Sprite, 8, 12);
 
         });
-        _face.Texture = FaceTypeExtensions.GetFaceTypeTexture(FaceType.Smile);
+        _face.Texture = _eaterFace.GetEaterFaceTexture();
         TargetPositionComponent.ResetNudge();
         TweenUtils.Pop(this, 1);
         TweenUtils.BoldOutline(_body, 4, 8);
@@ -135,13 +139,13 @@ public partial class Eater : Node2D
             ActionManager.Instance.StartAction(this, () => {
                 HistoryManager.Instance.AddMove(food.FoodType, food.IsLast, food.GlobalPosition, this, currPos);
                 food.QueueFree();
-                AudioManager.Instance.PlayAudio(AudioType.FoodConsumed);
+                AudioManager.PlayAudio(AudioType.FoodConsumed);
             });
             TargetPositionComponent.SetPinPosition(food.GlobalPosition);
         }
         else
         {
-            AudioManager.Instance.PlayAudio(AudioType.DeselectEater);
+            AudioManager.PlayAudio(AudioType.DeselectEater);
         }
     }
 
@@ -160,7 +164,7 @@ public partial class Eater : Node2D
     private Direction.DirectionName GetCurrentDirection()
     {
         var dist = GetGlobalMousePosition() - _clickPositionAnchor;
-        if (dist.LengthSquared() > 2500)
+        if (dist.LengthSquared() > 5000)
         {
             return dist switch
             {

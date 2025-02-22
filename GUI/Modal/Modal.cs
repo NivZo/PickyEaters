@@ -21,7 +21,7 @@ public partial class Modal : Node2D
         base._UnhandledInput(@event);
         if (@event is InputEventMouseButton && _mouseOutside)
         {
-            ModalManager.Instance.CloseModal();
+            ModalManager.CloseModal();
         }
     }
 }

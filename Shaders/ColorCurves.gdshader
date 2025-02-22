@@ -3,9 +3,9 @@ uniform sampler2D gradient_texture : source_color;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform float mix_strength : hint_range(0.0, 1.0) = 1.0;
 uniform float opacity : hint_range(0.0, 1.0) = 1.0;
-uniform int blend_mode : hint_range(0, 9) = 0; 
+uniform int blend_mode : hint_range(0, 9) = 0;
 // 0: Normal, 1: Darken, 2: Multiply, 3: Color Burn, 4: Linear Burn, 5: Lighten, 6: Color Dodge, 7: Screen, 8: color, 9: hue
-uniform float hue_shift : hint_range(-1.0, 1.0) = 0.0; 
+uniform float hue_shift : hint_range(-1.0, 1.0) = 0.0;
 // Adjusts the hue of the gradient
 vec3 rgb_to_hsl(vec3 color) {
     float r = color.r;
