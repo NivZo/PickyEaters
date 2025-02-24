@@ -6,32 +6,29 @@ using Godot;
 public partial class Eater : Node2D
 {
     [Export] public EaterType EaterType { get; set; }
+    [Export] public EaterFace EaterFace { get; set; }
     [Export] public Godot.Collections.Array<FoodType> ValidFoodTypes { get; set; }
-    private SelectComponent<Eater> _selectComponent;
     public TargetPositionComponent TargetPositionComponent;
-    
+    private SelectComponent<Eater> _selectComponent;
+
+    private EaterDisplay _display;    
     private CollisionObject2D _collider;
     private AudioStreamPlayer _audioStreamPlayer;
     private List<Direction> _directions;
     private Vector2 _clickPositionAnchor;
 
-    private Sprite2D _body;
-    private Sprite2D _face;
-    private EaterFace _eaterFace;
     private bool _isTakingAction = false;
 
 
     public override void _Ready()
     {
         base._Ready();
-
-        _face = GetNode<Sprite2D>("Face");
-        _eaterFace = EnumUtils.GetRandomValueOutOf(SaveManager.ActiveSave.UnlockedFaces.ToList());
-        _face.Texture = _eaterFace.GetEaterFaceTexture();
-        _body = GetNode<Sprite2D>("Body");
-        _body.Texture = EaterType.GetEaterTypeBodyTexture();
-        // _body.SelfModulate = EaterType.GetEaterTypeBodyModulate();
-
+        
+        EaterFace = EaterFace == EaterFace.SmileBasic ? EnumUtils.GetRandomValueOutOf(SaveManager.ActiveSave.UnlockedFaces.ToList()) : EaterFace;
+        _display = GetNode<EaterDisplay>("EaterDisplay");
+        _display.EaterFace = EaterFace;
+        _display.EaterType = EaterType;
+        _display.Setup();
         _collider = GetNode<Area2D>("Area2D");
         _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
         _selectComponent = new(_collider, ActionManager.Instance.IsActionAvailable);
@@ -42,10 +39,10 @@ public partial class Eater : Node2D
 
         _directions = new()
         {
-            new(EaterType, Direction.DirectionName.Up, Vector2I.Up, GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
-            new(EaterType, Direction.DirectionName.Down, Vector2I.Down, GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
-            new(EaterType, Direction.DirectionName.Left, Vector2I.Left, GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
-            new(EaterType, Direction.DirectionName.Right, Vector2I.Right, GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Up, Vector2I.Up, GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Down, Vector2I.Down, GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Left, Vector2I.Left, GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Right, Vector2I.Right, GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
         };
     }
 
@@ -108,9 +105,9 @@ public partial class Eater : Node2D
     private void OnSelect()
     {
         _clickPositionAnchor = GlobalPosition;
-        _face.Texture = _eaterFace.GetEaterActiveFaceTexture();
+        _display.Activate();
         TweenUtils.Pop(this, 1.3f);
-        TweenUtils.BoldOutline(_body, 8, 12);
+        TweenUtils.BoldOutline(_display.Body, 8, 12);
         ZIndex = 1;
 
         AudioManager.PlayAudio(AudioType.SelectEater);
@@ -125,10 +122,10 @@ public partial class Eater : Node2D
             TweenUtils.BoldOutline(collision?.Sprite, 8, 12);
 
         });
-        _face.Texture = _eaterFace.GetEaterFaceTexture();
+        _display.Deactivate();
         TargetPositionComponent.ResetNudge();
         TweenUtils.Pop(this, 1);
-        TweenUtils.BoldOutline(_body, 4, 8);
+        TweenUtils.BoldOutline(_display.Body, 4, 8);
         ZIndex = 0;
 
         var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == GetCurrentDirection() && direction.CanMoveInDirection, null);

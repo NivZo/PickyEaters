@@ -1,139 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd570jgysudow"]
+[gd_scene load_steps=4 format=3 uid="uid://dd570jgysudow"]
 
 [ext_resource type="Script" path="res://Entities/Eater/Eater.cs" id="1_es8yf"]
-[ext_resource type="Texture2D" uid="uid://dxn6kxn8n3gyn" path="res://Assets/green_eater_body.png" id="2_4axc0"]
-[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_xop0a"]
-[ext_resource type="Texture2D" uid="uid://cbbcpj0nxdr5w" path="res://Assets/Entities/eater_body.png" id="4_2o8r6"]
-[ext_resource type="Texture2D" uid="uid://b2auke0yk40i3" path="res://Assets/smile_face.png" id="6_64vqw"]
-[ext_resource type="Texture2D" uid="uid://cpjqma7dublnd" path="res://Assets/shadow.png" id="7_j888w"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rl6o3"]
-resource_local_to_scene = true
-shader = ExtResource("2_xop0a")
-shader_parameter/maxLineWidth = 8.0
-shader_parameter/minLineWidth = 4.0
-shader_parameter/speed = 2.0
-shader_parameter/blockSize = 48.0
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/tolerance = 0.8
+[ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="2_dhrxe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jpfc"]
 size = Vector2(200, 200)
 
-[sub_resource type="Animation" id="Animation_7iiak"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.5, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_8b0ik"]
-resource_name = "headbob"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 6), Vector2(0, -6), Vector2(0, 6), Vector2(0, -6), Vector2(0, 6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Face:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.6, 1.1, 1.6, 2.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 6), Vector2(0, -6), Vector2(0, 6), Vector2(0, -6), Vector2(0, 6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.99), Vector2(1, 1), Vector2(1, 0.99), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Body:skew")
-tracks/3/interp = 4
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0174533, -0.0174533]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Shadow:scale")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1.5, 1), Vector2(1.65, 1), Vector2(1.5, 1), Vector2(1.65, 1), Vector2(1.5, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxjnc"]
-_data = {
-"RESET": SubResource("Animation_7iiak"),
-"headbob": SubResource("Animation_8b0ik")
-}
-
 [node name="Eater" type="Node2D"]
 script = ExtResource("1_es8yf")
-ValidFoodTypes = []
 
-[node name="Shadow" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(0, 88)
-scale = Vector2(1.5, 1)
-texture = ExtResource("7_j888w")
-
-[node name="Body" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_rl6o3")
-position = Vector2(0, 6)
-texture = ExtResource("4_2o8r6")
-
-[node name="Outline" type="Sprite2D" parent="Body"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-scale = Vector2(1.05, 1.05)
-texture = ExtResource("2_4axc0")
-metadata/_edit_lock_ = true
-
-[node name="Face" type="Sprite2D" parent="."]
-position = Vector2(0, 4.752)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6_64vqw")
+[node name="EaterDisplay" parent="." instance=ExtResource("2_dhrxe")]
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -170,12 +46,6 @@ target_position = Vector2(0, 2000)
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_hxjnc")
-}
-autoplay = "headbob"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0

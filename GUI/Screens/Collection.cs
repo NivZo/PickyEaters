@@ -2,42 +2,27 @@ using Godot;
 
 public partial class Collection : Node
 {
-    private Area2D _scrollArea;
-    private Node2D _scrollContent;
+    public static Collection Instance;
 
-    private bool _scrollAreaPressed = false;
+    private Scrollable _scrollable;
 
     public override void _Ready()
     {
         base._Ready();
-
-        _scrollArea = GetNode<Area2D>("ScrollArea");
-        _scrollArea.InputEvent += HandleScroll;
-        _scrollContent = GetNode<Node2D>("ScrollAreaMask/ScrollContent");
+        Instance = this;
+        
+        _scrollable = GetNode<Scrollable>("GUILayer/Scrollable");
     }
 
-    private void HandleScroll(Node viewport, InputEvent inputEvent, long shapeIdx)
+    public void SetColor(EaterType eaterType)
     {
-        if (inputEvent is InputEventMouseButton mouseButtonEvent)
+        foreach (var item in _scrollable.Items)
         {
-            GD.Print("Click");
-            if (mouseButtonEvent.IsReleased())
+            if (item is EaterDisplay eaterDisplay)
             {
-                GD.Print("Scroll end");
-                _scrollAreaPressed = false;
+                eaterDisplay.EaterType = eaterType;
+                eaterDisplay.Setup();
             }
-
-            else if (mouseButtonEvent.IsPressed())
-            {
-                GD.Print("Scroll start");
-                _scrollAreaPressed = true;
-            }
-        }
-
-        if (_scrollAreaPressed && inputEvent is InputEventMouseMotion dragEvent)
-        {
-            GD.Print(dragEvent.Relative);
-            _scrollContent.Position += new Vector2(0, dragEvent.Relative.Y);
         }
     }
 }

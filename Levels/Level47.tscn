@@ -14,37 +14,37 @@ script = ExtResource("lvlid")
 [node name="Food0_0" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(180.0, 700.0)
 FoodType = 2
-IsLast = true
+IsLast = false
 
 [node name="Food0_1" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(396.0, 700.0)
 FoodType = 1
-IsLast = true
+IsLast = false
 
-[node name="Food0_2" parent="Food" instance=ExtResource("foodid")]
+[node name="Eater0_2" parent="Eaters" instance=ExtResource("eaterid")]
 position = Vector2(612.0, 700.0)
-FoodType = 0
-IsLast = false
-
-[node name="Food0_3" parent="Food" instance=ExtResource("foodid")]
-position = Vector2(828.0, 700.0)
-FoodType = 0
-IsLast = false
-
-[node name="Eater0_4" parent="Eaters" instance=ExtResource("eaterid")]
-position = Vector2(1044.0, 700.0)
 EaterType = 2
 ValidFoodTypes = [0, 3]
 
+[node name="Food0_3" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(828.0, 700.0)
+FoodType = 3
+IsLast = false
+
+[node name="Food0_4" parent="Food" instance=ExtResource("foodid")]
+position = Vector2(1044.0, 700.0)
+FoodType = 1
+IsLast = false
+
 [node name="Food0_5" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1260.0, 700.0)
-FoodType = 3
+FoodType = 0
 IsLast = false
 
 [node name="Food1_0" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(180.0, 916.0)
-FoodType = 0
-IsLast = false
+FoodType = 2
+IsLast = true
 
 [node name="Food1_1" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(396.0, 916.0)
@@ -54,21 +54,21 @@ IsLast = false
 [node name="Food1_2" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(612.0, 916.0)
 FoodType = 3
-IsLast = true
+IsLast = false
 
 [node name="Food1_3" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(828.0, 916.0)
-FoodType = 4
+FoodType = 0
 IsLast = false
 
 [node name="Food1_4" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1044.0, 916.0)
-FoodType = 4
+FoodType = 3
 IsLast = false
 
 [node name="Food1_5" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1260.0, 916.0)
-FoodType = 4
+FoodType = 2
 IsLast = false
 
 [node name="Eater2_0" parent="Eaters" instance=ExtResource("eaterid")]
@@ -83,37 +83,37 @@ IsLast = false
 
 [node name="Food2_2" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(612.0, 1132.0)
-FoodType = 3
+FoodType = 4
 IsLast = false
 
 [node name="Food2_3" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(828.0, 1132.0)
 FoodType = 4
-IsLast = false
+IsLast = true
 
 [node name="Food2_4" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1044.0, 1132.0)
-FoodType = 4
+FoodType = 2
 IsLast = false
 
-[node name="Food2_5" parent="Food" instance=ExtResource("foodid")]
+[node name="Eater2_5" parent="Eaters" instance=ExtResource("eaterid")]
 position = Vector2(1260.0, 1132.0)
-FoodType = 3
-IsLast = false
+EaterType = 1
+ValidFoodTypes = [0, 2]
 
 [node name="Food3_0" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(180.0, 1348.0)
 FoodType = 3
-IsLast = false
+IsLast = true
 
 [node name="Food3_1" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(396.0, 1348.0)
-FoodType = 3
+FoodType = 1
 IsLast = false
 
 [node name="Food3_2" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(612.0, 1348.0)
-FoodType = 0
+FoodType = 2
 IsLast = false
 
 [node name="Eater3_3" parent="Eaters" instance=ExtResource("eaterid")]
@@ -123,37 +123,37 @@ ValidFoodTypes = [0, 4]
 
 [node name="Food3_4" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1044.0, 1348.0)
-FoodType = 0
+FoodType = 2
 IsLast = false
 
 [node name="Food3_5" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1260.0, 1348.0)
-FoodType = 3
+FoodType = 0
 IsLast = false
 
 [node name="Food4_0" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(180.0, 1564.0)
-FoodType = 2
+FoodType = 3
 IsLast = false
 
 [node name="Food4_1" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(396.0, 1564.0)
-FoodType = 2
+FoodType = 1
 IsLast = false
 
-[node name="Eater4_2" parent="Eaters" instance=ExtResource("eaterid")]
+[node name="Food4_2" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(612.0, 1564.0)
-EaterType = 1
-ValidFoodTypes = [0, 2]
+FoodType = 0
+IsLast = false
 
 [node name="Food4_3" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(828.0, 1564.0)
-FoodType = 0
+FoodType = 4
 IsLast = false
 
 [node name="Food4_4" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1044.0, 1564.0)
-FoodType = 2
+FoodType = 3
 IsLast = false
 
 [node name="Food4_5" parent="Food" instance=ExtResource("foodid")]
@@ -163,12 +163,12 @@ IsLast = false
 
 [node name="Food5_0" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(180.0, 1780.0)
-FoodType = 4
-IsLast = true
+FoodType = 3
+IsLast = false
 
 [node name="Food5_1" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(396.0, 1780.0)
-FoodType = 1
+FoodType = 4
 IsLast = false
 
 [node name="Food5_2" parent="Food" instance=ExtResource("foodid")]
@@ -178,15 +178,15 @@ IsLast = false
 
 [node name="Food5_3" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(828.0, 1780.0)
-FoodType = 4
+FoodType = 0
 IsLast = false
 
 [node name="Food5_4" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1044.0, 1780.0)
-FoodType = 4
+FoodType = 1
 IsLast = false
 
 [node name="Food5_5" parent="Food" instance=ExtResource("foodid")]
 position = Vector2(1260.0, 1780.0)
-FoodType = 4
-IsLast = false
+FoodType = 1
+IsLast = true
