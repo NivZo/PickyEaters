@@ -11,9 +11,8 @@ public partial class CoinsIndicator : Node2D
         base._Ready();
 
         _label = GetNode<RichTextLabel>("Text");
-        // UpdateLabel();
 
-        SignalProvider.Instance.CoinsValueChanged += UpdateLabel;
+        SignalProvider.Instance.ActiveSaveChanged += UpdateLabel;
     }
 
     private void UpdateLabel()

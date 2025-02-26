@@ -2,6 +2,7 @@ using Godot;
 
 public enum EaterFace
 {
+    Hidden,
     SmileBasic,
     Vampire,
     CatEyes,

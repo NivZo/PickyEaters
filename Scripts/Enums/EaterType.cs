@@ -8,6 +8,8 @@ public enum EaterType
     Yellow,
     Purple,
     Pink,
+    Hidden,
+
 }
 
 public static class EaterTypeExtensions
@@ -16,12 +18,13 @@ public static class EaterTypeExtensions
     {
         return eaterType switch
         {
-            EaterType.Green => GD.Load<Texture2D>("Assets/green_eater_body.png"),
-            EaterType.Blue => GD.Load<Texture2D>("Assets/blue_eater_body.png"),
-            EaterType.Red => GD.Load<Texture2D>("Assets/red_eater_body.png"),
-            EaterType.Yellow => GD.Load<Texture2D>("Assets/yellow_eater_body.png"),
-            EaterType.Purple => GD.Load<Texture2D>("Assets/purple_eater_body.png"),
-            EaterType.Pink => GD.Load<Texture2D>("Assets/pink_eater_body.png"),
+            EaterType.Hidden => GD.Load<Texture2D>("Assets/Entities/eater_hidden.png"),
+            EaterType.Green => GD.Load<Texture2D>("Assets/Entities/green_eater_body.png"),
+            EaterType.Blue => GD.Load<Texture2D>("Assets/Entities/blue_eater_body.png"),
+            EaterType.Red => GD.Load<Texture2D>("Assets/Entities/red_eater_body.png"),
+            EaterType.Yellow => GD.Load<Texture2D>("Assets/Entities/yellow_eater_body.png"),
+            EaterType.Purple => GD.Load<Texture2D>("Assets/Entities/purple_eater_body.png"),
+            EaterType.Pink => GD.Load<Texture2D>("Assets/Entities/pink_eater_body.png"),
             _ => throw new System.NotImplementedException(),
         };
     }

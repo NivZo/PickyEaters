@@ -4,10 +4,10 @@ using System;
 public partial class MainMenu : Node
 {
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
-        base._Ready();
-
+        base._EnterTree();
+        
         var _levelLabel = GetNode<RichTextLabel>("CurrentLevel/NumberLabel");
         _levelLabel.Text = TextUtils.WaveString($"{SaveManager.ActiveSave.LevelReached}");
     }

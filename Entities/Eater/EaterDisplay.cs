@@ -19,6 +19,12 @@ public partial class EaterDisplay : Node2D
 
     public void Setup()
     {
+        if (!SaveManager.ActiveSave.UnlockedFaces.Contains(EaterFace))
+        {
+            EaterType = EaterType.Hidden;
+            EaterFace = EaterFace.Hidden;
+        }
+
         Face = GetNode<Sprite2D>("Face");
         Face.Texture = EaterFace.GetEaterFaceTexture();
         Body = GetNode<Sprite2D>("Body");

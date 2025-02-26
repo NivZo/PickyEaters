@@ -30,9 +30,7 @@ public class SaveManager
 
     public static void EraseSave()
     {
-        ActiveSave = new SaveData() {
-                LevelReached = 1,
-            };
+        ActiveSave = new();
         ResourceSaver.Save(ActiveSave, SAVEFILE);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
     }
@@ -42,8 +40,8 @@ public class SaveManager
         ActiveSave = new SaveData()
         {
             LevelReached = 101,
-            Coins = 2475,
-            UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.Vampire, EaterFace.CatEyes, EaterFace.CatEyes, EaterFace.CuteFang, EaterFace.WideOpenSmile },
+            Coins = 7425,
+            UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.WideOpenSmile },
         };
         ResourceSaver.Save(ActiveSave, SAVEFILE);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);

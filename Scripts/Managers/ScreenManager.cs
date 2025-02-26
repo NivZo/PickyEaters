@@ -42,7 +42,7 @@ public class ScreenManager
         _screenLayer.AddChild(_currentScreen);
         _transitionScreen.FadeIn();
 
-        SignalProvider.Emit(SignalProvider.SignalName.CoinsValueChanged);
+        SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
     }
 
     private static Node GetScreen(ScreenType screenType)
@@ -53,5 +53,6 @@ public class ScreenManager
         MainMenu,
         PlayScreen,
         Collection,
+        Shop,
     }
 }

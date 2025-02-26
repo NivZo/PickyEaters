@@ -1,0 +1,141 @@
+[gd_scene load_steps=16 format=3 uid="uid://b2bgws8n4h7uj"]
+
+[ext_resource type="Script" path="res://GUI/Screens/Shop.cs" id="1_6ucuc"]
+[ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_8xwwt"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="5_53xpg"]
+[ext_resource type="Script" path="res://GUI/Button/UnlockFaceButton.cs" id="5_sgosm"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="7_a4cr0"]
+[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="7_t61kd"]
+[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="8_bs5u6"]
+[ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="9_6ybq1"]
+[ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_aene8"]
+[ext_resource type="Texture2D" uid="uid://cd1orxw7cei3w" path="res://Assets/Icons/White/2x/trophy.png" id="10_j2yoy"]
+[ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="10_x6o61"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pjkq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q852"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bud2l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e884k"]
+
+[node name="Shop" type="Node"]
+script = ExtResource("1_6ucuc")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="HLineTop" parent="Borders" instance=ExtResource("2_8xwwt")]
+visible = false
+position = Vector2(0, 1379)
+
+[node name="HLineBottom" parent="Borders" instance=ExtResource("2_8xwwt")]
+visible = false
+position = Vector2(0, 2200)
+
+[node name="CurrentLevel" type="Node2D" parent="."]
+position = Vector2(0, -216)
+
+[node name="ShopLabel2" type="RichTextLabel" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 368.0
+offset_top = 576.0
+offset_right = 1520.0
+offset_bottom = 1048.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=6][font gl=15]NEW FACE[/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="ShopLabel" type="RichTextLabel" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 576.0
+offset_right = 1008.0
+offset_bottom = 1048.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][font gl=15]UNLOCK[/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="ShopLabel3" type="RichTextLabel" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 720.0
+offset_right = 1224.0
+offset_bottom = 1192.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0.984314, 0.662745, 0, 0.627451)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][font gl=15]1000[/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="Coin" type="Sprite2D" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_7q852")
+position = Vector2(864, 778)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_aene8")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PurchaseButton" parent="GUILayer" instance=ExtResource("7_a4cr0")]
+material = SubResource("ShaderMaterial_bud2l")
+offset_left = 216.0
+offset_top = 1656.0
+offset_right = 72.0
+offset_bottom = 1655.36
+theme = ExtResource("5_53xpg")
+script = ExtResource("5_sgosm")
+CustomText = "UNLOCK"
+Color = Color(1, 0.695721, 0.195682, 1)
+
+[node name="Collection" parent="GUILayer" instance=ExtResource("7_a4cr0")]
+offset_left = 864.0
+offset_top = 2376.0
+offset_right = 216.0
+offset_bottom = 2087.36
+script = ExtResource("9_6ybq1")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("10_j2yoy")
+
+[node name="Home" parent="GUILayer" instance=ExtResource("7_a4cr0")]
+offset_left = 72.0
+offset_top = 2376.0
+offset_right = -576.0
+offset_bottom = 2087.36
+script = ExtResource("7_t61kd")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("8_bs5u6")
+
+[node name="EaterDisplay" parent="." instance=ExtResource("10_x6o61")]
+material = SubResource("ShaderMaterial_e884k")
+position = Vector2(720, 1152)
+scale = Vector2(4, 4)
+EaterType = 6

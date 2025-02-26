@@ -20,7 +20,7 @@ public partial class PlayScreen : Node
             ModalManager.OpenVictoryModal();
             
             CoinsManager.Instance.AddCoins(100);
-            SignalProvider.Emit(SignalProvider.SignalName.CoinsValueChanged);
+            SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
         }
     }
 }

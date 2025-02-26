@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://GUI/Button/SetCollectionColorButton.cs" id="7_3wrgc"]
 [ext_resource type="PackedScene" uid="uid://dn5uinniq1tm8" path="res://GUI/Scrollable/Scrollable.tscn" id="7_44tx1"]
 [ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="7_hk2di"]
-[ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="7_pn5fx"]
 [ext_resource type="Texture2D" uid="uid://b5hlmwdk6whb3" path="res://Assets/blue_food.png" id="8_ce7k1"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="8_ktrmd"]
 [ext_resource type="Texture2D" uid="uid://ckuqlyk3s5dw3" path="res://Assets/red_food.png" id="9_m6j3s"]
@@ -18,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bniim6cwqr5ru" path="res://Assets/yellow_food.png" id="10_fotyq"]
 [ext_resource type="Texture2D" uid="uid://5jw10hl0x2yw" path="res://Assets/pink_food.png" id="11_2lfk1"]
 [ext_resource type="Texture2D" uid="uid://bba47bdfo5ojf" path="res://Assets/purple_food.png" id="12_ddoib"]
+[ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="16_fiui4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55ais"]
 size = Vector2(1440, 2016)
@@ -40,73 +40,33 @@ position = Vector2(720, 1368)
 shape = SubResource("RectangleShape2D_55ais")
 
 [node name="EaterDisplay" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(288, 504)
-scale = Vector2(2, 2)
+position = Vector2(360, 504)
+scale = Vector2(3, 3)
+EaterFace = 1
 
 [node name="EaterDisplay2" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(720, 504)
-scale = Vector2(2, 2)
-EaterFace = 1
+position = Vector2(1080, 504)
+scale = Vector2(3, 3)
+EaterFace = 2
 
 [node name="EaterDisplay3" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1152, 504)
-scale = Vector2(2, 2)
-EaterFace = 2
+position = Vector2(360, 1224)
+scale = Vector2(3, 3)
+EaterFace = 3
 
 [node name="EaterDisplay4" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(288, 1152)
-scale = Vector2(2, 2)
-EaterFace = 3
+position = Vector2(1080, 1224)
+scale = Vector2(3, 3)
+EaterFace = 4
 
 [node name="EaterDisplay5" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(720, 1152)
-scale = Vector2(2, 2)
-EaterFace = 4
+position = Vector2(360, 1944)
+scale = Vector2(3, 3)
+EaterFace = 5
 
 [node name="EaterDisplay6" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1152, 1152)
-scale = Vector2(2, 2)
-
-[node name="EaterDisplay7" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(288, 1800)
-scale = Vector2(2, 2)
-EaterFace = 1
-
-[node name="EaterDisplay8" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(720, 1800)
-scale = Vector2(2, 2)
-EaterFace = 2
-
-[node name="EaterDisplay9" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1152, 1800)
-scale = Vector2(2, 2)
-EaterFace = 3
-
-[node name="EaterDisplay10" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(288, 2448)
-scale = Vector2(2, 2)
-EaterFace = 4
-
-[node name="EaterDisplay11" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(720, 2448)
-scale = Vector2(2, 2)
-
-[node name="EaterDisplay12" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1152, 2448)
-scale = Vector2(2, 2)
-EaterFace = 1
-
-[node name="EaterDisplay13" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(288, 3096)
-scale = Vector2(2, 2)
-
-[node name="EaterDisplay14" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(720, 3096)
-scale = Vector2(2, 2)
-
-[node name="EaterDisplay15" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1152, 3096)
-scale = Vector2(2, 2)
+position = Vector2(1080, 1944)
+scale = Vector2(3, 3)
 
 [node name="Title" type="RichTextLabel" parent="GUILayer"]
 anchors_preset = 10
@@ -122,6 +82,18 @@ bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]COLLECTION[/font][/wave][/center]"
 scroll_active = false
 
+[node name="OverlayTop" type="ColorRect" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2416.0
+offset_bottom = -2206.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.168627, 0.168627, 0.168627, 0.392157)
+
 [node name="OverlayBottom" type="ColorRect" parent="GUILayer"]
 anchors_preset = 12
 anchor_top = 1.0
@@ -136,18 +108,18 @@ metadata/_edit_lock_ = true
 
 [node name="SetGreen" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = -648.0
+offset_left = -610.0
 offset_top = -1064.0
-offset_right = -548.0
+offset_right = -510.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 CustomIcon = ExtResource("5_6mrdv")
 
 [node name="SetBlue" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = -432.0
+offset_left = -390.0
 offset_top = -1064.0
-offset_right = -332.0
+offset_right = -290.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 Color = 1
@@ -155,9 +127,9 @@ CustomIcon = ExtResource("8_ce7k1")
 
 [node name="SetRed" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = -216.0
+offset_left = -170.0
 offset_top = -1064.0
-offset_right = -116.0
+offset_right = -70.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 Color = 2
@@ -165,9 +137,9 @@ CustomIcon = ExtResource("9_m6j3s")
 
 [node name="SetYellow" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = 0.0
+offset_left = 50.0
 offset_top = -1064.0
-offset_right = 100.0
+offset_right = 150.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 Color = 3
@@ -175,9 +147,9 @@ CustomIcon = ExtResource("10_fotyq")
 
 [node name="SetPink" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = 216.0
+offset_left = 270.0
 offset_top = -1064.0
-offset_right = 316.0
+offset_right = 370.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 Color = 5
@@ -185,9 +157,9 @@ CustomIcon = ExtResource("11_2lfk1")
 
 [node name="SetPurple" parent="GUILayer" instance=ExtResource("4_00kv3")]
 anchors_preset = 8
-offset_left = 432.0
+offset_left = 490.0
 offset_top = -1064.0
-offset_right = 532.0
+offset_right = 590.0
 offset_bottom = -964.0
 script = ExtResource("7_3wrgc")
 Color = 4
@@ -207,7 +179,7 @@ offset_left = 72.0
 offset_top = 2376.0
 offset_right = -576.0
 offset_bottom = 2087.36
-script = ExtResource("7_pn5fx")
+script = ExtResource("16_fiui4")
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 CustomIcon = ExtResource("9_n68k8")
 

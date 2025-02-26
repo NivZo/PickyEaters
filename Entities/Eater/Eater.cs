@@ -6,7 +6,8 @@ using Godot;
 public partial class Eater : Node2D
 {
     [Export] public EaterType EaterType { get; set; }
-    [Export] public EaterFace EaterFace { get; set; }
+    [Export] public EaterFace EaterFace { get; set; } = EaterFace.SmileBasic;
+    [Export] public Vector2I BoardStatePositionId;
     [Export] public Godot.Collections.Array<FoodType> ValidFoodTypes { get; set; }
     public TargetPositionComponent TargetPositionComponent;
     private SelectComponent<Eater> _selectComponent;
@@ -36,6 +37,8 @@ public partial class Eater : Node2D
         _selectComponent.Deselect += OnDeselect;
         TargetPositionComponent = new(this);
         TargetPositionComponent.SetPinPosition();
+
+        GD.Print(BoardStatePositionId);
 
         _directions = new()
         {
@@ -101,6 +104,19 @@ public partial class Eater : Node2D
         }
     }
 
+    public void PerformMove(Food food)
+    {
+        var currPos = TargetPositionComponent.NudgelessTargetPosition;
+        ActionManager.Instance.StartAction(this, () => {
+            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId);
+            BoardStatePositionId = food.BoardStatePositionId;
+            HistoryManager.Instance.AddMove(food.FoodType, food.IsLast, food.GlobalPosition, this, currPos);
+            food.QueueFree();
+            AudioManager.PlayAudio(AudioType.FoodConsumed);
+        });
+        TargetPositionComponent.SetPinPosition(food.GlobalPosition);
+    }
+
 
     private void OnSelect()
     {
@@ -132,13 +148,7 @@ public partial class Eater : Node2D
         if (chosenDirection != null)
         {
             var food = chosenDirection.GetFoodCollision();
-            var currPos = TargetPositionComponent.NudgelessTargetPosition;
-            ActionManager.Instance.StartAction(this, () => {
-                HistoryManager.Instance.AddMove(food.FoodType, food.IsLast, food.GlobalPosition, this, currPos);
-                food.QueueFree();
-                AudioManager.PlayAudio(AudioType.FoodConsumed);
-            });
-            TargetPositionComponent.SetPinPosition(food.GlobalPosition);
+            PerformMove(food);
         }
         else
         {

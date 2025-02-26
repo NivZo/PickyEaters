@@ -6,6 +6,7 @@ public partial class Food : Node2D
 {
     [Export] public FoodType FoodType { get; set; }
     [Export] public bool IsLast { get; set; } = false;
+    [Export] public Vector2I BoardStatePositionId;
     public Sprite2D Sprite { get; set; }
     private AnimationPlayer _animationPlayer; 
 
