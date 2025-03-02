@@ -5,14 +5,32 @@ using Godot;
 
 public static class HintManager
 {
-    private static List<HintMove> _solutionPath = new();
+    public static bool IsHintAvailable() => _movesSinceLastHint == 0;
+    private static int _movesSinceLastHint = 0;
+    private static HintMove[] _solutionPath;
+    private static int _currHint = 0;
 
-    public static HintMove GetHint() => _solutionPath.FirstOrDefault();
+    public static HintMove GetHint() => _solutionPath[_currHint];
 
     public static void CalculateSolutionPath()
     {
-        _solutionPath = HintSystem.GetSolutionPath(LevelManager.Instance.Level);
+        _solutionPath = HintSystem.GetHints(LevelManager.Instance.Level);
+        _currHint = 0;
+        _movesSinceLastHint = 0;
     }
 
-    public static void ActivateHint() => _solutionPath.RemoveAt(0);
+    public static void ActivateHint() => _currHint++;
+    public static void DeactivateHint() => _currHint--;
+    public static void HandleNonHintMove() => _movesSinceLastHint++;
+    public static void HandleUndo()
+    {
+        if (_movesSinceLastHint == 0)
+        {
+            _currHint--;
+        }
+        else
+        {
+            _movesSinceLastHint--;
+        }
+    }
 }

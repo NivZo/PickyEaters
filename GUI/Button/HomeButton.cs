@@ -8,7 +8,7 @@ public partial class HomeButton : CustomButton
     protected override void OnClick()
     {
         AudioManager.PlayAudio(AudioType.Undo);
-        ModalManager.CloseModal();
+        ModalManager.CloseModal(overideUnclosable: true);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
     }
 

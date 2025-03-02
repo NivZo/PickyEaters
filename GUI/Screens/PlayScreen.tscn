@@ -87,24 +87,37 @@ scroll_active = false
 metadata/_edit_lock_ = true
 
 [node name="Undo" parent="GUI" instance=ExtResource("8_004r3")]
-offset_left = 864.0
+offset_left = 1008.0
 offset_top = 2376.0
 offset_right = 216.0
 offset_bottom = 2087.36
+pivot_offset = Vector2(180, 72)
 script = ExtResource("8_y0i11")
 Color = Color(1, 0.835294, 0.309804, 1)
 CustomIcon = ExtResource("5_r2yj6")
-metadata/_edit_lock_ = true
+Cooldown = 0.2
+
+[node name="Hint" parent="GUI" instance=ExtResource("8_004r3")]
+offset_left = 540.0
+offset_top = 2376.0
+offset_right = -252.0
+offset_bottom = 2087.36
+pivot_offset = Vector2(180, 72)
+script = ExtResource("9_w1nin")
+Color = Color(1, 0.694118, 0.196078, 1)
+CustomIcon = ExtResource("9_3dnek")
+Cooldown = 0.2
 
 [node name="Reset" parent="GUI" instance=ExtResource("8_004r3")]
 offset_left = 72.0
 offset_top = 2376.0
-offset_right = -576.0
+offset_right = -720.0
 offset_bottom = 2087.36
+pivot_offset = Vector2(180, 72)
 script = ExtResource("10_x7tej")
 Color = Color(0.909804, 0.4, 0.396078, 1)
 CustomIcon = ExtResource("7_7g63y")
-metadata/_edit_lock_ = true
+Cooldown = 0.2
 
 [node name="HomeButton" parent="GUI" instance=ExtResource("15_frctr")]
 anchors_preset = 8
@@ -114,15 +127,6 @@ offset_right = -552.0
 offset_bottom = -1236.0
 script = ExtResource("10_lo5wp")
 CustomIcon = ExtResource("11_08cr1")
-
-[node name="Hint" parent="GUI" instance=ExtResource("15_frctr")]
-anchors_preset = 8
-offset_left = -72.0
-offset_top = 1096.0
-offset_right = -64.0
-offset_bottom = 1104.0
-script = ExtResource("9_w1nin")
-CustomIcon = ExtResource("9_3dnek")
 
 [node name="Borders" type="Node" parent="."]
 

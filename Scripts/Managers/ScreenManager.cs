@@ -52,6 +52,7 @@ public class ScreenManager
     {
         MainMenu,
         PlayScreen,
+        LevelSelection,
         Collection,
         Shop,
     }

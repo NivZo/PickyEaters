@@ -8,7 +8,7 @@ public partial class PlayScreen : Node
 
         var gameLayer = GetNode<CanvasLayer>("GameLayer");
         LevelManager.Instance.Setup(gameLayer);
-        LevelManager.Instance.LoadLevel(SaveManager.ActiveSave.LevelReached);
+        LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelId);
     }
 
     public override void _Process(double delta)

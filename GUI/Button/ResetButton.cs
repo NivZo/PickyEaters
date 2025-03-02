@@ -10,6 +10,7 @@ public partial class ResetButton : CustomButton
     {
         HistoryManager.Instance.ResetHistory();
         LevelManager.Instance.ResetLevel();
+        HintManager.CalculateSolutionPath();
         AudioManager.PlayAudio(AudioType.Undo);
     }
 

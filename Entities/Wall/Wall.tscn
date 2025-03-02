@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://gmqbhlj3woog"]
+
+[ext_resource type="Script" path="res://Entities/Wall/Wall.cs" id="1_6kdjn"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_n1vvp"]
+[ext_resource type="Texture2D" uid="uid://xou71ma3sa7b" path="res://Assets/tile_grey.png" id="3_l0c1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68teg"]
+resource_local_to_scene = true
+shader = ExtResource("2_n1vvp")
+shader_parameter/maxLineWidth = 8.0
+shader_parameter/minLineWidth = 4.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 12.0
+shader_parameter/color = null
+shader_parameter/tolerance = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmim1"]
+size = Vector2(64, 64)
+
+[node name="Wall" type="Node2D"]
+script = ExtResource("1_6kdjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_68teg")
+texture = ExtResource("3_l0c1v")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mmim1")
+debug_color = Color(0, 0.6, 0.701961, 0.0823529)

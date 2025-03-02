@@ -13,7 +13,6 @@ public partial class Eater : Node2D
     private SelectComponent<Eater> _selectComponent;
 
     private EaterDisplay _display;    
-    private CollisionObject2D _collider;
     private AudioStreamPlayer _audioStreamPlayer;
     private List<Direction> _directions;
     private Vector2 _clickPositionAnchor;
@@ -30,22 +29,19 @@ public partial class Eater : Node2D
         _display.EaterFace = EaterFace;
         _display.EaterType = EaterType;
         _display.Setup();
-        _collider = GetNode<Area2D>("Area2D");
         _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-        _selectComponent = new(_collider, ActionManager.Instance.IsActionAvailable);
+        _selectComponent = _display.SelectComponent;
         _selectComponent.Select += OnSelect;
         _selectComponent.Deselect += OnDeselect;
         TargetPositionComponent = new(this);
         TargetPositionComponent.SetPinPosition();
 
-        GD.Print(BoardStatePositionId);
-
         _directions = new()
         {
-            new(_display.EaterType, Direction.DirectionName.Up, Vector2I.Up, GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Down, Vector2I.Down, GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Left, Vector2I.Left, GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Right, Vector2I.Right, GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Up, Vector2I.Up, _display.GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Down, Vector2I.Down, _display.GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Left, Vector2I.Left, _display.GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
+            new(_display.EaterType, Direction.DirectionName.Right, Vector2I.Right, _display.GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
         };
     }
 
@@ -90,47 +86,28 @@ public partial class Eater : Node2D
         ProcessMovement();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        base._UnhandledInput(@event);
-
-        if (_selectComponent.IsSelected && @event is InputEventMouseButton inputEventMouseButton
-            && inputEventMouseButton.ButtonIndex == MouseButton.Left)
-        {
-            if (inputEventMouseButton.IsReleased())
-            {
-                _selectComponent.ManualDeselection();
-            }
-        }
-    }
-
-    public void PerformMove(Food food)
+    public void PerformMove(Food food, bool isHint)
     {
         var currPos = TargetPositionComponent.NudgelessTargetPosition;
-        ActionManager.Instance.StartAction(this, () => {
-            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId);
+        ActionManager.StartPlayerAction(this, () => {
+            HistoryManager.Instance.AddMove(food, this, currPos);
+            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, isHint);
             BoardStatePositionId = food.BoardStatePositionId;
-            HistoryManager.Instance.AddMove(food.FoodType, food.IsLast, food.GlobalPosition, this, currPos);
             food.QueueFree();
             AudioManager.PlayAudio(AudioType.FoodConsumed);
         });
         TargetPositionComponent.SetPinPosition(food.GlobalPosition);
     }
 
-
     private void OnSelect()
     {
         _clickPositionAnchor = GlobalPosition;
-        _display.Activate();
-        TweenUtils.Pop(this, 1.3f);
-        TweenUtils.BoldOutline(_display.Body, 8, 12);
         ZIndex = 1;
-
-        AudioManager.PlayAudio(AudioType.SelectEater);
     }
 
     private void OnDeselect()
     {
+        ZIndex = 0;
         _directions.ForEach(direction => 
         {
             var collision = direction.GetFoodCollision();
@@ -138,21 +115,14 @@ public partial class Eater : Node2D
             TweenUtils.BoldOutline(collision?.Sprite, 8, 12);
 
         });
-        _display.Deactivate();
         TargetPositionComponent.ResetNudge();
-        TweenUtils.Pop(this, 1);
-        TweenUtils.BoldOutline(_display.Body, 4, 8);
-        ZIndex = 0;
+        
 
         var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == GetCurrentDirection() && direction.CanMoveInDirection, null);
         if (chosenDirection != null)
         {
             var food = chosenDirection.GetFoodCollision();
-            PerformMove(food);
-        }
-        else
-        {
-            AudioManager.PlayAudio(AudioType.DeselectEater);
+            PerformMove(food, false);
         }
     }
 
@@ -162,9 +132,9 @@ public partial class Eater : Node2D
         {
             TweenUtils.Travel(this, TargetPositionComponent.TargetPosition);
         }
-        if (GlobalPosition.DistanceSquaredTo(TargetPositionComponent.TargetPosition) < 2500 && ActionManager.Instance.Actor == this)
+        if (GlobalPosition.DistanceSquaredTo(TargetPositionComponent.TargetPosition) < 2500 && ActionManager.Actor == this)
         {
-            ActionManager.Instance.FinishAction();
+            ActionManager.FinishPlayerAction();
         }
     }
 

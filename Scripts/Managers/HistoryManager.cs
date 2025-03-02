@@ -5,7 +5,7 @@ using Godot;
 
 public class HistoryManager
 {
-    record HistoryMove(FoodType FoodEaten, bool isLastFood, Vector2 FoodPosition, Eater Eater, Vector2 EaterPosition);
+    private record HistoryMove(FoodType FoodEaten, bool isLastFood, Vector2 FoodPosition, Vector2I FoodBoardStatePositionId, Eater Eater, Vector2 EaterPosition, Vector2I EaterBoardStatePositionId);
 
     public static HistoryManager Instance { get; } = new HistoryManager();
 
@@ -15,24 +15,25 @@ public class HistoryManager
 
     public void ResetHistory() => _moves.Clear();
 
-    public void AddMove(FoodType foodEaten, bool isLastFood, Vector2 foodPosition, Eater eater, Vector2 eaterPosition)
+    public void AddMove(Food food, Eater eater, Vector2 eaterPosition)
     {
-        _moves.Push(new HistoryMove(foodEaten, isLastFood, foodPosition, eater, eaterPosition));
+        _moves.Push(new HistoryMove(food.FoodType, food.IsLast, food.GlobalPosition, food.BoardStatePositionId, eater, eaterPosition, eater.BoardStatePositionId));
     }
 
     public void UndoMove()
     {
-        if (_moves.Count > 0 && ActionManager.Instance.IsActionAvailable())
+        if (_moves.Count > 0 && ActionManager.IsPlayerActionAvailable())
         {
             var lastMove = _moves.Pop();
 
             if (lastMove != null)
             {
-                ActionManager.Instance.StartAction(lastMove.Eater, () => {
+                ActionManager.StartPlayerAction(lastMove.Eater, () => {
                     var food = GD.Load<PackedScene>("res://Entities/Food/Food.tscn").Instantiate<Food>();
                     food.GlobalPosition = lastMove.FoodPosition;
                     food.FoodType = lastMove.FoodEaten;
                     food.IsLast = lastMove.isLastFood;
+                    food.BoardStatePositionId = lastMove.FoodBoardStatePositionId;
                     food.Scale = Vector2.Zero;
                     LevelManager.Instance.Level.Food.AddChild(food);
                     TweenUtils.Pop(food, 1);
@@ -41,6 +42,7 @@ public class HistoryManager
                 lastMove.Eater.Scale = new(0.5f, 0.5f);
                 TweenUtils.Pop(lastMove.Eater, 1);
                 lastMove.Eater.TargetPositionComponent.SetPinPosition(lastMove.EaterPosition);
+                lastMove.Eater.BoardStatePositionId = lastMove.EaterBoardStatePositionId;
             }
         }
     }

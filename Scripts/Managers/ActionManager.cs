@@ -1,25 +1,26 @@
 using System;
 using Godot;
 
-public class ActionManager
+public static class ActionManager
 {
-    public static ActionManager Instance { get; } = new ActionManager();
-
-    private bool _isActionAvailable = true;
-    private Action _onFinish;
-    private Node _actor;
+    private static bool _isPlayerActionAvailable = true;
+    private static bool _isBackgroundActionAvailable = true;
+    private static Action _onFinish;
+    private static Node _actor;
     
-    public Node Actor => _actor;
-    public bool IsActionAvailable() => _isActionAvailable;
+    public static Node Actor => _actor;
+    public static bool IsPlayerActionAvailable() => _isPlayerActionAvailable;
+    public static bool IsBackgroundActionAvailable() => _isBackgroundActionAvailable;
+    public static bool IsActionAvailable() => _isPlayerActionAvailable && _isBackgroundActionAvailable;
 
-    public void StartAction(Node actor, Action callback)
+    public static void StartPlayerAction(Node actor, Action callback)
     {
         _onFinish = callback;
-        _isActionAvailable = false;
+        _isPlayerActionAvailable = false;
         _actor = actor;
     }
     
-    public void FinishAction()
+    public static void FinishPlayerAction()
     {
         if (_onFinish is not null)
         {
@@ -28,6 +29,9 @@ public class ActionManager
             _actor = null;
         }
 
-        _isActionAvailable = true;
+        _isPlayerActionAvailable = true;
     }
+
+    public static void StartBackgroundAction() => _isBackgroundActionAvailable = false;
+    public static void FinishBackgroundAction() => _isBackgroundActionAvailable = true;
 }

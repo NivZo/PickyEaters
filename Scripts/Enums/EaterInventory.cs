@@ -8,6 +8,8 @@ public enum EaterFace
     CatEyes,
     CuteFang,
     WideOpenSmile,
+    ThreeEye,
+    GrumpyCyclops
 }
 
 public static class EaterFaceExtensions

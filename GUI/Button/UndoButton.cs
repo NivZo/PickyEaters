@@ -1,3 +1,5 @@
+using Godot;
+
 public partial class UndoButton : CustomButton
 {
     public override void _Ready()
@@ -10,6 +12,6 @@ public partial class UndoButton : CustomButton
     {
         HistoryManager.Instance.UndoMove();
         AudioManager.PlayAudio(AudioType.Undo);
+        HintManager.HandleUndo();
     }
-
 }

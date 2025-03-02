@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=18 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
 [ext_resource type="Texture2D" uid="uid://cd1orxw7cei3w" path="res://Assets/Icons/White/2x/trophy.png" id="9_5wja2"]
+[ext_resource type="Script" path="res://GUI/Button/LevelSelectionButton.cs" id="9_c137j"]
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="11_j4xwe"]
@@ -169,14 +170,33 @@ follow_viewport_enabled = true
 
 [node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]
 material = SubResource("ShaderMaterial_bud2l")
-offset_left = 216.0
-offset_top = 1656.0
-offset_right = 72.0
-offset_bottom = 1655.36
+anchor_left = 0.15
+anchor_top = 0.619
+anchor_right = 0.85
+anchor_bottom = 0.759
+offset_left = -1.52588e-05
+offset_top = -0.640015
+offset_bottom = 72.96
 theme = ExtResource("2_jsudd")
 script = ExtResource("9_et2y7")
 CustomText = "PLAY"
 Color = Color(0.529412, 0.894118, 0.615686, 1)
+
+[node name="LevelSelectionButton" parent="GUILayer" instance=ExtResource("8_004r3")]
+material = SubResource("ShaderMaterial_bud2l")
+anchor_left = 0.15
+anchor_top = 0.844
+anchor_right = 0.85
+anchor_bottom = 0.872
+offset_left = -1.52588e-05
+offset_top = -72.6401
+offset_bottom = 35.6799
+pivot_offset = Vector2(504, 90)
+theme = ExtResource("2_jsudd")
+script = ExtResource("9_c137j")
+CustomText = "LEVELS"
+CustomTextSize = 80
+Color = Color(1, 0.835294, 0.309804, 1)
 
 [node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]
 offset_left = 864.0

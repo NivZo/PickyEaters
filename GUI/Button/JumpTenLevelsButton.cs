@@ -18,7 +18,7 @@ public partial class JumpTenLevelsButton : CustomButton
 
         if (ModalManager.CurrentOpenModal !=ModalManager.ModalType.None)
         {
-            ModalManager.CloseModal();
+            ModalManager.CloseModal(overideUnclosable: true);
         }
     }
 

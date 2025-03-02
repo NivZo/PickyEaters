@@ -4,6 +4,7 @@ using Godot;
 public abstract partial class CustomButton : CustomButtonBase
 {
     [Export] public string CustomText = string.Empty;
+    [Export] public int CustomTextSize = 140;
     [Export] public Color Color;
     [Export] public bool WaveString = true;
     [Export] public bool Highlight = true;
@@ -27,6 +28,7 @@ public abstract partial class CustomButton : CustomButtonBase
         if (CustomText != string.Empty)
         {
             _textLabel.Text = WaveString ? TextUtils.WaveString(CustomText) : TextUtils.AddAttribute(CustomText, "center");
+            _textLabel.AddThemeFontSizeOverride("normal_font_size", CustomTextSize);
         }
         else
         {
@@ -46,7 +48,7 @@ public abstract partial class CustomButton : CustomButtonBase
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (!IsEnabledFunc())
+        if (!IsEnabled())
         {
             Modulate = Modulate with { A = .5f };
             _textLabel.AddThemeConstantOverride("outline_size", 0);
@@ -63,7 +65,7 @@ public abstract partial class CustomButton : CustomButtonBase
     {
         _bg.Visible = false;
         _pressedBg.Visible = true;
-        _textLabel.Position += _pressOffset;
+        _textLabel.Position += _pressOffset * (CustomTextSize / 140f);
         _icon.Position = _baseIconPosition + _pressOffset/2;
         _iconShadow.Position = _icon.Position + _shadowOffset;
     }
@@ -72,7 +74,7 @@ public abstract partial class CustomButton : CustomButtonBase
     {
         _bg.Visible = true;
         _pressedBg.Visible = false;
-        _textLabel.Position -= _pressOffset;
+        _textLabel.Position -= _pressOffset * (CustomTextSize / 140f);
         _icon.Position = _baseIconPosition;
         _iconShadow.Position = _icon.Position + _shadowOffset;
     }

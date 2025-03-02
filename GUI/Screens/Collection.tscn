@@ -40,32 +40,38 @@ position = Vector2(720, 1368)
 shape = SubResource("RectangleShape2D_55ais")
 
 [node name="EaterDisplay" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(360, 504)
+visible = false
+position = Vector2(360, 288)
 scale = Vector2(3, 3)
 EaterFace = 1
 
 [node name="EaterDisplay2" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1080, 504)
+visible = false
+position = Vector2(1080, 288)
 scale = Vector2(3, 3)
 EaterFace = 2
 
 [node name="EaterDisplay3" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(360, 1224)
+visible = false
+position = Vector2(360, 1008)
 scale = Vector2(3, 3)
 EaterFace = 3
 
 [node name="EaterDisplay4" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1080, 1224)
+visible = false
+position = Vector2(1080, 1008)
 scale = Vector2(3, 3)
 EaterFace = 4
 
 [node name="EaterDisplay5" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(360, 1944)
+visible = false
+position = Vector2(360, 1728)
 scale = Vector2(3, 3)
 EaterFace = 5
 
 [node name="EaterDisplay6" parent="GUILayer/Scrollable" instance=ExtResource("8_ktrmd")]
-position = Vector2(1080, 1944)
+visible = false
+position = Vector2(1080, 1728)
 scale = Vector2(3, 3)
 
 [node name="Title" type="RichTextLabel" parent="GUILayer"]
@@ -166,18 +172,18 @@ Color = 4
 CustomIcon = ExtResource("12_ddoib")
 
 [node name="Home" parent="GUILayer" instance=ExtResource("6_2id02")]
-offset_left = 864.0
+offset_left = 72.0
 offset_top = 2376.0
-offset_right = 216.0
+offset_right = -576.0
 offset_bottom = 2087.36
 script = ExtResource("6_qeqdq")
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 CustomIcon = ExtResource("7_hk2di")
 
 [node name="Shop" parent="GUILayer" instance=ExtResource("6_2id02")]
-offset_left = 72.0
+offset_left = 864.0
 offset_top = 2376.0
-offset_right = -576.0
+offset_right = 216.0
 offset_bottom = 2087.36
 script = ExtResource("16_fiui4")
 Color = Color(0.329412, 0.513726, 0.729412, 1)

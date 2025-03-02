@@ -14,8 +14,18 @@ public partial class Level : Node
         Food = GetNode<Node>("Food");
         Eaters = GetNode<Node>("Eaters");
 
-        // SignalProvider.Instance.MovePerformed += HandleMove;
+        SignalProvider.Instance.MovePerformed += HandleMove;
         HintManager.CalculateSolutionPath();
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationPredelete)
+        {
+            SignalProvider.Instance.MovePerformed -= HandleMove;
+        }
     }
 
     public List<Eater> GetEaters() => Eaters
@@ -29,14 +39,15 @@ public partial class Level : Node
         .Where(child => child is Food)
         .Select(eater => eater as Food).ToList();
     
-    private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId)
+    private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId, bool IsHint)
     {
-        HintManager.CalculateSolutionPath();
-        // var hint = HintManager.GetHint();
-        // if (hint != null
-        //     && (hint.Eater.BoardStatePositionId != EaterPosId || hint.FoodAtTarget.BoardStatePositionId != FoodPosId))
-        // {
-        //     HintManager.CalculateSolutionPath();
-        // }
+        if (IsHint)
+        {
+            HintManager.ActivateHint();
+        }
+        else
+        {
+            HintManager.HandleNonHintMove();
+        }
     }
 }

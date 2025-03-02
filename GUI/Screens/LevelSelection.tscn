@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://dms6jfv6767u2"]
+
+[ext_resource type="Script" path="res://GUI/Screens/LevelSelection.cs" id="1_61esi"]
+[ext_resource type="PackedScene" uid="uid://dn5uinniq1tm8" path="res://GUI/Scrollable/Scrollable.tscn" id="2_oy358"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="4_purc0"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="13_2leya"]
+[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="14_kbdc0"]
+[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="15_appn0"]
+[ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="16_8nk3b"]
+[ext_resource type="Texture2D" uid="uid://d4j2lsyrh72f7" path="res://Assets/Icons/White/2x/shoppingCart.png" id="17_5hvve"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55ais"]
+size = Vector2(1440, 2200)
+
+[node name="LevelSelection" type="Node"]
+script = ExtResource("1_61esi")
+
+[node name="Temp" type="CanvasLayer" parent="."]
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Scrollable" parent="GUILayer" node_paths=PackedStringArray("ScrollAreaShape") instance=ExtResource("2_oy358")]
+position = Vector2(0, 168)
+ScrollAreaShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUILayer/Scrollable"]
+top_level = true
+position = Vector2(720, 1266)
+shape = SubResource("RectangleShape2D_55ais")
+
+[node name="Title" type="RichTextLabel" parent="GUILayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 288.0
+offset_top = 48.0
+offset_right = -288.0
+offset_bottom = 208.0
+grow_horizontal = 2
+theme = ExtResource("4_purc0")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]LEVELS[/font][/wave][/center]"
+scroll_active = false
+
+[node name="OverlayBottom" type="ColorRect" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.168627, 0.168627, 0.168627, 1)
+metadata/_edit_lock_ = true
+
+[node name="Home" parent="GUILayer" instance=ExtResource("13_2leya")]
+offset_left = 864.0
+offset_top = 2376.0
+offset_right = 216.0
+offset_bottom = 2087.36
+script = ExtResource("14_kbdc0")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("15_appn0")
+
+[node name="Shop" parent="GUILayer" instance=ExtResource("13_2leya")]
+offset_left = 72.0
+offset_top = 2376.0
+offset_right = -576.0
+offset_bottom = 2087.36
+script = ExtResource("16_8nk3b")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("17_5hvve")
+
+[node name="BorderLayer" type="CanvasLayer" parent="."]
