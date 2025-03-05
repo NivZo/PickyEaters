@@ -4,7 +4,7 @@ using Godot;
 public abstract partial class CustomButton : CustomButtonBase
 {
     [Export] public string CustomText = string.Empty;
-    [Export] public int CustomTextSize = 140;
+    [Export] public int CustomTextSize = 180;
     [Export] public Color Color;
     [Export] public bool WaveString = true;
     [Export] public bool Highlight = true;
@@ -27,7 +27,7 @@ public abstract partial class CustomButton : CustomButtonBase
         _textLabel = GetNode<RichTextLabel>("Text");
         if (CustomText != string.Empty)
         {
-            _textLabel.Text = WaveString ? TextUtils.WaveString(CustomText) : TextUtils.AddAttribute(CustomText, "center");
+            _textLabel.Text = WaveString ? TextUtils.WaveString(CustomText, amplitude: 12) : TextUtils.AddAttribute(CustomText, "center");
             _textLabel.AddThemeFontSizeOverride("normal_font_size", CustomTextSize);
         }
         else

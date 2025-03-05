@@ -14,7 +14,7 @@ public partial class SetCollectionColorButton : CustomIconButton
         base.OnClick();
 
         AudioManager.PlayAudio(AudioType.FoodConsumed);
-        Collection.Instance.SetColor(Color);
+        // Collection.Instance.SetColor(Color);
     }
 
 }

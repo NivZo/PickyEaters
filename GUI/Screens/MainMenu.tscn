@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_jsudd"]
-[ext_resource type="FontFile" uid="uid://b1vd851hgo5bb" path="res://Fonts/Fredoka.ttf" id="5_q0agu"]
+[ext_resource type="FontFile" uid="uid://dsfscqexiyv0k" path="res://Fonts/m6x11plus.ttf" id="6_sqknt"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
 [ext_resource type="Texture2D" uid="uid://cd1orxw7cei3w" path="res://Assets/Icons/White/2x/trophy.png" id="9_5wja2"]
@@ -109,17 +109,17 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 216.0
-offset_top = 464.0
+offset_top = 500.0
 offset_right = 1224.0
-offset_bottom = 728.0
+offset_bottom = 764.0
 grow_horizontal = 2
 theme = ExtResource("2_jsudd")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.0666667)
-theme_override_fonts/normal_font = ExtResource("5_q0agu")
+theme_override_fonts/normal_font = ExtResource("6_sqknt")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]COLOCO[/font][/wave][/center]"
+text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]YAMIGO[/font][/wave][/center]"
 scroll_active = false
 
 [node name="CurrentLevel" type="Node2D" parent="."]
@@ -152,15 +152,15 @@ clip_contents = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 360.0
-offset_top = 1120.0
+offset_top = 1160.0
 offset_right = 1080.0
-offset_bottom = 1388.0
+offset_bottom = 1428.0
 grow_horizontal = 2
 theme = ExtResource("2_jsudd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529)
 theme_override_font_sizes/normal_font_size = 220
 bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=15]10[/font][/wave][/center]"
+text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=25]10[/font][/wave][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
@@ -196,7 +196,7 @@ theme = ExtResource("2_jsudd")
 script = ExtResource("9_c137j")
 CustomText = "LEVELS"
 CustomTextSize = 80
-Color = Color(1, 0.835294, 0.309804, 1)
+Color = Color(1, 0.846058, 0.369714, 1)
 
 [node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]
 offset_left = 864.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=21 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Entities/Main/Main.cs" id="1_hxws4"]
 [ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
@@ -10,10 +10,10 @@
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="4_xg10b"]
 [ext_resource type="PackedScene" uid="uid://bskdropmc6asw" path="res://GUI/Indicators/CoinsIndicator.tscn" id="6_aj3fp"]
 [ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="6_ctjmt"]
-[ext_resource type="Shader" path="res://Shaders/ColorCurves.gdshader" id="10_qutjm"]
 [ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="11_ntej4"]
 [ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
+[ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
 [ext_resource type="Script" path="res://Entities/SignalProvider/SignalProvider.cs" id="15_vnkmn"]
 [ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="18_bgvm0"]
 
@@ -48,19 +48,29 @@ shader_parameter/blockSize = 100.0
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.0
 
-[sub_resource type="Gradient" id="Gradient_qyh32"]
-offsets = PackedFloat32Array(0.113281, 0.660156)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ekliq"]
-gradient = SubResource("Gradient_qyh32")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6s11"]
-shader = ExtResource("10_qutjm")
-shader_parameter/mix_strength = 0.2
-shader_parameter/opacity = 1.0
-shader_parameter/blend_mode = 2
-shader_parameter/hue_shift = 0.0
-shader_parameter/gradient_texture = SubResource("GradientTexture1D_ekliq")
+shader = ExtResource("14_6bj1p")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.5
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1080, 1920)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 4.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 3.0
+shader_parameter/distort_intensity = 0.002
+shader_parameter/noise_opacity = 0.001
+shader_parameter/noise_speed = 2.0
+shader_parameter/static_noise_intensity = 0.005
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.75
+shader_parameter/vignette_opacity = 0.25
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hxws4")
@@ -78,7 +88,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.647552, 0.637329, 0.78529, 1)
+color = Color(0.802792, 0.762396, 0.653984, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
@@ -188,6 +198,16 @@ follow_viewport_enabled = true
 [node name="Shaders" type="CanvasLayer" parent="."]
 
 [node name="Colors" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_r6s11")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_r6s11")
 anchors_preset = 15
 anchor_right = 1.0

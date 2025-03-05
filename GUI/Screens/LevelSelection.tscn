@@ -38,7 +38,7 @@ offset_right = -288.0
 offset_bottom = 208.0
 grow_horizontal = 2
 theme = ExtResource("4_purc0")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]LEVELS[/font][/wave][/center]"
 scroll_active = false

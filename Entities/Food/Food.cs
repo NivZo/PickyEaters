@@ -25,6 +25,10 @@ public partial class Food : Node2D
             Sprite.GetNode<Sprite2D>("LastFoodIndicator").Visible = true;
         }
 
+        SignalProvider.Instance.MoveSelectionStarted += HandleSelectionStarted;
+        SignalProvider.Instance.MovePerformed += HandleSelectionEnded;
+        SignalProvider.Instance.MoveSelectionCancelled += HandleSelectionCancelled;
+
         StartIdleAnimation();
     }
 
@@ -38,11 +42,55 @@ public partial class Food : Node2D
         }
     }
 
-    public void StartIdleAnimation()
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationPredelete)
+        {
+            SignalProvider.Instance.MoveSelectionStarted -= HandleSelectionStarted;
+            SignalProvider.Instance.MovePerformed -= HandleSelectionEnded;
+            SignalProvider.Instance.MoveSelectionCancelled -= HandleSelectionCancelled;
+        }
+    }
+
+    private void StartIdleAnimation()
     {
         var rnd = new Random();
         _animationPlayer.Play("float");
         var offset = rnd.NextDouble() * _animationPlayer.CurrentAnimation.Length;
         _animationPlayer.Advance(offset);
+    }
+
+    private void HandleSelectionStarted(Vector2I EaterPosId, Vector2I FoodPosId, bool IsCurrentlySelected)
+    {
+        if (FoodPosId == BoardStatePositionId)
+        {
+            if (IsCurrentlySelected)
+            {
+                TweenUtils.Pop(this, 1.5f);
+                TweenUtils.BoldOutline(Sprite, 16, 20);
+            }
+            else
+            {
+                TweenUtils.Pop(this, 1.3f);
+                TweenUtils.BoldOutline(Sprite, 14, 18);
+            }
+        }
+    }
+
+    private void HandleSelectionEnded(Vector2I EaterPosId, Vector2I FoodPosId, bool IsHint)
+    {
+        if (FoodPosId != BoardStatePositionId)
+        {
+            TweenUtils.Pop(this, 1);
+            TweenUtils.BoldOutline(Sprite, 8, 12);
+        }
+    }
+
+    private void HandleSelectionCancelled(Vector2I EaterPosId)
+    {
+        TweenUtils.Pop(this, 1);
+        TweenUtils.BoldOutline(Sprite, 8, 12);
     }
 }

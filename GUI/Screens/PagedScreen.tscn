@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://8ywh4thfktsr"]
+
+[ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="1_p05ii"]
+[ext_resource type="Script" path="res://GUI/Button/HomeIconButton.cs" id="2_7eyli"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_slyaa"]
+[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="3_6q853"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="3_ge52d"]
+[ext_resource type="Script" path="res://GUI/Button/PagedScreenPrevPage.cs" id="4_mtmvy"]
+[ext_resource type="Texture2D" uid="uid://c3v6h88he7cc5" path="res://Assets/Icons/White/2x/arrowLeft.png" id="5_30k86"]
+[ext_resource type="Script" path="res://GUI/Button/PagedScreenNextPage.cs" id="6_3y3hm"]
+[ext_resource type="Texture2D" uid="uid://g3t66braolnn" path="res://Assets/Icons/White/2x/arrowRight.png" id="7_mpn8x"]
+
+[node name="PagedScreen" type="Node"]
+
+[node name="Contents" type="Node" parent="."]
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="OverlayTop" type="ColorRect" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2560.0
+offset_bottom = -2388.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.168627, 0.168627, 0.168627, 0.392157)
+
+[node name="OverlayBottom" type="ColorRect" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.168627, 0.168627, 0.168627, 1)
+metadata/_edit_lock_ = true
+
+[node name="HomeButton" parent="GUILayer" instance=ExtResource("1_p05ii")]
+anchors_preset = 8
+offset_left = -560.0
+offset_top = -1244.0
+offset_right = -552.0
+offset_bottom = -1236.0
+script = ExtResource("2_7eyli")
+CustomIcon = ExtResource("3_6q853")
+
+[node name="PrevPage" parent="GUILayer" instance=ExtResource("3_ge52d")]
+anchors_preset = 10
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 72.0
+offset_top = 2376.0
+offset_right = -864.0
+offset_bottom = 2520.0
+script = ExtResource("4_mtmvy")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("5_30k86")
+
+[node name="NextPage" parent="GUILayer" instance=ExtResource("3_ge52d")]
+anchors_preset = 10
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 864.0
+offset_top = 2376.0
+offset_right = -72.0
+offset_bottom = 2520.0
+script = ExtResource("6_3y3hm")
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+CustomIcon = ExtResource("7_mpn8x")
+
+[node name="PageCount" type="RichTextLabel" parent="GUILayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 288.0
+offset_top = 2376.0
+offset_right = -288.0
+offset_bottom = 2536.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("2_slyaa")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]1/2[/font][/wave][/center]"
+scroll_active = false

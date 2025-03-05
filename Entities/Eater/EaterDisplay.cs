@@ -13,9 +13,9 @@ public partial class EaterDisplay : Node2D
     private float _baseScale = 1;
 
 
-    public override void _EnterTree()
+    public override void _Ready()
     {
-        base._EnterTree();
+        base._Ready();
 
         var collider = GetNode<Area2D>("Area2D");
         SelectComponent = new(collider, ActionManager.IsPlayerActionAvailable);

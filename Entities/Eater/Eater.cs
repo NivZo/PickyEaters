@@ -15,6 +15,7 @@ public partial class Eater : Node2D
     private EaterDisplay _display;    
     private AudioStreamPlayer _audioStreamPlayer;
     private List<Direction> _directions;
+    private Direction.DirectionName _currentSelectedDirection = Direction.DirectionName.None;
     private Vector2 _clickPositionAnchor;
 
     private bool _isTakingAction = false;
@@ -52,34 +53,24 @@ public partial class Eater : Node2D
         if (_selectComponent.IsSelected)
         {
             var currentDirection = GetCurrentDirection();
-            var shouldResetNudge = true;
 
-            foreach (var direction in _directions)
+            if (_currentSelectedDirection != currentDirection)
             {
-                var collision = direction.GetFoodCollision();
-                var canMoveToCollision = direction.CanMoveInDirection && collision != null; 
-                if (direction.Name == currentDirection && canMoveToCollision)
+                _currentSelectedDirection = currentDirection;
+                EmitSelectionStartSignals();
+                var shouldResetNudge = true;
+
+                var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == _currentSelectedDirection && direction.CanMoveInDirection, null);
+                if (chosenDirection != null)
                 {
-                    TweenUtils.Pop(collision, 1.5f);
-                    TweenUtils.BoldOutline(collision?.Sprite, 16, 20);
-                    TargetPositionComponent.Nudge(direction.DirectionVector * 40);
+                    TargetPositionComponent.Nudge(chosenDirection.DirectionVector * 60);
                     shouldResetNudge = false;
                 }
-                else if (direction.Name != currentDirection && canMoveToCollision)
-                {
-                    TweenUtils.Pop(collision, 1.3f);
-                    TweenUtils.BoldOutline(collision?.Sprite, 14, 18);
-                }
-                else
-                {
-                    TweenUtils.Pop(collision, 1);
-                    TweenUtils.BoldOutline(collision?.Sprite, 8, 12);
-                }
-            }
 
-            if (shouldResetNudge)
-            {
-                TargetPositionComponent.ResetNudge();
+                if (shouldResetNudge)
+                {
+                    TargetPositionComponent.ResetNudge();
+                }
             }
         }
     
@@ -103,26 +94,36 @@ public partial class Eater : Node2D
     {
         _clickPositionAnchor = GlobalPosition;
         ZIndex = 1;
+
+        EmitSelectionStartSignals();
     }
 
     private void OnDeselect()
     {
         ZIndex = 0;
-        _directions.ForEach(direction => 
-        {
-            var collision = direction.GetFoodCollision();
-            TweenUtils.Pop(collision, 1);
-            TweenUtils.BoldOutline(collision?.Sprite, 8, 12);
-
-        });
         TargetPositionComponent.ResetNudge();
-        
 
-        var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == GetCurrentDirection() && direction.CanMoveInDirection, null);
+        var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == _currentSelectedDirection && direction.CanMoveInDirection, null);
         if (chosenDirection != null)
         {
             var food = chosenDirection.GetFoodCollision();
             PerformMove(food, false);
+        }
+        else
+        {
+            SignalProvider.Emit(SignalProvider.SignalName.MoveSelectionCancelled, BoardStatePositionId);
+        }
+    }
+
+    private void EmitSelectionStartSignals()
+    {
+        foreach (var direction in _directions.Where(dir => dir.CanMoveInDirection))
+        {
+            var food = direction.GetFoodCollision();
+            if (food != null)
+            {
+                SignalProvider.Emit(SignalProvider.SignalName.MoveSelectionStarted, BoardStatePositionId, food.BoardStatePositionId, direction.Name == _currentSelectedDirection);
+            }
         }
     }
 

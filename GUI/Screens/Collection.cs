@@ -1,48 +1,40 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
-public partial class Collection : Node
+public partial class Collection : PagedScreen<EaterDisplay>
 {
-    public static Collection Instance;
-
-    private Scrollable _scrollable;
+    private const int ITEMS_PER_PAGE = 6;
 
     public override void _Ready()
     {
         base._Ready();
-        Instance = this;
-        
-        _scrollable = GetNode<Scrollable>("GUILayer/Scrollable");
+    }
 
-        var faces = Enum.GetValues<EaterFace>();
-
-        for (int i = 0; i < faces.Length; i++)
-        {
-            var eaterDisplay = GD.Load<PackedScene>("res://Entities/Eater/EaterDisplay.tscn").Instantiate<EaterDisplay>();
-            eaterDisplay.Scale = new(3, 3);
-            var x = (i%2) switch
+    protected override List<EaterDisplay> CreateContents(int pageId)
+    {
+        return Enum.GetValues<EaterFace>()
+            .Except(new EaterFace[1] { EaterFace.Hidden })
+            .Chunk(ITEMS_PER_PAGE)
+            .ElementAt(pageId)
+            .Select((face, i) => 
+            {
+                GD.Print(i, "=", face);
+                var eaterDisplay = GD.Load<PackedScene>("res://Entities/Eater/EaterDisplay.tscn").Instantiate<EaterDisplay>();
+                eaterDisplay.Scale = new(3, 3);
+                eaterDisplay.EaterFace = face;
+                eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
+                var x = (i%2) switch
                 {
-                    1 => 360,
+                    0 => 360,
                     _ => 1080,
                 };
-            eaterDisplay.Position = new(x, 300 + 700 * ((i-1)/2));
-            eaterDisplay.EaterFace = faces[i];
-            eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
-
-            _scrollable.AddChildToScrollableContent(eaterDisplay);
-            eaterDisplay.Setup();
-        }
+                eaterDisplay.Position = new(x, 550 + 700 * (i/2));
+                return eaterDisplay;
+            })
+            .ToList();
     }
 
-    public void SetColor(EaterType eaterType)
-    {
-        foreach (var item in _scrollable.Items)
-        {
-            if (item is EaterDisplay eaterDisplay)
-            {
-                eaterDisplay.EaterType = eaterType;
-                eaterDisplay.Setup();
-            }
-        }
-    }
+    protected override int GetPageCount() => Mathf.CeilToInt((Enum.GetValues<EaterFace>().Length-1) / 6f);
 }

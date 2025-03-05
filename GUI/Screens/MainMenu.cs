@@ -9,6 +9,6 @@ public partial class MainMenu : Node
         base._EnterTree();
         
         var _levelLabel = GetNode<RichTextLabel>("CurrentLevel/NumberLabel");
-        _levelLabel.Text = TextUtils.WaveString($"{SaveManager.ActiveSave.LevelReached}");
+        _levelLabel.Text = TextUtils.WaveString($"{SaveManager.ActiveSave.LevelReached}", letterDistance: 25);
     }
 }

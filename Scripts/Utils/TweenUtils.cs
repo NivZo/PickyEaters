@@ -6,7 +6,7 @@ public static class TweenUtils
 {
     private static Dictionary<string, (Tween Tween, Variant Value)> _tweens = new();
 
-    public static void Pop(Node node, float scale, float duration = 0.5f)
+    public static void Pop(Node node, float scale, float duration = 1f)
         => AddPropertyTween(node, "scale", new Vector2(scale, scale), duration, Tween.TransitionType.Elastic);
 
     public static void Travel(Node node, Vector2 to, float duration = 0.5f, Tween.TransitionType transitionType = Tween.TransitionType.Quint)
@@ -38,7 +38,7 @@ public static class TweenUtils
 
     private static Tween AddCachedTween(Node node, string property, Variant value, Tween.TransitionType transitionType)
     {
-        if (node != null)
+        if (node != null && !node.IsQueuedForDeletion())
         {
             var tweenKey = $"{node.GetInstanceId()}-{property}";
             var exists = _tweens.TryGetValue(tweenKey, out var tweenTuple) && tweenTuple.Tween.IsRunning();
