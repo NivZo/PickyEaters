@@ -39,8 +39,8 @@ BannerText = "SETTINGS"
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
 self_modulate = Color(0.345766, 0.423177, 0.359951, 0.392)
-position = Vector2(4, -124)
-scale = Vector2(1.8, 1.6)
+position = Vector2(4, -75.6)
+scale = Vector2(1.8, 2.05234)
 texture = ExtResource("9_x7sst")
 
 [node name="MusicVolume" type="Node2D" parent="Modal"]
@@ -91,15 +91,16 @@ value = 1.0
 
 [node name="SoundEffectsVolume" type="Node2D" parent="Modal"]
 material = SubResource("ShaderMaterial_1j05n")
+position = Vector2(0, 100)
 
 [node name="IconMusicOn" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
 use_parent_material = true
-position = Vector2(390, -72)
+position = Vector2(390, -172)
 texture = ExtResource("5_qavbu")
 
 [node name="IconMusicOff" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
 use_parent_material = true
-position = Vector2(390, -72)
+position = Vector2(390, -172)
 texture = ExtResource("6_2682k")
 
 [node name="SoundEffectLabel" type="RichTextLabel" parent="Modal/SoundEffectsVolume"]
@@ -110,9 +111,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -380.0
-offset_top = -110.0
+offset_top = -206.0
 offset_right = 40.0
-offset_bottom = -40.0
+offset_bottom = -136.0
 mouse_filter = 2
 theme = ExtResource("4_r6oil")
 theme_override_font_sizes/normal_font_size = 52
@@ -124,9 +125,65 @@ shortcut_keys_enabled = false
 [node name="SoundEffectsVolumeSlider" type="HSlider" parent="Modal/SoundEffectsVolume"]
 self_modulate = Color(0.34902, 0.219608, 0.607843, 1)
 offset_left = -20.0
-offset_top = -114.0
+offset_top = -214.0
 offset_right = 320.0
-offset_bottom = -34.0
+offset_bottom = -134.0
+focus_mode = 0
+theme = ExtResource("4_r6oil")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="ScreenShake" type="Node2D" parent="Modal"]
+material = SubResource("ShaderMaterial_1j05n")
+position = Vector2(0, 200)
+
+[node name="ScreenShakeLabel" type="RichTextLabel" parent="Modal/ScreenShake"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -206.0
+offset_right = 40.0
+offset_bottom = -136.0
+mouse_filter = 2
+theme = ExtResource("4_r6oil")
+theme_override_font_sizes/normal_font_size = 52
+bbcode_enabled = true
+text = "SCREEN SHAKE"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="ScreenShakeValueLabel" type="RichTextLabel" parent="Modal/ScreenShake"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = -200.0
+offset_right = 780.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_r6oil")
+theme_override_font_sizes/normal_font_size = 52
+bbcode_enabled = true
+text = "100"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="ScreenShakeStrengthSlider" type="HSlider" parent="Modal/ScreenShake"]
+self_modulate = Color(0.34902, 0.219608, 0.607843, 1)
+offset_left = -20.0
+offset_top = -214.0
+offset_right = 320.0
+offset_bottom = -134.0
 focus_mode = 0
 theme = ExtResource("4_r6oil")
 max_value = 1.0

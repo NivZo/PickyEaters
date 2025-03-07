@@ -68,13 +68,13 @@ public partial class Food : Node2D
         {
             if (IsCurrentlySelected)
             {
-                TweenUtils.Pop(this, 1.5f);
+                TweenUtils.Pop(this, 1.4f);
                 TweenUtils.BoldOutline(Sprite, 16, 20);
             }
             else
             {
-                TweenUtils.Pop(this, 1.3f);
-                TweenUtils.BoldOutline(Sprite, 14, 18);
+                TweenUtils.Pop(this, 1.2f);
+                TweenUtils.BoldOutline(Sprite, 12, 16);
             }
         }
     }

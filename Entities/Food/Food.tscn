@@ -17,7 +17,7 @@ shader_parameter/color = null
 shader_parameter/tolerance = 0.8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmim1"]
-size = Vector2(64, 64)
+size = Vector2(128, 128)
 
 [sub_resource type="Animation" id="Animation_ok2kh"]
 length = 0.001

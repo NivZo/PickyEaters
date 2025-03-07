@@ -9,7 +9,13 @@ public class SaveManager
 
     private static string SAVEFILE => SaveLocally ? LOCAL_SAVEFILE : USER_SAVEFILE;
 
-    public static SaveData ActiveSave = new();
+    public static SaveData ActiveSave { 
+        get => _activeSave;
+        set {
+            _activeSave = value;
+            CommitActiveSave();
+        }}
+    private static SaveData _activeSave = new();
     public static bool SaveLocally = false;
 
     public static void SaveGame()
@@ -17,6 +23,12 @@ public class SaveManager
         var currSave = GetCurrentSave();
         ActiveSave.LevelReached = new int[3] { currSave.LevelReached, LevelManager.Instance.CurrentLevelId, ActiveSave.LevelReached }.Max();
         GD.Print("Saving ", ActiveSave.LevelReached);
+        ResourceSaver.Save(ActiveSave, SAVEFILE);
+    }
+
+    private static void CommitActiveSave()
+    {
+        GD.Print("Committing Active Save");
         ResourceSaver.Save(ActiveSave, SAVEFILE);
     }
 

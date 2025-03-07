@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=22 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Entities/Main/Main.cs" id="1_hxws4"]
 [ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
 [ext_resource type="Script" path="res://Entities/SignalProvider/SignalProvider.cs" id="15_vnkmn"]
+[ext_resource type="Script" path="res://Entities/Main/MainCamera.cs" id="17_hyxa0"]
 [ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="18_bgvm0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14780"]
@@ -22,7 +23,7 @@ shader = ExtResource("2_tskco")
 shader_parameter/spin_rotation_speed = 0.5
 shader_parameter/move_speed = 2.0
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.934351, 0.898214, 0.886279, 1)
+shader_parameter/colour_1 = Color(0.956174, 0.882792, 0.928597, 1)
 shader_parameter/colour_2 = Color(0.973304, 0.958462, 0.95357, 1)
 shader_parameter/colour_3 = Color(1, 1, 1, 1)
 shader_parameter/contrast = 3.5
@@ -51,26 +52,26 @@ shader_parameter/tolerance = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6s11"]
 shader = ExtResource("14_6bj1p")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.5
-shader_parameter/scanlines_width = 0.0
+shader_parameter/scanlines_opacity = 0.08
+shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(1080, 1920)
+shader_parameter/resolution = Vector2(720, 960)
 shader_parameter/pixelate = true
-shader_parameter/roll = true
+shader_parameter/roll = false
 shader_parameter/roll_speed = 4.0
 shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 3.0
-shader_parameter/distort_intensity = 0.002
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.001
 shader_parameter/noise_opacity = 0.001
 shader_parameter/noise_speed = 2.0
 shader_parameter/static_noise_intensity = 0.005
-shader_parameter/aberration = 0.01
+shader_parameter/aberration = 0.00800005
 shader_parameter/brightness = 1.0
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0
+shader_parameter/warp_amount = 0.1
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.75
-shader_parameter/vignette_opacity = 0.25
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hxws4")
@@ -88,7 +89,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.802792, 0.762396, 0.653984, 1)
+color = Color(0.538545, 0.25859, 0.273389, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
@@ -100,7 +101,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 0.392157)
 metadata/_edit_lock_ = true
 
 [node name="PolkaDots" type="TextureRect" parent="BackgroundLayer"]
@@ -171,6 +171,7 @@ position = Vector2(0, 2554)
 position = Vector2(1440, 0)
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="CoinsIndicator" parent="GUILayer" instance=ExtResource("6_aj3fp")]
 position = Vector2(992, 40)
@@ -225,3 +226,8 @@ autoplay = true
 parameters/looping = true
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("17_hyxa0")
+RandomStrength = 6.0

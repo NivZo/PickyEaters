@@ -10,9 +10,10 @@ public partial class Eater : Node2D
     [Export] public Vector2I BoardStatePositionId;
     [Export] public Godot.Collections.Array<FoodType> ValidFoodTypes { get; set; }
     public TargetPositionComponent TargetPositionComponent;
-    private SelectComponent<Eater> _selectComponent;
+    public EaterDisplay Display;
+    public CpuParticles2D EatParticlesEmitter;
 
-    private EaterDisplay _display;    
+    private SelectComponent<Eater> _selectComponent;
     private AudioStreamPlayer _audioStreamPlayer;
     private List<Direction> _directions;
     private Direction.DirectionName _currentSelectedDirection = Direction.DirectionName.None;
@@ -26,12 +27,13 @@ public partial class Eater : Node2D
         base._Ready();
         
         EaterFace = EaterFace == EaterFace.SmileBasic ? EnumUtils.GetRandomValueOutOf(SaveManager.ActiveSave.UnlockedFaces.ToList()) : EaterFace;
-        _display = GetNode<EaterDisplay>("EaterDisplay");
-        _display.EaterFace = EaterFace;
-        _display.EaterType = EaterType;
-        _display.Setup();
+        Display = GetNode<EaterDisplay>("EaterDisplay");
+        Display.EaterFace = EaterFace;
+        Display.EaterType = EaterType;
+        Display.Setup();
         _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-        _selectComponent = _display.SelectComponent;
+        EatParticlesEmitter = GetNode<CpuParticles2D>("EatParticles");
+        _selectComponent = Display.SelectComponent;
         _selectComponent.Select += OnSelect;
         _selectComponent.Deselect += OnDeselect;
         TargetPositionComponent = new(this);
@@ -39,10 +41,10 @@ public partial class Eater : Node2D
 
         _directions = new()
         {
-            new(_display.EaterType, Direction.DirectionName.Up, Vector2I.Up, _display.GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Down, Vector2I.Down, _display.GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Left, Vector2I.Left, _display.GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
-            new(_display.EaterType, Direction.DirectionName.Right, Vector2I.Right, _display.GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Up, Vector2I.Up, Display.GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Down, Vector2I.Down, Display.GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Left, Vector2I.Left, Display.GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Right, Vector2I.Right, Display.GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
         };
     }
 
@@ -81,6 +83,16 @@ public partial class Eater : Node2D
     {
         var currPos = TargetPositionComponent.NudgelessTargetPosition;
         ActionManager.StartPlayerAction(this, () => {
+            if (food.IsLast)
+            {
+                EatParticlesEmitter.OneShot = false;
+                Display.ToggleFinished(true);
+            }
+
+            EatParticlesEmitter.Texture = food.FoodType.GetFoodTypeTexture();
+            EatParticlesEmitter.Emitting = true;
+            MainCamera.ApplyShake();
+
             HistoryManager.Instance.AddMove(food, this, currPos);
             SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, isHint);
             BoardStatePositionId = food.BoardStatePositionId;

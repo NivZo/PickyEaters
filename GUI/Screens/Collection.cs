@@ -20,7 +20,6 @@ public partial class Collection : PagedScreen<EaterDisplay>
             .ElementAt(pageId)
             .Select((face, i) => 
             {
-                GD.Print(i, "=", face);
                 var eaterDisplay = GD.Load<PackedScene>("res://Entities/Eater/EaterDisplay.tscn").Instantiate<EaterDisplay>();
                 eaterDisplay.Scale = new(3, 3);
                 eaterDisplay.EaterFace = face;

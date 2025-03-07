@@ -6,7 +6,7 @@ using System.Linq;
 public abstract partial class PagedScreen<TContent> : Node
     where TContent : Node
 {
-    public int CurrentPage;
+    public int CurrentPage = 0;
     private int _pageCount = 0;
     private Node _contents;
     private RichTextLabel _pageCountLabel;

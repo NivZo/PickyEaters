@@ -9,6 +9,7 @@ public partial class SaveData : Resource
 
     [Export] public double MusicVolumeScale { get; set; } = 1;
     [Export] public double SoundEffectsVolumeScale { get; set; } = 1;
+    [Export] public double ScreenShakeStrength { get; set; } = 1;
 
     [Export] public Godot.Collections.Array<EaterFace> UnlockedFaces { get; set; } = new() { EaterFace.SmileBasic };
 }

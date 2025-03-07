@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 
@@ -8,9 +9,12 @@ public partial class EaterDisplay : Node2D
     
     public Sprite2D Body;
     public Sprite2D Face;
+    public Sprite2D Thumb;
     public SelectComponent<Eater> SelectComponent;
+    private AnimationPlayer _animationPlayer; 
 
     private float _baseScale = 1;
+    private bool _isSelectable = true;
 
 
     public override void _Ready()
@@ -18,7 +22,10 @@ public partial class EaterDisplay : Node2D
         base._Ready();
 
         var collider = GetNode<Area2D>("Area2D");
-        SelectComponent = new(collider, ActionManager.IsPlayerActionAvailable);
+        SelectComponent = new(collider, () => _isSelectable && ActionManager.IsPlayerActionAvailable());
+        _animationPlayer = GetNode<AnimationPlayer>("FloatAnimationPlayer");
+        StartIdleAnimation();
+
         
         Setup();
     }
@@ -35,6 +42,8 @@ public partial class EaterDisplay : Node2D
         Face.Texture = EaterFace.GetEaterFaceTexture();
         Body = GetNode<Sprite2D>("Body");
         Body.Texture = EaterType.GetEaterTypeBodyTexture();
+        Thumb = GetNode<Sprite2D>("Body/HandThumb");
+        Thumb.Texture = EaterType.GetEaterTypeHandThumbTexture();
 
         if (EaterFace != EaterFace.Hidden)
         {
@@ -59,6 +68,25 @@ public partial class EaterDisplay : Node2D
         }
     }
 
+    public void ToggleFinished(bool isFinished)
+    {
+        if (isFinished)
+        {
+            _isSelectable = false;
+            Thumb.Visible = true;
+            Face.Texture = EaterFace.GetEaterActiveFaceTexture();
+            Scale = _baseScale * new Vector2(.5f, .5f);
+            TweenUtils.Pop(this, _baseScale * 1.05f);
+        }
+        else
+        {
+            _isSelectable = true;
+            Thumb.Visible = false;
+            Face.Texture = EaterFace.GetEaterFaceTexture();
+            TweenUtils.Pop(this, _baseScale);
+        }
+    }
+
     public void HandleActivate()
     {
         Face.Texture = EaterFace.GetEaterActiveFaceTexture();
@@ -75,5 +103,13 @@ public partial class EaterDisplay : Node2D
         TweenUtils.BoldOutline(Body, 4, 8);
 
         AudioManager.PlayAudio(AudioType.DeselectEater);
+    }
+
+    private void StartIdleAnimation()
+    {
+        var rnd = new Random();
+        _animationPlayer.Play("float_rotate");
+        var offset = rnd.NextDouble() * _animationPlayer.CurrentAnimation.Length;
+        _animationPlayer.Advance(offset);
     }
 }

@@ -1,10 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd570jgysudow"]
+[gd_scene load_steps=7 format=3 uid="uid://dd570jgysudow"]
 
 [ext_resource type="Script" path="res://Entities/Eater/Eater.cs" id="1_es8yf"]
+[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="2_631ky"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="2_dhrxe"]
+[ext_resource type="Texture2D" uid="uid://ngf00c074cjd" path="res://Assets/Entities/food.png" id="2_kectv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3dsua"]
+shader = ExtResource("2_631ky")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 24.0
+shader_parameter/pattern = 1
+shader_parameter/inside = true
+shader_parameter/add_margins = false
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_il40y"]
+_data = [Vector2(0, 0.251357), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Eater" type="Node2D"]
 script = ExtResource("1_es8yf")
+
+[node name="EatParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_3dsua")
+emitting = false
+amount = 24
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("2_kectv")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 80)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 200.0
+scale_amount_curve = SubResource("Curve_il40y")
 
 [node name="EaterDisplay" parent="." instance=ExtResource("2_dhrxe")]
 

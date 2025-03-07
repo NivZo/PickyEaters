@@ -11,7 +11,7 @@ public class LevelManager
 
     public int CurrentLevelId;
     public Level Level => _level;
-    public int MaxLevel = 170;
+    public int MaxLevel = 217;
 
     public void Setup(CanvasLayer gameLayer)
     {

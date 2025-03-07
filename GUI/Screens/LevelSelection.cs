@@ -1,22 +1,29 @@
+using System;
+using System.Collections.Generic;
 using Godot;
 
-public partial class LevelSelection : Node
+public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
 {
-    private Scrollable _scrollable;
+    private const int ITEMS_PER_PAGE = 15;
 
     public override void _Ready()
     {
+        CurrentPage = GetPageCount() - 1;
         base._Ready();
-        
-        _scrollable = GetNode<Scrollable>("GUILayer/Scrollable");
+    }
 
-        var levelReached = SaveManager.ActiveSave.LevelReached;
+    protected override List<PlaySelectedLevelButton> CreateContents(int pageId)
+    {
 
-        for (int i = 1; i <= levelReached; i++)
+        var minLevel = Math.Max(1, pageId*ITEMS_PER_PAGE + 1);
+        var maxLevel = Math.Min(SaveManager.ActiveSave.LevelReached, (pageId+1)*ITEMS_PER_PAGE);
+        var buttons = new List<PlaySelectedLevelButton>();
+
+        for (int i = minLevel; i <= maxLevel; i++)
         {
             var lvlBtn = GD.Load<PackedScene>("res://GUI/Button/PlaySelectedLevelButton.tscn").Instantiate<PlaySelectedLevelButton>();
             lvlBtn.LevelId = i;
-            lvlBtn.SetAnchorsPreset(Control.LayoutPreset.Center);
+            lvlBtn.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
             lvlBtn.Size = new(324, 220);
             var x = (i%3) switch
                 {
@@ -24,11 +31,13 @@ public partial class LevelSelection : Node
                     2 => 560,
                     _ => 1048,
                 };
-            lvlBtn.Position = new(x, 72 + 300 * ((i-1)/3));
+            lvlBtn.Position = new(x, 372 + 400 * Mathf.FloorToInt((i-minLevel)/3));
 
-            _scrollable.AddChildToScrollableContent(lvlBtn);
+            buttons.Add(lvlBtn);
         }
 
-        _scrollable.ScrollTo(1800 - 300 * ((levelReached-1)/3));
+        return buttons;
     }
+
+    protected override int GetPageCount() => Mathf.CeilToInt(SaveManager.ActiveSave.LevelReached / (float)ITEMS_PER_PAGE);
 }

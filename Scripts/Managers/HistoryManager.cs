@@ -43,6 +43,12 @@ public class HistoryManager
                 TweenUtils.Pop(lastMove.Eater, 1);
                 lastMove.Eater.TargetPositionComponent.SetPinPosition(lastMove.EaterPosition);
                 lastMove.Eater.BoardStatePositionId = lastMove.EaterBoardStatePositionId;
+                if (lastMove.isLastFood)
+                {
+                    lastMove.Eater.Display.ToggleFinished(false);
+                    lastMove.Eater.EatParticlesEmitter.OneShot = true;
+                    lastMove.Eater.EatParticlesEmitter.Emitting = false;
+                }
             }
         }
     }

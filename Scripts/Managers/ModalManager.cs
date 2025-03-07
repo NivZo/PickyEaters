@@ -50,7 +50,7 @@ public class ModalManager
     {
         _currentModal.GlobalPosition = SizeUtils.ScreenCenter + new Vector2(0, SizeUtils.ScreenH);
         _modalLayer.AddChild(_currentModal);
-        TweenUtils.Travel(_currentModal, SizeUtils.ScreenCenter, 0.2f, Tween.TransitionType.Back);
+        TweenUtils.Travel(_currentModal, SizeUtils.ScreenCenter, 0.4f, Tween.TransitionType.Back);
     }
 
     public enum ModalType
