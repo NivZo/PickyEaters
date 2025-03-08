@@ -14,7 +14,7 @@ public static class HintManager
 
     public static void CalculateSolutionPath()
     {
-        _solutionPath = HintSystem.GetHints(LevelManager.Instance.Level);
+        _solutionPath = HintSystem.GetHints(LevelManager.Level);
         _currHint = 0;
         _movesSinceLastHint = 0;
     }

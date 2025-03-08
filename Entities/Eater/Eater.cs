@@ -94,7 +94,7 @@ public partial class Eater : Node2D
             MainCamera.ApplyShake();
 
             HistoryManager.Instance.AddMove(food, this, currPos);
-            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, isHint);
+            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, Variant.From(food.FoodType), food.IsLast, isHint);        
             BoardStatePositionId = food.BoardStatePositionId;
             food.QueueFree();
             AudioManager.PlayAudio(AudioType.FoodConsumed);

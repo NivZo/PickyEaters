@@ -8,8 +8,18 @@ public partial class HomeIconButton : CustomIconButton
     protected override void OnClick()
     {
         AudioManager.PlayAudio(AudioType.Undo);
-        ModalManager.CloseModal(overideUnclosable: true);
-        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
+        if (ScreenManager.CurrentScreen == ScreenManager.ScreenType.PlayScreen)
+        {
+            ModalManager.OpenAreYouSureModal(() => {
+                ModalManager.CloseModal(overideUnclosable: true);
+                ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
+            });
+        }
+        else
+        {
+            ModalManager.CloseModal(overideUnclosable: true);
+            ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
+        }
     }
 
 }

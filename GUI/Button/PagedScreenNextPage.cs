@@ -10,9 +10,8 @@ public partial class PagedScreenNextPage : CustomButton
         base._Ready();
     }
 
-    public void Setup(Func<bool> isEnabed, Action nextPage)
+    public void Setup(Action nextPage)
     {
-        IsEnabledFunc = isEnabed;
         _nextPage = nextPage;
     }
     

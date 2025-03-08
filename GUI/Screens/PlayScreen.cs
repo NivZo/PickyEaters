@@ -7,20 +7,7 @@ public partial class PlayScreen : Node
         base._Ready();
 
         var gameLayer = GetNode<CanvasLayer>("GameLayer");
-        LevelManager.Instance.Setup(gameLayer);
-        LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelId);
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-
-        if (ModalManager.CurrentOpenModal == ModalManager.ModalType.None && LevelManager.Instance.IsVictory())
-        {
-            ModalManager.OpenVictoryModal();
-            
-            CoinsManager.Instance.AddCoins(100);
-            SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
-        }
+        LevelManager.Setup(gameLayer);
+        LevelManager.LoadLevel(LevelManager.CurrentLevelId);
     }
 }

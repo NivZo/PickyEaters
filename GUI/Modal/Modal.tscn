@@ -77,7 +77,7 @@ offset_bottom = 522.0
 texture = ExtResource("2_br1e8")
 
 [node name="Background" type="TextureRect" parent="."]
-self_modulate = Color(0.772487, 0.706245, 0.528515, 0.627451)
+self_modulate = Color(0.774552, 0.6916, 0.646227, 1)
 offset_left = -576.0
 offset_top = -576.0
 offset_right = 576.0

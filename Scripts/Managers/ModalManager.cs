@@ -18,11 +18,12 @@ public class ModalManager
     
     public static void OpenVictoryModal()
     {
-        LevelManager.Instance.IncreaseLevelReached();
+        LevelManager.IncreaseLevelReached();
 
         _currentModal = GD.Load<PackedScene>("res://GUI/Modal/VictoryModal.tscn").Instantiate<Node2D>();
         CurrentOpenModal = ModalType.Victory;
-
+        CoinsManager.AddCoins(100);
+        
         OpenModal();
     }
 
@@ -30,6 +31,15 @@ public class ModalManager
     {
         _currentModal = GD.Load<PackedScene>("res://GUI/Modal/SettingsModal.tscn").Instantiate<Node2D>();
         CurrentOpenModal = ModalType.Settings;
+
+        OpenModal();
+    }
+
+    public static void OpenAreYouSureModal(Action onConfirm)
+    {
+        AreYouSure.SetOnConfirm(onConfirm);
+        _currentModal = GD.Load<PackedScene>("res://GUI/Modal/AreYouSure.tscn").Instantiate<Node2D>();
+        CurrentOpenModal = ModalType.AreYouSure;
 
         OpenModal();
     }
@@ -42,7 +52,7 @@ public class ModalManager
             _currentModal = null;
             CurrentOpenModal = ModalType.None;
 
-            SaveManager.SaveGame();
+            SaveManager.CommitActiveSave();
         }
     }
 
@@ -50,7 +60,7 @@ public class ModalManager
     {
         _currentModal.GlobalPosition = SizeUtils.ScreenCenter + new Vector2(0, SizeUtils.ScreenH);
         _modalLayer.AddChild(_currentModal);
-        TweenUtils.Travel(_currentModal, SizeUtils.ScreenCenter, 0.4f, Tween.TransitionType.Back);
+        TweenUtils.Travel(_currentModal, SizeUtils.ScreenCenter, 0.4f, Tween.TransitionType.Sine);
     }
 
     public enum ModalType
@@ -58,5 +68,6 @@ public class ModalManager
         None,
         Victory,
         Settings,
+        AreYouSure,
     }
 }

@@ -35,7 +35,7 @@ public class HistoryManager
                     food.IsLast = lastMove.isLastFood;
                     food.BoardStatePositionId = lastMove.FoodBoardStatePositionId;
                     food.Scale = Vector2.Zero;
-                    LevelManager.Instance.Level.Food.AddChild(food);
+                    LevelManager.Level.Food.AddChild(food);
                     TweenUtils.Pop(food, 1);
                 });
 

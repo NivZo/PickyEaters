@@ -12,7 +12,7 @@ public partial class PlaySelectedLevelButton : CustomButton
     
     protected override void OnClick()
     {
-        LevelManager.Instance.CurrentLevelId = LevelId;
+        LevelManager.CurrentLevelId = LevelId;
         AudioManager.PlayAudio(AudioType.FoodConsumed);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.PlayScreen);
     }

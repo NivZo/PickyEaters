@@ -8,9 +8,12 @@ public partial class ResetButton : CustomButton
     
     protected override void OnClick()
     {
-        HistoryManager.Instance.ResetHistory();
-        LevelManager.Instance.ResetLevel();
-        HintManager.CalculateSolutionPath();
+        ModalManager.OpenAreYouSureModal(() => {
+            HistoryManager.Instance.ResetHistory();
+            LevelManager.ResetLevel();
+            HintManager.CalculateSolutionPath();
+        });
+
         AudioManager.PlayAudio(AudioType.Undo);
     }
 

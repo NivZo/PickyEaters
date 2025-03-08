@@ -15,6 +15,7 @@ public class AudioManager
     public static void PlayAudio(AudioType audioType)
     {
         _soundEffectPlayer.Stream = GD.Load<AudioStream>($"res://Audio/{audioType}.wav");
+        _soundEffectPlayer.PitchScale = RandomUtils.RandomInRange(0.95f, 1.05f);
         _soundEffectPlayer.Play();
     }
 

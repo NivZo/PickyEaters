@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 [Tool]
@@ -79,7 +80,7 @@ public partial class Food : Node2D
         }
     }
 
-    private void HandleSelectionEnded(Vector2I EaterPosId, Vector2I FoodPosId, bool IsHint)
+    private void HandleSelectionEnded(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
     {
         if (FoodPosId != BoardStatePositionId)
         {

@@ -19,13 +19,12 @@ public partial class MainCamera : Camera2D
     {
         base._Process(delta);
 
-        if (_shakeStrength > 0)
+        if (_shakeStrength != 0)
         {
-            GD.Print(_shakeStrength);
             _shakeStrength = Mathf.Max(0, Mathf.Lerp(_shakeStrength, 0, _camera.ShakeFade * (float)delta));
             Offset = RandomOffset();
 
-            if (Mathf.IsEqualApprox(_shakeStrength, 0))
+            if (_shakeStrength < 0.1 && _shakeStrength > -0.1)
             {
                 _shakeStrength = 0;
             }
@@ -35,6 +34,7 @@ public partial class MainCamera : Camera2D
     public static void ApplyShake()
     {
         _shakeStrength = _camera.RandomStrength * (float)SaveManager.ActiveSave.ScreenShakeStrength;
+        Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.2f);
     }
 
     private Vector2 RandomOffset()

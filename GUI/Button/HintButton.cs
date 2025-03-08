@@ -26,13 +26,13 @@ public partial class HintButton : CustomButton
 
     private void ExecuteHintInternal()
     {
-        if (_currentClickHintsLeft > 0 && !LevelManager.Instance.IsVictory())
+        if (_currentClickHintsLeft > 0 && !LevelManager.IsVictory())
         {
             var firstMove = HintManager.GetHint();
             if (firstMove != null)
             {
-                var eater = LevelManager.Instance.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == firstMove.From);
-                var food = LevelManager.Instance.Level.GetFood().FirstOrDefault(food => food.BoardStatePositionId == firstMove.To);
+                var eater = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == firstMove.From);
+                var food = LevelManager.Level.GetFood().FirstOrDefault(food => food.BoardStatePositionId == firstMove.To);
                 if (eater != null & food != null)
                 {
                     eater.PerformMove(food, true);

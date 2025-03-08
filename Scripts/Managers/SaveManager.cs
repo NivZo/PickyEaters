@@ -18,15 +18,7 @@ public class SaveManager
     private static SaveData _activeSave = new();
     public static bool SaveLocally = false;
 
-    public static void SaveGame()
-    {
-        var currSave = GetCurrentSave();
-        ActiveSave.LevelReached = new int[3] { currSave.LevelReached, LevelManager.Instance.CurrentLevelId, ActiveSave.LevelReached }.Max();
-        GD.Print("Saving ", ActiveSave.LevelReached);
-        ResourceSaver.Save(ActiveSave, SAVEFILE);
-    }
-
-    private static void CommitActiveSave()
+    public static void CommitActiveSave()
     {
         GD.Print("Committing Active Save");
         ResourceSaver.Save(ActiveSave, SAVEFILE);
@@ -51,7 +43,7 @@ public class SaveManager
     {
         ActiveSave = new SaveData()
         {
-            LevelReached = 217,
+            LevelReached = LevelManager.MaxLevel,
             Coins = 7425,
             UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.WideOpenSmile },
         };

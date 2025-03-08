@@ -13,7 +13,7 @@ public partial class EaterDisplay : Node2D
     public SelectComponent<Eater> SelectComponent;
     private AnimationPlayer _animationPlayer; 
 
-    private float _baseScale = 1;
+    public float BaseScale = 1;
     private bool _isSelectable = true;
 
 
@@ -49,8 +49,7 @@ public partial class EaterDisplay : Node2D
         {
             SelectComponent.Select += HandleActivate;
             SelectComponent.Deselect += HandleDeactivate;
-
-            _baseScale = Scale.X;
+            BaseScale = BaseScale == 1 ? Scale.X : BaseScale;
         }
     }
     
@@ -75,22 +74,22 @@ public partial class EaterDisplay : Node2D
             _isSelectable = false;
             Thumb.Visible = true;
             Face.Texture = EaterFace.GetEaterActiveFaceTexture();
-            Scale = _baseScale * new Vector2(.5f, .5f);
-            TweenUtils.Pop(this, _baseScale * 1.05f);
+            Scale = BaseScale * new Vector2(.5f, .5f);
+            TweenUtils.Pop(this, BaseScale * 1.05f);
         }
         else
         {
             _isSelectable = true;
             Thumb.Visible = false;
             Face.Texture = EaterFace.GetEaterFaceTexture();
-            TweenUtils.Pop(this, _baseScale);
+            TweenUtils.Pop(this, BaseScale);
         }
     }
 
     public void HandleActivate()
     {
         Face.Texture = EaterFace.GetEaterActiveFaceTexture();
-        TweenUtils.Pop(this, _baseScale * 1.2f);
+        TweenUtils.Pop(this, BaseScale * 1.2f);
         TweenUtils.BoldOutline(Body, 8, 12);
 
         AudioManager.PlayAudio(AudioType.SelectEater);
@@ -99,7 +98,7 @@ public partial class EaterDisplay : Node2D
     public void HandleDeactivate()
     {
         Face.Texture = EaterFace.GetEaterFaceTexture();
-        TweenUtils.Pop(this, _baseScale * 1);
+        TweenUtils.Pop(this, BaseScale * 1);
         TweenUtils.BoldOutline(Body, 4, 8);
 
         AudioManager.PlayAudio(AudioType.DeselectEater);

@@ -16,7 +16,7 @@ public partial class UnlockFaceButton : CustomButton
         var newFace = EnumUtils.GetRandomValueExcluding(SaveManager.ActiveSave.UnlockedFaces.Concat(new EaterFace[1] { EaterFace.Hidden }).ToList());
         SaveManager.ActiveSave.UnlockedFaces.Add(newFace);
         SaveManager.ActiveSave.Coins -= 1000;
-        SaveManager.SaveGame();
+        SaveManager.CommitActiveSave();
 
         SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
 

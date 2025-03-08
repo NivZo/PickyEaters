@@ -39,7 +39,9 @@ public partial class Level : Node
         .Where(child => child is Food)
         .Select(eater => eater as Food).ToList();
     
-    private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId, bool IsHint)
+    public List<FoodType> GetUnfinishedFoodTypes() => GetFood().Where(food => food.IsLast).Select(food => food.FoodType).ToList();
+    
+    private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
     {
         if (IsHint)
         {
@@ -48,6 +50,13 @@ public partial class Level : Node
         else
         {
             HintManager.HandleNonHintMove();
+        }
+
+        var unfinished = LevelManager.Level.GetUnfinishedFoodTypes();
+        foreach (var foodType in unfinished) { GD.Print(foodType); }
+        if (unfinished.Count == 1 && unfinished.FirstOrDefault() == FoodType && IsLast)
+        {
+            ModalManager.OpenVictoryModal();
         }
     }
 }

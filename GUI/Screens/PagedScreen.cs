@@ -19,10 +19,8 @@ public abstract partial class PagedScreen<TContent> : Node
         _pageCount = GetPageCount();
 
         GetNode<PagedScreenNextPage>("PagedScreen/GUILayer/NextPage").Setup(
-            () => CurrentPage < _pageCount-1,
             NextPage);
         GetNode<PagedScreenPrevPage>("PagedScreen/GUILayer/PrevPage").Setup(
-            () => CurrentPage > 0,
             PrevPage);
 
         Setup();
@@ -45,8 +43,12 @@ public abstract partial class PagedScreen<TContent> : Node
         if (CurrentPage < _pageCount-1)
         {
             CurrentPage += 1;
-            Setup();
         }
+        else
+        {
+            CurrentPage = 0;
+        }
+        Setup();
     }
 
     public void PrevPage()
@@ -54,7 +56,11 @@ public abstract partial class PagedScreen<TContent> : Node
         if (CurrentPage > 0)
         {
             CurrentPage -= 1;
-            Setup();
         }
+        else
+        {
+            CurrentPage = _pageCount-1;
+        }
+        Setup();
     }
 }

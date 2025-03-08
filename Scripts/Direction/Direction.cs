@@ -25,7 +25,7 @@ public class Direction
         if (collision is Node2D collisionNode
             && collisionNode.GetParent() is Food food
             && ValidFoodTypes.Contains(food.FoodType)
-            && (!food.IsLast || LevelManager.Instance.CanEatLast(food.FoodType)))
+            && (!food.IsLast || LevelManager.CanEatLast(food.FoodType)))
         {
             return food;
         }

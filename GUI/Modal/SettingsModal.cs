@@ -43,6 +43,5 @@ public partial class SettingsModal : Node2D
     {
         SaveManager.ActiveSave.ScreenShakeStrength = value;
         GetNode<RichTextLabel>("Modal/ScreenShake/ScreenShakeValueLabel").Text = $"{(int)(value * 100)}";
-        MainCamera.ApplyShake();
     }
 }

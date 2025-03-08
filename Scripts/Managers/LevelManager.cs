@@ -1,28 +1,28 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class LevelManager
+public static class LevelManager
 {
-    public static LevelManager Instance { get; } = new LevelManager();
-    
-    private CanvasLayer _gameLayer;
-    private Level _level;
+    private static CanvasLayer _gameLayer;
+    private static Level _level;
 
-    public int CurrentLevelId;
-    public Level Level => _level;
-    public int MaxLevel = 217;
+    public static int CurrentLevelId;
+    public static Level Level => _level;
+    public static int MaxLevel = 317;
 
-    public void Setup(CanvasLayer gameLayer)
+    public static void Setup(CanvasLayer gameLayer)
     {
         _gameLayer = gameLayer;
         CurrentLevelId = CurrentLevelId == default ? SaveManager.ActiveSave.LevelReached : CurrentLevelId;
     }
 
-    public bool IsVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType != FoodType.White).Count() == 0;
-    public bool CanEatLast(FoodType foodType) => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == foodType).Count() == 1;
+    public static bool IsVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType != FoodType.White).Count() == 0;
+    public static bool IsFlawlessVictory() => _level.Food.GetChildren().Where(child => child is Food food).Count() == 0;
+    public static bool CanEatLast(FoodType foodType) => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == foodType).Count() == 1;
 
-    public void LoadLevel(int levelId)
+    public static void LoadLevel(int levelId)
     {
         if (_gameLayer.GetChildren().Count == 0) { _level = null; }
         if (_level != null)
@@ -40,29 +40,29 @@ public class LevelManager
         _gameLayer.GetNode<RichTextLabel>("%LevelTitle").Text = TextUtils.WaveString($"LEVEL {levelId}");
     }
 
-    public void ResetLevel() => LoadLevel(CurrentLevelId);
+    public static void ResetLevel() => LoadLevel(CurrentLevelId);
 
-    public void IncreaseLevelReached()
+    public static void IncreaseLevelReached()
     {
-        if (CurrentLevelId == SaveManager.ActiveSave.LevelReached)
+        if (CurrentLevelId == SaveManager.ActiveSave.LevelReached && CurrentLevelId < MaxLevel)
         {
             SaveManager.ActiveSave.LevelReached += 1;
-            SaveManager.SaveGame();
+            SaveManager.CommitActiveSave();
         }
     }
 
-    public void NextLevel()
+    public static void NextLevel()
     {
         LoadLevel(CurrentLevelId+1);
     }
 
-    public void NextTenLevels()
+    public static void NextTenLevels()
     {
         LoadLevel(CurrentLevelId+10);
     }
 
 
-    public void PreviousLevel()
+    public static void PreviousLevel()
     {
         LoadLevel(CurrentLevelId-1);
     }
