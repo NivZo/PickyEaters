@@ -30,6 +30,10 @@ public partial class Food : Node2D
         SignalProvider.Instance.MovePerformed += HandleSelectionEnded;
         SignalProvider.Instance.MoveSelectionCancelled += HandleSelectionCancelled;
 
+        
+        Scale = Vector2.Zero;
+        TweenUtils.Pop(this, 1);
+
         StartIdleAnimation();
     }
 

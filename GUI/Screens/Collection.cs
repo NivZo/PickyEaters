@@ -21,7 +21,7 @@ public partial class Collection : PagedScreen<EaterDisplay>
             .Select((face, i) => 
             {
                 var eaterDisplay = GD.Load<PackedScene>("res://Entities/Eater/EaterDisplay.tscn").Instantiate<EaterDisplay>();
-                eaterDisplay.Scale = new(3, 3);
+                eaterDisplay.BaseScale = 3;
                 eaterDisplay.EaterFace = face;
                 eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
                 var x = (i%2) switch

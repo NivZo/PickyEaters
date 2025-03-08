@@ -26,6 +26,9 @@ public partial class EaterDisplay : Node2D
         _animationPlayer = GetNode<AnimationPlayer>("FloatAnimationPlayer");
         StartIdleAnimation();
 
+        Scale = Vector2.Zero;
+        TweenUtils.Pop(this, BaseScale);
+
         
         Setup();
     }
@@ -49,7 +52,6 @@ public partial class EaterDisplay : Node2D
         {
             SelectComponent.Select += HandleActivate;
             SelectComponent.Deselect += HandleDeactivate;
-            BaseScale = BaseScale == 1 ? Scale.X : BaseScale;
         }
     }
     

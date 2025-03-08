@@ -121,7 +121,6 @@ CustomIcon = ExtResource("7_7g63y")
 Cooldown = 0.2
 
 [node name="HomeButton" parent="GUI" instance=ExtResource("15_frctr")]
-anchors_preset = 8
 offset_left = -560.0
 offset_top = -1244.0
 offset_right = -552.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1er3h0q65qw5"]
+[gd_scene load_steps=14 format=3 uid="uid://d1er3h0q65qw5"]
 
 [ext_resource type="Script" path="res://GUI/Modal/AreYouSure.cs" id="1_88kjf"]
 [ext_resource type="Texture2D" uid="uid://beewocjos58r" path="res://Assets/GUI/modal.png" id="2_ift7y"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="3_cpdmd"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="4_u0ju6"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="5_jvuqk"]
 [ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="5_m6bbn"]
@@ -10,11 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://cbtbjw003jpcq" path="res://Assets/Icons/White/2x/checkmark.png" id="8_f4ykd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcngc"]
-size = Vector2(864, 288)
+size = Vector2(864, 292)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ntrx"]
+shader = ExtResource("3_cpdmd")
+shader_parameter/radius_scale = 0.2
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 864.0
+shader_parameter/height = 306.0
 
 [sub_resource type="Animation" id="Animation_dd1dj"]
 resource_name = "float"
 length = 2.0
+loop_mode = 1
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,12 +51,14 @@ position = Vector2(0, -2)
 script = ExtResource("1_88kjf")
 
 [node name="Modal" type="Node2D" parent="."]
+position = Vector2(0, -2)
 
 [node name="ClickArea" type="Area2D" parent="Modal"]
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Modal/ClickArea"]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_vcngc")
 
 [node name="ClickBlocker" type="ColorRect" parent="Modal"]
@@ -63,6 +77,7 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
 
 [node name="Outline" type="TextureRect" parent="Modal"]
+visible = false
 self_modulate = Color(0.781503, 0.554191, 0.531176, 0.737)
 offset_left = -448.0
 offset_top = -160.0
@@ -72,11 +87,12 @@ texture = ExtResource("2_ift7y")
 expand_mode = 1
 
 [node name="Background" type="TextureRect" parent="Modal"]
-self_modulate = Color(0.776471, 0.690196, 0.647059, 1)
+self_modulate = Color(0.344738, 0.318829, 0.32989, 1)
+material = SubResource("ShaderMaterial_0ntrx")
 offset_left = -432.0
 offset_top = -144.0
 offset_right = 432.0
-offset_bottom = 162.0
+offset_bottom = 148.0
 texture = ExtResource("2_ift7y")
 expand_mode = 1
 
@@ -99,6 +115,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_kgxdg")
 }
+autoplay = "float"
 
 [node name="Decline" parent="Modal" instance=ExtResource("4_u0ju6")]
 anchors_preset = 0

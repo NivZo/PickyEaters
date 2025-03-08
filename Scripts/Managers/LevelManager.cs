@@ -7,10 +7,11 @@ public static class LevelManager
 {
     private static CanvasLayer _gameLayer;
     private static Level _level;
+    private static Lazy<int> _maxLevelLazy = new(DirAccess.GetFilesAt("res://Levels/").Length-1);
 
     public static int CurrentLevelId;
     public static Level Level => _level;
-    public static int MaxLevel = 317;
+    public static int MaxLevel { get => _maxLevelLazy.Value; }
 
     public static void Setup(CanvasLayer gameLayer)
     {

@@ -177,7 +177,6 @@ follow_viewport_enabled = true
 position = Vector2(992, 40)
 
 [node name="SettingsButton" parent="GUILayer" instance=ExtResource("11_ntej4")]
-anchors_preset = 8
 offset_left = -684.0
 offset_top = -1244.0
 offset_right = -676.0

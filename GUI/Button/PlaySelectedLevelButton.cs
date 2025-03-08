@@ -8,6 +8,10 @@ public partial class PlaySelectedLevelButton : CustomButton
     {
         CustomText = LevelId.ToString();
         base._EnterTree();
+
+        
+        Scale = Vector2.Zero;
+        TweenUtils.Pop(this, 1);
     }
     
     protected override void OnClick()
