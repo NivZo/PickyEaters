@@ -58,7 +58,6 @@ public class SaveManager
             if (ResourceLoader.Exists(SAVEFILE))
             {
                 var currSave = ResourceLoader.Load<SaveData>(SAVEFILE, null, ResourceLoader.CacheMode.Ignore);
-                GD.Print("Loaded ", currSave.LevelReached);
                 return currSave;
             }
             else

@@ -3,6 +3,7 @@ using Godot;
 public partial class SignalProvider : Node
 {
     [Signal] public delegate void ActiveSaveChangedEventHandler();
+    [Signal] public delegate void LevelResetEventHandler();
     [Signal] public delegate void FadeOutTranistionFinishedEventHandler();
     [Signal] public delegate void MoveSelectionStartedEventHandler(Vector2I EaterPosId, Vector2I PossibleFoodPosId, bool IsCurrentlySelected);
     [Signal] public delegate void MoveSelectionCancelledEventHandler(Vector2I EaterPosId);

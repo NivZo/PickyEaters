@@ -34,7 +34,7 @@ public partial class MainCamera : Camera2D
     public static void ApplyShake()
     {
         _shakeStrength = _camera.RandomStrength * (float)SaveManager.ActiveSave.ScreenShakeStrength;
-        Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.2f);
+        Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.3f);
     }
 
     private Vector2 RandomOffset()
