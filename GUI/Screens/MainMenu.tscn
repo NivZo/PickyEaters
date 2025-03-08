@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=16 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
@@ -7,12 +7,10 @@
 [ext_resource type="FontFile" uid="uid://dsfscqexiyv0k" path="res://Fonts/m6x11plus.ttf" id="6_sqknt"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
-[ext_resource type="Texture2D" uid="uid://cd1orxw7cei3w" path="res://Assets/Icons/White/2x/trophy.png" id="9_5wja2"]
 [ext_resource type="Script" path="res://GUI/Button/LevelSelectionButton.cs" id="9_c137j"]
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="11_j4xwe"]
-[ext_resource type="Texture2D" uid="uid://d4j2lsyrh72f7" path="res://Assets/Icons/White/2x/shoppingCart.png" id="11_mspww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5g82"]
 shader = ExtResource("2_4cnfy")
@@ -217,6 +215,8 @@ script = ExtResource("9_c137j")
 CustomText = "LEVELS"
 CustomTextSize = 100
 Color = Color(1, 0.846058, 0.369714, 1)
+WaveString = false
+Highlight = false
 
 [node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]
 offset_left = 864.0
@@ -224,8 +224,11 @@ offset_top = 2376.0
 offset_right = 216.0
 offset_bottom = 2087.36
 script = ExtResource("8_fcuca")
+CustomText = "COLLECTION"
+CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
-CustomIcon = ExtResource("9_5wja2")
+WaveString = false
+Highlight = false
 
 [node name="Shop" parent="GUILayer" instance=ExtResource("8_004r3")]
 offset_left = 72.0
@@ -233,5 +236,8 @@ offset_top = 2376.0
 offset_right = -576.0
 offset_bottom = 2087.36
 script = ExtResource("11_dmgqw")
+CustomText = "SHOP"
+CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
-CustomIcon = ExtResource("11_mspww")
+WaveString = false
+Highlight = false

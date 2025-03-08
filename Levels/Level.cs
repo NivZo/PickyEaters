@@ -53,7 +53,6 @@ public partial class Level : Node
         }
 
         var unfinished = LevelManager.Level.GetUnfinishedFoodTypes();
-        foreach (var foodType in unfinished) { GD.Print(foodType); }
         if (unfinished.Count == 1 && unfinished.FirstOrDefault() == FoodType && IsLast)
         {
             ModalManager.OpenVictoryModal();

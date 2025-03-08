@@ -27,7 +27,7 @@ public abstract partial class CustomButton : CustomButtonBase
         _textLabel = GetNode<RichTextLabel>("Text");
         if (CustomText != string.Empty)
         {
-            _textLabel.Text = WaveString ? TextUtils.WaveString(CustomText, amplitude: 12) : TextUtils.AddAttribute(CustomText, "center");
+            SetCustomText(CustomText);
             _textLabel.AddThemeFontSizeOverride("normal_font_size", CustomTextSize);
         }
         else
@@ -44,6 +44,8 @@ public abstract partial class CustomButton : CustomButtonBase
             _textLabel.Material = null;
         }
     }
+
+    protected void SetCustomText(string text) => _textLabel.Text = WaveString ? TextUtils.WaveString(text, amplitude: 12) : TextUtils.AddAttribute(text, "center");
 
     public override void _Process(double delta)
     {

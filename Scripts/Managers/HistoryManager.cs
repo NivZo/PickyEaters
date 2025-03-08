@@ -1,29 +1,32 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
-public class HistoryManager
+public static class HistoryManager
 {
     private record HistoryMove(FoodType FoodEaten, bool isLastFood, Vector2 FoodPosition, Vector2I FoodBoardStatePositionId, Eater Eater, Vector2 EaterPosition, Vector2I EaterBoardStatePositionId);
 
-    public static HistoryManager Instance { get; } = new HistoryManager();
+    private static Stack<HistoryMove> _moves = new();
 
-    private Stack<HistoryMove> _moves = new();
+    public static int UndoCount { get; private set; } = 10;
 
-    public int MoveCount => _moves.Count;
+    public static int MoveCount => _moves.Count;
 
-    public void ResetHistory() => _moves.Clear();
+    public static void ResetHistory()
+    {
+        _moves.Clear();
+        UndoCount = 10;
+    }
 
-    public void AddMove(Food food, Eater eater, Vector2 eaterPosition)
+    public static void AddMove(Food food, Eater eater, Vector2 eaterPosition)
     {
         _moves.Push(new HistoryMove(food.FoodType, food.IsLast, food.GlobalPosition, food.BoardStatePositionId, eater, eaterPosition, eater.BoardStatePositionId));
     }
 
-    public void UndoMove()
+    public static void UndoMove()
     {
-        if (_moves.Count > 0 && ActionManager.IsPlayerActionAvailable())
+        if (UndoCount > 0 && _moves.Count > 0 && ActionManager.IsPlayerActionAvailable())
         {
+            UndoCount -= 1;
             var lastMove = _moves.Pop();
 
             if (lastMove != null)

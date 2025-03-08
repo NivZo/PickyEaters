@@ -93,7 +93,7 @@ public partial class Eater : Node2D
             EatParticlesEmitter.Emitting = true;
             MainCamera.ApplyShake();
 
-            HistoryManager.Instance.AddMove(food, this, currPos);
+            HistoryManager.AddMove(food, this, currPos);
             SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, Variant.From(food.FoodType), food.IsLast, isHint);        
             BoardStatePositionId = food.BoardStatePositionId;
             food.QueueFree();

@@ -32,7 +32,7 @@ public static class LevelManager
             _level.QueueFree();
         }
         
-        HistoryManager.Instance.ResetHistory();
+        HistoryManager.ResetHistory();
 
         CurrentLevelId = Math.Min(MaxLevel, levelId);
         _level = GD.Load<PackedScene>($"res://Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();
