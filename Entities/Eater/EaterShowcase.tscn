@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5xwhms52s775"]
+
+[ext_resource type="Script" path="res://Entities/Eater/EaterShowcase.cs" id="1_3ljq4"]
+[ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="4_t6nkm"]
+
+[node name="EaterShowcase" type="Node2D"]
+script = ExtResource("1_3ljq4")
+
+[node name="EaterDisplay" parent="." instance=ExtResource("4_t6nkm")]
+EaterFace = 1

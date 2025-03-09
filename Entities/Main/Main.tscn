@@ -89,7 +89,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.538545, 0.25859, 0.273389, 1)
+color = Color(0.176809, 0.523303, 0.542962, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]

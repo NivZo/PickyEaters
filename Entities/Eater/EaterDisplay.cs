@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Godot;
 
 public partial class EaterDisplay : Node2D
@@ -31,6 +30,12 @@ public partial class EaterDisplay : Node2D
 
         
         Setup();
+
+        if (EaterFace != EaterFace.Hidden)
+        {
+            SelectComponent.Select += HandleActivate;
+            SelectComponent.Deselect += HandleDeactivate;
+        }
     }
 
     public void Setup()
@@ -47,12 +52,6 @@ public partial class EaterDisplay : Node2D
         Body.Texture = EaterType.GetEaterTypeBodyTexture();
         Thumb = GetNode<Sprite2D>("Body/HandThumb");
         Thumb.Texture = EaterType.GetEaterTypeHandThumbTexture();
-
-        if (EaterFace != EaterFace.Hidden)
-        {
-            SelectComponent.Select += HandleActivate;
-            SelectComponent.Deselect += HandleDeactivate;
-        }
     }
     
     public override void _UnhandledInput(InputEvent @event)

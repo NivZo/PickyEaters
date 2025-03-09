@@ -41,10 +41,10 @@ public partial class Eater : Node2D
 
         _directions = new()
         {
-            new(Display.EaterType, Direction.DirectionName.Up, Vector2I.Up, Display.GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
-            new(Display.EaterType, Direction.DirectionName.Down, Vector2I.Down, Display.GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
-            new(Display.EaterType, Direction.DirectionName.Left, Vector2I.Left, Display.GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
-            new(Display.EaterType, Direction.DirectionName.Right, Vector2I.Right, Display.GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Up, Vector2I.Up, GetNode<RayCast2D>("MoveRayCasts/Up"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Down, Vector2I.Down, GetNode<RayCast2D>("MoveRayCasts/Down"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Left, Vector2I.Left, GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
+            new(Display.EaterType, Direction.DirectionName.Right, Vector2I.Right, GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
         };
     }
 

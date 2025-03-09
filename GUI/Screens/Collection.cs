@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public partial class Collection : PagedScreen<EaterDisplay>
+public partial class Collection : PagedScreen<EaterShowcase>
 {
     private const int ITEMS_PER_PAGE = 6;
 
@@ -12,7 +12,7 @@ public partial class Collection : PagedScreen<EaterDisplay>
         base._Ready();
     }
 
-    protected override List<EaterDisplay> CreateContents(int pageId)
+    protected override List<EaterShowcase> CreateContents(int pageId)
     {
         return Enum.GetValues<EaterFace>()
             .Except(new EaterFace[1] { EaterFace.Hidden })
@@ -20,17 +20,20 @@ public partial class Collection : PagedScreen<EaterDisplay>
             .ElementAt(pageId)
             .Select((face, i) => 
             {
-                var eaterDisplay = GD.Load<PackedScene>("res://Entities/Eater/EaterDisplay.tscn").Instantiate<EaterDisplay>();
-                eaterDisplay.BaseScale = 3;
-                eaterDisplay.EaterFace = face;
-                eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
+                var eaterShowcase = GD.Load<PackedScene>("res://Entities/Eater/EaterShowcase.tscn").Instantiate<EaterShowcase>();
+                eaterShowcase.Setup();
+                eaterShowcase.Display.BaseScale = 3;
+                eaterShowcase.Display.EaterFace = face;
+                eaterShowcase.Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
+                eaterShowcase.Display.Setup();
+                eaterShowcase.RandomFace = false;
                 var x = (i%2) switch
                 {
                     0 => 360,
                     _ => 1080,
                 };
-                eaterDisplay.Position = new(x, 550 + 700 * (i/2));
-                return eaterDisplay;
+                eaterShowcase.Position = new(x, 550 + 700 * (i/2));
+                return eaterShowcase;
             })
             .ToList();
     }
