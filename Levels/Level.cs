@@ -15,7 +15,8 @@ public partial class Level : Node
         Eaters = GetNode<Node>("Eaters");
 
         SignalProvider.Instance.MovePerformed += HandleMove;
-        HintManager.CalculateSolutionPath();
+
+        SignalProvider.Emit(SignalProvider.SignalName.LevelReset);
     }
 
     public override void _Notification(int what)

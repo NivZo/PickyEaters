@@ -30,7 +30,10 @@ public partial class EaterDisplay : Node2D
 
         
         Setup();
+    }
 
+    public void EnableSelectComponent()
+    {
         if (EaterFace != EaterFace.Hidden)
         {
             SelectComponent.Select += HandleActivate;

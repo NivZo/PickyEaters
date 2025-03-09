@@ -17,6 +17,7 @@ public partial class EaterShowcase : Node2D
         
         Setup();
 
+        Display.EnableSelectComponent();
         _selectComponent = Display.SelectComponent;
         _selectComponent.Select += OnSelect;
         _selectComponent.Deselect += OnDeselect;

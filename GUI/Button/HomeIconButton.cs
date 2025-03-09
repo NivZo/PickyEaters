@@ -13,7 +13,8 @@ public partial class HomeIconButton : CustomIconButton
             ModalManager.OpenAreYouSureModal(() => {
                 ModalManager.CloseModal(overideUnclosable: true);
                 ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);
-            });
+            },
+            "EXIT LEVEL?");
         }
         else
         {

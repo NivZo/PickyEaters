@@ -14,7 +14,8 @@ public partial class ResetButton : CustomButton
             HintManager.CalculateSolutionPath();
 
             SignalProvider.Emit(SignalProvider.SignalName.LevelReset);
-        });
+        },
+        "RESET LEVEL?");
 
         AudioManager.PlayAudio(AudioType.Undo);
     }

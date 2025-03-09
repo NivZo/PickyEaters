@@ -35,9 +35,10 @@ public class ModalManager
         OpenModal();
     }
 
-    public static void OpenAreYouSureModal(Action onConfirm)
+    public static void OpenAreYouSureModal(Action onConfirm, string text)
     {
         AreYouSure.SetOnConfirm(onConfirm);
+        AreYouSure.SetText(text);
         _currentModal = GD.Load<PackedScene>("res://GUI/Modal/AreYouSure.tscn").Instantiate<Node2D>();
         CurrentOpenModal = ModalType.AreYouSure;
 

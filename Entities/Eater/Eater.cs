@@ -31,6 +31,7 @@ public partial class Eater : Node2D
         Display.EaterFace = EaterFace;
         Display.EaterType = EaterType;
         Display.Setup();
+        Display.EnableSelectComponent();
         _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
         EatParticlesEmitter = GetNode<CpuParticles2D>("EatParticles");
         _selectComponent = Display.SelectComponent;

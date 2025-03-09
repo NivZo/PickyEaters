@@ -14,6 +14,11 @@ public static class HistoryManager
     public static void ResetHistory()
     {
         _moves.Clear();
+        ResetUndos();
+    }
+
+    public static void ResetUndos()
+    {
         UndoCount = 10;
     }
 

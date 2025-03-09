@@ -3,8 +3,7 @@ using Godot;
 
 public partial class HintButton : CustomButton
 {
-    private const int HINTS_PER_CLICK = 5;
-    private int _currentClickHintsLeft = HINTS_PER_CLICK;
+    private int _currentClickHintsLeft = 0;
     private Timer _currentClickHintsTimer = new();
 
     public override void _Ready()
@@ -12,16 +11,38 @@ public partial class HintButton : CustomButton
         base._Ready();
 
         IsEnabledFunc = HintManager.IsHintAvailable;
+
         _currentClickHintsTimer.WaitTime = 0.2f;
         _currentClickHintsTimer.OneShot = false;
         _currentClickHintsTimer.Timeout += ExecuteHintInternal;
         AddChild(_currentClickHintsTimer);
+        SetCustomText($"HINT [{HintManager.HintsLeft}]");
+
+        SignalProvider.Instance.LevelReset += HandleLevelReset;
     }
     
     protected override void OnClick()
     {
+        if (!HintManager.IsOutOfHints())
+        {
+            UseHint();
+        }
+        else
+        {
+            ModalManager.OpenAreYouSureModal(() => {
+                HintManager.ResetHintUsed();
+                UseHint();
+            },
+            "OUT OF HINTS!\nWATCH AN AD TO REFILL?");
+        }
+    }
+
+    private void UseHint()
+    {
         _currentClickHintsTimer.Start();
         ActionManager.StartBackgroundAction();
+        HintManager.HintUsed();
+        SetCustomText($"HINT [{HintManager.HintsLeft}]");
     }
 
     private void ExecuteHintInternal()
@@ -47,8 +68,15 @@ public partial class HintButton : CustomButton
         else
         {
             _currentClickHintsTimer.Stop();
-            _currentClickHintsLeft = HINTS_PER_CLICK;
+            _currentClickHintsLeft = HintManager.HintsPerClick;
             ActionManager.FinishBackgroundAction();
         }
+    }
+
+    private void HandleLevelReset()
+    {
+        HintManager.CalculateSolutionPath();
+        _currentClickHintsLeft = HintManager.HintsPerClick;
+        SetCustomText($"HINT [{HintManager.HintsLeft}]");
     }
 }

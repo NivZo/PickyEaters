@@ -12,6 +12,7 @@ public abstract partial class CustomButton : CustomButtonBase
     private TextureRect _bg;
     private TextureRect _pressedBg;
     private RichTextLabel _textLabel;
+    private Vector2 _baseTextPosition = Vector2.Zero;
     private Vector2 _baseIconPosition = Vector2.Zero;
     private Vector2 _pressOffset = new(0, 28);
     private readonly Vector2 _shadowOffset = new(0, 8);
@@ -19,12 +20,13 @@ public abstract partial class CustomButton : CustomButtonBase
     public override void _Ready()
     {
         base._Ready();
-
-        _baseIconPosition = _icon.Position;
-
+        
         _bg = GetNode<TextureRect>("Background");
         _pressedBg = GetNode<TextureRect>("PressedBackground");
         _textLabel = GetNode<RichTextLabel>("Text");
+
+        _baseIconPosition = _icon.Position;
+        _baseTextPosition = _textLabel.Position;
         if (CustomText != string.Empty)
         {
             SetCustomText(CustomText);
@@ -67,7 +69,7 @@ public abstract partial class CustomButton : CustomButtonBase
     {
         _bg.Visible = false;
         _pressedBg.Visible = true;
-        _textLabel.Position += _pressOffset * (CustomTextSize / 140f);
+        _textLabel.Position = _baseTextPosition + _pressOffset * (CustomTextSize / 140f);
         _icon.Position = _baseIconPosition + _pressOffset/2;
         _iconShadow.Position = _icon.Position + _shadowOffset;
     }
@@ -76,7 +78,7 @@ public abstract partial class CustomButton : CustomButtonBase
     {
         _bg.Visible = true;
         _pressedBg.Visible = false;
-        _textLabel.Position -= _pressOffset * (CustomTextSize / 140f);
+        _textLabel.Position = _baseTextPosition;
         _icon.Position = _baseIconPosition;
         _iconShadow.Position = _icon.Position + _shadowOffset;
     }
