@@ -78,7 +78,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Modal/MusicVolume"]
-self_modulate = Color(0.347234, 0.218982, 0.609682, 1)
+self_modulate = Color(0.376658, 0.376658, 0.376658, 1)
 offset_left = -20.0
 offset_top = -214.0
 offset_right = 320.0
@@ -123,7 +123,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="SoundEffectsVolumeSlider" type="HSlider" parent="Modal/SoundEffectsVolume"]
-self_modulate = Color(0.34902, 0.219608, 0.607843, 1)
+self_modulate = Color(0.376471, 0.376471, 0.376471, 1)
 offset_left = -20.0
 offset_top = -214.0
 offset_right = 320.0
@@ -179,7 +179,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="ScreenShakeStrengthSlider" type="HSlider" parent="Modal/ScreenShake"]
-self_modulate = Color(0.34902, 0.219608, 0.607843, 1)
+self_modulate = Color(0.376471, 0.376471, 0.376471, 1)
 offset_left = -20.0
 offset_top = -214.0
 offset_right = 320.0

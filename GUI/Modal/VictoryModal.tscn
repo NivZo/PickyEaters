@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_su3ki"]
 [ext_resource type="Script" path="res://GUI/Button/NextLevelButton.cs" id="3_hihcu"]
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="3_ski6i"]
-[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="4_urm6t"]
-[ext_resource type="Texture2D" uid="uid://g3t66braolnn" path="res://Assets/Icons/White/2x/arrowRight.png" id="6_8n8sa"]
 [ext_resource type="Script" path="res://GUI/Button/JumpTenLevelsButton.cs" id="7_1ay8v"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="7_83r62"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
-[ext_resource type="Texture2D" uid="uid://dydpui5gcpa8j" path="res://Assets/Icons/White/2x/movie.png" id="8_wob1t"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="10_adcid"]
+[ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="11_wcyei"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="12_o3k4k"]
 
 [node name="VictoryModal" type="Node2D"]
 
@@ -21,29 +21,74 @@ offset_top = 288.0
 offset_right = -64.0
 offset_bottom = 432.0
 script = ExtResource("3_ski6i")
+CustomText = "HOME"
+CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
-CustomIcon = ExtResource("4_urm6t")
 
 [node name="NextLevelButton" parent="Modal" instance=ExtResource("8_004r3")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 72.0
 offset_top = 288.0
 offset_right = 432.0
 offset_bottom = 432.0
 script = ExtResource("3_hihcu")
+CustomText = "NEXT"
+CustomTextSize = 80
 Color = Color(0.529412, 0.894118, 0.615686, 1)
-CustomIcon = ExtResource("6_8n8sa")
-
-[node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
-offset_left = -432.0
-offset_top = 72.0
-offset_right = -72.0
-offset_bottom = 216.0
-script = ExtResource("7_1ay8v")
-Color = Color(1, 0.694118, 0.196078, 1)
-CustomIcon = ExtResource("8_wob1t")
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
 self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
-position = Vector2(4, -124)
-scale = Vector2(1.8, 1.6)
+position = Vector2(1.52588e-05, 72)
+scale = Vector2(1.71648, 1.1215)
 texture = ExtResource("7_83r62")
+
+[node name="CoinsLabel" type="RichTextLabel" parent="Modal"]
+offset_left = -416.0
+offset_top = -18.0
+offset_right = -64.0
+offset_bottom = 78.0
+theme = ExtResource("10_adcid")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]REWARD[/font][/wave][/center]"
+
+[node name="CoinsValueLabel" type="RichTextLabel" parent="Modal"]
+offset_left = -480.0
+offset_top = 82.0
+offset_right = -128.0
+offset_bottom = 178.0
+theme = ExtResource("10_adcid")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]+25[/font][/wave][/center]"
+
+[node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
+offset_left = 32.0
+offset_right = 384.0
+offset_bottom = 144.0
+script = ExtResource("7_1ay8v")
+CustomText = "x2 [AD]"
+CustomTextSize = 80
+Color = Color(1, 0.694118, 0.196078, 1)
+
+[node name="Coin" type="Sprite2D" parent="Modal"]
+position = Vector2(-160, 119)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_wcyei")
+
+[node name="Star" type="Sprite2D" parent="Modal"]
+position = Vector2(-256, -224)
+scale = Vector2(1.06673, 1.09211)
+texture = ExtResource("12_o3k4k")
+
+[node name="Star2" type="Sprite2D" parent="Modal"]
+position = Vector2(-1.90735e-06, -224)
+scale = Vector2(1.23168, 1.26736)
+texture = ExtResource("12_o3k4k")
+
+[node name="Star3" type="Sprite2D" parent="Modal"]
+position = Vector2(256, -224)
+scale = Vector2(1.06673, 1.09211)
+texture = ExtResource("12_o3k4k")

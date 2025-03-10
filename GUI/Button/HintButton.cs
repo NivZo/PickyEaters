@@ -31,7 +31,7 @@ public partial class HintButton : CustomButton
         {
             ModalManager.OpenAreYouSureModal(() => {
                 HintManager.ResetHintUsed();
-                UseHint();
+                SetCustomText($"HINT [{HintManager.HintsLeft}]");
             },
             "OUT OF HINTS!\nWATCH AN AD TO REFILL?");
         }
@@ -78,5 +78,15 @@ public partial class HintButton : CustomButton
         HintManager.CalculateSolutionPath();
         _currentClickHintsLeft = HintManager.HintsPerClick;
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationPredelete)
+        {
+            SignalProvider.Instance.LevelReset -= HandleLevelReset;
+        }
     }
 }
