@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="2_dqx6o"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_qo4q8"]
 [ext_resource type="Texture2D" uid="uid://bkpl1ucim54a5" path="res://Assets/GUI/Banner_Blank.png" id="4_up5xy"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="5_w500a"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_w500a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcngc"]
 size = Vector2(1008, 1008)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bskdropmc6asw"]
 
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="1_fvwyn"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="1_fvwyn"]
 [ext_resource type="Script" path="res://GUI/Indicators/CoinsIndicator.cs" id="1_grsph"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="1_sgwdd"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="2_yrv5h"]

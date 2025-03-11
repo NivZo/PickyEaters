@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbq8sn8u6egp6"]
 
 [ext_resource type="Texture2D" uid="uid://bwk3lw1qk6g2o" path="res://Assets/GUI/button_up.png" id="1_75k2p"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_3uxt7"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_3uxt7"]
 [ext_resource type="Texture2D" uid="uid://bvo0pwkdqi0nt" path="res://Assets/GUI/button_down.png" id="2_4k0wr"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_7ddrh"]
 [ext_resource type="Texture2D" uid="uid://q6xee35prgda" path="res://Assets/GUI/Icon_Small_Blank_Return.png" id="2_prdot"]

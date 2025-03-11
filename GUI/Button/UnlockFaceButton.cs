@@ -18,8 +18,6 @@ public partial class UnlockFaceButton : CustomButton
         SaveManager.ActiveSave.Coins -= 1000;
         SaveManager.CommitActiveSave();
 
-        SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
-
         Shop.Instance.UpdateEaterDisplay(newFace);
     }
 

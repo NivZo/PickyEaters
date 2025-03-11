@@ -18,7 +18,7 @@ public partial class HintButton : CustomButton
         AddChild(_currentClickHintsTimer);
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
 
-        SignalProvider.Instance.LevelReset += HandleLevelReset;
+        EventManager.LevelReset += HandleLevelReset;
     }
     
     protected override void OnClick()
@@ -78,15 +78,5 @@ public partial class HintButton : CustomButton
         HintManager.CalculateSolutionPath();
         _currentClickHintsLeft = HintManager.HintsPerClick;
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationPredelete)
-        {
-            SignalProvider.Instance.LevelReset -= HandleLevelReset;
-        }
     }
 }

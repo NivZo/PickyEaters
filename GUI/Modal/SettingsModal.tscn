@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GUI/Modal/SettingsModal.cs" id="1_e8rg8"]
 [ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_o1l77"]
 [ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="4_cpjx0"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="4_r6oil"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_r6oil"]
 [ext_resource type="Texture2D" uid="uid://dmvs0hmblt85u" path="res://Assets/Icons/White/2x/audioOn.png" id="5_qavbu"]
 [ext_resource type="Texture2D" uid="uid://b1ywfx6mcf1iw" path="res://Assets/Icons/White/2x/audioOff.png" id="6_2682k"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_v0yov"]

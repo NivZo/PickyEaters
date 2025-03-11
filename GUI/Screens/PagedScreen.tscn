@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="1_p05ii"]
 [ext_resource type="Script" path="res://GUI/Button/HomeIconButton.cs" id="2_7eyli"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_slyaa"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_slyaa"]
 [ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="3_6q853"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="3_ge52d"]
 [ext_resource type="Script" path="res://GUI/Button/PagedScreenPrevPage.cs" id="4_mtmvy"]

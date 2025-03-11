@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://GUI/Button/JumpTenLevelsButton.cs" id="7_1ay8v"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="7_83r62"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="10_adcid"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="10_adcid"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="11_wcyei"]
 [ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="12_o3k4k"]
 

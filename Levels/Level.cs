@@ -14,9 +14,9 @@ public partial class Level : Node
         Food = GetNode<Node>("Food");
         Eaters = GetNode<Node>("Eaters");
 
-        SignalProvider.Instance.MovePerformed += HandleMove;
+        EventManager.MovePerformed += HandleMove;
 
-        SignalProvider.Emit(SignalProvider.SignalName.LevelReset);
+        EventManager.InvokeLevelReset();
     }
 
     public override void _Notification(int what)
@@ -25,7 +25,7 @@ public partial class Level : Node
 
         if (what == NotificationPredelete)
         {
-            SignalProvider.Instance.MovePerformed -= HandleMove;
+            EventManager.MovePerformed -= HandleMove;
         }
     }
 

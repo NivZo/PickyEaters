@@ -22,6 +22,7 @@ public class SaveManager
     {
         GD.Print("Committing Active Save");
         ResourceSaver.Save(ActiveSave, SAVEFILE);
+        EventManager.InvokeActiveSaveChange();
     }
 
     public static void LoadGame()

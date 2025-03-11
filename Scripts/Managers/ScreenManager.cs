@@ -16,7 +16,7 @@ public class ScreenManager
         _screenLayer = screenLayer;
         _transitionScreen = transitionScreen;
 
-        SignalProvider.Instance.FadeOutTranistionFinished += PerformTransition;
+        EventManager.FadeOutTransitionFinished += PerformTransition;
     }
 
     public static void LoadFirstScreen()
@@ -41,8 +41,6 @@ public class ScreenManager
         _currentScreen = GetScreen(CurrentScreen);
         _screenLayer.AddChild(_currentScreen);
         _transitionScreen.FadeIn();
-
-        SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
     }
 
     private static Node GetScreen(ScreenType screenType)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GUI/Screens/LevelSelection.cs" id="1_61esi"]
 [ext_resource type="PackedScene" uid="uid://8ywh4thfktsr" path="res://GUI/Screens/PagedScreen.tscn" id="2_6bglm"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="4_purc0"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_purc0"]
 
 [node name="LevelSelection" type="Node"]
 script = ExtResource("1_61esi")

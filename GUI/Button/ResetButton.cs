@@ -13,7 +13,7 @@ public partial class ResetButton : CustomButton
             LevelManager.ResetLevel();
             HintManager.CalculateSolutionPath();
 
-            SignalProvider.Emit(SignalProvider.SignalName.LevelReset);
+            EventManager.InvokeLevelReset();
         },
         "RESET LEVEL?");
 

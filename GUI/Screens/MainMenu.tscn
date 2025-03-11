@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="2_jsudd"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_jsudd"]
 [ext_resource type="FontFile" uid="uid://cgvm14mfr87hb" path="res://Fonts/VVD Golden Horn Regular.ttf" id="6_747h4"]
 [ext_resource type="PackedScene" uid="uid://b5xwhms52s775" path="res://Entities/Eater/EaterShowcase.tscn" id="7_ugrdu"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]

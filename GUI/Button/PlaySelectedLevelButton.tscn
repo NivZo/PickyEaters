@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvo0pwkdqi0nt" path="res://Assets/GUI/button_down.png" id="2_oemhk"]
 [ext_resource type="Texture2D" uid="uid://bwk3lw1qk6g2o" path="res://Assets/GUI/button_up.png" id="3_38jn6"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="4_ooc11"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Entities/Main/Theme.tres" id="5_qhh38"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_qhh38"]
 [ext_resource type="Texture2D" uid="uid://q6xee35prgda" path="res://Assets/GUI/Icon_Small_Blank_Return.png" id="6_ct2cj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtalf"]

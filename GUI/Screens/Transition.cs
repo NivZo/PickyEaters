@@ -14,7 +14,7 @@ public partial class Transition : Node
         {
             if (animationName == "fade_out")
             {
-                SignalProvider.Emit(SignalProvider.SignalName.FadeOutTranistionFinished);
+                EventManager.InvokeFadeOutTransitionFinished();
             }
         };
     }

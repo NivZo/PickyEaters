@@ -95,7 +95,7 @@ public partial class Eater : Node2D
             MainCamera.ApplyShake();
 
             HistoryManager.AddMove(food, this, currPos);
-            SignalProvider.Emit(SignalProvider.SignalName.MovePerformed, BoardStatePositionId, food.BoardStatePositionId, Variant.From(food.FoodType), food.IsLast, isHint);        
+            EventManager.InvokeMovePerformed(BoardStatePositionId, food.BoardStatePositionId, food.FoodType, food.IsLast, isHint);        
             BoardStatePositionId = food.BoardStatePositionId;
             food.QueueFree();
             AudioManager.PlayAudio(AudioType.FoodConsumed);
@@ -124,7 +124,7 @@ public partial class Eater : Node2D
         }
         else
         {
-            SignalProvider.Emit(SignalProvider.SignalName.MoveSelectionCancelled, BoardStatePositionId);
+            EventManager.InvokeMoveSelectionCancelled(BoardStatePositionId);
         }
     }
 
@@ -135,7 +135,7 @@ public partial class Eater : Node2D
             var food = direction.GetFoodCollision();
             if (food != null)
             {
-                SignalProvider.Emit(SignalProvider.SignalName.MoveSelectionStarted, BoardStatePositionId, food.BoardStatePositionId, direction.Name == _currentSelectedDirection);
+                EventManager.InvokeMoveSelectionStarted(BoardStatePositionId, food.BoardStatePositionId, direction.Name == _currentSelectedDirection);
             }
         }
     }

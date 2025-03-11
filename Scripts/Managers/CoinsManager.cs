@@ -7,6 +7,5 @@ public static class CoinsManager
     {
         SaveManager.ActiveSave.Coins += amount;
         SaveManager.CommitActiveSave();
-        SignalProvider.Emit(SignalProvider.SignalName.ActiveSaveChanged);
     }
 }

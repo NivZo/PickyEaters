@@ -7,7 +7,7 @@ public partial class UndoButton : CustomButton
         base._Ready();
         IsEnabledFunc = () => HistoryManager.MoveCount > 0;
 
-        SignalProvider.Instance.LevelReset += HandleLevelReset;
+        EventManager.LevelReset += HandleLevelReset;
     }
     
     protected override void OnClick()
@@ -27,16 +27,6 @@ public partial class UndoButton : CustomButton
                 SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
             },
             "OUT OF UNDOS!\nWATCH AN AD TO REFILL?");
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationPredelete)
-        {
-            SignalProvider.Instance.LevelReset -= HandleLevelReset;
         }
     }
 

@@ -26,9 +26,9 @@ public partial class Food : Node2D
             Sprite.GetNode<Sprite2D>("LastFoodIndicator").Visible = true;
         }
 
-        SignalProvider.Instance.MoveSelectionStarted += HandleSelectionStarted;
-        SignalProvider.Instance.MovePerformed += HandleSelectionEnded;
-        SignalProvider.Instance.MoveSelectionCancelled += HandleSelectionCancelled;
+        EventManager.MoveSelectionStarted += HandleSelectionStarted;
+        EventManager.MovePerformed += HandleSelectionEnded;
+        EventManager.MoveSelectionCancelled += HandleSelectionCancelled;
 
         
         Scale = Vector2.Zero;
@@ -53,9 +53,9 @@ public partial class Food : Node2D
 
         if (what == NotificationPredelete)
         {
-            SignalProvider.Instance.MoveSelectionStarted -= HandleSelectionStarted;
-            SignalProvider.Instance.MovePerformed -= HandleSelectionEnded;
-            SignalProvider.Instance.MoveSelectionCancelled -= HandleSelectionCancelled;
+            EventManager.MoveSelectionStarted -= HandleSelectionStarted;
+            EventManager.MovePerformed -= HandleSelectionEnded;
+            EventManager.MoveSelectionCancelled -= HandleSelectionCancelled;
         }
     }
 
