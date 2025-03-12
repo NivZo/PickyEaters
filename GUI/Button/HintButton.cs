@@ -79,4 +79,10 @@ public partial class HintButton : CustomButton
         _currentClickHintsLeft = HintManager.HintsPerClick;
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
     }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        EventManager.LevelReset -= HandleLevelReset;
+    }
 }

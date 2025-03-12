@@ -21,7 +21,7 @@ public partial class EaterDisplay : Node2D
         base._Ready();
 
         var collider = GetNode<Area2D>("Area2D");
-        SelectComponent = new(collider, () => _isSelectable && ActionManager.IsPlayerActionAvailable());
+        SelectComponent = new(collider, () => _isSelectable && ActionManager.IsActionAvailable());
         _animationPlayer = GetNode<AnimationPlayer>("FloatAnimationPlayer");
         StartIdleAnimation();
 

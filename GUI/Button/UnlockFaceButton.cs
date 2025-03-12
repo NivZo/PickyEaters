@@ -12,7 +12,6 @@ public partial class UnlockFaceButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         var newFace = EnumUtils.GetRandomValueExcluding(SaveManager.ActiveSave.UnlockedFaces.Concat(new EaterFace[1] { EaterFace.Hidden }).ToList());
         SaveManager.ActiveSave.UnlockedFaces.Add(newFace);
         SaveManager.ActiveSave.Coins -= 1000;

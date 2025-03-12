@@ -22,7 +22,6 @@ public class ModalManager
 
         _currentModal = GD.Load<PackedScene>("res://GUI/Modal/VictoryModal.tscn").Instantiate<Node2D>();
         CurrentOpenModal = ModalType.Victory;
-        CoinsManager.AddCoins(100);
         
         OpenModal();
     }

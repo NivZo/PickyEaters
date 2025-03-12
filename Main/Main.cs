@@ -20,6 +20,7 @@ public partial class Main : Node
             var transition = GetNode<Transition>("Shaders/Transition");
             ScreenLayer = GetNode<CanvasLayer>("ScreenLayer");
             ModalLayer = GetNode<CanvasLayer>("ModalLayer");
+            CutsceneManager.Setup(this);
             ScreenManager.Setup(ScreenLayer, transition);
             ModalManager.Setup(ModalLayer);
             SaveManager.SaveLocally = SaveLocally;

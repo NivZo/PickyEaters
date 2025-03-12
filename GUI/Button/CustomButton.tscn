@@ -45,6 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 216)
 texture = ExtResource("2_4k0wr")
+expand_mode = 1
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -56,6 +57,7 @@ grow_vertical = 2
 pivot_offset = Vector2(576, 216)
 mouse_filter = 2
 texture = ExtResource("1_75k2p")
+expand_mode = 1
 
 [node name="Text" type="RichTextLabel" parent="."]
 material = SubResource("ShaderMaterial_qtalf")

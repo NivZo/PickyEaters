@@ -1,42 +1,119 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd260fteh3kf7"]
+[gd_scene load_steps=16 format=3 uid="uid://bd260fteh3kf7"]
 
+[ext_resource type="Script" path="res://GUI/Modal/VictoryModal.cs" id="1_k4xy0"]
 [ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_su3ki"]
 [ext_resource type="Script" path="res://GUI/Button/NextLevelButton.cs" id="3_hihcu"]
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="3_ski6i"]
+[ext_resource type="Script" path="res://GUI/Button/RetryButton.cs" id="5_x3aod"]
 [ext_resource type="Script" path="res://GUI/Button/JumpTenLevelsButton.cs" id="7_1ay8v"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="7_83r62"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
+[ext_resource type="Shader" path="res://Shaders/CanvasGroupOutline.gdshader" id="10_4qp70"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="10_adcid"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="11_wcyei"]
 [ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="12_o3k4k"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwvdh"]
+shader = ExtResource("10_4qp70")
+shader_parameter/line_thickness = 10.0
+shader_parameter/line_color = Color(0.160784, 0.278431, 0.168627, 0.584314)
+
+[sub_resource type="Animation" id="Animation_sk572"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Modal/StarL:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Modal/StarM:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Modal/StarR:rotation")
+tracks/2/interp = 4
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xkvfu"]
+_data = {
+"idle": SubResource("Animation_sk572")
+}
+
 [node name="VictoryModal" type="Node2D"]
+script = ExtResource("1_k4xy0")
 
 [node name="Modal" parent="." instance=ExtResource("1_su3ki")]
 BannerText = "VICTORY!"
 
 [node name="HomeButton" parent="Modal" instance=ExtResource("8_004r3")]
-offset_left = -432.0
+offset_left = -544.0
 offset_top = 288.0
-offset_right = -64.0
+offset_right = -224.0
 offset_bottom = 432.0
+pivot_offset = Vector2(160, 64)
 script = ExtResource("3_ski6i")
 CustomText = "HOME"
 CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
+WaveString = false
+Highlight = false
+
+[node name="RetryButton" parent="Modal" instance=ExtResource("8_004r3")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = 288.0
+offset_right = 160.0
+offset_bottom = 432.0
+pivot_offset = Vector2(160, 64)
+script = ExtResource("5_x3aod")
+CustomText = "RETRY"
+CustomTextSize = 80
+Color = Color(1, 0.835294, 0.309804, 1)
+WaveString = false
+Highlight = false
 
 [node name="NextLevelButton" parent="Modal" instance=ExtResource("8_004r3")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 72.0
+offset_left = 224.0
 offset_top = 288.0
-offset_right = 432.0
+offset_right = 544.0
 offset_bottom = 432.0
+pivot_offset = Vector2(160, 64)
 script = ExtResource("3_hihcu")
 CustomText = "NEXT"
 CustomTextSize = 80
 Color = Color(0.529412, 0.894118, 0.615686, 1)
+Highlight = false
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
 self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
@@ -44,25 +121,27 @@ position = Vector2(1.52588e-05, 72)
 scale = Vector2(1.71648, 1.1215)
 texture = ExtResource("7_83r62")
 
-[node name="CoinsLabel" type="RichTextLabel" parent="Modal"]
-offset_left = -416.0
+[node name="RewardsLabel" type="RichTextLabel" parent="Modal"]
+offset_left = -390.0
 offset_top = -18.0
-offset_right = -64.0
+offset_right = -70.0
 offset_bottom = 78.0
+pivot_offset = Vector2(160, 50)
 theme = ExtResource("10_adcid")
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]REWARD[/font][/wave][/center]"
 
 [node name="CoinsValueLabel" type="RichTextLabel" parent="Modal"]
-offset_left = -480.0
+offset_left = -384.0
 offset_top = 82.0
-offset_right = -128.0
+offset_right = -192.0
 offset_bottom = 178.0
+pivot_offset = Vector2(96, 46)
 theme = ExtResource("10_adcid")
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]+25[/font][/wave][/center]"
+text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]0[/font][/wave][/center]"
 
 [node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
 offset_left = 32.0
@@ -78,17 +157,48 @@ position = Vector2(-160, 119)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("11_wcyei")
 
-[node name="Star" type="Sprite2D" parent="Modal"]
-position = Vector2(-256, -224)
-scale = Vector2(1.06673, 1.09211)
+[node name="CanvasGroup" type="CanvasGroup" parent="Modal"]
+self_modulate = Color(0, 0, 0, 0.454902)
+material = SubResource("ShaderMaterial_pwvdh")
+
+[node name="StarLBack" type="Sprite2D" parent="Modal/CanvasGroup"]
+position = Vector2(-288, -192)
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("12_o3k4k")
 
-[node name="Star2" type="Sprite2D" parent="Modal"]
-position = Vector2(-1.90735e-06, -224)
-scale = Vector2(1.23168, 1.26736)
+[node name="StarMBack" type="Sprite2D" parent="Modal/CanvasGroup"]
+position = Vector2(-4.74976e-07, -224)
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("12_o3k4k")
 
-[node name="Star3" type="Sprite2D" parent="Modal"]
-position = Vector2(256, -224)
-scale = Vector2(1.06673, 1.09211)
+[node name="StarRBack" type="Sprite2D" parent="Modal/CanvasGroup"]
+position = Vector2(288, -192)
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("12_o3k4k")
+
+[node name="StarL" type="Sprite2D" parent="Modal"]
+visible = false
+position = Vector2(-288, -192)
+rotation = 0.0349066
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("12_o3k4k")
+
+[node name="StarM" type="Sprite2D" parent="Modal"]
+visible = false
+position = Vector2(-4.74976e-07, -224)
+rotation = 0.027646
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("12_o3k4k")
+
+[node name="StarR" type="Sprite2D" parent="Modal"]
+visible = false
+position = Vector2(288, -192)
+rotation = 0.0103323
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("12_o3k4k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xkvfu")
+}
+autoplay = "idle"

@@ -52,10 +52,10 @@ void fragment() {
 		if (uv != clamp(uv, image_top_left, image_bottom_right)) {
 			COLOR.a = 0.0;
 		} else {
-			COLOR = texture(TEXTURE, uv);
+			COLOR *= texture(TEXTURE, uv);
 		}
 	} else {
-		COLOR = texture(TEXTURE, uv);
+		COLOR *= texture(TEXTURE, uv);
 	}
 
 	if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, image_top_left, image_bottom_right, TEXTURE)) {

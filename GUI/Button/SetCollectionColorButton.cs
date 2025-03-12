@@ -12,9 +12,6 @@ public partial class SetCollectionColorButton : CustomIconButton
     protected override void OnClick()
     {
         base.OnClick();
-
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
-        // Collection.Instance.SetColor(Color);
     }
 
 }

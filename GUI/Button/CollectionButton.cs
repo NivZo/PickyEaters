@@ -7,7 +7,6 @@ public partial class CollectionButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.Collection);
     }
 

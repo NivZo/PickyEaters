@@ -11,8 +11,6 @@ public partial class JumpTenLevelsButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.Undo);
-        
         LevelManager.NextTenLevels();
         SaveManager.CommitActiveSave();
 

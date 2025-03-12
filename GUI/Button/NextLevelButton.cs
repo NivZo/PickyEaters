@@ -9,8 +9,6 @@ public partial class NextLevelButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.Undo);
-        
         LevelManager.NextLevel();
 
         if (ModalManager.CurrentOpenModal !=ModalManager.ModalType.None)

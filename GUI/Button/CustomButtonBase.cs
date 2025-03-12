@@ -5,6 +5,7 @@ public abstract partial class CustomButtonBase : Button
 {
     [Export] public Texture2D CustomIcon;
     [Export] public float Cooldown = 0f;
+    [Export] public AudioType Sound = AudioType.Undo;
 
     protected Func<bool> IsEnabledFunc = () => true;
 
@@ -40,6 +41,7 @@ public abstract partial class CustomButtonBase : Button
     private void OnClickInternal()
     {
         if (!IsEnabled()) return;
+        AudioManager.PlayAudio(Sound);
         OnClick();
     }
 

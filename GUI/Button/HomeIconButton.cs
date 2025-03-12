@@ -7,7 +7,6 @@ public partial class HomeIconButton : CustomIconButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.Undo);
         if (ScreenManager.CurrentScreen == ScreenManager.ScreenType.PlayScreen)
         {
             ModalManager.OpenAreYouSureModal(() => {

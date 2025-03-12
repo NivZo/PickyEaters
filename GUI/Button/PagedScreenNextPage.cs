@@ -18,8 +18,6 @@ public partial class PagedScreenNextPage : CustomButton
     protected override void OnClick()
     {
         base.OnClick();
-
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         _nextPage();
     }
 }

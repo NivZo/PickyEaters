@@ -56,6 +56,7 @@ public class SelectComponent<TCategory> : IDisposable
 
     private void HandleSelection()
     {
+        GD.Print("Hey");
         if (_isSelectable && !_selectComponents.Any(sel => sel.IsSelected))
         {
             _isSelected = true;

@@ -7,7 +7,6 @@ public partial class ShopButton : CustomButton
     
     protected override void OnClick()
     {
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.Shop);
     }
 

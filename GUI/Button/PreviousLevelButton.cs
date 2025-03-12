@@ -11,7 +11,6 @@ public partial class PreviousLevelButton : CustomButton
     protected override void OnClick()
     {
         LevelManager.PreviousLevel();
-        AudioManager.PlayAudio(AudioType.Undo);
     }
 
 }

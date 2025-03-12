@@ -9,7 +9,6 @@ public partial class CloseModalButton : CustomButton
     {
         base.OnClick();
 
-        AudioManager.PlayAudio(AudioType.Undo);
         ModalManager.CloseModal();
     }
 

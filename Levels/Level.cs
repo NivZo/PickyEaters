@@ -15,7 +15,6 @@ public partial class Level : Node
         Eaters = GetNode<Node>("Eaters");
 
         EventManager.MovePerformed += HandleMove;
-
         EventManager.InvokeLevelReset();
     }
 

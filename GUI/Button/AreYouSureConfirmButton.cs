@@ -14,7 +14,6 @@ public partial class AreYouSureConfirmButton : CustomButton
         base.OnClick();
         
         OnConfirm();
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
     }
 
 }

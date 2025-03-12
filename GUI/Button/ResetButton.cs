@@ -16,7 +16,5 @@ public partial class ResetButton : CustomButton
             EventManager.InvokeLevelReset();
         },
         "RESET LEVEL?");
-
-        AudioManager.PlayAudio(AudioType.Undo);
     }
 }

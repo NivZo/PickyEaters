@@ -9,8 +9,6 @@ public static class ActionManager
     private static Node _actor;
     
     public static Node Actor => _actor;
-    public static bool IsPlayerActionAvailable() => _isPlayerActionAvailable;
-    public static bool IsBackgroundActionAvailable() => _isBackgroundActionAvailable;
     public static bool IsActionAvailable() => _isPlayerActionAvailable && _isBackgroundActionAvailable;
 
     public static void StartPlayerAction(Node actor, Action callback)

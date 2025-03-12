@@ -8,7 +8,6 @@ public partial class PlayButton : CustomButton
     protected override void OnClick()
     {
         LevelManager.CurrentLevelId = SaveManager.ActiveSave.LevelReached;
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.PlayScreen);
     }
 

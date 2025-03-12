@@ -29,7 +29,7 @@ public static class HistoryManager
 
     public static void UndoMove()
     {
-        if (UndoCount > 0 && _moves.Count > 0 && ActionManager.IsPlayerActionAvailable())
+        if (UndoCount > 0 && _moves.Count > 0 && ActionManager.IsActionAvailable())
         {
             UndoCount -= 1;
             var lastMove = _moves.Pop();

@@ -15,7 +15,6 @@ public partial class UndoButton : CustomButton
         if (HistoryManager.UndoCount > 0)
         {
             HistoryManager.UndoMove();
-            AudioManager.PlayAudio(AudioType.Undo);
             HintManager.HandleUndo();
 
             SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
@@ -33,5 +32,11 @@ public partial class UndoButton : CustomButton
     private void HandleLevelReset()
     {
         SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
+    }
+    
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        EventManager.LevelReset -= HandleLevelReset;
     }
 }
