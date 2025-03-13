@@ -124,8 +124,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = -360.0
+offset_top = 4.0
 offset_right = -72.0
-offset_bottom = 108.0
+offset_bottom = 132.0
 pivot_offset = Vector2(0, 0)
 script = ExtResource("5_m6bbn")
 Color = Color(0.909804, 0.4, 0.396078, 1)
@@ -133,8 +134,9 @@ CustomIcon = ExtResource("6_7p1w1")
 
 [node name="Confirm" parent="Modal" instance=ExtResource("4_u0ju6")]
 offset_left = 72.0
+offset_top = 4.0
 offset_right = 360.0
-offset_bottom = 108.0
+offset_bottom = 132.0
 pivot_offset = Vector2(0, 0)
 script = ExtResource("7_fm3b2")
 Color = Color(0.529412, 0.894118, 0.615686, 1)

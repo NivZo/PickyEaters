@@ -24,12 +24,12 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
             var lvlBtn = GD.Load<PackedScene>("res://GUI/Button/PlaySelectedLevelButton.tscn").Instantiate<PlaySelectedLevelButton>();
             lvlBtn.LevelId = i;
             lvlBtn.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
-            lvlBtn.Size = new(324, 220);
+            lvlBtn.Size = new(360, 220);
             var x = (i%3) switch
                 {
                     1 => 72,
-                    2 => 560,
-                    _ => 1048,
+                    2 => 560-36,
+                    _ => 1048-72,
                 };
             lvlBtn.Position = new(x, 372 + 400 * Mathf.FloorToInt((i-minLevel)/3));
 

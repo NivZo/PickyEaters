@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b11bfx534ccpm"]
+[gd_scene load_steps=11 format=3 uid="uid://b11bfx534ccpm"]
 
 [ext_resource type="Script" path="res://GUI/Button/PlaySelectedLevelButton.cs" id="1_ae67w"]
 [ext_resource type="Texture2D" uid="uid://bvo0pwkdqi0nt" path="res://Assets/GUI/button_down.png" id="2_oemhk"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="4_ooc11"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_qhh38"]
 [ext_resource type="Texture2D" uid="uid://q6xee35prgda" path="res://Assets/GUI/Icon_Small_Blank_Return.png" id="6_ct2cj"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="7_2gpb8"]
+[ext_resource type="Shader" path="res://Shaders/CanvasGroupOutline.gdshader" id="7_a6uyy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtalf"]
 shader = ExtResource("4_ooc11")
@@ -15,13 +17,17 @@ shader_parameter/highlight_strength = 0.5
 shader_parameter/color_mode_toggle = false
 shader_parameter/is_horizontal = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtxjc"]
+shader = ExtResource("7_a6uyy")
+shader_parameter/line_thickness = 4.0
+shader_parameter/line_color = Color(0.146006, 0.2643, 0.401249, 0.584314)
+
 [node name="PlaySelectedLevelButton" type="Button"]
 anchors_preset = -1
-anchor_right = 0.8
-anchor_bottom = 0.169
-offset_right = -828.0
-offset_bottom = -212.64
-pivot_offset = Vector2(576, 216)
+anchor_right = 0.25
+anchor_bottom = 0.084
+offset_bottom = 4.95999
+pivot_offset = Vector2(180, 110)
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
@@ -31,28 +37,27 @@ CustomTextSize = 140
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 
 [node name="PressedBackground" type="TextureRect" parent="."]
-visible = false
 custom_minimum_size = Vector2(324, 220)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(162, 110)
+pivot_offset = Vector2(180, 110)
 texture = ExtResource("2_oemhk")
 expand_mode = 1
 
 [node name="Background" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(324, 220)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.982
+offset_bottom = 3.95999
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(162, 110)
+pivot_offset = Vector2(180, 110)
 mouse_filter = 2
 texture = ExtResource("3_38jn6")
 expand_mode = 1
@@ -62,14 +67,11 @@ material = SubResource("ShaderMaterial_qtalf")
 clip_contents = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.333
-anchor_right = 0.5
-anchor_bottom = 0.333
-offset_left = -360.0
-offset_top = -41.26
-offset_right = 360.0
-offset_bottom = 118.74
+anchor_top = 0.145
+anchor_right = 1.0
+anchor_bottom = 0.873
+offset_top = 0.0999985
+offset_bottom = -0.0600128
 mouse_filter = 2
 theme = ExtResource("5_qhh38")
 bbcode_enabled = true
@@ -111,3 +113,38 @@ pivot_offset = Vector2(72, 72)
 mouse_filter = 2
 texture = ExtResource("6_ct2cj")
 expand_mode = 3
+
+[node name="Stars" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Stars"]
+self_modulate = Color(0, 0, 0, 0.678431)
+material = SubResource("ShaderMaterial_rtxjc")
+position = Vector2(72, 0)
+scale = Vector2(0.5, 0.5)
+
+[node name="StarLBack" type="Sprite2D" parent="Stars/CanvasGroup"]
+texture = ExtResource("7_2gpb8")
+
+[node name="StarMBack" type="Sprite2D" parent="Stars/CanvasGroup"]
+position = Vector2(216, 0)
+texture = ExtResource("7_2gpb8")
+
+[node name="StarRBack" type="Sprite2D" parent="Stars/CanvasGroup"]
+position = Vector2(432, 0)
+texture = ExtResource("7_2gpb8")
+
+[node name="StarL" type="Sprite2D" parent="Stars"]
+position = Vector2(72, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_2gpb8")
+
+[node name="StarM" type="Sprite2D" parent="Stars"]
+position = Vector2(180, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_2gpb8")
+
+[node name="StarR" type="Sprite2D" parent="Stars"]
+position = Vector2(288, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_2gpb8")

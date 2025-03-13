@@ -105,7 +105,7 @@ public partial class Eater : Node2D
 
     private void OnSelect()
     {
-        _clickPositionAnchor = GlobalPosition;
+        _clickPositionAnchor = GetGlobalMousePosition();
         ZIndex = 1;
 
         EmitSelectionStartSignals();

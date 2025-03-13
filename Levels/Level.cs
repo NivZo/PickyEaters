@@ -18,14 +18,10 @@ public partial class Level : Node
         EventManager.InvokeLevelReset();
     }
 
-    public override void _Notification(int what)
+    public override void _ExitTree()
     {
-        base._Notification(what);
-
-        if (what == NotificationPredelete)
-        {
-            EventManager.MovePerformed -= HandleMove;
-        }
+        base._ExitTree();
+        EventManager.MovePerformed -= HandleMove;
     }
 
     public List<Eater> GetEaters() => Eaters

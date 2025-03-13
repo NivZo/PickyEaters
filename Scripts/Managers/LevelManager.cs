@@ -20,7 +20,7 @@ public static class LevelManager
     }
 
     public static bool IsVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType != FoodType.White).Count() == 0;
-    public static bool IsFlawlessVictory() => _level.Food.GetChildren().Where(child => child is Food food).Count() == 0;
+    public static bool IsFlawlessVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == FoodType.White).Count() == 0;
     public static bool CanEatLast(FoodType foodType) => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == foodType).Count() == 1;
 
     public static void LoadLevel(int levelId)

@@ -71,6 +71,13 @@ public partial class EaterDisplay : Node2D
         }
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        SelectComponent.Dispose();
+    }
+
+
     public void ToggleFinished(bool isFinished)
     {
         if (isFinished)

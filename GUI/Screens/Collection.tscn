@@ -18,8 +18,6 @@ shader_parameter/height = 1.0
 [node name="Collection" type="Node"]
 script = ExtResource("1_v5rii")
 
-[node name="PagedScreen" parent="." instance=ExtResource("2_mvojr")]
-
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -65,3 +63,5 @@ theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]COLLECTION[/font][/wave][/center]"
 scroll_active = false
+
+[node name="PagedScreen" parent="." instance=ExtResource("2_mvojr")]

@@ -47,7 +47,7 @@ public class SelectComponent<TCategory> : IDisposable
                 HandleDeselection();
             }
             
-            else if (inputEventMouseButton.IsPressed() && !_isSelected && _selectCondition.Invoke())
+            else if (inputEventMouseButton.IsPressed() && !_isSelected && _selectCondition.Invoke() && ShouldHandleSelection(inputEventMouseButton.GlobalPosition))
             {
                 HandleSelection();
             }
@@ -56,7 +56,6 @@ public class SelectComponent<TCategory> : IDisposable
 
     private void HandleSelection()
     {
-        GD.Print("Hey");
         if (_isSelectable && !_selectComponents.Any(sel => sel.IsSelected))
         {
             _isSelected = true;
@@ -78,9 +77,13 @@ public class SelectComponent<TCategory> : IDisposable
         {
             _selectComponents.Remove(this);
         }
-        
-        GC.SuppressFinalize(this);
+        // GC.SuppressFinalize(this);
     }
+
+    protected Vector2 GetPosition() => _collider.GlobalPosition;
+
+    private bool ShouldHandleSelection(Vector2 mousePos)
+        => _selectComponents.MinBy(sel => sel.GetPosition().DistanceSquaredTo(mousePos)) == this;
 }
 
 

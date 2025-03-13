@@ -47,16 +47,13 @@ public partial class Food : Node2D
         }
     }
 
-    public override void _Notification(int what)
+    public override void _ExitTree()
     {
-        base._Notification(what);
+        base._ExitTree();
 
-        if (what == NotificationPredelete)
-        {
-            EventManager.MoveSelectionStarted -= HandleSelectionStarted;
-            EventManager.MovePerformed -= HandleSelectionEnded;
-            EventManager.MoveSelectionCancelled -= HandleSelectionCancelled;
-        }
+        EventManager.MoveSelectionStarted -= HandleSelectionStarted;
+        EventManager.MovePerformed -= HandleSelectionEnded;
+        EventManager.MoveSelectionCancelled -= HandleSelectionCancelled;
     }
 
     private void StartIdleAnimation()
