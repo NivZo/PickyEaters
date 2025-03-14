@@ -21,11 +21,10 @@ public partial class UndoButton : CustomButton
         }
         else
         {
-            ModalManager.OpenAreYouSureModal(() => {
-                HistoryManager.ResetUndos();
-                SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
-            },
-            "OUT OF UNDOS!\nWATCH AN AD TO REFILL?");
+            HistoryManager.UndoMove();
+            HintManager.HandleUndo();
+
+            SetCustomText($"UNDO");
         }
     }
 

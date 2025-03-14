@@ -13,6 +13,7 @@ public partial class PlaySelectedLevelButton : CustomButton
         Scale = Vector2.Zero;
         TweenUtils.Pop(this, 1);
 
+        GD.Print(LevelId, ", ", SaveManager.ActiveSave.LevelStarsObtained.Length);
         var stars = SaveManager.ActiveSave.LevelStarsObtained[LevelId];
 
         GetNode<Sprite2D>("Stars/StarL").Visible = stars > 0;

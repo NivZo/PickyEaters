@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -6,20 +7,24 @@ public static class HistoryManager
     private record HistoryMove(FoodType FoodEaten, bool isLastFood, Vector2 FoodPosition, Vector2I FoodBoardStatePositionId, Eater Eater, Vector2 EaterPosition, Vector2I EaterBoardStatePositionId);
 
     private static Stack<HistoryMove> _moves = new();
+    
+    private static int _undoMax = 3;
 
-    public static int UndoCount { get; private set; } = 10;
+    public static int UndoCount { get; private set; } = _undoMax;
 
     public static int MoveCount => _moves.Count;
 
     public static void ResetHistory()
     {
         _moves.Clear();
+        _undoMax = Math.Max(LevelManager.CurrentLevelId / 10, 5);
+        _undoMax = Math.Min(_undoMax, 20);
         ResetUndos();
     }
 
     public static void ResetUndos()
     {
-        UndoCount = 10;
+        UndoCount = _undoMax;
     }
 
     public static void AddMove(Food food, Eater eater, Vector2 eaterPosition)
@@ -29,7 +34,7 @@ public static class HistoryManager
 
     public static void UndoMove()
     {
-        if (UndoCount > 0 && _moves.Count > 0 && ActionManager.IsActionAvailable())
+        if (_moves.Count > 0 && ActionManager.IsActionAvailable())
         {
             UndoCount -= 1;
             var lastMove = _moves.Pop();

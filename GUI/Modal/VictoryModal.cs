@@ -35,27 +35,30 @@ public partial class VictoryModal : Node2D
             TweenUtils.Pop(coinsLabel, 1, .4f);
         };
 
+        var stars = 1 + (HistoryManager.UndoCount >= 0 ? 1 : 0) + (LevelManager.IsFlawlessVictory() ? 1 : 0);
+
         var cutscenes = new List<CutsceneManager.CutsceneAction>()
         {
             new(PopStar(GetNode<Sprite2D>("Modal/StarL"), 1.2f), 1f),
             new(IncrementGold(1), 0.05f),
-            new(PopStar(GetNode<Sprite2D>("Modal/StarM"), 1.4f), .6f),
-            new(IncrementGold(2), 0.05f),
         };
-        var reward = 2 * rewardPerStar;
+        var reward = rewardPerStar;
 
-        if (LevelManager.IsFlawlessVictory())
+        if (stars >= 2)
+        {
+            cutscenes.Add(new(PopStar(GetNode<Sprite2D>("Modal/StarM"), 1.4f), .6f));
+            cutscenes.Add(new(IncrementGold(2), 0.05f));
+            reward += rewardPerStar;
+        }
+
+        if (stars == 3)
         {
             cutscenes.Add(new(PopStar(GetNode<Sprite2D>("Modal/StarR"), 1.2f), .6f));
             cutscenes.Add(new(IncrementGold(3), 0.05f));
             reward += rewardPerStar;
-
-            SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId] = 3;
         }
-        else
-        {
-            SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId] = Math.Max(2, SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId]);
-        }
+        
+        SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId] = Math.Max(stars, SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId]);
 
         cutscenes.Add(new(() => CoinsManager.AddCoins(reward), 0.05f));
 

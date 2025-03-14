@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsasl1n866j5a"]
+
+[ext_resource type="Texture2D" uid="uid://bfp81qtdixak0" path="res://Assets/v_line.png" id="1_3uiei"]
+[ext_resource type="Script" path="res://GUI/Indicators/DirectionIndicator.cs" id="1_c8wib"]
+
+[node name="DirectionIndicator" type="Node2D"]
+self_modulate = Color(1, 1, 1, 0.172549)
+script = ExtResource("1_c8wib")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -35.0
+offset_right = 37.0
+offset_bottom = 792.0
+texture = ExtResource("1_3uiei")
+expand_mode = 1
+stretch_mode = 1

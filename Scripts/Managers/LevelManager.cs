@@ -32,9 +32,9 @@ public static class LevelManager
             _level.QueueFree();
         }
         
+        CurrentLevelId = Math.Min(MaxLevel, levelId);
         HistoryManager.ResetHistory();
 
-        CurrentLevelId = Math.Min(MaxLevel, levelId);
         _level = GD.Load<PackedScene>($"res://Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();
         _gameLayer.AddChild(_level);
 

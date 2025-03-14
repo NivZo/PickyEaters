@@ -83,7 +83,7 @@ public class SelectComponent<TCategory> : IDisposable
     protected Vector2 GetPosition() => _collider.GlobalPosition;
 
     private bool ShouldHandleSelection(Vector2 mousePos)
-        => _selectComponents.MinBy(sel => sel.GetPosition().DistanceSquaredTo(mousePos)) == this;
+        => _selectComponents.Where(sel => sel._isSelectable).MinBy(sel => sel.GetPosition().DistanceSquaredTo(mousePos)) == this;
 }
 
 
