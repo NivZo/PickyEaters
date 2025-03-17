@@ -8,7 +8,7 @@ public partial class AreYouSure : Node2D
 
     private AreYouSureConfirmButton _confirmButton;
     private RichTextLabel _textLabel;
-    private Vector2 _textLabelOffset = new(0, 32);
+    private Vector2 _textLabelOffset = new(0, 52);
     private bool _mouseOutside = true;
 
     public override void _Ready()
@@ -32,7 +32,7 @@ public partial class AreYouSure : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         base._UnhandledInput(@event);
-        if (@event is InputEventMouseButton && _mouseOutside)
+        if (@event is InputEventMouseButton inputEventMouseButton && inputEventMouseButton.IsReleased() && _mouseOutside)
         {
             ModalManager.CloseModal();
         }

@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://byh1yq6x7w41h"]
+
+[ext_resource type="Script" path="res://GUI/Indicators/StarsIndicator.cs" id="1_j1rfg"]
+[ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_s4nrs"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="3_njmgr"]
+[ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="4_ja6c7"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_ky8q6"]
+[ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="6_2rt17"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmkbf"]
+shader = ExtResource("4_ja6c7")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 0.15
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+
+[node name="StarsIndicator" type="Node2D"]
+script = ExtResource("1_j1rfg")
+
+[node name="StarsProgress" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="StarsProgress"]
+self_modulate = Color(0.396078, 0.396078, 0.396078, 0.54902)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("2_s4nrs")
+
+[node name="Foreground" type="TextureProgressBar" parent="StarsProgress"]
+self_modulate = Color(0.988235, 0.721569, 0.176471, 1)
+material = SubResource("ShaderMaterial_wmkbf")
+offset_left = -96.0
+offset_top = -24.0
+offset_right = 96.0
+offset_bottom = 24.0
+scale = Vector2(1.8, 1.8)
+pivot_offset = Vector2(96, 24)
+texture_progress = ExtResource("2_s4nrs")
+
+[node name="Star" type="Sprite2D" parent="StarsProgress"]
+position = Vector2(144, 0)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_njmgr")
+
+[node name="Text" type="RichTextLabel" parent="StarsProgress"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -30.0
+offset_right = 144.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_ky8q6")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave amp=12.0 freq=6.0][font gl=5
+]12 / 10 [/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Notification" type="Node2D" parent="."]
+
+[node name="Coin" type="Sprite2D" parent="Notification"]
+position = Vector2(95, 2.00001)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_2rt17")
+
+[node name="GoldNotification" type="RichTextLabel" parent="Notification"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -30.0
+offset_right = 76.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(220, 30)
+mouse_filter = 2
+theme = ExtResource("5_ky8q6")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[right][font gl=15]+150 [/font][/right]"
+scroll_active = false
+shortcut_keys_enabled = false

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dms6jfv6767u2"]
+[gd_scene load_steps=5 format=3 uid="uid://dms6jfv6767u2"]
 
 [ext_resource type="Script" path="res://GUI/Screens/LevelSelection.cs" id="1_61esi"]
 [ext_resource type="PackedScene" uid="uid://8ywh4thfktsr" path="res://GUI/Screens/PagedScreen.tscn" id="2_6bglm"]
+[ext_resource type="PackedScene" uid="uid://cqn3haj2gx8u4" path="res://GUI/Indicators/DifficultyIndicator.tscn" id="3_2bvts"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_purc0"]
 
 [node name="LevelSelection" type="Node"]
@@ -11,6 +12,9 @@ script = ExtResource("1_61esi")
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
+
+[node name="DifficultyIndicator" parent="GUILayer" instance=ExtResource("3_2bvts")]
+position = Vector2(720, 240)
 
 [node name="Title" type="RichTextLabel" parent="GUILayer"]
 anchors_preset = 10

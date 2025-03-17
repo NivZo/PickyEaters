@@ -24,7 +24,7 @@ public partial class UndoButton : CustomButton
             HistoryManager.UndoMove();
             HintManager.HandleUndo();
 
-            SetCustomText($"UNDO");
+            SetCustomText($"UNDO [!]");
         }
     }
 

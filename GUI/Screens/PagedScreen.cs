@@ -29,6 +29,9 @@ public abstract partial class PagedScreen<TContent> : Node
     protected abstract List<TContent> CreateContents(int pageId);
 
     protected abstract int GetPageCount();
+
+    protected virtual void OnPageUpdate(int newPageId)
+    {}
     
     public void Setup()
     {
@@ -48,6 +51,8 @@ public abstract partial class PagedScreen<TContent> : Node
         {
             CurrentPage = 0;
         }
+        
+        OnPageUpdate(CurrentPage);
         Setup();
     }
 
@@ -61,6 +66,8 @@ public abstract partial class PagedScreen<TContent> : Node
         {
             CurrentPage = _pageCount-1;
         }
+    
+        OnPageUpdate(CurrentPage);
         Setup();
     }
 }

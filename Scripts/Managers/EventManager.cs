@@ -2,9 +2,21 @@ using Godot;
 
 public static class EventManager
 {
+    public delegate void GameLoadHandler();
+    public static event GameLoadHandler GameLoaded;
+    public static void InvokeGameLoad() => GameLoaded.Invoke();
+
     public delegate void ActiveSaveChangeHandler();
     public static event ActiveSaveChangeHandler ActiveSaveChanged;
     public static void InvokeActiveSaveChange() => ActiveSaveChanged.Invoke();
+
+    public delegate void StarIncreaseHandler();
+    public static event StarIncreaseHandler StarIncreased;
+    public static void InvokeStarIncrease() => StarIncreased.Invoke();
+
+    public delegate void StarsCompleteHandler();
+    public static event StarsCompleteHandler StarsCompleted;
+    public static void InvokeStarsComplete() => StarsCompleted.Invoke();
 
     public delegate void LevelResetHandler();
     public static event LevelResetHandler LevelReset;

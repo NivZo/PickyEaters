@@ -122,7 +122,6 @@ offset_top = -2560.0
 offset_bottom = -2400.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 2
 color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [node name="OverlayBottom" type="ColorRect" parent="BackgroundLayer"]
@@ -221,6 +220,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 10
 
 [node name="MainCamera" type="Camera2D" parent="."]
 anchor_mode = 0

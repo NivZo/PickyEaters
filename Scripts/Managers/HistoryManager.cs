@@ -13,12 +13,14 @@ public static class HistoryManager
     public static int UndoCount { get; private set; } = _undoMax;
 
     public static int MoveCount => _moves.Count;
+    
+    public static bool UsedUndo => UndoCount < _undoMax;
 
     public static void ResetHistory()
     {
         _moves.Clear();
         _undoMax = Math.Max(LevelManager.CurrentLevelId / 10, 5);
-        _undoMax = Math.Min(_undoMax, 20);
+        _undoMax = Math.Min(_undoMax, 15);
         ResetUndos();
     }
 

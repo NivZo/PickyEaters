@@ -3,7 +3,7 @@ public partial class ResetButton : CustomButton
     public override void _Ready()
     {
         base._Ready();
-        IsEnabledFunc = () => HistoryManager.MoveCount > 0;
+        IsEnabledFunc = () => HistoryManager.MoveCount > 0 || HistoryManager.UsedUndo;
     }
     
     protected override void OnClick()

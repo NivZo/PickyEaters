@@ -1,16 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd260fteh3kf7"]
+[gd_scene load_steps=15 format=3 uid="uid://bd260fteh3kf7"]
 
 [ext_resource type="Script" path="res://GUI/Modal/VictoryModal.cs" id="1_k4xy0"]
 [ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_su3ki"]
 [ext_resource type="Script" path="res://GUI/Button/NextLevelButton.cs" id="3_hihcu"]
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="3_ski6i"]
 [ext_resource type="Script" path="res://GUI/Button/RetryButton.cs" id="5_x3aod"]
-[ext_resource type="Script" path="res://GUI/Button/JumpTenLevelsButton.cs" id="7_1ay8v"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="7_83r62"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Shader" path="res://Shaders/CanvasGroupOutline.gdshader" id="10_4qp70"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="10_adcid"]
-[ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="11_wcyei"]
+[ext_resource type="PackedScene" uid="uid://byh1yq6x7w41h" path="res://GUI/Indicators/StarsIndicator.tscn" id="12_ndfui"]
 [ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="12_o3k4k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwvdh"]
@@ -121,41 +120,30 @@ position = Vector2(1.52588e-05, 72)
 scale = Vector2(1.71648, 1.1215)
 texture = ExtResource("7_83r62")
 
-[node name="RewardsLabel" type="RichTextLabel" parent="Modal"]
+[node name="ProgressLabel" type="RichTextLabel" parent="Modal"]
 offset_left = -390.0
 offset_top = -18.0
-offset_right = -70.0
+offset_right = -32.0
 offset_bottom = 78.0
 pivot_offset = Vector2(160, 50)
 theme = ExtResource("10_adcid")
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]REWARD[/font][/wave][/center]"
+text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]PROGRESS[/font][/wave][/center]"
 
-[node name="CoinsValueLabel" type="RichTextLabel" parent="Modal"]
-offset_left = -384.0
-offset_top = 82.0
-offset_right = -192.0
-offset_bottom = 178.0
-pivot_offset = Vector2(96, 46)
+[node name="DescriptionLabel" type="RichTextLabel" parent="Modal"]
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 400.0
+offset_bottom = 160.0
+pivot_offset = Vector2(208, 82)
 theme = ExtResource("10_adcid")
-theme_override_font_sizes/normal_font_size = 72
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
-text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]0[/font][/wave][/center]"
-
-[node name="DoubleRewardsButton" parent="Modal" instance=ExtResource("8_004r3")]
-offset_left = 32.0
-offset_right = 384.0
-offset_bottom = 144.0
-script = ExtResource("7_1ay8v")
-CustomText = "x2 [AD]"
-CustomTextSize = 80
-Color = Color(1, 0.694118, 0.196078, 1)
-
-[node name="Coin" type="Sprite2D" parent="Modal"]
-position = Vector2(-160, 119)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("11_wcyei")
+text = "[font gl=15] •COLOR 100%
+ •WHITE 100%
+ •UNDO LIMIT[/font]"
+scroll_active = false
 
 [node name="CanvasGroup" type="CanvasGroup" parent="Modal"]
 self_modulate = Color(0, 0, 0, 0.454902)
@@ -196,6 +184,9 @@ position = Vector2(288, -192)
 rotation = 0.0103323
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("12_o3k4k")
+
+[node name="StarsIndicator" parent="Modal" instance=ExtResource("12_ndfui")]
+position = Vector2(-224, 115)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

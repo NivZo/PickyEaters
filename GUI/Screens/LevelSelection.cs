@@ -5,9 +5,11 @@ using Godot;
 public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
 {
     private const int ITEMS_PER_PAGE = 15;
+    private DifficultyIndicator _difficultyIndicator;
 
     public override void _Ready()
     {
+        _difficultyIndicator = GetNode<DifficultyIndicator>("GUILayer/DifficultyIndicator");
         CurrentPage = GetPageCount() - 1;
         base._Ready();
     }
@@ -40,4 +42,10 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
     }
 
     protected override int GetPageCount() => Mathf.CeilToInt(SaveManager.ActiveSave.LevelReached / (float)ITEMS_PER_PAGE);
+
+    protected override void OnPageUpdate(int newPageId)
+    {
+        _difficultyIndicator.StartingLevel = newPageId * ITEMS_PER_PAGE;
+        _difficultyIndicator.Setup();
+    }
 }

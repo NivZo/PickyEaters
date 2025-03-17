@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqn3haj2gx8u4"]
+
+[ext_resource type="Script" path="res://GUI/Indicators/DifficultyIndicator.cs" id="1_ppvc6"]
+[ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_harwn"]
+[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="4_wg5v6"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_kx2yb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eegjo"]
+shader = ExtResource("4_wg5v6")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 4.0
+shader_parameter/pattern = 1
+shader_parameter/inside = true
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[node name="DifficultyIndicator" type="Node2D"]
+script = ExtResource("1_ppvc6")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.427755, 0.589927, 0.45521, 1)
+material = SubResource("ShaderMaterial_eegjo")
+scale = Vector2(1.81667, 1.8)
+texture = ExtResource("2_harwn")
+
+[node name="Text" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -30.0
+offset_right = 144.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_kx2yb")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave amp=12.0 freq=6.0][font gl=5]EASY I[/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false

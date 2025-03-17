@@ -8,6 +8,7 @@ public partial class PagedScreenNextPage : CustomButton
     public override void _Ready()
     {
         base._Ready();
+        Sound = AudioType.FoodConsumed;
     }
 
     public void Setup(Action nextPage)

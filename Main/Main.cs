@@ -23,6 +23,7 @@ public partial class Main : Node
             CutsceneManager.Setup(this);
             ScreenManager.Setup(ScreenLayer, transition);
             ModalManager.Setup(ModalLayer);
+            
             SaveManager.SaveLocally = SaveLocally;
             SaveManager.LoadGame();
         }   

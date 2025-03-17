@@ -8,6 +8,7 @@ public partial class PagedScreenPrevPage : CustomButton
     public override void _Ready()
     {
         base._Ready();
+        Sound = AudioType.FoodConsumed;
     }
 
     public void Setup(Action nextPage)
@@ -19,7 +20,6 @@ public partial class PagedScreenPrevPage : CustomButton
     {
         base.OnClick();
 
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
         _prevPage();
     }
 }

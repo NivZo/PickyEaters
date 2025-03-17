@@ -4,63 +4,80 @@ using System.Collections.Generic;
 
 public partial class VictoryModal : Node2D
 {
+    private RichTextLabel _progressLabel;
+    private RichTextLabel _descriptionLabel;
+    private StarsIndicator _starsIndicator;
+    private Sprite2D _starL;
+    private Sprite2D _starM;
+    private Sprite2D _starR;
+
     public override void _Ready()
     {
         base._Ready();
+
+        _progressLabel = GetNode<RichTextLabel>("Modal/ProgressLabel");
+        _descriptionLabel = GetNode<RichTextLabel>("Modal/DescriptionLabel");
+        _starsIndicator = GetNode<StarsIndicator>("Modal/StarsIndicator");
+        _starL = GetNode<Sprite2D>("Modal/StarL");
+        _starM = GetNode<Sprite2D>("Modal/StarM");
+        _starR = GetNode<Sprite2D>("Modal/StarR");
+
         PlayCutscene();
     }
 
-    private void PlayCutscene()
+    private Action CreateAddStarAction(Sprite2D star, int starNumber, float scale, string desc, bool shouldIncreaseStars)
     {
-        var rewardPerStar = 5 * Math.Max(1, LevelManager.CurrentLevelId / 15);
+        star.Visible = !shouldIncreaseStars;
 
-        Action PopStar(Sprite2D star, float scale) => () =>
-        {
-            star.Scale = Vector2.Zero;
+        return () => {
+            if (shouldIncreaseStars)
+            {
+                _progressLabel.Scale = new(.8f, .8f);
+                TweenUtils.Pop(_progressLabel, 1, .4f);
+
+                _starsIndicator.Scale = new(.8f, .8f);
+                TweenUtils.Pop(_starsIndicator, 1, .4f);
+                StarsManager.AddStar(LevelManager.CurrentLevelId);
+                
+                star.Scale = Vector2.Zero;
+            }
+            else
+            {
+                star.Scale = new(.8f, .8f);
+            }
+
             star.Visible = true;
             TweenUtils.Pop(star, scale);
-            AudioManager.PlayAudio(AudioType.FoodConsumed);
+
+            _descriptionLabel.Text = $"{_descriptionLabel.Text}[font gl=15]{desc}[/font]";
+            _descriptionLabel.Scale = new(.8f, .8f);
+            TweenUtils.Pop(_descriptionLabel, 1, .4f);
+
+            AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + 0.25f * starNumber);
         };
+    }
+        
 
-        Action IncrementGold(int starNumber) => () =>
-        {
-            var rewardsLabel = GetNode<RichTextLabel>("Modal/RewardsLabel");
-            var coinsLabel = GetNode<RichTextLabel>("Modal/CoinsValueLabel");
-
-            rewardsLabel.Scale = new(.8f, .8f);
-            TweenUtils.Pop(rewardsLabel, 1, .4f);
-
-            TweenUtils.MethodTween(coinsLabel, value => coinsLabel.Text = TextUtils.WaveString($"+{value}"), (starNumber-1) * rewardPerStar, starNumber * rewardPerStar, .4f);
-            coinsLabel.Scale = new(.8f, .8f);
-            TweenUtils.Pop(coinsLabel, 1, .4f);
-        };
-
-        var stars = 1 + (HistoryManager.UndoCount >= 0 ? 1 : 0) + (LevelManager.IsFlawlessVictory() ? 1 : 0);
-
+    private void PlayCutscene()
+    {
+        _descriptionLabel.Text = string.Empty;
+        var currStars = SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId];
+        var nextStar = _starM;
         var cutscenes = new List<CutsceneManager.CutsceneAction>()
         {
-            new(PopStar(GetNode<Sprite2D>("Modal/StarL"), 1.2f), 1f),
-            new(IncrementGold(1), 0.05f),
+            new(CreateAddStarAction(_starL, 1, 1.2f, " •COLOR 100%", currStars == 0), 1f),
         };
-        var reward = rewardPerStar;
 
-        if (stars >= 2)
+        if (LevelManager.IsFlawlessVictory())
         {
-            cutscenes.Add(new(PopStar(GetNode<Sprite2D>("Modal/StarM"), 1.4f), .6f));
-            cutscenes.Add(new(IncrementGold(2), 0.05f));
-            reward += rewardPerStar;
+            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n •WHITE 100%", currStars < 2), .6f));
+            nextStar = _starR;
         }
 
-        if (stars == 3)
+        if (HistoryManager.UndoCount >= 0)
         {
-            cutscenes.Add(new(PopStar(GetNode<Sprite2D>("Modal/StarR"), 1.2f), .6f));
-            cutscenes.Add(new(IncrementGold(3), 0.05f));
-            reward += rewardPerStar;
+            cutscenes.Add(new(CreateAddStarAction(nextStar, nextStar == _starR ? 3 : 2, 1.2f, "\n •UNDO LIMIT", currStars < 3), .6f));
         }
-        
-        SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId] = Math.Max(stars, SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId]);
-
-        cutscenes.Add(new(() => CoinsManager.AddCoins(reward), 0.05f));
 
         CutsceneManager.Play(cutscenes);
     }

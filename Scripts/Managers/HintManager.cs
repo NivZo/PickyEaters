@@ -22,7 +22,6 @@ public static class HintManager
     {
         _solutionPath = HintSystem.GetHints(LevelManager.Level);
         HintsPerClick = Math.Max(3, LevelManager.Level.GetFood().Count / 10 + 1);
-        GD.Print("Hints per click: ", HintsPerClick);
         _currHint = 0;
         _movesSinceLastHint = 0;
         ResetHintUsed();

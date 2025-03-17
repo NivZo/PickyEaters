@@ -22,6 +22,5 @@ public partial class DirectionIndicator : Node2D
     public override void _Ready()
     {
         base._Ready();
-        GD.Print(_rect.Size);
     }
 }

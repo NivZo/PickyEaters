@@ -39,38 +39,44 @@ public partial class HintButton : CustomButton
 
     private void UseHint()
     {
-        _currentClickHintsTimer.Start();
-        ActionManager.StartBackgroundAction();
+        ExecuteHintInternal();
+        // _currentClickHintsTimer.Start();
+        // ActionManager.StartBackgroundAction();
         HintManager.HintUsed();
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
     }
 
     private void ExecuteHintInternal()
     {
-        if (_currentClickHintsLeft > 0 && !LevelManager.IsVictory())
-        {
-            var firstMove = HintManager.GetHint();
-            if (firstMove != null)
-            {
-                var eater = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == firstMove.From);
-                var food = LevelManager.Level.GetFood().FirstOrDefault(food => food.BoardStatePositionId == firstMove.To);
-                if (eater != null & food != null)
+        CutsceneManager.Play(new() {
+            new(() => {
+                if (_currentClickHintsLeft > 0 && !LevelManager.IsVictory())
                 {
-                    eater.PerformMove(food, true);
+                    var firstMove = HintManager.GetHint();
+                    if (firstMove != null)
+                    {
+                        var eater = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == firstMove.From);
+                        var food = LevelManager.Level.GetFood().FirstOrDefault(food => food.BoardStatePositionId == firstMove.To);
+                        if (eater != null & food != null)
+                        {
+                            eater.PerformMove(food, true);
+                        }
+                        _currentClickHintsLeft--;
+                    }
+                    else
+                    {
+                        _currentClickHintsLeft = 0;
+                    }
+                    ExecuteHintInternal();
                 }
-                _currentClickHintsLeft--;
-            }
-            else
-            {
-                _currentClickHintsLeft = 0;
-            }
-        }
-        else
-        {
-            _currentClickHintsTimer.Stop();
-            _currentClickHintsLeft = HintManager.HintsPerClick;
-            ActionManager.FinishBackgroundAction();
-        }
+                else
+                {
+                    // _currentClickHintsTimer.Stop();
+                    _currentClickHintsLeft = HintManager.HintsPerClick;
+                    // ActionManager.FinishBackgroundAction();
+                }
+            }, 0.2f),
+        });
     }
 
     private void HandleLevelReset()

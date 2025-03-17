@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=19 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b5xwhms52s775" path="res://Entities/Eater/EaterShowcase.tscn" id="7_ugrdu"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
+[ext_resource type="PackedScene" uid="uid://byh1yq6x7w41h" path="res://GUI/Indicators/StarsIndicator.tscn" id="8_fo3lq"]
+[ext_resource type="PackedScene" uid="uid://cqn3haj2gx8u4" path="res://GUI/Indicators/DifficultyIndicator.tscn" id="8_q8oh6"]
 [ext_resource type="Script" path="res://GUI/Button/LevelSelectionButton.cs" id="9_c137j"]
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
@@ -48,47 +50,12 @@ position = Vector2(0, 1379)
 visible = false
 position = Vector2(0, 2200)
 
-[node name="Title" type="Control" parent="."]
+[node name="Title" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_h5g82")
-layout_mode = 3
-anchor_right = 0.978
-offset_top = -176.0
-offset_right = -1408.32
-offset_bottom = -176.0
-
-[node name="BackgroundOverlayOutline" type="ColorRect" parent="Title"]
-material = SubResource("ShaderMaterial_d5gw3")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 348.0
-offset_top = 1100.0
-offset_right = 1092.0
-offset_bottom = 1556.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0.234)
-
-[node name="BackgroundOverlay" type="ColorRect" parent="Title"]
-material = SubResource("ShaderMaterial_d5gw3")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 360.0
-offset_top = 1112.0
-offset_right = 1080.0
-offset_bottom = 1544.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0912529, 0.190117, 0.120895, 0.234)
+position = Vector2(0, -216)
 
 [node name="GameTitle" type="RichTextLabel" parent="Title"]
 use_parent_material = true
-layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 288.0
@@ -106,7 +73,6 @@ scroll_active = false
 
 [node name="GameTitle2" type="RichTextLabel" parent="Title"]
 use_parent_material = true
-layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 576.0
@@ -124,12 +90,41 @@ scroll_active = false
 
 [node name="EaterShowcase" parent="Title" instance=ExtResource("7_ugrdu")]
 position = Vector2(432, 792)
+scale = Vector2(1.2, 1.2)
 
 [node name="EaterShowcase2" parent="Title" instance=ExtResource("7_ugrdu")]
-position = Vector2(1008, 592)
+position = Vector2(1008, 576)
+scale = Vector2(1.2, 1.2)
 
 [node name="CurrentLevel" type="Node2D" parent="."]
-position = Vector2(0, -72)
+
+[node name="BackgroundOverlayOutline" type="ColorRect" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_d5gw3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 348.0
+offset_top = 996.0
+offset_right = 1092.0
+offset_bottom = 1452.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.287295, 0.287295, 0.287295, 0.419608)
+
+[node name="BackgroundOverlay" type="ColorRect" parent="CurrentLevel"]
+material = SubResource("ShaderMaterial_d5gw3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 1008.0
+offset_right = 1080.0
+offset_bottom = 1440.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0901961, 0.188235, 0.121569, 0.192157)
 
 [node name="LevelLabel" type="RichTextLabel" parent="CurrentLevel"]
 material = SubResource("ShaderMaterial_7pjkq")
@@ -158,9 +153,9 @@ clip_contents = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 360.0
-offset_top = 1160.0
+offset_top = 1140.0
 offset_right = 1080.0
-offset_bottom = 1428.0
+offset_bottom = 1408.0
 grow_horizontal = 2
 theme = ExtResource("2_jsudd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529)
@@ -171,8 +166,15 @@ scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
+[node name="DifficultyIndicator" parent="CurrentLevel" instance=ExtResource("8_q8oh6")]
+position = Vector2(720, 1440)
+
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
+
+[node name="StarsIndicator" parent="GUILayer" instance=ExtResource("8_fo3lq")]
+position = Vector2(720, 896)
+scale = Vector2(1.4, 1.4)
 
 [node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]
 material = SubResource("ShaderMaterial_bud2l")

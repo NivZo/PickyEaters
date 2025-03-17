@@ -31,6 +31,7 @@ public class SaveManager
         AudioManager.AdjustMusicVolume(ActiveSave.MusicVolumeScale);
         AudioManager.AdjustSoundEffectsVolume(ActiveSave.SoundEffectsVolumeScale);
         ScreenManager.LoadFirstScreen();
+        EventManager.InvokeGameLoad();
     }
 
     public static void EraseSave()

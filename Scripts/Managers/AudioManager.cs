@@ -12,10 +12,15 @@ public class AudioManager
         _musicPlayer = musicPlayer;
     }
 
-    public static void PlayAudio(AudioType audioType)
+    public static void PlayAudio(AudioType audioType, float pitchFactor = 1)
     {
-        _soundEffectPlayer.Stream = GD.Load<AudioStream>($"res://Audio/{audioType}.wav");
-        _soundEffectPlayer.PitchScale = RandomUtils.RandomInRange(0.9f, 1.1f);
+        var audio = GD.Load<AudioStream>($"res://Audio/{audioType}.wav");
+        if (_soundEffectPlayer.Stream?.ResourcePath != audio.ResourcePath)
+        {
+            _soundEffectPlayer.Stream = audio;
+        }
+
+        _soundEffectPlayer.PitchScale = pitchFactor * RandomUtils.RandomInRange(0.9f, 1.1f);
         _soundEffectPlayer.Play();
     }
 
