@@ -3,6 +3,7 @@ public partial class RetryButton : CustomButton
     public override void _Ready()
     {
         base._Ready();
+        IsEnabledFunc = () => !RewardModal.IsOpen;
     }
     
     protected override void OnClick()

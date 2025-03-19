@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://de7amwavfassb"]
+
+[ext_resource type="Texture2D" uid="uid://c5ref4tevxc4f" path="res://Assets/Faces/ThreeEyeActive.png" id="1_wbdlx"]
+[ext_resource type="Texture2D" uid="uid://c11ci2o3tiol4" path="res://Assets/Faces/ThreeEye.png" id="2_wjdow"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_l5fdt"]
+
+[resource]
+script = ExtResource("3_l5fdt")
+EaterFace = 6
+EaterName = "Zenzo"
+EaterRarity = 1
+PassiveTexture = ExtResource("2_wjdow")
+ActiveTexture = ExtResource("1_wbdlx")

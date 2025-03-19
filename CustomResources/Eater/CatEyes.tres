@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://dxsa31anhl228"]
+
+[ext_resource type="Texture2D" uid="uid://c5ns6pj87rbxc" path="res://Assets/Faces/CatEyesActive.png" id="1_oi5jj"]
+[ext_resource type="Texture2D" uid="uid://dad756ujik7ep" path="res://Assets/Faces/CatEyes.png" id="2_2hi6y"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_oj80w"]
+
+[resource]
+script = ExtResource("3_oj80w")
+EaterFace = 3
+EaterName = "Gatto"
+EaterRarity = 0
+PassiveTexture = ExtResource("2_2hi6y")
+ActiveTexture = ExtResource("1_oi5jj")

@@ -3,13 +3,13 @@ using Godot;
 
 public class AudioManager
 {
-    private static AudioStreamPlayer _soundEffectPlayer;
     private static AudioStreamPlayer _musicPlayer;
+    private static AudioStreamPlayer _soundEffectPlayer;
 
     public static void Setup(AudioStreamPlayer soundEffectPlayer, AudioStreamPlayer musicPlayer)
     {
-        _soundEffectPlayer = soundEffectPlayer;
         _musicPlayer = musicPlayer;
+        _soundEffectPlayer = soundEffectPlayer;
     }
 
     public static void PlayAudio(AudioType audioType, float pitchFactor = 1)
@@ -20,7 +20,7 @@ public class AudioManager
             _soundEffectPlayer.Stream = audio;
         }
 
-        _soundEffectPlayer.PitchScale = pitchFactor * RandomUtils.RandomInRange(0.9f, 1.1f);
+        _soundEffectPlayer.PitchScale = pitchFactor * RandomUtils.RandomInRange(0.95f, 1.05f);
         _soundEffectPlayer.Play();
     }
 

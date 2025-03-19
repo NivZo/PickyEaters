@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=2 format=3 uid="uid://c0vu5iv0dlxr2"]
+
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="1_tafr0"]
+
+[resource]
+script = ExtResource("1_tafr0")
+EaterFace = 1
+EaterName = "Munchy"
+EaterRarity = 0

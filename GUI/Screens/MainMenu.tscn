@@ -173,7 +173,7 @@ position = Vector2(720, 1440)
 follow_viewport_enabled = true
 
 [node name="StarsIndicator" parent="GUILayer" instance=ExtResource("8_fo3lq")]
-position = Vector2(720, 896)
+position = Vector2(720, 864)
 scale = Vector2(1.4, 1.4)
 
 [node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]

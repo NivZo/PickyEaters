@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://i02t3d1a0lmh"]
+
+[ext_resource type="Texture2D" uid="uid://cg8ifoi3objtx" path="res://Assets/Faces/CuteFangActive.png" id="1_uxwre"]
+[ext_resource type="Texture2D" uid="uid://cltxedl6xu246" path="res://Assets/Faces/CuteFang.png" id="2_rdepi"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_galdg"]
+
+[resource]
+script = ExtResource("3_galdg")
+EaterFace = 4
+EaterName = "Meeko"
+EaterRarity = 0
+PassiveTexture = ExtResource("2_rdepi")
+ActiveTexture = ExtResource("1_uxwre")

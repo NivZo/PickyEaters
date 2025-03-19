@@ -23,6 +23,7 @@ public abstract partial class PagedScreen<TContent> : Node
         GetNode<PagedScreenPrevPage>("PagedScreen/GUILayer/PrevPage").Setup(
             PrevPage);
 
+        OnPageUpdate(CurrentPage);
         Setup();
     }
 

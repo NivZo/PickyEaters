@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqivxsqu44ipf"]
+
+[ext_resource type="Script" path="res://Entities/Eater/EaterCollectionShowcase.cs" id="1_xj5jv"]
+[ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="2_i8y61"]
+[ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_tl21o"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="3_racqw"]
+
+[node name="EaterCollectionDisplay" type="Node2D"]
+script = ExtResource("1_xj5jv")
+
+[node name="NameBadge" type="Sprite2D" parent="."]
+self_modulate = Color(0.721859, 0.721859, 0.721859, 0.392157)
+position = Vector2(0, 204)
+scale = Vector2(2.75, 2.25)
+texture = ExtResource("2_tl21o")
+
+[node name="RarityBadge" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(0, 316)
+scale = Vector2(2.75, 2.25)
+texture = ExtResource("2_tl21o")
+
+[node name="EaterDisplay" parent="." instance=ExtResource("2_i8y61")]
+position = Vector2(0, -81)
+scale = Vector2(2.5, 2.5)
+EaterFace = 1
+
+[node name="EaterName" type="RichTextLabel" parent="."]
+offset_left = -288.0
+offset_top = 92.0
+offset_right = 288.0
+offset_bottom = 308.0
+mouse_filter = 1
+theme = ExtResource("3_racqw")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]
+EATER NAME[/font][/wave][/center]"
+
+[node name="EaterRarity" type="RichTextLabel" parent="."]
+offset_left = -288.0
+offset_top = 204.0
+offset_right = 288.0
+offset_bottom = 420.0
+mouse_filter = 1
+theme = ExtResource("3_racqw")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]
+RARE[/font][/wave][/center]"

@@ -18,6 +18,9 @@ public partial class Eater : Node2D
     private List<Direction> _directions;
     private Direction.DirectionName _currentSelectedDirection = Direction.DirectionName.None;
     private Vector2 _clickPositionAnchor;
+    private static DateTime _lastEatTimestamp = DateTime.Now;
+    private static int _eatStreak = 0;
+    private const int _maxStreakPause = 2;
 
     private bool _isTakingAction = false;
 
@@ -82,7 +85,11 @@ public partial class Eater : Node2D
 
     public void PerformMove(Food food, bool isHint)
     {
+
         var currPos = TargetPositionComponent.NudgelessTargetPosition;
+        _eatStreak = DateTime.Now - _lastEatTimestamp < TimeSpan.FromSeconds(_maxStreakPause) ? _eatStreak + 1 : 0;
+        _lastEatTimestamp = DateTime.Now;
+
         ActionManager.StartPlayerAction(this, () => {
             if (food.IsLast)
             {
@@ -98,8 +105,9 @@ public partial class Eater : Node2D
             EventManager.InvokeMovePerformed(BoardStatePositionId, food.BoardStatePositionId, food.FoodType, food.IsLast, isHint);        
             BoardStatePositionId = food.BoardStatePositionId;
             food.QueueFree();
-            AudioManager.PlayAudio(AudioType.FoodConsumed);
+            AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + _eatStreak * 0.1f);
         });
+
         TargetPositionComponent.SetPinPosition(food.GlobalPosition);
     }
 

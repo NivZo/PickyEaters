@@ -4,7 +4,8 @@ public partial class NextLevelButton : CustomButton
     {
         base._Ready();
         IsEnabledFunc = () => LevelManager.CurrentLevelId < LevelManager.MaxLevel &&
-            (LevelManager.CurrentLevelId < SaveManager.ActiveSave.LevelReached);
+            (LevelManager.CurrentLevelId < SaveManager.ActiveSave.LevelReached) &&
+            !RewardModal.IsOpen;
     }
     
     protected override void OnClick()

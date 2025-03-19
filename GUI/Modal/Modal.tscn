@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciuq2s4vwprqy"]
+[gd_scene load_steps=11 format=3 uid="uid://ciuq2s4vwprqy"]
 
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="1_neidm"]
 [ext_resource type="Script" path="res://GUI/Modal/Modal.cs" id="1_sjiut"]
 [ext_resource type="Texture2D" uid="uid://beewocjos58r" path="res://Assets/GUI/modal.png" id="2_br1e8"]
-[ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="2_dqx6o"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_qo4q8"]
-[ext_resource type="Texture2D" uid="uid://bkpl1ucim54a5" path="res://Assets/GUI/Banner_Blank.png" id="4_up5xy"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_w500a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcngc"]
@@ -83,9 +81,9 @@ metadata/_edit_lock_ = true
 self_modulate = Color(0.0952595, 0.161334, 0.111106, 0.737)
 material = SubResource("ShaderMaterial_g4158")
 offset_left = -594.0
-offset_top = -594.0
+offset_top = -666.0
 offset_right = 594.0
-offset_bottom = 522.0
+offset_bottom = 594.0
 texture = ExtResource("2_br1e8")
 
 [node name="Background" type="TextureRect" parent="Outline"]
@@ -95,7 +93,7 @@ layout_mode = 0
 offset_left = 18.0
 offset_top = 18.0
 offset_right = 1170.0
-offset_bottom = 1098.0
+offset_bottom = 1242.0
 texture = ExtResource("2_br1e8")
 
 [node name="OverlayBottom" type="ColorRect" parent="Outline"]
@@ -105,9 +103,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 18.0
-offset_top = -1098.0
+offset_top = -1242.0
 offset_right = -18.0
-offset_bottom = -882.0
+offset_bottom = -1026.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -117,46 +115,18 @@ color = Color(0.168627, 0.168627, 0.168627, 0.552941)
 position = Vector2(23, 234)
 scale = Vector2(0.79, 0.79)
 
-[node name="HLineTop" parent="." instance=ExtResource("1_neidm")]
-visible = false
-position = Vector2(-505, -512)
-scale = Vector2(0.7, 1)
-
-[node name="HLineBottom" parent="." instance=ExtResource("1_neidm")]
-visible = false
-position = Vector2(-505, 512)
-scale = Vector2(0.7, 1)
-
-[node name="VLineLeft" parent="." instance=ExtResource("2_dqx6o")]
-visible = false
-position = Vector2(-498, -512)
-scale = Vector2(1, 0.4)
-
-[node name="VLineRight" parent="." instance=ExtResource("2_dqx6o")]
-visible = false
-position = Vector2(497, -512)
-scale = Vector2(1, 0.4)
-
 [node name="BannerText" type="RichTextLabel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -432.0
-offset_top = -562.0
+offset_top = -634.0
 offset_right = 448.0
-offset_bottom = -402.0
+offset_bottom = -474.0
 grow_horizontal = 2
 theme = ExtResource("5_w500a")
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]Banner[/font][/wave][/center]"
 scroll_active = false
-
-[node name="Banner" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(0.584314, 0.67451, 0.6, 1)
-position = Vector2(-4, -500)
-scale = Vector2(0.8, 0.6)
-texture = ExtResource("4_up5xy")
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

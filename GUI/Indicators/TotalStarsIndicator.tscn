@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0qx2jdgk8sdl"]
+
+[ext_resource type="Script" path="res://GUI/Indicators/TotalStarsIndicator.cs" id="1_yvunq"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_tdrsq"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="4_m4sxt"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_smaod"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkubq"]
+shader = ExtResource("3_tdrsq")
+shader_parameter/maxLineWidth = 8.0
+shader_parameter/minLineWidth = 4.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 12.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[node name="TotalStarsIndicator" type="Node2D"]
+script = ExtResource("1_yvunq")
+
+[node name="Total" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_smaod")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[right][wave amp=12.0 freq=2.0][font gl=5
+]TOTAL     : [/font][/wave][/right]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Star" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gkubq")
+position = Vector2(-98, -38)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_m4sxt")
+offset = Vector2(-3.05176e-05, 0)
+
+[node name="Text" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -72.0
+offset_right = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_smaod")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[left][wave amp=12.0 freq=6.0][font gl=5
+]1090 / 1200[/font][/wave][/left]"
+scroll_active = false
+shortcut_keys_enabled = false

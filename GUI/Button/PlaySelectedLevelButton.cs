@@ -1,18 +1,19 @@
+using System;
 using Godot;
 
 public partial class PlaySelectedLevelButton : CustomButton
 {
     [Export] public int LevelId;
 
-    private static readonly string[] _colors = new[]
+    private static readonly Color[] _colors = new[]
     {
-        "7390ea", // EASY
-        "fec851", // MEDIUM
-        "d85058", // HARD
-        "ff7dbb", // EXPERT
-        "7b51cf", // GENIUS
-        "944d12", // SUPER
-        "2c2c2c", // MASTER
+        TierColor.Easy.GetColor(),
+        TierColor.Medium.GetColor(),
+        TierColor.Hard.GetColor(),
+        TierColor.Expert.GetColor(),
+        TierColor.Genius.GetColor(),
+        TierColor.Super.GetColor(),
+        TierColor.Master.GetColor(),
     };
     
     public override void _EnterTree()
@@ -30,7 +31,12 @@ public partial class PlaySelectedLevelButton : CustomButton
         GetNode<Sprite2D>("Stars/StarM").Visible = stars > 1;
         GetNode<Sprite2D>("Stars/StarR").Visible = stars > 2;
 
-        Color = new Color(_colors[(LevelId-1) / 75]);
+        Color = new Color(_colors[Math.Max(0, (LevelId-1) / 75)]);
+        IsEnabledFunc = () => LevelId <= SaveManager.ActiveSave.LevelReached;
+        if (LevelId <= SaveManager.ActiveSave.LevelReached)
+        {
+            CustomIcon = null;
+        }
     }
 
     protected override void OnClick()

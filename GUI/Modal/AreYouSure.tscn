@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1er3h0q65qw5"]
+[gd_scene load_steps=12 format=3 uid="uid://d1er3h0q65qw5"]
 
 [ext_resource type="Script" path="res://GUI/Modal/AreYouSure.cs" id="1_88kjf"]
 [ext_resource type="Texture2D" uid="uid://beewocjos58r" path="res://Assets/GUI/modal.png" id="2_ift7y"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="4_u0ju6"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_jvuqk"]
 [ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="5_m6bbn"]
-[ext_resource type="Texture2D" uid="uid://dqkkug8lm18xy" path="res://Assets/Icons/White/2x/cross.png" id="6_7p1w1"]
 [ext_resource type="Script" path="res://GUI/Button/AreYouSureConfirmButton.cs" id="7_fm3b2"]
-[ext_resource type="Texture2D" uid="uid://cbtbjw003jpcq" path="res://Assets/Icons/White/2x/checkmark.png" id="8_f4ykd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcngc"]
 size = Vector2(864, 360.175)
@@ -51,7 +49,7 @@ position = Vector2(0, -2)
 script = ExtResource("1_88kjf")
 
 [node name="Modal" type="Node2D" parent="."]
-position = Vector2(0, 0.471362)
+position = Vector2(0, -2)
 
 [node name="ClickBlocker" type="ColorRect" parent="Modal"]
 custom_minimum_size = Vector2(1440, 2560)
@@ -123,20 +121,24 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = -360.0
-offset_top = -8.0
+offset_top = 4.0
 offset_right = -72.0
-offset_bottom = 120.0
+offset_bottom = 122.0
 pivot_offset = Vector2(0, 0)
 script = ExtResource("5_m6bbn")
+CustomText = "NO"
+CustomTextSize = 80
 Color = Color(0.909804, 0.4, 0.396078, 1)
-CustomIcon = ExtResource("6_7p1w1")
+Highlight = false
 
 [node name="Confirm" parent="Modal" instance=ExtResource("4_u0ju6")]
 offset_left = 72.0
-offset_top = -8.0
+offset_top = 4.0
 offset_right = 360.0
-offset_bottom = 120.0
+offset_bottom = 122.0
 pivot_offset = Vector2(0, 0)
 script = ExtResource("7_fm3b2")
+CustomText = "YES"
+CustomTextSize = 80
 Color = Color(0.529412, 0.894118, 0.615686, 1)
-CustomIcon = ExtResource("8_f4ykd")
+Highlight = false

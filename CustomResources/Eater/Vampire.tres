@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://bxywmmih5vls0"]
+
+[ext_resource type="Texture2D" uid="uid://qilrxu7l3o3w" path="res://Assets/Faces/VampireActive.png" id="1_537h7"]
+[ext_resource type="Texture2D" uid="uid://nbmd1wp64wa4" path="res://Assets/Faces/Vampire.png" id="2_ktm4y"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_6ty4u"]
+
+[resource]
+script = ExtResource("3_6ty4u")
+EaterFace = 2
+EaterName = "Dracoolo"
+EaterRarity = 3
+PassiveTexture = ExtResource("2_ktm4y")
+ActiveTexture = ExtResource("1_537h7")

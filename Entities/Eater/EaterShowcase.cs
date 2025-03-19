@@ -6,7 +6,6 @@ public partial class EaterShowcase : Node2D
 {
     [Export] public bool RandomFace = true;
     [Export] public bool RandomColor = true;
-    public TargetPositionComponent TargetPositionComponent;
     public EaterDisplay Display;
 
     private SelectComponent<Eater> _selectComponent;

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class DifficultyIndicator : Node2D
@@ -45,15 +46,15 @@ public partial class DifficultyIndicator : Node2D
         "MASTER V",
     };
 
-    private static readonly string[] _colors = new[]
+    private static readonly Color[] _colors = new[]
     {
-        "7390ea", // EASY
-        "fec851", // MEDIUM
-        "d85058", // HARD
-        "ff7dbb", // EXPERT
-        "7b51cf", // GENIUS
-        "944d12", // SUPER
-        "2c2c2c", // MASTER
+        TierColor.Easy.GetColor(),
+        TierColor.Medium.GetColor(),
+        TierColor.Hard.GetColor(),
+        TierColor.Expert.GetColor(),
+        TierColor.Genius.GetColor(),
+        TierColor.Super.GetColor(),
+        TierColor.Master.GetColor(),
     };
 
     public int StartingLevel = -1;
@@ -73,8 +74,8 @@ public partial class DifficultyIndicator : Node2D
     public void Setup()
     {
         StartingLevel = StartingLevel == -1 ? SaveManager.ActiveSave.LevelReached : StartingLevel;
-        _label.Text = $"[center][wave amp=12.0 freq=6.0][font gl=5]{_difficultyName[StartingLevel / 15]}[/font][/wave][/center]";
-        _bg.SelfModulate = new Color(_colors[StartingLevel / 75]);
+        _label.Text = $"[center][wave amp=12.0 freq=6.0][font gl=5]{_difficultyName[Math.Max(0, (StartingLevel-1) / 15)]}[/font][/wave][/center]";
+        _bg.SelfModulate = new Color(_colors[Math.Max(0, (StartingLevel-1) / 75)]);
     }
 
     public override void _ExitTree()

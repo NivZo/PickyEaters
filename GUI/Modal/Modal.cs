@@ -19,7 +19,7 @@ public partial class Modal : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         base._UnhandledInput(@event);
-        if (@event is InputEventMouseButton && _mouseOutside)
+        if (@event is InputEventMouseButton inputEventMouseButton && inputEventMouseButton.IsReleased() && _mouseOutside)
         {
             ModalManager.CloseModal();
         }

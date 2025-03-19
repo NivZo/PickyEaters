@@ -18,5 +18,8 @@ public static class EaterFaceExtensions
         => GD.Load<Texture2D>($"Assets/Faces/{eaterFace}.png");
 
     public static Texture2D GetEaterActiveFaceTexture(this EaterFace eaterFace)
-        => GD.Load<Texture2D>($"Assets/Faces/{eaterFace}Active.png"); 
+        => GD.Load<Texture2D>($"Assets/Faces/{eaterFace}Active.png");
+
+    public static EaterResource GetEaterResource(this EaterFace eaterFace)
+        => GD.Load<EaterResource>($"CustomResources/Eater/{eaterFace}.tres");
 }

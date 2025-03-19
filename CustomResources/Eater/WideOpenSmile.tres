@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://bnbm2odpsulas"]
+
+[ext_resource type="Texture2D" uid="uid://cs8nekrs2ncyw" path="res://Assets/Faces/WideOpenSmileActive.png" id="1_68m6t"]
+[ext_resource type="Texture2D" uid="uid://7sqpuakhtot4" path="res://Assets/Faces/WideOpenSmile.png" id="2_ckl2p"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_ag7kc"]
+
+[resource]
+script = ExtResource("3_ag7kc")
+EaterFace = 5
+EaterName = "Wazoo"
+EaterRarity = 0
+PassiveTexture = ExtResource("2_ckl2p")
+ActiveTexture = ExtResource("1_68m6t")

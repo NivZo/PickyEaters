@@ -72,9 +72,9 @@ BannerText = "VICTORY!"
 
 [node name="HomeButton" parent="Modal" instance=ExtResource("8_004r3")]
 offset_left = -544.0
-offset_top = 288.0
+offset_top = 352.0
 offset_right = -224.0
-offset_bottom = 432.0
+offset_bottom = 496.0
 pivot_offset = Vector2(160, 64)
 script = ExtResource("3_ski6i")
 CustomText = "HOME"
@@ -88,9 +88,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = -160.0
-offset_top = 288.0
+offset_top = 352.0
 offset_right = 160.0
-offset_bottom = 432.0
+offset_bottom = 496.0
 pivot_offset = Vector2(160, 64)
 script = ExtResource("5_x3aod")
 CustomText = "RETRY"
@@ -104,9 +104,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 224.0
-offset_top = 288.0
+offset_top = 352.0
 offset_right = 544.0
-offset_bottom = 432.0
+offset_bottom = 496.0
 pivot_offset = Vector2(160, 64)
 script = ExtResource("3_hihcu")
 CustomText = "NEXT"
@@ -116,29 +116,25 @@ Highlight = false
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
 self_modulate = Color(0.67, 0.518133, 0.402, 0.294118)
-position = Vector2(1.52588e-05, 72)
-scale = Vector2(1.71648, 1.1215)
+position = Vector2(3.05176e-05, 104)
+scale = Vector2(1.83908, 1.42056)
 texture = ExtResource("7_83r62")
 
 [node name="ProgressLabel" type="RichTextLabel" parent="Modal"]
-offset_left = -390.0
-offset_top = -18.0
-offset_right = -32.0
-offset_bottom = 78.0
-pivot_offset = Vector2(160, 50)
+offset_left = -416.0
+offset_bottom = 96.0
+pivot_offset = Vector2(192, 32)
 theme = ExtResource("10_adcid")
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]PROGRESS[/font][/wave][/center]"
+text = "[center][wave amp=10.0 freq=8.0 connected=1][font gl=15]PROGRESS:[/font][/wave][/center]"
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="Modal"]
-offset_left = 16.0
-offset_top = -18.0
-offset_right = 400.0
-offset_bottom = 160.0
+offset_right = 448.0
+offset_bottom = 210.0
 pivot_offset = Vector2(208, 82)
 theme = ExtResource("10_adcid")
-theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/normal_font_size = 52
 bbcode_enabled = true
 text = "[font gl=15] •COLOR 100%
  •WHITE 100%
@@ -186,7 +182,7 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("12_o3k4k")
 
 [node name="StarsIndicator" parent="Modal" instance=ExtResource("12_ndfui")]
-position = Vector2(-224, 115)
+position = Vector2(-224, 148)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

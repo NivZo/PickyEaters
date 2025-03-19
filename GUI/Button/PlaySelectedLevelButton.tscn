@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b11bfx534ccpm"]
+[gd_scene load_steps=14 format=3 uid="uid://b11bfx534ccpm"]
 
 [ext_resource type="Script" path="res://GUI/Button/PlaySelectedLevelButton.cs" id="1_ae67w"]
+[ext_resource type="Texture2D" uid="uid://4nbtrg6xosl8" path="res://Assets/Icons/White/2x/locked.png" id="2_jcevr"]
 [ext_resource type="Texture2D" uid="uid://bvo0pwkdqi0nt" path="res://Assets/GUI/button_down.png" id="2_oemhk"]
 [ext_resource type="Texture2D" uid="uid://bwk3lw1qk6g2o" path="res://Assets/GUI/button_up.png" id="3_38jn6"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="4_ooc11"]
@@ -8,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://q6xee35prgda" path="res://Assets/GUI/Icon_Small_Blank_Return.png" id="6_ct2cj"]
 [ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="7_2gpb8"]
 [ext_resource type="Shader" path="res://Shaders/CanvasGroupOutline.gdshader" id="7_a6uyy"]
+[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="8_3qx1q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtalf"]
 shader = ExtResource("4_ooc11")
@@ -16,6 +18,15 @@ shader_parameter/speed = 0.15
 shader_parameter/highlight_strength = 0.5
 shader_parameter/color_mode_toggle = false
 shader_parameter/is_horizontal = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dsamo"]
+shader = ExtResource("8_3qx1q")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 8.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = false
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtxjc"]
 shader = ExtResource("7_a6uyy")
@@ -35,6 +46,8 @@ flat = true
 script = ExtResource("1_ae67w")
 CustomTextSize = 140
 Color = Color(0.329412, 0.513726, 0.729412, 1)
+Highlight = false
+CustomIcon = ExtResource("2_jcevr")
 
 [node name="PressedBackground" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(324, 220)
@@ -98,6 +111,7 @@ texture = ExtResource("6_ct2cj")
 expand_mode = 3
 
 [node name="Icon" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_dsamo")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
