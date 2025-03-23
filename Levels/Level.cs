@@ -6,6 +6,8 @@ public partial class Level : Node
 {
     public Node Food;
     public Node Eaters;
+    private Node _indicators;
+    private Dictionary<Vector2I, BoardCellIndicator> _boardCellIndicatorMapping = new();
     
     public override void _Ready()
     {
@@ -13,6 +15,25 @@ public partial class Level : Node
 
         Food = GetNode<Node>("Food");
         Eaters = GetNode<Node>("Eaters");
+
+        _indicators = new Node();
+        AddChild(_indicators);
+
+        foreach (var food in GetFood())
+        {
+            var ind = BoardCellIndicator.Create(food.GlobalPosition, food.BoardStatePositionId);
+            _indicators.AddChild(ind);
+            _boardCellIndicatorMapping.Add(food.BoardStatePositionId, ind);
+
+        }
+
+        foreach (var eater in GetEaters())
+        {
+            var ind = BoardCellIndicator.Create(eater.GlobalPosition, eater.BoardStatePositionId, true);
+            _indicators.AddChild(ind);
+            _boardCellIndicatorMapping.Add(eater.BoardStatePositionId, ind);
+
+        }
 
         EventManager.MovePerformed += HandleMove;
         EventManager.InvokeLevelReset();

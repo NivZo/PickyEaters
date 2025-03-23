@@ -64,6 +64,8 @@ public static class HistoryManager
                     lastMove.Eater.EatParticlesEmitter.OneShot = true;
                     lastMove.Eater.EatParticlesEmitter.Emitting = false;
                 }
+
+                EventManager.InvokeMoveUndone(lastMove.EaterBoardStatePositionId, lastMove.FoodBoardStatePositionId, lastMove.FoodEaten, lastMove.isLastFood);
             }
         }
     }

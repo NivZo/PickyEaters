@@ -37,4 +37,8 @@ public static class EventManager
     public delegate void MovePerformHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint);
     public static event MovePerformHandler MovePerformed;
     public static void InvokeMovePerformed(Vector2I eaterPosId, Vector2I foodPosId, FoodType foodType, bool isLast, bool isHint) => MovePerformed.Invoke(eaterPosId, foodPosId, foodType, isLast, isHint);
+    
+    public delegate void MoveUndoHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast);
+    public static event MoveUndoHandler MoveUndone;
+    public static void InvokeMoveUndone(Vector2I eaterPosId, Vector2I foodPosId, FoodType foodType, bool isLast) => MoveUndone.Invoke(eaterPosId, foodPosId, foodType, isLast);
 }

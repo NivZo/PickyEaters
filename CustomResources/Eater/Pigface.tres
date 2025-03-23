@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://dn0nygwqhcs4f"]
+
+[ext_resource type="Texture2D" uid="uid://bsefxcrym846c" path="res://Assets/Faces/PigfaceActive.png" id="1_rnl85"]
+[ext_resource type="Texture2D" uid="uid://83o7c4f7j8gu" path="res://Assets/Faces/Pigface.png" id="2_h4oeu"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_5i6n0"]
+
+[resource]
+script = ExtResource("3_5i6n0")
+EaterFace = 8
+EaterName = "Honker"
+EaterRarity = 2
+PassiveTexture = ExtResource("2_h4oeu")
+ActiveTexture = ExtResource("1_rnl85")

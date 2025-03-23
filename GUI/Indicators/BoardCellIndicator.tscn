@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwashy5e0srgp"]
+
+[ext_resource type="Script" path="res://GUI/Indicators/BoardCellIndicator.cs" id="1_ihtvw"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="1_xeq41"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65hn5"]
+shader = ExtResource("1_xeq41")
+shader_parameter/radius_scale = 0.4
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[node name="BoardCellIndicator" type="Node2D"]
+script = ExtResource("1_ihtvw")
+
+[node name="Cell" type="ColorRect" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_65hn5")
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.492237, 0.492237, 0.492237, 0.234)

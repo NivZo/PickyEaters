@@ -42,6 +42,7 @@ mouse_filter = 2
 color = Color(0.678431, 0.678431, 0.678431, 0.196078)
 
 [node name="BackgroundOverlay" type="ColorRect" parent="GUI"]
+visible = false
 material = SubResource("ShaderMaterial_kv26v")
 anchors_preset = 15
 anchor_right = 1.0

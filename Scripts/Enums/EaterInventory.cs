@@ -9,7 +9,8 @@ public enum EaterFace
     CuteFang,
     WideOpenSmile,
     ThreeEye,
-    GrumpyCyclops
+    GrumpyCyclops,
+    Pigface,
 }
 
 public static class EaterFaceExtensions

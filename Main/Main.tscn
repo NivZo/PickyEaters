@@ -14,8 +14,8 @@
 [ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
+[ext_resource type="AudioStream" uid="uid://c7xa81ma0wvm" path="res://Audio/SneakyPuzzle.mp3" id="15_iog2p"]
 [ext_resource type="Script" path="res://Main/MainCamera.cs" id="17_hyxa0"]
-[ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="18_bgvm0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14780"]
 shader = ExtResource("2_tskco")
@@ -215,7 +215,7 @@ metadata/_edit_lock_ = true
 [node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_bgvm0")
+stream = ExtResource("15_iog2p")
 autoplay = true
 parameters/looping = true
 

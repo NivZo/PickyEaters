@@ -15,6 +15,22 @@ public enum EaterType
 
 public static class EaterTypeExtensions
 {
+    public static NamedColor GetNamedColor(this EaterType eaterType)
+    {
+        return eaterType switch
+        {
+            EaterType.Green => NamedColor.Green,
+            EaterType.Blue => NamedColor.Blue,
+            EaterType.Red => NamedColor.Red,
+            EaterType.Yellow => NamedColor.Yellow,
+            EaterType.Purple => NamedColor.Purple,
+            EaterType.Pink => NamedColor.Pink,
+            EaterType.Brown => NamedColor.Brown,
+            EaterType.Hidden => NamedColor.Black,
+            _ => NamedColor.White,
+        };
+    }
+
     public static Texture2D GetEaterTypeBodyTexture(this EaterType eaterType)
     {
         return eaterType switch

@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuo25u4308ma0"]
+[gd_scene load_steps=6 format=3 uid="uid://cydl150lscnd4"]
 
 [ext_resource type="Script" path="res://GUI/Screens/Collection.cs" id="1_v5rii"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_i4lv5"]
 [ext_resource type="PackedScene" uid="uid://8ywh4thfktsr" path="res://GUI/Screens/PagedScreen.tscn" id="2_mvojr"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="3_7vttu"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly5xk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ki6xa"]
 shader = ExtResource("3_7vttu")
 shader_parameter/radius_scale = 0.1
 shader_parameter/rounded_corner_top_left = true
@@ -18,37 +18,40 @@ shader_parameter/height = 1.0
 [node name="Collection" type="Node"]
 script = ExtResource("1_v5rii")
 
-[node name="GUILayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="BackgroundOverlayOutline" type="ColorRect" parent="GUILayer"]
-material = SubResource("ShaderMaterial_ly5xk")
+[node name="BackgroundOverlayOutline" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ki6xa")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 60.0
-offset_top = 204.0
+offset_top = 184.0
 offset_right = -60.0
-offset_bottom = -244.0
+offset_bottom = -240.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.678431, 0.678431, 0.678431, 0.196078)
+metadata/_edit_lock_ = true
 
-[node name="BackgroundOverlay" type="ColorRect" parent="GUILayer"]
-material = SubResource("ShaderMaterial_ly5xk")
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ki6xa")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 72.0
-offset_top = 216.0
+offset_top = 196.0
 offset_right = -72.0
-offset_bottom = -256.0
+offset_bottom = -252.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.234)
 metadata/_edit_lock_ = true
+
+[node name="PagedScreen" parent="." instance=ExtResource("2_mvojr")]
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="Title" type="RichTextLabel" parent="GUILayer"]
 anchors_preset = 10
@@ -63,5 +66,3 @@ theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]COLLECTION[/font][/wave][/center]"
 scroll_active = false
-
-[node name="PagedScreen" parent="." instance=ExtResource("2_mvojr")]
