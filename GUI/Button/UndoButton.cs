@@ -15,14 +15,12 @@ public partial class UndoButton : CustomButton
         if (HistoryManager.UndoCount > 0)
         {
             HistoryManager.UndoMove();
-            HintManager.HandleUndo();
 
             SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
         }
         else
         {
             HistoryManager.UndoMove();
-            HintManager.HandleUndo();
 
             SetCustomText($"UNDO [!]");
         }

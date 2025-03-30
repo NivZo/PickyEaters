@@ -67,6 +67,8 @@ public static class HistoryManager
 
                 EventManager.InvokeMoveUndone(lastMove.EaterBoardStatePositionId, lastMove.FoodBoardStatePositionId, lastMove.FoodEaten, lastMove.isLastFood);
             }
+
+            HintManager.HandleUndo();
         }
     }
 }

@@ -6,10 +6,10 @@ public static class TweenUtils
 {
     private static Dictionary<string, (Tween Tween, Variant Value)> _tweens = new();
 
-    public static void Pop(Node node, float scale, float duration = 1f, Tween.TransitionType transitionType = Tween.TransitionType.Elastic)
+    public static Tween Pop(Node node, float scale, float duration = 1f, Tween.TransitionType transitionType = Tween.TransitionType.Elastic)
         => AddPropertyTween(node, "scale", new Vector2(scale, scale), duration, transitionType);
 
-    public static void Travel(Node node, Vector2 to, float duration = 0.5f, Tween.TransitionType transitionType = Tween.TransitionType.Quint)
+    public static Tween Travel(Node node, Vector2 to, float duration = 0.5f, Tween.TransitionType transitionType = Tween.TransitionType.Quint)
         => AddPropertyTween(node, "global_position", to, duration, transitionType);
 
     public static void BoldOutline(Node node, int min, int max, float duration = 0.5f)
@@ -18,22 +18,26 @@ public static class TweenUtils
         AddPropertyTween(node, "material:shader_parameter/maxLineWidth", max, duration, Tween.TransitionType.Expo);
     }
 
-    public static void MethodTween(Node node, Action<Variant> action, Variant from, Variant to, float duration, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)
+    public static Tween MethodTween(Node node, Action<Variant> action, Variant from, Variant to, float duration, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)
     {
         var tween = AddCachedTween(node, action.Method.Name, to, transitionType);
         if (tween != null)
         {
             tween.TweenMethod(Callable.From(action), from, to, duration);
         }
+
+        return tween;
     }
 
-    private static void AddPropertyTween(Node node, string property, Variant value, float duration, Tween.TransitionType transitionType)
+    private static Tween AddPropertyTween(Node node, string property, Variant value, float duration, Tween.TransitionType transitionType)
     {
         var tween = AddCachedTween(node, property, value, transitionType);
         if (tween != null)
         {
             tween.TweenProperty(node, property, value, duration);
         }
+
+        return tween;
     }
 
     private static Tween AddCachedTween(Node node, string property, Variant value, Tween.TransitionType transitionType)

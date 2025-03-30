@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwbfpmehyp2e3"]
+
+[ext_resource type="Script" path="res://GUI/Tutorial/TutorialLocalManager.cs" id="1_q8lvk"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_8mbyo"]
+
+[node name="TutorialLocalManager" type="Node2D"]
+script = ExtResource("1_q8lvk")
+
+[node name="TutorialText" type="RichTextLabel" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1944.0
+offset_right = 1441.0
+offset_bottom = 2232.0
+grow_horizontal = 2
+theme = ExtResource("2_8mbyo")
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[center][font gl=15]PRESS A [wave amp=40.0 freq=2.0 connected=1]MUNCHER[/wave]
+TO SEE POSSIBLE MOVES[/font][/center]"
+scroll_active = false

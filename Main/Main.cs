@@ -8,6 +8,7 @@ public partial class Main : Node
     public CanvasLayer ModalLayer;
 
     public static string ErrorDisplay = string.Empty;
+    public static Main Instance { get; private set; }
 
     public override void _Ready()
     {
@@ -26,6 +27,8 @@ public partial class Main : Node
             
             SaveManager.SaveLocally = SaveLocally;
             SaveManager.LoadGame();
+
+            Instance = this;
         }   
         catch (Exception ex)
         {
