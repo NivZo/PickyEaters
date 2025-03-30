@@ -9,6 +9,7 @@ public static class HintManager
     public static bool IsOutOfHints() => HintsLeft == 0 && _movesSinceLastHint == 0;
     public static int HintsPerClick { get; private set; } = 0;
     public static int HintsLeft { get; private set; } = 2;
+    
     private static int _movesSinceLastHint = 0;
     private static HintMove[] _solutionPath;
     private static int _currHint = 0;

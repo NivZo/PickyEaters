@@ -102,8 +102,9 @@ public partial class Eater : Node2D
             MainCamera.ApplyShake();
 
             HistoryManager.AddMove(food, this, currPos);
-            EventManager.InvokeMovePerformed(BoardStatePositionId, food.BoardStatePositionId, food.FoodType, food.IsLast, isHint);        
+            var eaterPosId = BoardStatePositionId;
             BoardStatePositionId = food.BoardStatePositionId;
+            EventManager.InvokeMovePerformed(eaterPosId, food.BoardStatePositionId, food.FoodType, food.IsLast, isHint);        
             food.QueueFree();
             AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + _eatStreak * 0.1f);
         });

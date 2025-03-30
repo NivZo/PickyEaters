@@ -43,29 +43,36 @@ public static class HistoryManager
 
             if (lastMove != null)
             {
-                ActionManager.StartPlayerAction(lastMove.Eater, () => {
-                    var food = GD.Load<PackedScene>("res://Entities/Food/Food.tscn").Instantiate<Food>();
-                    food.GlobalPosition = lastMove.FoodPosition;
-                    food.FoodType = lastMove.FoodEaten;
-                    food.IsLast = lastMove.isLastFood;
-                    food.BoardStatePositionId = lastMove.FoodBoardStatePositionId;
-                    food.Scale = Vector2.Zero;
-                    LevelManager.Level.Food.AddChild(food);
-                    TweenUtils.Pop(food, 1);
-                });
-
-                lastMove.Eater.Scale = new(0.5f, 0.5f);
-                TweenUtils.Pop(lastMove.Eater, 1);
-                lastMove.Eater.TargetPositionComponent.SetPinPosition(lastMove.EaterPosition);
-                lastMove.Eater.BoardStatePositionId = lastMove.EaterBoardStatePositionId;
-                if (lastMove.isLastFood)
+                var cutscenes = new List<CutsceneManager.CutsceneAction>()
                 {
-                    lastMove.Eater.Display.ToggleFinished(false);
-                    lastMove.Eater.EatParticlesEmitter.OneShot = true;
-                    lastMove.Eater.EatParticlesEmitter.Emitting = false;
-                }
+                    new(() => {
+                        lastMove.Eater.Scale = new(0.5f, 0.5f);
+                        TweenUtils.Pop(lastMove.Eater, 1);
+                        lastMove.Eater.TargetPositionComponent.SetPinPosition(lastMove.EaterPosition);
+                        lastMove.Eater.BoardStatePositionId = lastMove.EaterBoardStatePositionId;
+                        if (lastMove.isLastFood)
+                        {
+                            lastMove.Eater.Display.ToggleFinished(false);
+                            lastMove.Eater.EatParticlesEmitter.OneShot = true;
+                            lastMove.Eater.EatParticlesEmitter.Emitting = false;
+                        }
+                    }, 0),
+                    new(() => {
+                        var food = GD.Load<PackedScene>("res://Entities/Food/Food.tscn").Instantiate<Food>();
+                        food.GlobalPosition = lastMove.FoodPosition;
+                        food.FoodType = lastMove.FoodEaten;
+                        food.IsLast = lastMove.isLastFood;
+                        food.BoardStatePositionId = lastMove.FoodBoardStatePositionId;
+                        food.Scale = Vector2.Zero;
+                        LevelManager.Level.Food.AddChild(food);
+                        TweenUtils.Pop(food, 1);
+                    }, .1f),
+                    new(() => {
+                        EventManager.InvokeMoveUndone(lastMove.EaterBoardStatePositionId, lastMove.FoodBoardStatePositionId, lastMove.FoodEaten, lastMove.isLastFood);
+                    }, 0f),
+                };
+                CutsceneManager.Play(cutscenes);
 
-                EventManager.InvokeMoveUndone(lastMove.EaterBoardStatePositionId, lastMove.FoodBoardStatePositionId, lastMove.FoodEaten, lastMove.isLastFood);
             }
 
             HintManager.HandleUndo();

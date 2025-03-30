@@ -58,6 +58,30 @@ public partial class Level : Node
     
     public List<FoodType> GetUnfinishedFoodTypes() => GetFood().Where(food => food.IsLast).Select(food => food.FoodType).ToList();
     
+    public Vector2 BoardPositionIdToGlobalPosition(Vector2 posId)
+    {
+        GD.Print($"--Requesting PosId {posId}");
+        foreach (var eater in GetEaters())
+        {
+            GD.Print($"Eater with PosId {eater.BoardStatePositionId}");
+            if (eater.BoardStatePositionId == posId)
+            {
+                return eater.TargetPositionComponent.TargetPosition;
+            }
+        }
+
+        foreach (var food in GetFood())
+        {
+            GD.Print($"Food with PosId {food.BoardStatePositionId}");
+            if (food.BoardStatePositionId == posId)
+            {
+                return food.GlobalPosition;
+            }
+        }
+
+        return Vector2.Zero;
+    }
+
     private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
     {
         if (IsHint)

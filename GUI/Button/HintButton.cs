@@ -10,7 +10,7 @@ public partial class HintButton : CustomButton
     {
         base._Ready();
 
-        IsEnabledFunc = HintManager.IsHintAvailable;
+        IsEnabledFunc = () => !TutorialStepContent.IsTutorial(LevelManager.CurrentLevelId) && HintManager.IsHintAvailable();
 
         _currentClickHintsTimer.WaitTime = 0.2f;
         _currentClickHintsTimer.OneShot = false;

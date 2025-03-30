@@ -7,7 +7,7 @@ public partial class BoardCellIndicator : Node2D
     private Vector2I _boardStatePositionId;
     private ColorRect _cell;
     private readonly static PackedScene _scene = GD.Load<PackedScene>("res://GUI/Indicators/BoardCellIndicator.tscn");
-    private readonly static Color _originalColor = NamedColor.Gray.GetColor();
+    private readonly static Color _originalColor = NamedColor.TransparentGray.GetColor();
     private readonly static Color _consumedColor = NamedColor.White.GetColor();
 
     private bool _isConsumed => _cell.Color == _consumedColor;

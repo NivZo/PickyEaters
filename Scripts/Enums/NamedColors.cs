@@ -12,6 +12,7 @@ public enum NamedColor
     Black,
     White,
     Gray,
+    TransparentGray,
 }
 
 public static class EaterColorExtensions
@@ -29,7 +30,8 @@ public static class EaterColorExtensions
             NamedColor.Brown => new("944d12"),
             NamedColor.Black => new("2c2c2c"),
             NamedColor.White => new("bcbcbc3c"),
-            NamedColor.Gray => new("7e7e7e3c"),
+            NamedColor.Gray => new("bcc7c9"),
+            NamedColor.TransparentGray => new("7e7e7e3c"),
             _ => new()
         };
     }

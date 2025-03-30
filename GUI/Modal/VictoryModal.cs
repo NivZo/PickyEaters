@@ -49,7 +49,7 @@ public partial class VictoryModal : Node2D
             star.Visible = true;
             TweenUtils.Pop(star, scale);
 
-            _descriptionLabel.Text = $"{_descriptionLabel.Text}[font gl=15]{desc}[/font]";
+            _descriptionLabel.Text = $"{_descriptionLabel.Text}[font gl=8]{desc}[/font]";
             _descriptionLabel.Scale = new(.8f, .8f);
             TweenUtils.Pop(_descriptionLabel, 1, .4f);
 
@@ -65,18 +65,18 @@ public partial class VictoryModal : Node2D
         var nextStar = _starM;
         var cutscenes = new List<CutsceneManager.CutsceneAction>()
         {
-            new(CreateAddStarAction(_starL, 1, 1.2f, " •COLOR 100%", currStars == 0), 1f),
+            new(CreateAddStarAction(_starL, 1, 1.2f, " • FINISH LEVEL", currStars == 0), 1f),
         };
 
         if (LevelManager.IsFlawlessVictory())
         {
-            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n •WHITE 100%", currStars < 2), .6f));
+            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • NEUTRAL BONUS", currStars < 2), .6f));
             nextStar = _starR;
         }
 
         if (HistoryManager.UndoCount >= 0)
         {
-            cutscenes.Add(new(CreateAddStarAction(nextStar, nextStar == _starR ? 3 : 2, 1.2f, "\n •UNDO LIMIT", currStars < 3), .6f));
+            cutscenes.Add(new(CreateAddStarAction(nextStar, nextStar == _starR ? 3 : 2, 1.2f, "\n • UNDO BONUS", currStars < 3), .6f));
         }
 
         CutsceneManager.Play(cutscenes);

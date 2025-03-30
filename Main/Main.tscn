@@ -14,20 +14,20 @@
 [ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
-[ext_resource type="AudioStream" uid="uid://c7xa81ma0wvm" path="res://Audio/SneakyPuzzle.mp3" id="15_iog2p"]
+[ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="15_jrtrs"]
 [ext_resource type="Script" path="res://Main/MainCamera.cs" id="17_hyxa0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14780"]
 shader = ExtResource("2_tskco")
-shader_parameter/spin_rotation_speed = 0.5
+shader_parameter/spin_rotation_speed = 0.2
 shader_parameter/move_speed = 2.0
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.956174, 0.882792, 0.928597, 1)
+shader_parameter/colour_1 = Color(0.911052, 0.915535, 0.89268, 1)
 shader_parameter/colour_2 = Color(0.973304, 0.958462, 0.95357, 1)
-shader_parameter/colour_3 = Color(1, 1, 1, 1)
+shader_parameter/colour_3 = Color(0.872264, 0.883284, 0.851935, 1)
 shader_parameter/contrast = 3.5
-shader_parameter/lighting = 0.4
-shader_parameter/spin_amount = 0.25
+shader_parameter/lighting = 0.2
+shader_parameter/spin_amount = 0.1
 shader_parameter/pixel_filter = 2560.0
 shader_parameter/is_rotating = true
 
@@ -215,7 +215,7 @@ metadata/_edit_lock_ = true
 [node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_iog2p")
+stream = ExtResource("15_jrtrs")
 autoplay = true
 parameters/looping = true
 

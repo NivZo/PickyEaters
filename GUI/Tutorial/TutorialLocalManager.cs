@@ -11,12 +11,14 @@ public partial class TutorialLocalManager : Node
     private TutorialStep _prevStep => _steps.ElementAtOrDefault(_currStepIdx-1);
     private HandGuidanceIndicator _ind;
     private RichTextLabel _tutorialText;
+    private int _suggestUndo = 0;
 
     public override void _Ready()
     {
         EventManager.MoveSelectionStarted += HandleSelectionStarted;
         EventManager.MoveSelectionCancelled += HandleSelectionCancelled;
         EventManager.MovePerformed += HandleMovePerformed;
+        EventManager.MoveUndone += HandleMoveUndone;
 
         _tutorialText = GetNode<RichTextLabel>("TutorialText");
 
@@ -29,15 +31,17 @@ public partial class TutorialLocalManager : Node
         EventManager.MoveSelectionStarted -= HandleSelectionStarted;
         EventManager.MoveSelectionCancelled -= HandleSelectionCancelled;
         EventManager.MovePerformed -= HandleMovePerformed;
+        EventManager.MoveUndone -= HandleMoveUndone;
     }
 
     public enum TutorialStepType
     {
+        TextOnly,
         StartMove,
         PerformMove,
     }
 
-    public record TutorialStep(TutorialStepType Type, string Text, Vector2 Position, Vector2? TargetPosition = null);
+    public record TutorialStep(TutorialStepType Type, string Text, Vector2? Position = null, Vector2? TargetPosition = null);
 
     public static TutorialLocalManager Create(List<TutorialStep> steps)
     {
@@ -55,16 +59,21 @@ public partial class TutorialLocalManager : Node
             _ind.QueueFree();
             _ind = null;
         }
-        
-        if (_currStep != null)
+
+        if (_suggestUndo > 0)
         {
-            if (_currStep?.Type == TutorialStepType.StartMove)
+            _tutorialText.Text = $"[center][font gl=15]PRESS THE [color=#{NamedColor.Yellow.GetColor().ToHtml()}]UNDO[/color] BUTTON\nTO GO BACK A STEP[/font][/center]";
+        }
+        
+        else if (_currStep != null)
+        {
+            if (_currStep.Type == TutorialStepType.StartMove)
             {
-                _ind = HandGuidanceIndicator.CreatePointing(this, _currStep.Position);
+                _ind = HandGuidanceIndicator.CreatePointing(this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value));
             }
-            else if (_currStep?.Type == TutorialStepType.PerformMove)
+            else if (_currStep.Type == TutorialStepType.PerformMove)
             {
-                _ind = HandGuidanceIndicator.CreateSwiping(this, _currStep.Position, _currStep.TargetPosition.Value);
+                _ind = HandGuidanceIndicator.CreateSwiping(this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value), LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.TargetPosition.Value));
             }
 
             _tutorialText.Text = _currStep.Text;
@@ -95,9 +104,33 @@ public partial class TutorialLocalManager : Node
 
     private void HandleMovePerformed(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
     {
-        if (_currStep?.Type == TutorialStepType.PerformMove)
+        if (_suggestUndo > 0)
+        {
+            _suggestUndo++;
+            SetupStep();
+        }
+        else if (_currStep?.Type == TutorialStepType.PerformMove && _currStep.TargetPosition != FoodPosId)
+        {
+            _suggestUndo = 1;
+            SetupStep();
+        }
+        else if (_currStep?.Type == TutorialStepType.PerformMove || _currStep.Type == TutorialStepType.TextOnly)
         {
             _currStepIdx++;
+            SetupStep();
+        }
+    }
+
+    private void HandleMoveUndone(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast)
+    {
+        if (_suggestUndo > 0)
+        {
+            _suggestUndo--;
+            SetupStep();
+        }
+        else if (_prevStep?.Type == TutorialStepType.PerformMove || _prevStep.Type == TutorialStepType.TextOnly)
+        {
+            _currStepIdx--;
             SetupStep();
         }
     }

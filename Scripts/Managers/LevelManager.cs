@@ -39,6 +39,12 @@ public static class LevelManager
         _gameLayer.AddChild(_level);
 
         _gameLayer.GetNode<RichTextLabel>("%LevelTitle").Text = TextUtils.WaveString($"LEVEL {levelId}");
+
+        if (TutorialStepContent.IsTutorial(CurrentLevelId))
+        {
+            var tut = TutorialLocalManager.Create(TutorialStepContent.GetSteps(CurrentLevelId));
+            _level.AddChild(tut);
+        }
     }
 
     public static void ResetLevel() => LoadLevel(CurrentLevelId);

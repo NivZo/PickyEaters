@@ -18,12 +18,16 @@ public class ModalManager
     
     public static void OpenVictoryModal()
     {
-        LevelManager.IncreaseLevelReached();
+        CutsceneManager.Play(new() {
+            new(() => {
+                LevelManager.IncreaseLevelReached();
 
-        _currentModal = GD.Load<PackedScene>("res://GUI/Modal/VictoryModal.tscn").Instantiate<Node2D>();
-        CurrentOpenModal = ModalType.Victory;
-        
-        OpenModal();
+                _currentModal = GD.Load<PackedScene>("res://GUI/Modal/VictoryModal.tscn").Instantiate<Node2D>();
+                CurrentOpenModal = ModalType.Victory;
+                
+                OpenModal();
+            }, 1f)
+        });
     }
 
     public static void OpenSettingsModal()

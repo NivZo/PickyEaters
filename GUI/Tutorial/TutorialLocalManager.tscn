@@ -9,13 +9,13 @@ script = ExtResource("1_q8lvk")
 [node name="TutorialText" type="RichTextLabel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 1944.0
+offset_top = 1872.0
 offset_right = 1441.0
-offset_bottom = 2232.0
+offset_bottom = 2304.0
 grow_horizontal = 2
 theme = ExtResource("2_8mbyo")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
-text = "[center][font gl=15]PRESS A [wave amp=40.0 freq=2.0 connected=1]MUNCHER[/wave]
+text = "[center][font gl=15]PRESS A [wave amp=40.0 freq=2.0 connected=1][font gl=15 color=green]MUNCHER[/font][/wave]
 TO SEE POSSIBLE MOVES[/font][/center]"
 scroll_active = false
