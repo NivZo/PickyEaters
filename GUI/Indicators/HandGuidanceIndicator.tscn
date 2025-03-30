@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjpbu2qbnduj8"]
 
-[ext_resource type="Script" path="res://GUI/Indicators/HandGuidanceIndicator.cs" id="1_qbobr"]
-[ext_resource type="Texture2D" uid="uid://mw2g1xru73i8" path="res://Assets/GUI/hand_point.png" id="2_hf1kd"]
+[ext_resource type="Script" path="res://GUI/Indicators/HandGuidanceIndicator.cs" id="1_jraqh"]
+[ext_resource type="Texture2D" uid="uid://mw2g1xru73i8" path="res://Assets/GUI/hand_point.png" id="2_iti5t"]
 
 [sub_resource type="Animation" id="Animation_ailx1"]
 length = 0.001
@@ -44,12 +44,12 @@ _data = {
 
 [node name="HandGuidanceIndicator" type="Node2D"]
 z_index = 4
-script = ExtResource("1_qbobr")
+script = ExtResource("1_jraqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(36, 44)
 scale = Vector2(2.2, 2.2)
-texture = ExtResource("2_hf1kd")
+texture = ExtResource("2_iti5t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -9,11 +9,11 @@ public static class TutorialStepContent
                 new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]PRESS A [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]MUNCHER[/color][/wave]\nTO SEE POSSIBLE MOVES[/font][/center]", new(1, 0)),
                 new(TutorialLocalManager.TutorialStepType.PerformMove, "[center][font gl=15]SWIPE TOWARDS [wave amp=40.0 freq=2.0 connected=1]FOOD[/wave]\nTO EAT IT![/font][/center]", new(1, 0), new(0, 0)),
 
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]COLORED FOOD[/color][/wave]\nTO REACH THE [wave amp=40.0 freq=2.0 connected=1]GOAL[/wave][/font][/center]", new(0, 0)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]COLORED FOOD[/color][/wave]\nTO REACH THE [wave amp=40.0 freq=2.0 connected=1]GOAL[/wave][/font][/center]", new(0, 0), new(0, 1)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]MUNCHERS MUST EAT\nALL THE[wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]COLORED FOOD[/color][/wave][/font][/center]", new(0, 0)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]MUNCHERS MUST EAT\nALL THE[wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]COLORED FOOD[/color][/wave][/font][/center]", new(0, 0), new(0, 1)),
 
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 1)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 1), new(1, 1)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT THE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 1)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT THE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 1), new(1, 1)),
             }
         },
         { 2, new()
@@ -30,16 +30,16 @@ public static class TutorialStepContent
                 new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]CLEAR THE PATH WITH\nTHE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]BLUE MUNCHER[/color][/wave]![/font][/center]", new(2, 0), new(1, 0)),
                 
                 new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]CLEAR THE PATH WITH\nTHE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]BLUE MUNCHER[/color][/wave]![/font][/center]", new(1, 0)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]CLEAR THE PATH WITH\nTHE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]BLUE MUNCHER[/color][/wave]![/font][/center]", new(1, 0), new(1, 1)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15][wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]SUPERFOOD[/color][/wave] MUST BE\nEATEN LAST![/font][/center]", new(1, 0), new(1, 1)),
                 
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]CLEAR THE PATH WITH\nTHE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]BLUE MUNCHER[/color][/wave]![/font][/center]", new(1, 1)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]CLEAR THE PATH WITH\nTHE [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]BLUE MUNCHER[/color][/wave]![/font][/center]", new(1, 1), new(0, 1)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15][wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]SUPERFOOD[/color][/wave] MUST BE\nEATEN LAST![/font][/center]", new(1, 1)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15][wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]SUPERFOOD[/color][/wave] MUST BE\nEATEN LAST![/font][/center]", new(1, 1), new(0, 1)),
                 
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 1)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 1), new(2, 1)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 1)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Blue.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 1), new(2, 1)),
                 
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 2)),
-                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]GOALS[/color][/wave]\nTO WIN![/font][/center]", new(0, 2), new(0, 0)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 2)),
+                new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=15]EAT ALL [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]SUPERFOOD[/color][/wave]\nTO WIN![/font][/center]", new(0, 2), new(0, 0)),
             }
         },
         { 3, new()

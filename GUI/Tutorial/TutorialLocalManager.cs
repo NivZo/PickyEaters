@@ -133,5 +133,16 @@ public partial class TutorialLocalManager : Node
             _currStepIdx--;
             SetupStep();
         }
+        else
+        {
+            var prevPerform = _steps.Select((step, i) => (Step: step, Index: i))
+                .Where(idxStep => idxStep.Index < _currStepIdx && (idxStep.Step.Type == TutorialStepType.PerformMove || idxStep.Step.Type == TutorialStepType.TextOnly))
+                .LastOrDefault();
+            if (prevPerform != default)
+            {
+                _currStepIdx = prevPerform.Index;
+                SetupStep();
+            }
+        }
     }
 }

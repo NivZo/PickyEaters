@@ -46,7 +46,6 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
     protected override void OnPageUpdate(int newPageId)
     {
         _difficultyIndicator.StartingLevel = newPageId * ITEMS_PER_PAGE + 1;
-        GD.Print(_difficultyIndicator.StartingLevel);
         _difficultyIndicator.Setup();
     }
 }

@@ -51,7 +51,7 @@ shader_parameter/tolerance = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6s11"]
 shader = ExtResource("14_6bj1p")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.08
+shader_parameter/scanlines_opacity = 0.04
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(1080, 1440)
