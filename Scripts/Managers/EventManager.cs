@@ -41,4 +41,8 @@ public static class EventManager
     public delegate void MoveUndoHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast);
     public static event MoveUndoHandler MoveUndone;
     public static void InvokeMoveUndone(Vector2I eaterPosId, Vector2I foodPosId, FoodType foodType, bool isLast) => MoveUndone.Invoke(eaterPosId, foodPosId, foodType, isLast);
+
+    public delegate void LevelVictoryHandler();
+    public static event LevelVictoryHandler LevelVictorious;
+    public static void InvokeLevelVictorious() => LevelVictorious.Invoke();
 }

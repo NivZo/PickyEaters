@@ -93,6 +93,7 @@ public partial class Level : Node
         var unfinished = LevelManager.Level.GetUnfinishedFoodTypes();
         if (unfinished.Count == 1 && unfinished.FirstOrDefault() == FoodType && IsLast)
         {
+            EventManager.InvokeLevelVictorious();
             ModalManager.OpenVictoryModal();
         }
     }

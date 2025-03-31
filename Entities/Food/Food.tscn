@@ -70,22 +70,22 @@ script = ExtResource("1_4jjr8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_68teg")
-position = Vector2(0, -0.418857)
+position = Vector2(0, -1.3998)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_qk020")
 
 [node name="LastFoodIndicator" type="Sprite2D" parent="Sprite2D"]
 visible = false
 use_parent_material = true
-position = Vector2(0, 2.07777)
-rotation = 6.08962
+position = Vector2(0, 2)
+rotation = 6.0912
 texture = ExtResource("5_bl66l")
 offset = Vector2(-1.67905, -96.905)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, 88)
-scale = Vector2(0.680236, 1.06047)
+scale = Vector2(0.692497, 1.085)
 texture = ExtResource("4_yed14")
 
 [node name="Area2D" type="Area2D" parent="."]

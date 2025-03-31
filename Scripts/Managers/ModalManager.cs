@@ -26,7 +26,7 @@ public class ModalManager
                 CurrentOpenModal = ModalType.Victory;
                 
                 OpenModal();
-            }, 1f)
+            }, 1.5f)
         });
     }
 

@@ -50,7 +50,16 @@ public partial class Eater : Node2D
             new(Display.EaterType, Direction.DirectionName.Left, Vector2I.Left, GetNode<RayCast2D>("MoveRayCasts/Left"), ValidFoodTypes.ToList()),
             new(Display.EaterType, Direction.DirectionName.Right, Vector2I.Right, GetNode<RayCast2D>("MoveRayCasts/Right"), ValidFoodTypes.ToList()),
         };
+
+        EventManager.LevelVictorious += HandleLevelVictory;
     }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        EventManager.LevelVictorious -= HandleLevelVictory;
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -110,6 +119,15 @@ public partial class Eater : Node2D
         });
 
         TargetPositionComponent.SetPinPosition(food.GlobalPosition);
+    }
+
+    private void HandleLevelVictory()
+    {
+        EatParticlesEmitter.Amount *= 10;
+        EatParticlesEmitter.Lifetime = 2f;
+        EatParticlesEmitter.Explosiveness = 0f;
+        EatParticlesEmitter.OneShot = false;
+        EatParticlesEmitter.Emitting = true;
     }
 
     private void OnSelect()
