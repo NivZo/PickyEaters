@@ -27,7 +27,7 @@ public partial class CoinsIndicator : Node2D
     private void UpdateLabel()
     {
         var target = SaveManager.ActiveSave.Coins;
-        if (target != _currentCoinValue && _currentCoinValue != 0)
+        if (target != _currentCoinValue)
         {
             TweenUtils.MethodTween(this, SetLabel, _currentCoinValue, target, 3f, Tween.TransitionType.Linear);
             _currentCoinValue = target;

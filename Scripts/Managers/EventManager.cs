@@ -18,6 +18,10 @@ public static class EventManager
     public static event StarsCompleteHandler StarsCompleted;
     public static void InvokeStarsComplete() => StarsCompleted.Invoke();
 
+    public delegate void CoinsValueChangeHandler();
+    public static event CoinsValueChangeHandler CoinsValueChanged;
+    public static void InvokeCoinsValueChange() => CoinsValueChanged.Invoke();
+
     public delegate void LevelResetHandler();
     public static event LevelResetHandler LevelReset;
     public static void InvokeLevelReset() => LevelReset.Invoke();

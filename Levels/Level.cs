@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -19,24 +20,32 @@ public partial class Level : Node
         _indicators = new Node();
         AddChild(_indicators);
 
-        foreach (var food in GetFood())
+        var cutscenes = new List<CutsceneManager.CutsceneAction>();
+        
+        var foodNodes = GetFood();
+        var eaterNodes = GetEaters();
+        var cutsceneDelay = 1f / (foodNodes.Count + eaterNodes.Count);
+        foreach (var food in foodNodes)
         {
             var ind = BoardCellIndicator.Create(food.GlobalPosition, food.BoardStatePositionId);
             _indicators.AddChild(ind);
             _boardCellIndicatorMapping.Add(food.BoardStatePositionId, ind);
-
+            cutscenes.Add(new(CreatePopNodeCutsceneAction(food), cutsceneDelay));
         }
 
-        foreach (var eater in GetEaters())
+        foreach (var eater in eaterNodes)
         {
             var ind = BoardCellIndicator.Create(eater.GlobalPosition, eater.BoardStatePositionId, true);
             _indicators.AddChild(ind);
             _boardCellIndicatorMapping.Add(eater.BoardStatePositionId, ind);
-
+            cutscenes.Add(new(CreatePopNodeCutsceneAction(eater), cutsceneDelay));
         }
 
         EventManager.MovePerformed += HandleMove;
         EventManager.InvokeLevelReset();
+
+        RandomUtils.Shuffle(cutscenes);
+        CutsceneManager.Play(cutscenes);
     }
 
     public override void _ExitTree()
@@ -96,5 +105,15 @@ public partial class Level : Node
             EventManager.InvokeLevelVictorious();
             ModalManager.OpenVictoryModal();
         }
+    }
+
+    private static Action CreatePopNodeCutsceneAction(Node2D node)
+    {
+        node.Scale = Vector2.Zero;
+        return () => 
+        {
+            AudioManager.PlayAudio(AudioType.Undo, 1.5f);
+            TweenUtils.Pop(node, 1);
+        };
     }
 }

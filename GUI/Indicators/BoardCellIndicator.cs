@@ -23,6 +23,9 @@ public partial class BoardCellIndicator : Node2D
             EventManager.MovePerformed += HandleMovePerformed;
             EventManager.MoveUndone += HandleSelectionUndone;
         }
+
+        Scale = Vector2.Zero;
+        TweenUtils.Pop(this, 1, transitionType: Tween.TransitionType.Bounce);
     }
 
     public override void _ExitTree()

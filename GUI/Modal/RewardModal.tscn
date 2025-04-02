@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtq2o1jqkk6sc"]
+[gd_scene load_steps=13 format=3 uid="uid://dtq2o1jqkk6sc"]
 
 [ext_resource type="Script" path="res://GUI/Modal/RewardModal.cs" id="1_nykx2"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_pe40b"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" path="res://GUI/Button/DoubleRewardButton.cs" id="7_2225d"]
 [ext_resource type="Script" path="res://GUI/Button/AcceptRewardButton.cs" id="8_qj2dv"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_g0a5k"]
+
+[sub_resource type="Curve" id="Curve_ce7ma"]
+_data = [Vector2(0, 0.50295), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ntrx"]
 shader = ExtResource("2_pe40b")
@@ -46,8 +50,36 @@ _data = {
 position = Vector2(0, -2)
 script = ExtResource("1_nykx2")
 
+[node name="Fade" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1440, 5120)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1728.0
+offset_top = -4030.0
+offset_right = 1728.0
+offset_bottom = 2602.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(1, 1, 1, 0.470588)
+
+[node name="EatParticles" type="CPUParticles2D" parent="."]
+amount = 150
+lifetime = 2.0
+explosiveness = 0.2
+local_coords = true
+texture = ExtResource("9_g0a5k")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 120)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 200.0
+scale_amount_curve = SubResource("Curve_ce7ma")
+
 [node name="Modal" type="Node2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, 0.591265)
 
 [node name="ClickBlocker" type="ColorRect" parent="Modal"]
 custom_minimum_size = Vector2(1440, 2560)
@@ -115,7 +147,7 @@ grow_horizontal = 2
 theme = ExtResource("4_bjnks")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[right][wave amp=20.0 freq=8.0 connected=1][font gl=15]+150 [/font][/wave][/right]"
+text = "[right][wave amp=20.0 freq=8.0 connected=1][font gl=15]+200 [/font][/wave][/right]"
 scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modal"]

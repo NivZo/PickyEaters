@@ -33,6 +33,7 @@ public partial class Main : Node
         catch (Exception ex)
         {
             GetNode<RichTextLabel>("GUILayer/Exception").Text = $"{ErrorDisplay}\n{ex.Message}";
+            throw;
         }
     }
 }

@@ -79,6 +79,7 @@ public partial class VictoryModal : Node2D
             cutscenes.Add(new(CreateAddStarAction(nextStar, nextStar == _starR ? 3 : 2, 1.2f, "\n • UNDO BONUS", currStars < 3), .6f));
         }
 
+        cutscenes.Add(new(SaveManager.CommitActiveSave, 0));
         CutsceneManager.Play(cutscenes);
     }
 }

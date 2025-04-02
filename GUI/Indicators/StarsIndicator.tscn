@@ -64,6 +64,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="Notification" type="Node2D" parent="."]
+visible = false
 
 [node name="Coin" type="Sprite2D" parent="Notification"]
 position = Vector2(95, 2.00001)

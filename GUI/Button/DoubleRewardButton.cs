@@ -2,7 +2,7 @@ public partial class DoubleRewardButton : CustomButton
 {
     protected override void OnClick()
     {
-        AcceptRewardButton.SetReward(300);
+        AcceptRewardButton.SetReward(CoinsManager.QuestReward * 2);
     }
 
 }

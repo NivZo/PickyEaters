@@ -3,7 +3,7 @@ using Godot;
 
 public static class StarsManager
 {
-    public static int RequiredStars = 10;
+    public static int RequiredStars = 3;
     public static void AddStar(int levelId)
     {
         var currStars = SaveManager.ActiveSave.LevelStarsObtained[levelId];
@@ -16,7 +16,5 @@ public static class StarsManager
             SaveManager.ActiveSave.CurrentStars %= RequiredStars;
             EventManager.InvokeStarsComplete();
         }
-
-        SaveManager.CommitActiveSave();
     }
 }
