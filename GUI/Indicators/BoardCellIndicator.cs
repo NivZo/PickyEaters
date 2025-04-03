@@ -61,7 +61,7 @@ public partial class BoardCellIndicator : Node2D
         if (_boardStatePositionId == possibleFoodPosId)
         {
             var color = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == eaterPosId)?.EaterType.GetNamedColor().GetColor() ?? NamedColor.White.GetColor();
-            Highlight(color with { A = .8f });
+            Highlight(color with { A = isCurrentlySelected ? 1 : .5f });
         }
     }
 
@@ -89,7 +89,6 @@ public partial class BoardCellIndicator : Node2D
             Highlight(_originalColor);
         }
     }
-
 
     private void Highlight(Color color, bool overrideIsConsumed = false)
     {

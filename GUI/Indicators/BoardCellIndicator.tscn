@@ -23,5 +23,6 @@ offset_left = -80.0
 offset_top = -80.0
 offset_right = 80.0
 offset_bottom = 80.0
+pivot_offset = Vector2(80, 80)
 mouse_filter = 2
 color = Color(0.492237, 0.492237, 0.492237, 0.234)

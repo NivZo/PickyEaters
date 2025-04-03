@@ -21,8 +21,8 @@ public static class EaterColorExtensions
     {
         return color switch
         {
-            NamedColor.Green => new("60ba6d"),
-            NamedColor.Blue => new("7390ea"),
+            NamedColor.Green => new("59b25d"),
+            NamedColor.Blue => new("6c77e9"),
             NamedColor.Yellow => new("fec851"),
             NamedColor.Red => new("d85058"),
             NamedColor.Pink => new("ff7dbb"),
