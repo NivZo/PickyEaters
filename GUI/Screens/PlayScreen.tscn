@@ -28,6 +28,7 @@ script = ExtResource("1_svmxk")
 [node name="GUI" type="Node" parent="."]
 
 [node name="BackgroundOverlayOutline" type="ColorRect" parent="GUI"]
+visible = false
 material = SubResource("ShaderMaterial_kv26v")
 anchors_preset = 15
 anchor_right = 1.0

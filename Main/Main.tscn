@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=20 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_hxws4"]
 [ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
 [ext_resource type="Texture2D" uid="uid://oovxbjb7pqkj" path="res://Assets/outline.png" id="2_aa13p"]
-[ext_resource type="Shader" path="res://Shaders/Checkerboard.gdshader" id="2_rqwvo"]
 [ext_resource type="Shader" path="res://Shaders/BalatroBackground.gdshader" id="2_tskco"]
-[ext_resource type="Texture2D" uid="uid://dfcbcj2b8tg2x" path="res://Assets/GUI/polka.png" id="3_711tk"]
+[ext_resource type="Shader" path="res://Shaders/BalatroBackgroundTilied.gdshader" id="3_3l4ou"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="3_r8aly"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="4_xg10b"]
 [ext_resource type="PackedScene" uid="uid://bskdropmc6asw" path="res://GUI/Indicators/CoinsIndicator.tscn" id="6_aj3fp"]
@@ -31,13 +30,22 @@ shader_parameter/spin_amount = 0.1
 shader_parameter/pixel_filter = 2560.0
 shader_parameter/is_rotating = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pt7y"]
-shader = ExtResource("2_rqwvo")
-shader_parameter/do_abs = false
-shader_parameter/do_quantize = false
-shader_parameter/quantize_to = 1.0
-shader_parameter/sine_amplitude = Vector2(0, 300)
-shader_parameter/sine_speed = Vector2(0, 0.05)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_towwm"]
+shader = ExtResource("3_3l4ou")
+shader_parameter/progress = 1.0
+shader_parameter/diamondPixelSize = 24.0
+shader_parameter/reverse = false
+shader_parameter/spin_rotation_speed = 0.2
+shader_parameter/move_speed = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.909804, 0.913725, 0.894118, 1)
+shader_parameter/colour_2 = Color(0.972549, 0.956863, 0.952941, 1)
+shader_parameter/colour_3 = Color(0.870588, 0.882353, 0.85098, 1)
+shader_parameter/contrast = 3.5
+shader_parameter/lighting = 0.2
+shader_parameter/spin_amount = 0.1
+shader_parameter/pixel_filter = 2560.0
+shader_parameter/is_rotating = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blsp2"]
 shader = ExtResource("4_xg10b")
@@ -79,6 +87,7 @@ metadata/_edit_horizontal_guides_ = [-3168.0]
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 
 [node name="Background" type="ColorRect" parent="BackgroundLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,7 +98,7 @@ color = Color(0.176809, 0.523303, 0.542962, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
-self_modulate = Color(1, 1, 1, 0.392157)
+visible = false
 material = SubResource("ShaderMaterial_14780")
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,21 +106,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.530636, 0.750274, 0.777284, 1)
 metadata/_edit_lock_ = true
 
-[node name="PolkaDots" type="TextureRect" parent="BackgroundLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.156863)
-material = SubResource("ShaderMaterial_3pt7y")
+[node name="BackgroundEffectTiled" type="ColorRect" parent="BackgroundLayer"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_towwm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -300.0
-offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_711tk")
-stretch_mode = 1
+mouse_filter = 2
+color = Color(0.529412, 0.74902, 0.776471, 1)
 
 [node name="OverlayTop" type="ColorRect" parent="BackgroundLayer"]
 anchors_preset = 12
@@ -192,15 +199,7 @@ follow_viewport_enabled = true
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 
-[node name="Colors" type="ColorRect" parent="Shaders"]
-material = SubResource("ShaderMaterial_r6s11")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
+[node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
 [node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_r6s11")
@@ -212,7 +211,25 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
+[node name="FrontBorderLayer" type="CanvasLayer" parent="."]
+
+[node name="Outline" type="Sprite2D" parent="FrontBorderLayer"]
+material = SubResource("ShaderMaterial_blsp2")
+position = Vector2(-8, -8)
+texture = ExtResource("2_aa13p")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="HLineTopBorder" parent="FrontBorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 8)
+
+[node name="HLineBottomBorder" parent="FrontBorderLayer" instance=ExtResource("3_r8aly")]
+position = Vector2(0, 2554)
+
+[node name="VLineLeftBorder" parent="FrontBorderLayer" instance=ExtResource("6_ctjmt")]
+
+[node name="VLineRightBorder" parent="FrontBorderLayer" instance=ExtResource("6_ctjmt")]
+position = Vector2(1440, 0)
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_jrtrs")
