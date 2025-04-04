@@ -32,4 +32,4 @@ text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]LEVELS[/font][/wa
 scroll_active = false
 
 [node name="TotalStarsIndicator" parent="GUILayer" instance=ExtResource("5_7mr1d")]
-position = Vector2(720, 2304)
+position = Vector2(720, 2132)

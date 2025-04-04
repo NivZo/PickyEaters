@@ -29,11 +29,11 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
             lvlBtn.Size = new(360, 220);
             var x = (i%3) switch
                 {
-                    1 => 72,
-                    2 => 560-36,
-                    _ => 1048-72,
+                    1 => 100,
+                    2 => 540,
+                    _ => 980,
                 };
-            lvlBtn.Position = new(x, 372 + 400 * Mathf.FloorToInt((i-minLevel)/3));
+            lvlBtn.Position = new(x, 360 + 360 * Mathf.FloorToInt((i-minLevel)/3));
 
             buttons.Add(lvlBtn);
         }

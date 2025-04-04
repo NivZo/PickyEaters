@@ -24,7 +24,7 @@ public partial class Collection : PagedScreen<EaterCollectionShowcase>
             {
                 var eaterShowcase = GD.Load<PackedScene>("res://Entities/Eater/EaterCollectionShowcase.tscn").Instantiate<EaterCollectionShowcase>();
                 eaterShowcase.Setup();
-                eaterShowcase.Display.BaseScale = 2.5f;
+                eaterShowcase.Display.BaseScale = 2f;
                 eaterShowcase.Display.EaterFace = eaterResource.EaterFace;
                 eaterShowcase.Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
                 eaterShowcase.RandomFace = false;
@@ -34,7 +34,7 @@ public partial class Collection : PagedScreen<EaterCollectionShowcase>
                     0 => 360,
                     _ => 1080,
                 };
-                eaterShowcase.Position = new(x, 520 + 700 * (i/2));
+                eaterShowcase.Position = new(x, 480 + 640 * (i/2));
                 return eaterShowcase;
             })
             .ToList();

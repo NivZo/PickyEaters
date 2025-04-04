@@ -10,26 +10,26 @@ script = ExtResource("1_xj5jv")
 
 [node name="NameBadge" type="Sprite2D" parent="."]
 self_modulate = Color(0.721859, 0.721859, 0.721859, 0.392157)
-position = Vector2(0, 204)
+position = Vector2(0, 184)
 scale = Vector2(2.75, 2.25)
 texture = ExtResource("2_tl21o")
 
 [node name="RarityBadge" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(0, 316)
+position = Vector2(0, 296)
 scale = Vector2(2.75, 2.25)
 texture = ExtResource("2_tl21o")
 
 [node name="EaterDisplay" parent="." instance=ExtResource("2_i8y61")]
-position = Vector2(0, -81)
-scale = Vector2(2.5, 2.5)
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
 EaterFace = 1
 
 [node name="EaterName" type="RichTextLabel" parent="."]
 offset_left = -288.0
-offset_top = 92.0
+offset_top = 72.0
 offset_right = 288.0
-offset_bottom = 308.0
+offset_bottom = 288.0
 mouse_filter = 1
 theme = ExtResource("3_racqw")
 theme_override_font_sizes/normal_font_size = 72
@@ -39,9 +39,9 @@ EATER NAME[/font][/wave][/center]"
 
 [node name="EaterRarity" type="RichTextLabel" parent="."]
 offset_left = -288.0
-offset_top = 204.0
+offset_top = 184.0
 offset_right = 288.0
-offset_bottom = 420.0
+offset_bottom = 400.0
 mouse_filter = 1
 theme = ExtResource("3_racqw")
 theme_override_font_sizes/normal_font_size = 72

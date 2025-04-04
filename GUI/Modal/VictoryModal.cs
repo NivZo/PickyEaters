@@ -76,7 +76,14 @@ public partial class VictoryModal : Node2D
 
         if (HistoryManager.UndoCount >= 0)
         {
-            cutscenes.Add(new(CreateAddStarAction(nextStar, nextStar == _starR ? 3 : 2, 1.2f, "\n • UNDO BONUS", currStars < 3), .6f));
+            if (nextStar == _starR) // is third
+            {
+                cutscenes.Add(new(CreateAddStarAction(nextStar, 3, 1.2f, "\n • UNDO BONUS", currStars < 3), .6f));
+            }
+            else
+            {
+                cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • UNDO BONUS", currStars < 3), .6f));
+            }
         }
 
         cutscenes.Add(new(SaveManager.CommitActiveSave, 0));

@@ -14,10 +14,10 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/colour_1 = Color(0.909804, 0.913725, 0.894118, 1)
 shader_parameter/colour_2 = Color(0.972549, 0.956863, 0.952941, 1)
 shader_parameter/colour_3 = Color(0.870588, 0.882353, 0.85098, 1)
-shader_parameter/contrast = 3.5
+shader_parameter/contrast = 10.0
 shader_parameter/lighting = 0.2
-shader_parameter/spin_amount = 0.1
-shader_parameter/pixel_filter = 2560.0
+shader_parameter/spin_amount = 0.0
+shader_parameter/pixel_filter = 740.0
 shader_parameter/is_rotating = true
 
 [sub_resource type="Animation" id="Animation_xr4yr"]
