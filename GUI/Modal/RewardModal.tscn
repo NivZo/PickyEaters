@@ -47,6 +47,7 @@ _data = {
 }
 
 [node name="RewardModal" type="Node2D"]
+top_level = true
 position = Vector2(0, -2)
 script = ExtResource("1_nykx2")
 
@@ -64,7 +65,7 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(1, 1, 1, 0.470588)
 
-[node name="EatParticles" type="CPUParticles2D" parent="."]
+[node name="CoinParticles" type="CPUParticles2D" parent="."]
 amount = 150
 lifetime = 2.0
 explosiveness = 0.2

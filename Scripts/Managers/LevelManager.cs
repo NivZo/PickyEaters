@@ -5,6 +5,17 @@ using Godot;
 
 public static class LevelManager
 {
+    private static readonly Color[] _colors = new[]
+    {
+        TierColor.Easy.GetColor(),
+        TierColor.Medium.GetColor(),
+        TierColor.Hard.GetColor(),
+        TierColor.Expert.GetColor(),
+        TierColor.Genius.GetColor(),
+        TierColor.Super.GetColor(),
+        TierColor.Master.GetColor(),
+    };
+
     private static CanvasLayer _gameLayer;
     private static Level _level;
     private static Lazy<int> _maxLevelLazy = new(DirAccess.GetFilesAt("res://Levels/").Length-1);
@@ -33,6 +44,7 @@ public static class LevelManager
         }
         
         CurrentLevelId = Math.Min(MaxLevel, levelId);
+        BackgroundManager.ChangeColor(GetLevelColor(CurrentLevelId));
         HistoryManager.ResetHistory();
 
         _level = GD.Load<PackedScene>($"res://Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();
@@ -73,4 +85,6 @@ public static class LevelManager
     {
         LoadLevel(CurrentLevelId-1);
     }
+
+    public static Color GetLevelColor(int levelId) => _colors[Math.Max(0, (levelId-1) / 75)];
 }

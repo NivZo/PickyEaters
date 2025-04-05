@@ -52,6 +52,7 @@ public abstract partial class CustomButtonBase : Button
             _isMouseOn = true;
             Modulate = new Color(.8f, .8f, .8f);
             HandleButtonDown();
+            Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
         }
     }
 
@@ -61,6 +62,7 @@ public abstract partial class CustomButtonBase : Button
         {
             Modulate = new Color(1, 1, 1);
             HandleButtonUp();
+            Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
 
             if (_isMouseOn)
             {

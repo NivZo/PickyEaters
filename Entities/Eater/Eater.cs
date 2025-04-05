@@ -132,8 +132,10 @@ public partial class Eater : Node2D
 
     private void OnSelect()
     {
-        _clickPositionAnchor = GetGlobalMousePosition();
         ZIndex = 1;
+        _clickPositionAnchor = GetGlobalMousePosition();
+
+        Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.1f);
 
         EmitSelectionStartSignals();
     }
@@ -142,6 +144,8 @@ public partial class Eater : Node2D
     {
         ZIndex = 0;
         TargetPositionComponent.ResetNudge();
+
+        Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
 
         var chosenDirection = _directions.FirstOrDefault(direction => direction.Name == _currentSelectedDirection && direction.CanMoveInDirection, null);
         if (chosenDirection != null)

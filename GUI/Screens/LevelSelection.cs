@@ -47,5 +47,7 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
     {
         _difficultyIndicator.StartingLevel = newPageId * ITEMS_PER_PAGE + 1;
         _difficultyIndicator.Setup();
+
+        BackgroundManager.ChangeColor(LevelManager.GetLevelColor(_difficultyIndicator.StartingLevel));
     }
 }

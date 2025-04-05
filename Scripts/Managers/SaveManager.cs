@@ -48,6 +48,7 @@ public class SaveManager
             LevelReached = LevelManager.MaxLevel,
             Coins = 7425,
             UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.WideOpenSmile },
+            LastDailyFreeRewardClaimedOLE = DateTime.MinValue.ToBinary(),
         };
         ResourceSaver.Save(ActiveSave, SAVEFILE);
         ScreenManager.TransitionToScreen(ScreenManager.ScreenType.MainMenu);

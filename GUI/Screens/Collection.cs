@@ -10,6 +10,7 @@ public partial class Collection : PagedScreen<EaterCollectionShowcase>
     public override void _Ready()
     {
         base._Ready();
+        BackgroundManager.ChangeColor(NamedColor.Blue.GetColor(), lightenFactor: .45f);
     }
 
     protected override List<EaterCollectionShowcase> CreateContents(int pageId)

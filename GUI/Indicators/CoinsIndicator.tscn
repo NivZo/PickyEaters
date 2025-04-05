@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bskdropmc6asw"]
+[gd_scene load_steps=8 format=3 uid="uid://bskdropmc6asw"]
 
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="1_fvwyn"]
 [ext_resource type="Script" path="res://GUI/Indicators/CoinsIndicator.cs" id="1_grsph"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="1_sgwdd"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="2_yrv5h"]
 [ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="4_wpxit"]
+
+[sub_resource type="Curve" id="Curve_evxej"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0.45), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rqbfu"]
 shader = ExtResource("1_sgwdd")
@@ -16,6 +20,25 @@ shader_parameter/is_horizontal = true
 
 [node name="CoinsIndicator" type="Node2D"]
 script = ExtResource("1_grsph")
+
+[node name="CoinParticles" type="CPUParticles2D" parent="."]
+position = Vector2(120, 216)
+emitting = false
+amount = 20
+lifetime = 3.0
+one_shot = true
+randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
+texture = ExtResource("2_yrv5h")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 20)
+direction = Vector2(2, -2)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 200.0
+scale_amount_curve = SubResource("Curve_evxej")
 
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0.396078, 0.396078, 0.396078, 0.54902)

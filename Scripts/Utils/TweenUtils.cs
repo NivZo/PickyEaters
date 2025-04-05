@@ -18,6 +18,11 @@ public static class TweenUtils
         AddPropertyTween(node, "material:shader_parameter/maxLineWidth", max, duration, Tween.TransitionType.Expo);
     }
 
+    public static void Color(Node node, Color to, float duration = 1f, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)
+    {
+        AddPropertyTween(node, "self_modulate", to, duration, transitionType);
+    }
+
     public static Tween MethodTween(Node node, Action<Variant> action, Variant from, Variant to, float duration, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)
     {
         var tween = AddCachedTween(node, action.Method.Name, to, transitionType);

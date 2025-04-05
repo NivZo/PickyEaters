@@ -46,17 +46,6 @@ public partial class DifficultyIndicator : Node2D
         "MASTER V",
     };
 
-    private static readonly Color[] _colors = new[]
-    {
-        TierColor.Easy.GetColor(),
-        TierColor.Medium.GetColor(),
-        TierColor.Hard.GetColor(),
-        TierColor.Expert.GetColor(),
-        TierColor.Genius.GetColor(),
-        TierColor.Super.GetColor(),
-        TierColor.Master.GetColor(),
-    };
-
     public int StartingLevel = -1;
 
     public override void _Ready()
@@ -75,7 +64,7 @@ public partial class DifficultyIndicator : Node2D
     {
         StartingLevel = StartingLevel == -1 ? SaveManager.ActiveSave.LevelReached : StartingLevel;
         _label.Text = $"[center][wave amp=12.0 freq=6.0][font gl=5]{_difficultyName[Math.Max(0, (StartingLevel-1) / 15)]}[/font][/wave][/center]";
-        _bg.SelfModulate = new Color(_colors[Math.Max(0, (StartingLevel-1) / 75)]);
+        _bg.SelfModulate = LevelManager.GetLevelColor(StartingLevel);
     }
 
     public override void _ExitTree()

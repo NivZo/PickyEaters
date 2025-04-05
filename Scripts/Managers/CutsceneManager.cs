@@ -11,11 +11,11 @@ public static class CutsceneManager
     // Take Action after Delay seconds
     public record CutsceneAction(Action Action, float Delay);
 
-    public static void Setup(Main main)
+    public static void Setup()
     {
         _timer = new Timer() { Autostart = false, OneShot = true };
         _timer.Timeout += HandleTimeout;
-        main.AddChild(_timer);
+        Main.Instance.AddChild(_timer);
     }
 
     public static void Play(List<CutsceneAction> cutsceneActions)

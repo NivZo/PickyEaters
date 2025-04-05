@@ -4,22 +4,31 @@
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_8xwwt"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="5_53xpg"]
 [ext_resource type="Script" path="res://GUI/Button/UnlockFaceButton.cs" id="5_sgosm"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="5_wunso"]
+[ext_resource type="Script" path="res://GUI/Button/DailyFreeGoldButton.cs" id="6_bm6kh"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="7_a4cr0"]
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="7_t61kd"]
-[ext_resource type="Texture2D" uid="uid://w30orjyo3rme" path="res://Assets/Icons/White/2x/home.png" id="8_bs5u6"]
-[ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="9_6ybq1"]
+[ext_resource type="Script" path="res://GUI/Button/HourlyAdGoldButton.cs" id="8_ddyyx"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_aene8"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="10_x6o61"]
-[ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="11_ktfgi"]
-[ext_resource type="Script" path="res://GUI/Button/HomeIconButton.cs" id="12_r8hsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pw8t"]
+shader = ExtResource("5_wunso")
+shader_parameter/radius_scale = 0.1
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e884k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7pjkq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7q852"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bud2l"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e884k"]
 
 [node name="Shop" type="Node"]
 script = ExtResource("1_6ucuc")
@@ -34,124 +43,231 @@ position = Vector2(0, 1379)
 visible = false
 position = Vector2(0, 2200)
 
-[node name="CurrentLevel" type="Node2D" parent="."]
-position = Vector2(0, -216)
+[node name="GUILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
-[node name="ShopLabel2" type="RichTextLabel" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_7pjkq")
-use_parent_material = true
+[node name="DailyFreeGold" type="ColorRect" parent="GUILayer"]
+material = SubResource("ShaderMaterial_6pw8t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 216.0
+offset_right = -792.0
+offset_bottom = -1768.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.234)
+
+[node name="DailyFreeGoldLabel" type="RichTextLabel" parent="GUILayer/DailyFreeGold"]
 clip_contents = false
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 412.0
-offset_top = 504.0
-offset_right = 1564.0
-offset_bottom = 976.0
+offset_top = 72.0
+offset_bottom = 360.0
 grow_horizontal = 2
 theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
-theme_override_font_sizes/normal_font_size = 140
+theme_override_font_sizes/normal_font_size = 110
 bbcode_enabled = true
-text = "[center][wave amp=20.0 freq=6][font gl=15]NEW FACE[/font][/wave][/center]"
+text = "[center][font gl=10]DAILY GIFT![/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="DailyFreeGoldButton" parent="GUILayer/DailyFreeGold" instance=ExtResource("7_a4cr0")]
+layout_mode = 1
+offset_left = 72.0
+offset_top = 360.0
+offset_right = 43.2
+offset_bottom = 406.656
+script = ExtResource("6_bm6kh")
+CustomText = "FREE"
+CustomTextSize = 80
+Color = Color(1, 0.694118, 0.196078, 1)
+
+[node name="AmountLabel" type="RichTextLabel" parent="GUILayer/DailyFreeGold"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 216.0
+offset_right = -216.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0.984314, 0.662745, 0, 0.627451)
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[center][font gl=25][wave amp=20.0 freq=6]250[/wave][/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
-[node name="ShopLabel" type="RichTextLabel" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_7pjkq")
-use_parent_material = true
+[node name="Coin" type="Sprite2D" parent="GUILayer/DailyFreeGold"]
+position = Vector2(412, 280)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_aene8")
+
+[node name="HourlyAdGold" type="ColorRect" parent="GUILayer"]
+material = SubResource("ShaderMaterial_6pw8t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 792.0
+offset_top = 216.0
+offset_right = -72.0
+offset_bottom = -1768.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.234)
+
+[node name="HourlyAdGoldButton" parent="GUILayer/HourlyAdGold" instance=ExtResource("7_a4cr0")]
+layout_mode = 1
+offset_left = 72.0
+offset_top = 360.0
+offset_right = 43.2
+offset_bottom = 406.656
+script = ExtResource("8_ddyyx")
+CustomText = "WATCH AD"
+CustomTextSize = 80
+Color = Color(1, 0.694118, 0.196078, 1)
+
+[node name="HourlyAdLabel" type="RichTextLabel" parent="GUILayer/HourlyAdGold"]
 clip_contents = false
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -144.0
-offset_top = 504.0
-offset_right = 1008.0
-offset_bottom = 976.0
+offset_top = 72.0
+offset_bottom = 360.0
 grow_horizontal = 2
 theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
-theme_override_font_sizes/normal_font_size = 140
+theme_override_font_sizes/normal_font_size = 110
 bbcode_enabled = true
-text = "[center][font gl=15]UNLOCK[/font][/center]"
+text = "[center][font gl=10]AD BONUS![/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="AmountLabel" type="RichTextLabel" parent="GUILayer/HourlyAdGold"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 216.0
+offset_right = -216.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0.984314, 0.662745, 0, 0.627451)
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[center][font gl=25][wave amp=20.0 freq=6]100[/wave][/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
-[node name="ShopLabel3" type="RichTextLabel" parent="CurrentLevel"]
+[node name="Coin" type="Sprite2D" parent="GUILayer/HourlyAdGold"]
+position = Vector2(412, 280)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_aene8")
+
+[node name="MuncherUnlock" type="ColorRect" parent="GUILayer"]
+material = SubResource("ShaderMaterial_6pw8t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 864.0
+offset_right = -72.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.234)
+
+[node name="EaterDisplay" parent="GUILayer/MuncherUnlock" instance=ExtResource("10_x6o61")]
+material = SubResource("ShaderMaterial_e884k")
+position = Vector2(648, 672)
+scale = Vector2(3, 3)
+EaterType = 6
+
+[node name="MuncherUnlockLabels" type="Node2D" parent="GUILayer/MuncherUnlock"]
+position = Vector2(-72, -432)
+
+[node name="NewMuncherLabel2" type="RichTextLabel" parent="GUILayer/MuncherUnlock/MuncherUnlockLabels"]
 material = SubResource("ShaderMaterial_7pjkq")
 use_parent_material = true
 clip_contents = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 72.0
-offset_top = 720.0
+offset_top = 504.0
+offset_right = 1368.0
+offset_bottom = 976.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 140
+bbcode_enabled = true
+text = "[center][font gl=10]UNLOCK [wave amp=20.0 freq=6]NEW MUNCHER![/wave][/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="PriceLabel" type="RichTextLabel" parent="GUILayer/MuncherUnlock/MuncherUnlockLabels"]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 648.0
 offset_right = 1224.0
-offset_bottom = 1192.0
+offset_bottom = 1120.0
 grow_horizontal = 2
 theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0.984314, 0.662745, 0, 0.627451)
-theme_override_font_sizes/normal_font_size = 120
+theme_override_font_sizes/normal_font_size = 160
 bbcode_enabled = true
-text = "[center][font gl=15]1000[/font][/center]"
+text = "[center][font gl=25][wave amp=20.0 freq=6]1000[/wave][/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
-[node name="Coin" type="Sprite2D" parent="CurrentLevel"]
+[node name="Coin" type="Sprite2D" parent="GUILayer/MuncherUnlock/MuncherUnlockLabels"]
 material = SubResource("ShaderMaterial_7q852")
-position = Vector2(864, 778)
-scale = Vector2(0.6, 0.6)
+position = Vector2(936, 734)
+scale = Vector2(0.9, 0.837501)
 texture = ExtResource("9_aene8")
 
-[node name="GUILayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="PurchaseButton" parent="GUILayer" instance=ExtResource("7_a4cr0")]
+[node name="PurchaseButton" parent="GUILayer/MuncherUnlock" instance=ExtResource("7_a4cr0")]
 material = SubResource("ShaderMaterial_bud2l")
-offset_left = 216.0
-offset_top = 1656.0
-offset_right = 72.0
-offset_bottom = 1655.36
+layout_mode = 1
+offset_left = 72.0
+offset_top = 1008.0
+offset_right = 187.2
+offset_bottom = 1124.64
 theme = ExtResource("5_53xpg")
 script = ExtResource("5_sgosm")
 CustomText = "UNLOCK"
 CustomTextSize = 240
 Color = Color(1, 0.695721, 0.195682, 1)
 
-[node name="Collection" parent="GUILayer" instance=ExtResource("7_a4cr0")]
-offset_left = 864.0
+[node name="HomeButton" parent="GUILayer" instance=ExtResource("7_a4cr0")]
+anchors_preset = 10
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 216.0
 offset_top = 2376.0
-offset_right = 216.0
-offset_bottom = 2087.36
-script = ExtResource("9_6ybq1")
-CustomText = "COLLECTION"
-CustomTextSize = 80
-Color = Color(0.329412, 0.513726, 0.729412, 1)
-WaveString = false
-Highlight = false
-
-[node name="Home" parent="GUILayer" instance=ExtResource("7_a4cr0")]
-offset_left = 72.0
-offset_top = 2376.0
-offset_right = -576.0
-offset_bottom = 2087.36
+offset_right = -216.0
+offset_bottom = 2520.0
+grow_horizontal = 2
 script = ExtResource("7_t61kd")
 CustomText = "HOME"
 CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
-Highlight = false
-
-[node name="HomeButton" parent="GUILayer" instance=ExtResource("11_ktfgi")]
-offset_left = -560.0
-offset_top = -1244.0
-offset_right = -552.0
-offset_bottom = -1236.0
-script = ExtResource("12_r8hsq")
-CustomIcon = ExtResource("8_bs5u6")
-
-[node name="EaterDisplay" parent="." instance=ExtResource("10_x6o61")]
-material = SubResource("ShaderMaterial_e884k")
-position = Vector2(720, 1152)
-scale = Vector2(4, 4)
-EaterType = 6

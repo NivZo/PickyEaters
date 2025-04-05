@@ -66,12 +66,15 @@ public partial class Food : Node2D
         {
             if (IsCurrentlySelected)
             {
+                Scale = Vector2.One;
                 TweenUtils.Pop(this, 1.4f);
                 TweenUtils.BoldOutline(Sprite, 16, 20);
+                Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
             }
             else
             {
-                TweenUtils.Pop(this, 1.2f);
+                Scale = new Vector2(.8f, .8f);
+                TweenUtils.Pop(this, 1.1f);
                 TweenUtils.BoldOutline(Sprite, 12, 16);
             }
         }

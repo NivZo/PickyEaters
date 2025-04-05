@@ -14,21 +14,25 @@ public partial class Main : Node
     {
         base._Ready();
 
+
         try
         {
+            Instance = this;
+            
             AudioManager.Setup(GetNode<AudioStreamPlayer>("SoundEffectPlayer"), GetNode<AudioStreamPlayer>("BackgroundMusicPlayer"));
 
             var transition = GetNode<Transition>("Shaders/Transition");
             ScreenLayer = GetNode<CanvasLayer>("ScreenLayer");
             ModalLayer = GetNode<CanvasLayer>("ModalLayer");
-            CutsceneManager.Setup(this);
+            CutsceneManager.Setup();
             ScreenManager.Setup(ScreenLayer, transition);
             ModalManager.Setup(ModalLayer);
             
             SaveManager.SaveLocally = SaveLocally;
             SaveManager.LoadGame();
 
-            Instance = this;
+            BackgroundManager.Setup();
+            BackgroundManager.ChangeColor(NamedColor.Cyan.GetColor(), lightenFactor: .7f);
         }   
         catch (Exception ex)
         {

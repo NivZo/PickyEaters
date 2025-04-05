@@ -10,8 +10,10 @@ public partial class Shop : Node
         base._EnterTree();
         Instance = this;
 
-        _eaterDisplay = GetNode<EaterDisplay>("EaterDisplay");
-        _eaterDisplay.BaseScale = 4;
+        _eaterDisplay = GetNode<EaterDisplay>("GUILayer/MuncherUnlock/EaterDisplay");
+        _eaterDisplay.BaseScale = 3;
+        
+        BackgroundManager.ChangeColor(NamedColor.Orange.GetColor(), lightenFactor: .7f);
     }
 
     public void UpdateEaterDisplay(EaterFace eaterFace)

@@ -10,5 +10,7 @@ public partial class MainMenu : Node
         
         var _levelLabel = GetNode<RichTextLabel>("CurrentLevel/NumberLabel");
         _levelLabel.Text = TextUtils.WaveString($"{SaveManager.ActiveSave.LevelReached}", letterDistance: 25);
+
+        BackgroundManager.ChangeColor(NamedColor.Cyan.GetColor(), lightenFactor: .7f);
     }
 }
