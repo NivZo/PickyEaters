@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="7_t61kd"]
 [ext_resource type="Script" path="res://GUI/Button/HourlyAdGoldButton.cs" id="8_ddyyx"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_aene8"]
-[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="9_d05dg"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="9_q52s7"]
 [ext_resource type="Texture2D" uid="uid://c0sgc0hdw03xw" path="res://Assets/Entities/yellow_star_food.png" id="10_a6w1p"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="10_x6o61"]
 
@@ -25,13 +25,13 @@ shader_parameter/width = 1.0
 shader_parameter/height = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hu3rt"]
-shader = ExtResource("9_d05dg")
+shader = ExtResource("9_q52s7")
+shader_parameter/maxLineWidth = 16.0
+shader_parameter/minLineWidth = 16.0
+shader_parameter/speed = 0.0
+shader_parameter/blockSize = 1.0
 shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/width = 16.0
-shader_parameter/pattern = 1
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/number_of_images = Vector2(1, 1)
+shader_parameter/tolerance = 0.0
 
 [sub_resource type="Curve" id="Curve_vf2jm"]
 _data = [Vector2(0, 0.987727), 0.0, 0.0, 0, 0, Vector2(0.898204, 0.260562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -202,7 +202,7 @@ offset_right = -72.0
 offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.234)
 
 [node name="PurchaseParticles" type="CPUParticles2D" parent="GUILayer/MuncherUnlock"]
@@ -237,7 +237,7 @@ EaterType = 6
 [node name="MuncherUnlockLabels" type="Node2D" parent="GUILayer/MuncherUnlock"]
 position = Vector2(-72, -432)
 
-[node name="NewMuncherLabel2" type="RichTextLabel" parent="GUILayer/MuncherUnlock/MuncherUnlockLabels"]
+[node name="NewMuncherLabel" type="RichTextLabel" parent="GUILayer/MuncherUnlock/MuncherUnlockLabels"]
 material = SubResource("ShaderMaterial_7pjkq")
 use_parent_material = true
 clip_contents = false
