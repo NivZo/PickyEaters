@@ -70,7 +70,7 @@ public partial class VictoryModal : Node2D
 
         if (LevelManager.IsFlawlessVictory())
         {
-            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • NEUTRAL BONUS", currStars < 2), .6f));
+            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • NEUTRAL BONUS", currStars < 2), 1f));
             nextStar = _starR;
         }
 
@@ -78,11 +78,11 @@ public partial class VictoryModal : Node2D
         {
             if (nextStar == _starR) // is third
             {
-                cutscenes.Add(new(CreateAddStarAction(nextStar, 3, 1.2f, "\n • UNDO BONUS", currStars < 3), .6f));
+                cutscenes.Add(new(CreateAddStarAction(nextStar, 3, 1.2f, "\n • UNDO BONUS", currStars < 3), 1f));
             }
             else
             {
-                cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • UNDO BONUS", currStars < 3), .6f));
+                cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • UNDO BONUS", currStars < 3), 1f));
             }
         }
 

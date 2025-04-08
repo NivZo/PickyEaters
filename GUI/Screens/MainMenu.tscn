@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=20 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="11_j4xwe"]
+[ext_resource type="Script" path="res://GUI/Button/StarQuestInfoButton.cs" id="15_hvyj7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5g82"]
 shader = ExtResource("2_4cnfy")
@@ -232,3 +233,11 @@ CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
 Highlight = false
+
+[node name="StarQuestInfo" type="Button" parent="GUILayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 432.0
+offset_top = 792.0
+offset_right = 1008.0
+offset_bottom = 936.0
+script = ExtResource("15_hvyj7")

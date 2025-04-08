@@ -1,21 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwbfpmehyp2e3"]
+[gd_scene load_steps=5 format=3 uid="uid://cwbfpmehyp2e3"]
 
 [ext_resource type="Script" path="res://GUI/Tutorial/TutorialLocalManager.cs" id="1_q8lvk"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_8mbyo"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_nwbvv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw8ux"]
+shader = ExtResource("2_nwbvv")
+shader_parameter/radius_scale = 0.1
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1340.0
+shader_parameter/height = 360.0
 
 [node name="TutorialLocalManager" type="Node2D"]
 script = ExtResource("1_q8lvk")
 
+[node name="DailyFreeGold" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rw8ux")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 1832.0
+offset_right = 1390.0
+offset_bottom = 2192.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.234)
+
 [node name="TutorialText" type="RichTextLabel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 12.0
 offset_top = 1872.0
-offset_right = 1441.0
-offset_bottom = 2304.0
+offset_right = 1452.0
+offset_bottom = 2160.0
 grow_horizontal = 2
+pivot_offset = Vector2(714, 144)
 theme = ExtResource("2_8mbyo")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
-text = "[center][font gl=15]PRESS A [wave amp=40.0 freq=2.0 connected=1][font gl=15 color=green]MUNCHER[/font][/wave]
-TO SEE POSSIBLE MOVES[/font][/center]"
+text = "[center][font gl=12]FINISH WITH [wave amp=40.0 freq=2.0 connected=1]LESS UNDOS[/wave]
+TO GET A [wave amp=40.0 freq=2.0 connected=1][color=YELLOW]BONUS STAR![/color][/wave][/font][/center]"
 scroll_active = false

@@ -68,7 +68,6 @@ _data = {
 script = ExtResource("1_k4xy0")
 
 [node name="Modal" parent="." instance=ExtResource("1_su3ki")]
-BannerText = "VICTORY!"
 
 [node name="HomeButton" parent="Modal" instance=ExtResource("8_004r3")]
 offset_left = -544.0
@@ -189,3 +188,16 @@ libraries = {
 "": SubResource("AnimationLibrary_xkvfu")
 }
 autoplay = "idle"
+
+[node name="BannerText" type="RichTextLabel" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -432.0
+offset_top = -634.0
+offset_right = 448.0
+offset_bottom = -474.0
+grow_horizontal = 2
+theme = ExtResource("10_adcid")
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]VICTORY![/font][/wave][/center]"
+scroll_active = false

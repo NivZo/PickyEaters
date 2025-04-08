@@ -63,6 +63,8 @@ public partial class TutorialLocalManager : Node
         if (_suggestUndo > 0)
         {
             _tutorialText.Text = $"[center][font gl=15]PRESS THE [color=#{NamedColor.Yellow.GetColor().ToHtml()}]UNDO[/color] BUTTON\nTO GO BACK A STEP[/font][/center]";
+            _tutorialText.Scale = new(.7f, .7f);
+            TweenUtils.Pop(_tutorialText, 1, .5f);
         }
         
         else if (_currStep != null)
@@ -76,7 +78,12 @@ public partial class TutorialLocalManager : Node
                 _ind = HandGuidanceIndicator.CreateSwiping(this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value), LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.TargetPosition.Value));
             }
 
-            _tutorialText.Text = _currStep.Text;
+            if (_tutorialText.Text != _currStep.Text)
+            {
+                _tutorialText.Text = _currStep.Text;
+                _tutorialText.Scale = new(.7f, .7f);
+                TweenUtils.Pop(_tutorialText, 1, .5f);
+            }
         }
         else
         {

@@ -44,8 +44,8 @@ public partial class StarsIndicator : Node2D
         CutsceneManager.Play(new()
         {
             new(() => {
-                AcceptRewardButton.SetReward(CoinsManager.QuestReward);
                 RewardModal.ShowModal(this);
+                AcceptRewardButton.SetReward(CoinsManager.QuestReward);
             }, 1f),
         });
     }

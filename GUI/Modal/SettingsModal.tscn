@@ -35,7 +35,6 @@ shader_parameter/number_of_images = Vector2(1, 1)
 script = ExtResource("1_e8rg8")
 
 [node name="Modal" parent="." instance=ExtResource("1_o1l77")]
-BannerText = "SETTINGS"
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
 self_modulate = Color(0.345766, 0.423177, 0.359951, 0.392)
@@ -189,6 +188,19 @@ theme = ExtResource("4_r6oil")
 max_value = 1.0
 step = 0.05
 value = 1.0
+
+[node name="BannerText" type="RichTextLabel" parent="Modal"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -432.0
+offset_top = -634.0
+offset_right = 448.0
+offset_bottom = -474.0
+grow_horizontal = 2
+theme = ExtResource("4_r6oil")
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]SETTINGS[/font][/wave][/center]"
+scroll_active = false
 
 [node name="Erase" parent="." instance=ExtResource("8_v0yov")]
 offset_left = -504.0

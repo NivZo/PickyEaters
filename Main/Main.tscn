@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=18 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_hxws4"]
 [ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
 [ext_resource type="Texture2D" uid="uid://oovxbjb7pqkj" path="res://Assets/outline.png" id="2_aa13p"]
-[ext_resource type="Shader" path="res://Shaders/BalatroBackground.gdshader" id="2_tskco"]
 [ext_resource type="Shader" path="res://Shaders/BalatroBackgroundTilied.gdshader" id="3_3l4ou"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="3_r8aly"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="4_xg10b"]
@@ -16,20 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="15_jrtrs"]
 [ext_resource type="Script" path="res://Main/MainCamera.cs" id="17_hyxa0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_14780"]
-shader = ExtResource("2_tskco")
-shader_parameter/spin_rotation_speed = 0.2
-shader_parameter/move_speed = 2.0
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.911052, 0.915535, 0.89268, 1)
-shader_parameter/colour_2 = Color(0.973304, 0.958462, 0.95357, 1)
-shader_parameter/colour_3 = Color(0.872264, 0.883284, 0.851935, 1)
-shader_parameter/contrast = 3.5
-shader_parameter/lighting = 0.2
-shader_parameter/spin_amount = 0.1
-shader_parameter/pixel_filter = 2560.0
-shader_parameter/is_rotating = true
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_towwm"]
 shader = ExtResource("3_3l4ou")
 shader_parameter/progress = 1.0
@@ -41,7 +26,7 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/colour_1 = Color(0.909804, 0.913725, 0.894118, 1)
 shader_parameter/colour_2 = Color(0.972549, 0.956863, 0.952941, 1)
 shader_parameter/colour_3 = Color(0.870588, 0.882353, 0.85098, 1)
-shader_parameter/contrast = 10.0
+shader_parameter/contrast = 24.0
 shader_parameter/lighting = 0.2
 shader_parameter/spin_amount = 0.0
 shader_parameter/pixel_filter = 740.0
@@ -85,29 +70,6 @@ script = ExtResource("1_hxws4")
 metadata/_edit_horizontal_guides_ = [-3168.0]
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
-
-[node name="Background" type="ColorRect" parent="BackgroundLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.176809, 0.523303, 0.542962, 1)
-metadata/_edit_lock_ = true
-
-[node name="BackgroundEffect" type="ColorRect" parent="BackgroundLayer"]
-visible = false
-material = SubResource("ShaderMaterial_14780")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.530636, 0.750274, 0.777284, 1)
-metadata/_edit_lock_ = true
 
 [node name="BackgroundEffectTiled" type="ColorRect" parent="BackgroundLayer"]
 z_as_relative = false
@@ -195,6 +157,9 @@ mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 40
 
 [node name="ModalLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="IndicatorLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="Shaders" type="CanvasLayer" parent="."]

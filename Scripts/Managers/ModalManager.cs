@@ -47,6 +47,14 @@ public class ModalManager
 
         OpenModal();
     }
+    
+    public static void OpenStarQuestInfoModal()
+    {
+        _currentModal = GD.Load<PackedScene>("res://GUI/Modal/StarQuestInfoModal.tscn").Instantiate<Node2D>();
+        CurrentOpenModal = ModalType.StarQuestInfo;
+
+        OpenModal();
+    }
 
     public static void CloseModal(bool overideUnclosable = false)
     {
@@ -73,5 +81,6 @@ public class ModalManager
         Victory,
         Settings,
         AreYouSure,
+        StarQuestInfo,
     }
 }
