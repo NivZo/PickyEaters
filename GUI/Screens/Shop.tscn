@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2bgws8n4h7uj"]
+[gd_scene load_steps=21 format=3 uid="uid://b2bgws8n4h7uj"]
 
 [ext_resource type="Script" path="res://GUI/Screens/Shop.cs" id="1_6ucuc"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_8xwwt"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="7_t61kd"]
 [ext_resource type="Script" path="res://GUI/Button/HourlyAdGoldButton.cs" id="8_ddyyx"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_aene8"]
+[ext_resource type="Shader" path="res://Shaders/StaticOutline.gdshader" id="9_d05dg"]
+[ext_resource type="Texture2D" uid="uid://c0sgc0hdw03xw" path="res://Assets/Entities/yellow_star_food.png" id="10_a6w1p"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="10_x6o61"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6pw8t"]
@@ -21,6 +23,19 @@ shader_parameter/rounded_corner_bottom_left = true
 shader_parameter/rounded_corner_bottom_right = true
 shader_parameter/width = 1.0
 shader_parameter/height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu3rt"]
+shader = ExtResource("9_d05dg")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 16.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_vf2jm"]
+_data = [Vector2(0, 0.987727), 0.0, 0.0, 0, 0, Vector2(0.898204, 0.260562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e884k"]
 
@@ -189,6 +204,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.234)
+
+[node name="PurchaseParticles" type="CPUParticles2D" parent="GUILayer/MuncherUnlock"]
+material = SubResource("ShaderMaterial_hu3rt")
+position = Vector2(648, 648)
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+preprocess = 0.5
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("10_a6w1p")
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+scale_amount_curve = SubResource("Curve_vf2jm")
 
 [node name="EaterDisplay" parent="GUILayer/MuncherUnlock" instance=ExtResource("10_x6o61")]
 material = SubResource("ShaderMaterial_e884k")

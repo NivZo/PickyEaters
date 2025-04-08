@@ -49,6 +49,21 @@ public static class EaterTypeExtensions
         };
     }
 
+    public static FoodType GetFoodType(this EaterType eaterType)
+    {
+        return eaterType switch
+        {
+            EaterType.Green => FoodType.Green,
+            EaterType.Blue => FoodType.Blue,
+            EaterType.Red => FoodType.Red,
+            EaterType.Yellow => FoodType.Yellow,
+            EaterType.Purple => FoodType.Purple,
+            EaterType.Pink => FoodType.Pink,
+            EaterType.Brown => FoodType.Brown,
+            _ => FoodType.White,
+        };
+    }
+
     // public static Color GetEaterTypeBodyModulate(this EaterType eaterType)
     // {
     //     return eaterType switch

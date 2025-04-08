@@ -106,7 +106,7 @@ public partial class Eater : Node2D
                 Display.ToggleFinished(true);
             }
 
-            EatParticlesEmitter.Texture = food.FoodType.GetFoodTypeTexture();
+            EatParticlesEmitter.Texture = food.FoodType.GetFoodTypeTexture(food.IsLast);
             EatParticlesEmitter.Emitting = true;
             MainCamera.ApplyShake();
 

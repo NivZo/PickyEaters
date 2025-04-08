@@ -4,6 +4,7 @@ public partial class Shop : Node
 {
     public static Shop Instance { get; private set; }
     private EaterDisplay _eaterDisplay;
+    private CpuParticles2D _purchaseParticles;
 
     public override void _EnterTree()
     {
@@ -12,7 +13,8 @@ public partial class Shop : Node
 
         _eaterDisplay = GetNode<EaterDisplay>("GUILayer/MuncherUnlock/EaterDisplay");
         _eaterDisplay.BaseScale = 3;
-        
+        _purchaseParticles = GetNode<CpuParticles2D>("GUILayer/MuncherUnlock/PurchaseParticles");
+
         BackgroundManager.ChangeColor(NamedColor.Orange.GetColor(), lightenFactor: .7f);
     }
 
@@ -29,12 +31,9 @@ public partial class Shop : Node
             }, 2),
             new(() => {
                 TweenUtils.Pop(_eaterDisplay, 3.5f, 1f);
+                _purchaseParticles.Texture = _eaterDisplay.EaterType.GetFoodType().GetFoodTypeTexture(true);
+                _purchaseParticles.Emitting = true;
             }, 0),
         });
-        // _eaterDisplay.EaterFace = eaterFace;
-        // _eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
-        // _eaterDisplay.Scale = new Vector2(2, 2);
-        // TweenUtils.Pop(_eaterDisplay, _eaterDisplay.BaseScale);
-        // _eaterDisplay.Setup();
     }
 }

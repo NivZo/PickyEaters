@@ -15,16 +15,11 @@ public partial class Food : Node2D
     {
         base._Ready();
 
-        Sprite = GetNode<Sprite2D>("Sprite2D");
+        Sprite = GetNode<Sprite2D>("Food");
 
-        Sprite.Texture = FoodType.GetFoodTypeTexture();
+        Sprite.Texture = FoodType.GetFoodTypeTexture(IsLast);
 
         _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-
-        if (IsLast)
-        {
-            Sprite.GetNode<Sprite2D>("LastFoodIndicator").Visible = true;
-        }
 
         EventManager.MoveSelectionStarted += HandleSelectionStarted;
         EventManager.MovePerformed += HandleSelectionEnded;
@@ -39,7 +34,7 @@ public partial class Food : Node2D
 
         if (Sprite.Texture == null)
         {
-            Sprite.Texture = FoodType.GetFoodTypeTexture();
+            Sprite.Texture = FoodType.GetFoodTypeTexture(IsLast);
         }
     }
 
@@ -54,10 +49,17 @@ public partial class Food : Node2D
 
     private void StartIdleAnimation()
     {
-        var rnd = new Random();
-        _animationPlayer.Play("float");
-        var offset = rnd.NextDouble() * _animationPlayer.CurrentAnimation.Length;
-        _animationPlayer.Advance(offset);
+        if (IsLast)
+        {
+            _animationPlayer.Play("float_starfood");
+        }
+        else
+        {
+            var rnd = new Random();
+            _animationPlayer.Play("float");
+            var offset = rnd.NextDouble() * _animationPlayer.CurrentAnimation.Length;
+            _animationPlayer.Advance(offset);
+        }
     }
 
     private void HandleSelectionStarted(Vector2I EaterPosId, Vector2I FoodPosId, bool IsCurrentlySelected)

@@ -14,6 +14,6 @@ public enum FoodType
 
 public static class FoodTypeExtensions
 {
-    public static Texture2D GetFoodTypeTexture(this FoodType foodType)
-        => GD.Load<Texture2D>($"Assets/Entities/{foodType.ToString().ToLowerInvariant()}_food.png");
+    public static Texture2D GetFoodTypeTexture(this FoodType foodType, bool isLast)
+        => GD.Load<Texture2D>($"Assets/Entities/{foodType.ToString().ToLowerInvariant()}_{(isLast ? "star_" : string.Empty)}food.png");
 }

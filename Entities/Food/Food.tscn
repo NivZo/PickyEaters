@@ -4,7 +4,6 @@
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_g8mv4"]
 [ext_resource type="Texture2D" uid="uid://4vybtbxsxbhx" path="res://Assets/Entities/white_food.png" id="3_qk020"]
 [ext_resource type="Texture2D" uid="uid://cpjqma7dublnd" path="res://Assets/shadow.png" id="4_yed14"]
-[ext_resource type="Texture2D" uid="uid://bg1i8c6tf5o1f" path="res://Assets/Icons/White/2x/crown_b.png" id="5_bl66l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68teg"]
 resource_local_to_scene = true
@@ -26,7 +25,36 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Food:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1.45, 1, 1.45),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1.45, 1, 1.45),
+"update": 0,
+"values": [Vector2(0.7, 1.1), Vector2(0.65, 1), Vector2(0.7, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_khyw8"]
+resource_name = "float_starfood"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Food:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,42 +78,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/LastFoodIndicator:rotation")
-tracks/2/interp = 4
+tracks/2/path = NodePath("Food:scale")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(0.75, 1.5),
 "update": 0,
-"values": [-0.191986, -0.226893]
+"values": [Vector2(0.57, 0.57), Vector2(0.6, 0.6)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y0twg"]
 _data = {
-"float": SubResource("Animation_41aqa")
+"float": SubResource("Animation_41aqa"),
+"float_starfood": SubResource("Animation_khyw8")
 }
 
 [node name="Food" type="Node2D"]
 script = ExtResource("1_4jjr8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Food" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_68teg")
-position = Vector2(0, -1.3998)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_qk020")
-
-[node name="LastFoodIndicator" type="Sprite2D" parent="Sprite2D"]
-visible = false
-use_parent_material = true
-position = Vector2(0, 2)
-rotation = 6.0912
-texture = ExtResource("5_bl66l")
-offset = Vector2(-1.67905, -96.905)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, 88)
-scale = Vector2(0.692497, 1.085)
+scale = Vector2(0.689495, 1.07899)
 texture = ExtResource("4_yed14")
 
 [node name="Area2D" type="Area2D" parent="."]
