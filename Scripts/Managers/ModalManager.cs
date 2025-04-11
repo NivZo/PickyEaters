@@ -56,6 +56,14 @@ public class ModalManager
         OpenModal();
     }
 
+    public static void OpenMuncherUnlockModal()
+    {
+        _currentModal = GD.Load<PackedScene>("res://GUI/Modal/MuncherUnlockModal.tscn").Instantiate<Node2D>();
+        CurrentOpenModal = ModalType.MuncherUnlockModal;
+
+        OpenModal();
+    }
+
     public static void CloseModal(bool overideUnclosable = false)
     {
         if (_currentModal != null && (overideUnclosable || !UNCLOSABLE_MODALS.Contains(CurrentOpenModal)))
@@ -82,5 +90,6 @@ public class ModalManager
         Settings,
         AreYouSure,
         StarQuestInfo,
+        MuncherUnlockModal,
     }
 }

@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://c466esondrnax"]
+
+[ext_resource type="Script" path="res://Entities/Eater/EaterShopShowcase.cs" id="1_5rt4g"]
+[ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_7r2a5"]
+[ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="3_4ivow"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_65h4d"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="5_jsd75"]
+[ext_resource type="Texture2D" uid="uid://c0sgc0hdw03xw" path="res://Assets/Entities/yellow_star_food.png" id="6_v1pmo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8dn3"]
+shader = ExtResource("5_jsd75")
+shader_parameter/maxLineWidth = 16.0
+shader_parameter/minLineWidth = 16.0
+shader_parameter/speed = 0.0
+shader_parameter/blockSize = 1.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="Curve" id="Curve_7hu1i"]
+_data = [Vector2(0, 0.987727), 0.0, 0.0, 0, 0, Vector2(0.898204, 0.260562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="EaterShopShowcase" type="Node2D"]
+script = ExtResource("1_5rt4g")
+
+[node name="PurchaseParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_w8dn3")
+position = Vector2(0, -72)
+emitting = false
+amount = 200
+lifetime = 2.0
+preprocess = 0.5
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("6_v1pmo")
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+scale_amount_curve = SubResource("Curve_7hu1i")
+
+[node name="NameBadge" type="Sprite2D" parent="."]
+self_modulate = Color(0.721859, 0.721859, 0.721859, 0.392157)
+position = Vector2(0, 184)
+scale = Vector2(2.75, 2.25)
+texture = ExtResource("2_7r2a5")
+
+[node name="RarityBadge" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(0, 296)
+scale = Vector2(2.75, 2.25)
+texture = ExtResource("2_7r2a5")
+
+[node name="EaterDisplay" parent="." instance=ExtResource("3_4ivow")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+EaterFace = 1
+
+[node name="EaterName" type="RichTextLabel" parent="."]
+offset_left = -288.0
+offset_top = 72.0
+offset_right = 288.0
+offset_bottom = 288.0
+mouse_filter = 1
+theme = ExtResource("4_65h4d")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]
+EATER NAME[/font][/wave][/center]"
+
+[node name="EaterRarity" type="RichTextLabel" parent="."]
+offset_left = -288.0
+offset_top = 184.0
+offset_right = 288.0
+offset_bottom = 400.0
+mouse_filter = 1
+theme = ExtResource("4_65h4d")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]
+RARE[/font][/wave][/center]"

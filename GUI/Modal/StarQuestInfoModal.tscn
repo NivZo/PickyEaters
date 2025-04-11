@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlnf3ilpjp588"]
 
-[ext_resource type="PackedScene" uid="uid://bl4mobvfl8lgx" path="res://GUI/Modal/InfoModal.tscn" id="1_1e71j"]
+[ext_resource type="PackedScene" uid="uid://bl4mobvfl8lgx" path="res://GUI/Modal/InfoModalSmall.tscn" id="1_1e71j"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="3_g71p1"]
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="4_kec5l"]
 
 [node name="StarQuestInfoModal" type="Node2D"]
 position = Vector2(0, -2)
 
-[node name="InfoModal" parent="." instance=ExtResource("1_1e71j")]
+[node name="InfoModalSmall" parent="." instance=ExtResource("1_1e71j")]
 
-[node name="BannerText" type="RichTextLabel" parent="InfoModal"]
+[node name="BannerText" type="RichTextLabel" parent="InfoModalSmall"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -432.0
@@ -25,7 +25,7 @@ TO GAIN    !
 [/font][/center]"
 scroll_active = false
 
-[node name="Coin" type="Sprite2D" parent="InfoModal"]
+[node name="Coin" type="Sprite2D" parent="InfoModalSmall"]
 position = Vector2(130, -72)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_kec5l")

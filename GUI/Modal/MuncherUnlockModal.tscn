@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx55f7a1k2k7y"]
+
+[ext_resource type="PackedScene" uid="uid://c7nk7lq3mpdp7" path="res://GUI/Modal/InfoModalLarge.tscn" id="1_euy7a"]
+[ext_resource type="PackedScene" uid="uid://c466esondrnax" path="res://Entities/Eater/EaterShopShowcase.tscn" id="5_23m0o"]
+
+[node name="MuncherUnlockModal" type="Node2D"]
+position = Vector2(0, -2)
+
+[node name="InfoModalLarge" parent="." instance=ExtResource("1_euy7a")]
+
+[node name="EaterShopShowcase" parent="InfoModalLarge" instance=ExtResource("5_23m0o")]
+position = Vector2(0, -140)
+scale = Vector2(1.5, 1.5)
+RandomFace = false
+RandomColor = false

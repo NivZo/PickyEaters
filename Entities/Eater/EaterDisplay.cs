@@ -14,6 +14,7 @@ public partial class EaterDisplay : Node2D
 
     public float BaseScale = 1;
     private bool _isSelectable = true;
+    private bool _isOwned = false;
     private static Lazy<EaterResource> _hidden = new Lazy<EaterResource>(() => GD.Load<EaterResource>("CustomResources/Eater/Hidden.tres"));
 
 
@@ -47,8 +48,9 @@ public partial class EaterDisplay : Node2D
         Face = GetNode<Sprite2D>("Face");
         Body = GetNode<Sprite2D>("Body");
         Thumb = GetNode<Sprite2D>("Body/HandThumb");
+        _isOwned = SaveManager.ActiveSave.UnlockedFaces.Contains(EaterFace);
 
-        if (SaveManager.ActiveSave.UnlockedFaces.Contains(EaterFace))
+        if (_isOwned)
         {
             Face.Texture = EaterFace.GetEaterFaceTexture();
             Body.Texture = EaterType.GetEaterTypeBodyTexture();
@@ -104,7 +106,7 @@ public partial class EaterDisplay : Node2D
 
     public void HandleActivate()
     {
-        Face.Texture = EaterFace.GetEaterActiveFaceTexture();
+        Face.Texture = _isOwned ? EaterFace.GetEaterActiveFaceTexture() : EaterFace.Hidden.GetEaterActiveFaceTexture();
         TweenUtils.Pop(this, BaseScale * 1.2f);
         TweenUtils.BoldOutline(Body, 8, 12);
 

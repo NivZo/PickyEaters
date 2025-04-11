@@ -15,6 +15,7 @@ public partial class Collection : PagedScreen<EaterCollectionShowcase>
 
     protected override List<EaterCollectionShowcase> CreateContents(int pageId)
     {
+        var colors = Enum.GetValues<EaterType>().Except(new[] { EaterType.Hidden }).ToList().Shuffle().Take(6);
         return Enum.GetValues<EaterFace>()
             .Except(new EaterFace[1] { EaterFace.Hidden })
             .Select(face => face.GetEaterResource())
@@ -27,8 +28,9 @@ public partial class Collection : PagedScreen<EaterCollectionShowcase>
                 eaterShowcase.Setup();
                 eaterShowcase.Display.BaseScale = 2f;
                 eaterShowcase.Display.EaterFace = eaterResource.EaterFace;
-                eaterShowcase.Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
+                eaterShowcase.Display.EaterType = colors.ElementAt(i);
                 eaterShowcase.RandomFace = false;
+                eaterShowcase.RandomColor = false;
                 eaterShowcase.Display.Setup();
                 var x = (i%2) switch
                 {

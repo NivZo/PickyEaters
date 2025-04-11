@@ -37,6 +37,17 @@ public class SelectComponent<TCategory> : IDisposable
     }
 
     public void ManualDeselection() => HandleDeselection();
+
+    public void ClearActions()
+    {
+        _onSelectAction.Clear();
+        _onDeselectAction.Clear();
+    }
+
+    public void OverrideSelectCondition(Func<bool> condition)
+    {
+        _selectCondition = condition;
+    }
     
     private void HandleInput(Node viewport, InputEvent @event, long shapeIdx)
     {
@@ -67,8 +78,8 @@ public class SelectComponent<TCategory> : IDisposable
     private void HandleDeselection()
     {
         _isSelected = false;
-
-        _onDeselectAction.ForEach(action => action.Invoke());
+        var actionsImmutable = _onDeselectAction.ToList();
+        actionsImmutable.ForEach(action => action.Invoke());
     }
 
     public void Dispose()

@@ -17,23 +17,4 @@ public partial class Shop : Node
 
         BackgroundManager.ChangeColor(NamedColor.Orange.GetColor(), lightenFactor: .7f);
     }
-
-    public void UpdateEaterDisplay(EaterFace eaterFace)
-    {
-        CutsceneManager.Play(new() {
-            new(() => {
-                TweenUtils.Pop(_eaterDisplay, 2f, 3f, transitionType: Tween.TransitionType.Spring);
-            }, 0),
-            new(() => {        
-                _eaterDisplay.EaterFace = eaterFace;
-                _eaterDisplay.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
-                _eaterDisplay.Setup();
-            }, 2),
-            new(() => {
-                TweenUtils.Pop(_eaterDisplay, 3.5f, 1f);
-                _purchaseParticles.Texture = _eaterDisplay.EaterType.GetFoodType().GetFoodTypeTexture(true);
-                _purchaseParticles.Emitting = true;
-            }, 0),
-        });
-    }
 }

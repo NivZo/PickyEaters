@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7nk7lq3mpdp7"]
+
+[ext_resource type="Script" path="res://GUI/Modal/Modal.cs" id="1_botax"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_xrrrn"]
+[ext_resource type="Texture2D" uid="uid://beewocjos58r" path="res://Assets/GUI/modal.png" id="3_r83kf"]
+[ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="4_iibes"]
+[ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="5_a5m3i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcngc"]
+size = Vector2(864, 1152)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ntrx"]
+shader = ExtResource("2_xrrrn")
+shader_parameter/radius_scale = 0.2
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 880.0
+shader_parameter/height = 1168.0
+
+[sub_resource type="Animation" id="Animation_dd1dj"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoModalLarge:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgxdg"]
+_data = {
+"float": SubResource("Animation_dd1dj")
+}
+
+[node name="InfoModalLarge" type="Node2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_botax")
+
+[node name="ClickBlocker" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1440, 2560)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -720.0
+offset_top = -1280.0
+offset_right = 720.0
+offset_bottom = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="ClickArea" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(0, 1.99998)
+shape = SubResource("RectangleShape2D_vcngc")
+
+[node name="Outline" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_0ntrx")
+offset_left = -440.0
+offset_top = -582.0
+offset_right = 440.0
+offset_bottom = 586.0
+texture = ExtResource("3_r83kf")
+expand_mode = 1
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.344738, 0.318829, 0.32989, 1)
+material = SubResource("ShaderMaterial_0ntrx")
+offset_left = -432.0
+offset_top = -574.0
+offset_right = 432.0
+offset_bottom = 578.0
+texture = ExtResource("3_r83kf")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_kgxdg")
+}
+autoplay = "float"
+
+[node name="CloseModal" parent="." instance=ExtResource("4_iibes")]
+offset_left = -288.0
+offset_top = 434.0
+offset_right = 288.0
+offset_bottom = 552.0
+pivot_offset = Vector2(0, 0)
+script = ExtResource("5_a5m3i")
+CustomText = "OK"
+CustomTextSize = 80
+Color = Color(0.529412, 0.894118, 0.615686, 1)
+Highlight = false

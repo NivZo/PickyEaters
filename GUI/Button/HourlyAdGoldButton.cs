@@ -30,7 +30,7 @@ public partial class HourlyAdGoldButton : CustomButton
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (!IsEnabled())
+        if (!IsEnabledFunc())
         {
             SetCustomText(TimeLeftToClaim());
         }

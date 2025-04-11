@@ -13,5 +13,4 @@ public partial class EaterCollectionShowcase : EaterShowcase
         GetNode<RichTextLabel>("EaterRarity").Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);
         GetNode<Sprite2D>("RarityBadge").Modulate = resource.EaterRarity.GetRarityColor();
     }
-
 }

@@ -19,7 +19,7 @@ public partial class DailyFreeGoldButton : CustomButton
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (!IsEnabled())
+        if (!IsEnabledFunc())
         {
             SetCustomText(TimeLeftToClaim());
         }
