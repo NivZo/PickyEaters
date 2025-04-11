@@ -115,7 +115,7 @@ public partial class EaterDisplay : Node2D
 
     public void HandleDeactivate()
     {
-        Face.Texture = EaterFace.GetEaterFaceTexture();
+        Face.Texture = _isOwned ? EaterFace.GetEaterFaceTexture() : EaterFace.Hidden.GetEaterActiveFaceTexture();
         TweenUtils.Pop(this, BaseScale * 1);
         TweenUtils.BoldOutline(Body, 4, 8);
 
