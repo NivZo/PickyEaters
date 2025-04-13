@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtq2o1jqkk6sc"]
+[gd_scene load_steps=16 format=3 uid="uid://dtq2o1jqkk6sc"]
 
 [ext_resource type="Script" path="res://GUI/Modal/RewardModal.cs" id="1_nykx2"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_pe40b"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_fthrm"]
 [ext_resource type="Texture2D" uid="uid://beewocjos58r" path="res://Assets/GUI/modal.png" id="3_ms0gd"]
+[ext_resource type="Texture2D" uid="uid://c6qoag1x01had" path="res://Assets/star.png" id="4_27o2g"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_bjnks"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="5_ta10d"]
 [ext_resource type="Script" path="res://GUI/Button/DoubleRewardButton.cs" id="7_2225d"]
@@ -10,8 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://bcnylt22sforb" path="res://Assets/coin.png" id="9_g0a5k"]
 
 [sub_resource type="Curve" id="Curve_ce7ma"]
-_data = [Vector2(0, 0.50295), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.300448), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h018g"]
+shader = ExtResource("3_fthrm")
+shader_parameter/maxLineWidth = 8.0
+shader_parameter/minLineWidth = 4.0
+shader_parameter/speed = 2.0
+shader_parameter/blockSize = 12.0
+shader_parameter/color = null
+shader_parameter/tolerance = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ntrx"]
 shader = ExtResource("2_pe40b")
@@ -77,6 +88,25 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 160.0
 initial_velocity_max = 200.0
+scale_amount_curve = SubResource("Curve_ce7ma")
+
+[node name="LikeParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_h018g")
+amount = 20
+lifetime = 2.0
+explosiveness = 0.5
+local_coords = true
+texture = ExtResource("4_27o2g")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 120)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 200.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.05
 scale_amount_curve = SubResource("Curve_ce7ma")
 
 [node name="Modal" type="Node2D" parent="."]

@@ -17,7 +17,7 @@ public partial class EaterShopShowcase : EaterShowcase
     {
         base._Ready();
 
-        _newFace = EnumUtils.GetRandomValueExcluding(SaveManager.ActiveSave.UnlockedFaces.Concat(new EaterFace[1] { EaterFace.Hidden }).ToList());
+        _newFace = UnlockManager.GetEaterFaceToUnlock();
         SaveManager.ActiveSave.UnlockedFaces.Add(_newFace);
         SaveManager.ActiveSave.Coins -= 1000;
         SaveManager.CommitActiveSave();

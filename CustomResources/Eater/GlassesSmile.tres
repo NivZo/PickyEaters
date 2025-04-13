@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://c856f5fj2oxv2"]
+
+[ext_resource type="Texture2D" uid="uid://cmjp47ickrp74" path="res://Assets/Faces/GlassesSmileActive.png" id="1_vpjly"]
+[ext_resource type="Texture2D" uid="uid://cebw24kkehojx" path="res://Assets/Faces/GlassesSmile.png" id="2_lq01t"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_qimcm"]
+
+[resource]
+script = ExtResource("3_qimcm")
+EaterFace = 10
+EaterName = "Ned"
+EaterRarity = 1
+PassiveTexture = ExtResource("2_lq01t")
+ActiveTexture = ExtResource("1_vpjly")

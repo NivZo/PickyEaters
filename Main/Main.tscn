@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dorca4gdxnr1c"]
+[gd_scene load_steps=19 format=3 uid="uid://dorca4gdxnr1c"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_hxws4"]
 [ext_resource type="PackedScene" uid="uid://digbl1qnoe236" path="res://GUI/Screens/Transition.tscn" id="2_230nq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="6_ctjmt"]
 [ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="11_ntej4"]
 [ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
+[ext_resource type="Texture2D" uid="uid://dlv60ej1s8gsl" path="res://Assets/overlays.png" id="12_q2cqt"]
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
 [ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="15_jrtrs"]
@@ -31,6 +32,8 @@ shader_parameter/lighting = 0.2
 shader_parameter/spin_amount = 0.0
 shader_parameter/pixel_filter = 740.0
 shader_parameter/is_rotating = true
+shader_parameter/texture_opacity = 0.0
+shader_parameter/use_node_color = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blsp2"]
 shader = ExtResource("4_xg10b")
@@ -109,6 +112,7 @@ metadata/_edit_lock_ = true
 follow_viewport_enabled = true
 
 [node name="BorderLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Outline" type="Sprite2D" parent="BorderLayer"]
 material = SubResource("ShaderMaterial_blsp2")
@@ -166,6 +170,11 @@ follow_viewport_enabled = true
 
 [node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
+[node name="Overlays" type="Sprite2D" parent="Shaders"]
+visible = false
+texture = ExtResource("12_q2cqt")
+centered = false
+
 [node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_r6s11")
 anchors_preset = 15
@@ -177,6 +186,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="FrontBorderLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Outline" type="Sprite2D" parent="FrontBorderLayer"]
 material = SubResource("ShaderMaterial_blsp2")
