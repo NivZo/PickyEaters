@@ -17,7 +17,7 @@ shader_parameter/height = 360.0
 [node name="TutorialLocalManager" type="Node2D"]
 script = ExtResource("1_q8lvk")
 
-[node name="DailyFreeGold" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_rw8ux")
 anchors_preset = 15
 anchor_right = 1.0

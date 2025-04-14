@@ -9,7 +9,7 @@ position = Vector2(0, -2)
 [node name="InfoModalLarge" parent="." instance=ExtResource("1_euy7a")]
 
 [node name="EaterShopShowcase" parent="InfoModalLarge" instance=ExtResource("5_23m0o")]
-position = Vector2(0, -140)
+position = Vector2(0, -68)
 scale = Vector2(1.5, 1.5)
 RandomFace = false
 RandomColor = false

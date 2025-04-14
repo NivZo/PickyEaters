@@ -3,8 +3,9 @@ using Godot;
 
 public partial class EaterShopShowcase : EaterShowcase
 {
-    private RichTextLabel _nameText;
-    private RichTextLabel _rarityText;
+    private RichTextLabel _nameLabel;
+    private RichTextLabel _rarityLabel;
+    private RichTextLabel _titleLabel;
     private Sprite2D _rarityBadge;
     private CpuParticles2D _purchaseParticles;
     private HandGuidanceIndicator _tapIndicator;
@@ -29,15 +30,16 @@ public partial class EaterShopShowcase : EaterShowcase
         Display.Scale = Vector2.One;
 
         _purchaseParticles = GetNode<CpuParticles2D>("PurchaseParticles");
-        _nameText = GetNode<RichTextLabel>("EaterName");
-        _rarityText = GetNode<RichTextLabel>("EaterRarity");
+        _titleLabel = GetNode<RichTextLabel>("Title");
+        _titleLabel.Text = TextUtils.WaveString("TAP!", letterDistance: 15);
+        _nameLabel = GetNode<RichTextLabel>("EaterName");
+        _rarityLabel = GetNode<RichTextLabel>("EaterRarity");
         _rarityBadge = GetNode<Sprite2D>("RarityBadge");
-        _nameText.Text = TextUtils.WaveString($"\n???", frequency: 4);
-        _rarityText.Text = TextUtils.WaveString($"\n???", frequency: 4);
+        _nameLabel.Text = TextUtils.WaveString($"\n???", frequency: 4);
+        _rarityLabel.Text = TextUtils.WaveString($"\n???", frequency: 4);
         _rarityBadge.Modulate = Rarity.Common.GetRarityColor();
+        _tapIndicator = GetNode<HandGuidanceIndicator>("HandGuidanceIndicator");
 
-        _tapIndicator = HandGuidanceIndicator.CreatePointing(this, Display.GlobalPosition);
-        _tapIndicator.ZIndex = 4;
         Display.SelectComponent.ClearActions();
         Display.SelectComponent.Select += HandleSelect;
         Display.SelectComponent.Deselect += HandleDeselect;
@@ -48,7 +50,7 @@ public partial class EaterShopShowcase : EaterShowcase
 
     private void HandleSelect()
     {
-        _currentTween = TweenUtils.Pop(Display, 3 -  .5f * _tapsToReveal - .75f);
+        _currentTween = TweenUtils.Pop(Display, 3 - .5f * _tapsToReveal - .8f);
     }
 
     private void HandleDeselect()
@@ -56,8 +58,15 @@ public partial class EaterShopShowcase : EaterShowcase
         _currentTween?.Kill();
         if (_tapsToReveal >= 1)
         {
-            _currentTween = TweenUtils.Pop(Display, 3 -  .5f * _tapsToReveal);
+            Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.1f);
+            _currentTween = TweenUtils.Pop(Display, 3 - .5f * _tapsToReveal);
             _tapsToReveal--;
+            _tapIndicator.Scale = new(.2f, .2f);
+            TweenUtils.Pop(_tapIndicator, 1);
+
+            _titleLabel.Scale = new(.5f, .5f);
+            _titleLabel.Text = TextUtils.WaveString("TAP" + new string('!', 4 - _tapsToReveal), letterDistance: 15);
+            TweenUtils.Pop(_titleLabel, 1, .75f);
         }
 
         if (_tapsToReveal == 0)
@@ -68,14 +77,20 @@ public partial class EaterShopShowcase : EaterShowcase
 
     public void Reveal(EaterFace eaterFace)
     {
+        Input.VibrateHandheld(200, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.2f);
         var resource = eaterFace.GetEaterResource();
         Display.EaterFace = eaterFace;
         Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
-        _nameText.Text = TextUtils.WaveString($"\n{resource.EaterName}", frequency: 4);
-        _rarityText.Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);
+        _nameLabel.Text = TextUtils.WaveString($"\n{resource.EaterName}", frequency: 4);
+        _rarityLabel.Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);
         _rarityBadge.Modulate = resource.EaterRarity.GetRarityColor();
-        Display.BaseScale = 2.5f;
+        Display.BaseScale = 2.8f;
         Display.Setup();
+        _tapIndicator.Visible = false;
+
+        _titleLabel.Scale = new(.5f, .5f);
+        _titleLabel.Text = TextUtils.WaveString("MUNCHER UNLOCKED!", letterDistance: 4);
+        TweenUtils.Pop(_titleLabel, 1, .75f);
 
         _purchaseParticles.Texture = Display.EaterType.GetFoodType().GetFoodTypeTexture(true);
         _purchaseParticles.Emitting = true;

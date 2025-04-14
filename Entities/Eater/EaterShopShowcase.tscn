@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c466esondrnax"]
+[gd_scene load_steps=10 format=3 uid="uid://c466esondrnax"]
 
 [ext_resource type="Script" path="res://Entities/Eater/EaterShopShowcase.cs" id="1_5rt4g"]
 [ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_7r2a5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_65h4d"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="5_jsd75"]
 [ext_resource type="Texture2D" uid="uid://c0sgc0hdw03xw" path="res://Assets/Entities/yellow_star_food.png" id="6_v1pmo"]
+[ext_resource type="PackedScene" uid="uid://cjpbu2qbnduj8" path="res://GUI/Indicators/HandGuidanceIndicator.tscn" id="7_rovaq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8dn3"]
 shader = ExtResource("5_jsd75")
@@ -58,9 +59,21 @@ scale = Vector2(2.75, 2.25)
 texture = ExtResource("2_7r2a5")
 
 [node name="EaterDisplay" parent="." instance=ExtResource("3_4ivow")]
-position = Vector2(0, -64)
+position = Vector2(0, -72)
 scale = Vector2(2, 2)
 EaterFace = 1
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = -288.0
+offset_top = -392.0
+offset_right = 288.0
+offset_bottom = -320.0
+pivot_offset = Vector2(288, 36)
+mouse_filter = 1
+theme = ExtResource("4_65h4d")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]TAP![/font][/wave][/center]"
 
 [node name="EaterName" type="RichTextLabel" parent="."]
 offset_left = -288.0
@@ -85,3 +98,7 @@ theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=4.0 connected=1][font gl=15]
 RARE[/font][/wave][/center]"
+
+[node name="HandGuidanceIndicator" parent="." instance=ExtResource("7_rovaq")]
+position = Vector2(60, -36)
+GestureType = 2

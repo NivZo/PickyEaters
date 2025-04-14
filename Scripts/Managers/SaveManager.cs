@@ -46,7 +46,7 @@ public class SaveManager
         ActiveSave = new SaveData()
         {
             LevelReached = LevelManager.MaxLevel,
-            Coins = 7425,
+            Coins = 17425,
             UnlockedFaces = new() { EaterFace.SmileBasic, EaterFace.WideOpenSmile },
             LastDailyFreeRewardClaimedOLE = DateTime.MinValue.ToBinary(),
         };

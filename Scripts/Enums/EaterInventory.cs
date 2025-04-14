@@ -12,7 +12,9 @@ public enum EaterFace
     GrumpyCyclops,
     Pigface,
     AngryGrumpy,
-    GlassesSmile
+    GlassesSmile,
+    SquigglyMouth,
+    BlueTongue,
 }
 
 public static class EaterFaceExtensions

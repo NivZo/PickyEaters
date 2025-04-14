@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://73a51mnkhhy8"]
+
+[ext_resource type="Texture2D" uid="uid://c83u0bfprbeek" path="res://Assets/Faces/SquigglyMouthActive.png" id="1_hgd1x"]
+[ext_resource type="Texture2D" uid="uid://djltcs3pw1twm" path="res://Assets/Faces/SquigglyMouth.png" id="2_4f2jt"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_ugovt"]
+
+[resource]
+script = ExtResource("3_ugovt")
+EaterFace = 11
+EaterName = "Squiggle"
+EaterRarity = 2
+PassiveTexture = ExtResource("2_4f2jt")
+ActiveTexture = ExtResource("1_hgd1x")

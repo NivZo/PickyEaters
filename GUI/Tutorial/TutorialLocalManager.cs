@@ -71,11 +71,11 @@ public partial class TutorialLocalManager : Node
         {
             if (_currStep.Type == TutorialStepType.StartMove)
             {
-                _ind = HandGuidanceIndicator.CreatePointing(this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value));
+                _ind = HandGuidanceIndicator.Create(HandGuidanceIndicator.HandGuidanceIndicatorType.Pointing, this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value));
             }
             else if (_currStep.Type == TutorialStepType.PerformMove)
             {
-                _ind = HandGuidanceIndicator.CreateSwiping(this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value), LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.TargetPosition.Value));
+                _ind = HandGuidanceIndicator.Create(HandGuidanceIndicator.HandGuidanceIndicatorType.Swiping, this, LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.Position.Value), LevelManager.Level.BoardPositionIdToGlobalPosition(_currStep.TargetPosition.Value));
             }
 
             if (_tutorialText.Text != _currStep.Text)

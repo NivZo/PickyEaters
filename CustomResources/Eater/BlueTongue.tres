@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://dkpj7ld44nv4r"]
+
+[ext_resource type="Texture2D" uid="uid://7i04yulnwm64" path="res://Assets/Faces/BlueTongueActive.png" id="1_4eru8"]
+[ext_resource type="Texture2D" uid="uid://caddltrdff3ml" path="res://Assets/Faces/BlueTongue.png" id="2_740cx"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_ge7e5"]
+
+[resource]
+script = ExtResource("3_ge7e5")
+EaterFace = 12
+EaterName = "Psyan"
+EaterRarity = 3
+PassiveTexture = ExtResource("2_740cx")
+ActiveTexture = ExtResource("1_4eru8")
