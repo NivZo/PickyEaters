@@ -82,9 +82,9 @@ public partial class Food : Node2D
         }
     }
 
-    private void HandleSelectionEnded(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
+    private void HandleSelectionEnded(Eater eater, Food food, bool IsHint)
     {
-        if (FoodPosId != BoardStatePositionId)
+        if (food.BoardStatePositionId != BoardStatePositionId)
         {
             TweenUtils.Pop(this, 1);
             TweenUtils.BoldOutline(Sprite, 8, 12);

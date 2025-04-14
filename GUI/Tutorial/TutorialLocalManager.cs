@@ -109,14 +109,14 @@ public partial class TutorialLocalManager : Node
         }
     }
 
-    private void HandleMovePerformed(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
+    private void HandleMovePerformed(Eater eater, Food food, bool IsHint)
     {
         if (_suggestUndo > 0)
         {
             _suggestUndo++;
             SetupStep();
         }
-        else if (_currStep?.Type == TutorialStepType.PerformMove && _currStep.TargetPosition != FoodPosId)
+        else if (_currStep?.Type == TutorialStepType.PerformMove && _currStep.TargetPosition != food.BoardStatePositionId)
         {
             _suggestUndo = 1;
             SetupStep();

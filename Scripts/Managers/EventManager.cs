@@ -38,9 +38,10 @@ public static class EventManager
     public static event MoveSelectionCancelHandler MoveSelectionCancelled;
     public static void InvokeMoveSelectionCancelled(Vector2I eaterPosId) => MoveSelectionCancelled.Invoke(eaterPosId);
     
-    public delegate void MovePerformHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint);
+    // Assuming Eater and Food types are accessible (e.g., via using statements)
+    public delegate void MovePerformHandler(Eater eater, Food food, bool IsHint);
     public static event MovePerformHandler MovePerformed;
-    public static void InvokeMovePerformed(Vector2I eaterPosId, Vector2I foodPosId, FoodType foodType, bool isLast, bool isHint) => MovePerformed.Invoke(eaterPosId, foodPosId, foodType, isLast, isHint);
+    public static void InvokeMovePerformed(Eater eater, Food food, bool isHint) => MovePerformed?.Invoke(eater, food, isHint);
     
     public delegate void MoveUndoHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast);
     public static event MoveUndoHandler MoveUndone;

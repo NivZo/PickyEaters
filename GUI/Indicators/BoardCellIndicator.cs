@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
+// Removed incorrect using statements
 
 public partial class BoardCellIndicator : Node2D
 {
@@ -8,9 +9,8 @@ public partial class BoardCellIndicator : Node2D
     private ColorRect _cell;
     private readonly static PackedScene _scene = GD.Load<PackedScene>("res://GUI/Indicators/BoardCellIndicator.tscn");
     private readonly static Color _originalColor = NamedColor.TransparentGray.GetColor();
-    private readonly static Color _consumedColor = NamedColor.White.GetColor();
 
-    private bool _isConsumed => _cell.Color == _consumedColor;
+    private bool _isConsumed = false;
 
     public override void _Ready()
     {
@@ -37,13 +37,15 @@ public partial class BoardCellIndicator : Node2D
     public static BoardCellIndicator Create(Vector2 globalPosition, Vector2I boardStatePositionId, bool isConsumed = false)
     {
         var ind = _scene.Instantiate<BoardCellIndicator>();
+        ind._isConsumed = isConsumed;
+        if (isConsumed)
+        {
+            var color = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == boardStatePositionId)?.EaterType.GetNamedColor().GetColor() ?? NamedColor.White.GetColor();
+            ind.Highlight(color with { A = .1f }, true);
+        }
         ind.GlobalPosition = globalPosition;
         ind._boardStatePositionId = boardStatePositionId;
         ind._cell = ind.GetNode<ColorRect>("Cell");
-        if (isConsumed)
-        {
-            ind.Highlight(_consumedColor);
-        }
 
         return ind;
     }
@@ -78,11 +80,12 @@ public partial class BoardCellIndicator : Node2D
         }
     }
 
-    private void HandleMovePerformed(Vector2I eaterPosId, Vector2I foodPosId, FoodType foodType, bool isLast, bool isHint)
+    private void HandleMovePerformed(Eater eater, Food food, bool isHint)
     {
-        if (foodPosId == _boardStatePositionId)
+        if (food.BoardStatePositionId == _boardStatePositionId)
         {
-            Highlight(_consumedColor);
+            Highlight(eater.EaterType.GetNamedColor().GetColor() with { A = .1f }, true);
+            _isConsumed = true;
         }
         else
         {

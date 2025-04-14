@@ -113,7 +113,7 @@ public partial class Eater : Node2D
             HistoryManager.AddMove(food, this, currPos);
             var eaterPosId = BoardStatePositionId;
             BoardStatePositionId = food.BoardStatePositionId;
-            EventManager.InvokeMovePerformed(eaterPosId, food.BoardStatePositionId, food.FoodType, food.IsLast, isHint);        
+            EventManager.InvokeMovePerformed(this, food, isHint); // Pass Eater and Food objects directly
             food.QueueFree();
             AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + _eatStreak * 0.1f);
         });

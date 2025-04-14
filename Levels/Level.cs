@@ -88,9 +88,10 @@ public partial class Level : Node
         return Vector2.Zero;
     }
 
-    private void HandleMove(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast, bool IsHint)
+    // Updated signature and using food object properties
+    private void HandleMove(Eater eater, Food food, bool isHint)
     {
-        if (IsHint)
+        if (isHint) // Use the new isHint parameter
         {
             HintManager.ActivateHint();
         }
@@ -100,7 +101,8 @@ public partial class Level : Node
         }
 
         var unfinished = LevelManager.Level.GetUnfinishedFoodTypes();
-        if (unfinished.Count == 1 && unfinished.FirstOrDefault() == FoodType && IsLast)
+        // Use food.FoodType and food.IsLast
+        if (unfinished.Count == 1 && unfinished.FirstOrDefault() == food.FoodType && food.IsLast)
         {
             EventManager.InvokeLevelVictorious();
             ModalManager.OpenVictoryModal();
