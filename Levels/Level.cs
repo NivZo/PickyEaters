@@ -35,7 +35,7 @@ public partial class Level : Node
 
         foreach (var eater in eaterNodes)
         {
-            var ind = BoardCellIndicator.Create(eater.GlobalPosition, eater.BoardStatePositionId, true);
+            var ind = BoardCellIndicator.Create(eater.GlobalPosition, eater.BoardStatePositionId, eater);
             _indicators.AddChild(ind);
             _boardCellIndicatorMapping.Add(eater.BoardStatePositionId, ind);
             cutscenes.Add(new(CreatePopNodeCutsceneAction(eater), cutsceneDelay));

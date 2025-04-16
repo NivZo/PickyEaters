@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Godot;
-// Removed incorrect using statements
 
 public partial class BoardCellIndicator : Node2D
 {
@@ -34,18 +33,18 @@ public partial class BoardCellIndicator : Node2D
         DisconnectSignals();
     }
 
-    public static BoardCellIndicator Create(Vector2 globalPosition, Vector2I boardStatePositionId, bool isConsumed = false)
+    public static BoardCellIndicator Create(Vector2 globalPosition, Vector2I boardStatePositionId, Eater eater = null)
     {
         var ind = _scene.Instantiate<BoardCellIndicator>();
-        ind._isConsumed = isConsumed;
-        if (isConsumed)
+        ind._cell = ind.GetNode<ColorRect>("Cell");
+        ind._isConsumed = eater != null;
+        if (ind._isConsumed)
         {
-            var color = LevelManager.Level.GetEaters().FirstOrDefault(eater => eater.BoardStatePositionId == boardStatePositionId)?.EaterType.GetNamedColor().GetColor() ?? NamedColor.White.GetColor();
+            var color = eater?.EaterType.GetNamedColor().GetColor() ?? NamedColor.White.GetColor();
             ind.Highlight(color with { A = .1f }, true);
         }
         ind.GlobalPosition = globalPosition;
         ind._boardStatePositionId = boardStatePositionId;
-        ind._cell = ind.GetNode<ColorRect>("Cell");
 
         return ind;
     }
