@@ -6,13 +6,18 @@ public partial class StarQuestInfoButton : Button
     public override void _Ready()
     {
         base._Ready();
-        Pressed += ModalManager.OpenStarQuestInfoModal;
+        Pressed += OnPress;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
-        Pressed -= ModalManager.OpenStarQuestInfoModal;
+        Pressed -= OnPress;
     }
 
+    private void OnPress()
+    {
+        AudioManager.PlayAudio(AudioType.Undo);
+        ModalManager.OpenStarQuestInfoModal();
+    }
 }

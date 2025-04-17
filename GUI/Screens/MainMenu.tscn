@@ -150,7 +150,7 @@ theme = ExtResource("2_jsudd")
 script = ExtResource("9_c137j")
 CustomText = "LEVELS"
 CustomTextSize = 100
-Color = Color(1, 0.846058, 0.369714, 1)
+Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
 Highlight = false
 
