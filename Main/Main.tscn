@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://b0ovsr23o254s" path="res://GUI/VLine.tscn" id="6_ctjmt"]
 [ext_resource type="PackedScene" uid="uid://dcbl4r2thhc3g" path="res://GUI/Button/TransparentButton.tscn" id="11_ntej4"]
 [ext_resource type="Script" path="res://GUI/Button/SettingsButton.cs" id="12_cmqsi"]
-[ext_resource type="Texture2D" uid="uid://dlv60ej1s8gsl" path="res://Assets/overlays.png" id="12_q2cqt"]
 [ext_resource type="Texture2D" uid="uid://hmkdeopq4svr" path="res://Assets/Icons/White/2x/gear.png" id="13_4lg4f"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="14_6bj1p"]
 [ext_resource type="AudioStream" uid="uid://dbotr4r85uru5" path="res://Audio/Fuzzball Parade.mp3" id="15_jrtrs"]
+[ext_resource type="PackedScene" uid="uid://dwqf7a1ilois2" path="res://GUI/Admob/AdmobProvider.tscn" id="16_bty6b"]
 [ext_resource type="Script" path="res://Main/MainCamera.cs" id="17_hyxa0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_towwm"]
@@ -50,7 +50,7 @@ shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.04
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(1080, 1440)
+shader_parameter/resolution = Vector2(720, 960)
 shader_parameter/pixelate = true
 shader_parameter/roll = true
 shader_parameter/roll_speed = 4.0
@@ -170,11 +170,6 @@ follow_viewport_enabled = true
 
 [node name="Transition" parent="Shaders" instance=ExtResource("2_230nq")]
 
-[node name="Overlays" type="Sprite2D" parent="Shaders"]
-visible = false
-texture = ExtResource("12_q2cqt")
-centered = false
-
 [node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_r6s11")
 anchors_preset = 15
@@ -219,3 +214,5 @@ anchor_mode = 0
 script = ExtResource("17_hyxa0")
 RandomStrength = 1.5
 ShakeFade = 1.5
+
+[node name="AdmobProvider" parent="." instance=ExtResource("16_bty6b")]

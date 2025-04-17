@@ -9,7 +9,7 @@ public partial class CloseModalButton : CustomButton
     {
         base.OnClick();
 
-        ModalManager.CloseModal();
+        ModalManager.CloseModal(true);
     }
 
 }

@@ -9,6 +9,7 @@ public partial class Main : Node
 
     public static string ErrorDisplay = string.Empty;
     public static Main Instance { get; private set; }
+    public static bool PlayedIntro = false;
 
     public override void _Ready()
     {

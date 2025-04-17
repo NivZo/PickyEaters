@@ -63,7 +63,7 @@ public partial class DifficultyIndicator : Node2D
     public void Setup()
     {
         StartingLevel = StartingLevel == -1 ? SaveManager.ActiveSave.LevelReached : StartingLevel;
-        _label.Text = $"[center][wave amp=12.0 freq=6.0][font gl=5]{_difficultyName[Math.Max(0, (StartingLevel-1) / 15)]}[/font][/wave][/center]";
+        _label.Text = $"[center][wave amp=8.0 freq=4.0][font gl=5]{_difficultyName[Math.Max(0, (StartingLevel-1) / 15)]}[/font][/wave][/center]";
         _bg.SelfModulate = LevelManager.GetLevelColor(StartingLevel);
     }
 

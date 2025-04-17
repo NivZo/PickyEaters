@@ -22,7 +22,9 @@ public class ScreenManager
     public static void LoadFirstScreen()
     {
         _screenToLoad = ScreenType.MainMenu;
-        PerformTransition();
+        CurrentScreen = _screenToLoad;
+        _currentScreen = GetScreen(CurrentScreen);
+        _screenLayer.AddChild(_currentScreen);
     }
     
     public static void TransitionToScreen(ScreenType screenType)

@@ -18,13 +18,29 @@ public partial class HourlyAdGoldButton : CustomButton
             }
             return GetStartOfWindow(DateTime.Now) > lastClaimWindowStart;
         };
+
+        EventManager.AdRewardGranted += OnRewardGranted;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        EventManager.AdRewardGranted -= OnRewardGranted;
     }
     
     protected override void OnClick()
     {
-        SaveManager.ActiveSave.LastHourlyAdRewardClaimedOLE = DateTime.Now.ToOADate();
-        CoinsManager.AddCoins(100);
-        WaveString = false;
+        AdmobProvider.Instance.ShowRewardedAd("hourly_gold");
+    }
+
+    private void OnRewardGranted(string rewardType)
+    {
+        if (rewardType == "hourly_gold")
+        {
+            SaveManager.ActiveSave.LastHourlyAdRewardClaimedOLE = DateTime.Now.ToOADate();
+            CoinsManager.AddCoins(100);
+            WaveString = false;
+        }
     }
 
     public override void _Process(double delta)

@@ -18,6 +18,7 @@ public partial class HintButton : CustomButton
         AddChild(_currentClickHintsTimer);
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
 
+        EventManager.AdRewardGranted += OnRewardGranted;
         EventManager.LevelReset += HandleLevelReset;
     }
     
@@ -29,19 +30,15 @@ public partial class HintButton : CustomButton
         }
         else
         {
-            ModalManager.OpenAreYouSureModal(() => {
-                HintManager.ResetHintUsed();
-                SetCustomText($"HINT [{HintManager.HintsLeft}]");
-            },
-            "OUT OF HINTS!\nWATCH AN AD TO REFILL?");
+            ModalManager.OpenAreYouSureModal(
+                () => AdmobProvider.Instance.ShowRewardedAd("reset_hints"),
+                "OUT OF HINTS!\nWATCH AN AD TO REFILL?");
         }
     }
 
     private void UseHint()
     {
         ExecuteHintInternal();
-        // _currentClickHintsTimer.Start();
-        // ActionManager.StartBackgroundAction();
         HintManager.HintUsed();
         SetCustomText($"HINT [{HintManager.HintsLeft}]");
     }
@@ -79,6 +76,15 @@ public partial class HintButton : CustomButton
         });
     }
 
+    private void OnRewardGranted(string rewardType)
+    {
+        if (rewardType == "reset_hints")
+        {
+            HintManager.ResetHintUsed();
+            SetCustomText($"HINT [{HintManager.HintsLeft}]");
+        }
+    }
+
     private void HandleLevelReset()
     {
         HintManager.CalculateSolutionPath();
@@ -89,6 +95,7 @@ public partial class HintButton : CustomButton
     public override void _ExitTree()
     {
         base._ExitTree();
+        EventManager.AdRewardGranted -= OnRewardGranted;
         EventManager.LevelReset -= HandleLevelReset;
     }
 }

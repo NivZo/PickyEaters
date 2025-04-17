@@ -39,5 +39,5 @@ public partial class AreYouSure : Node2D
     }
 
     public static void SetText(string text) => _text = text;
-    public static void SetOnConfirm(Action onConfirm) => _onConfirm = () => { onConfirm(); ModalManager.CloseModal(); };
+    public static void SetOnConfirm(Action onConfirm) => _onConfirm = () => { ModalManager.CloseModal(); onConfirm(); };
 }

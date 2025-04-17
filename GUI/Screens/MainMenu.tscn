@@ -1,11 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=17 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
-[ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="2_4cnfy"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_jsudd"]
-[ext_resource type="FontFile" uid="uid://cgvm14mfr87hb" path="res://Fonts/VVD Golden Horn Regular.ttf" id="6_747h4"]
-[ext_resource type="PackedScene" uid="uid://b5xwhms52s775" path="res://Entities/Eater/EaterShowcase.tscn" id="7_ugrdu"]
+[ext_resource type="PackedScene" uid="uid://cywykxsb628l" path="res://GUI/Screens/Title.tscn" id="3_c4hrn"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
 [ext_resource type="PackedScene" uid="uid://byh1yq6x7w41h" path="res://GUI/Indicators/StarsIndicator.tscn" id="8_fo3lq"]
@@ -15,14 +13,6 @@
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
 [ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="11_j4xwe"]
 [ext_resource type="Script" path="res://GUI/Button/StarQuestInfoButton.cs" id="15_hvyj7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5g82"]
-shader = ExtResource("2_4cnfy")
-shader_parameter/size_effect = 0.1
-shader_parameter/speed = 0.15
-shader_parameter/highlight_strength = 0.5
-shader_parameter/color_mode_toggle = false
-shader_parameter/is_horizontal = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d5gw3"]
 shader = ExtResource("11_j4xwe")
@@ -50,52 +40,6 @@ position = Vector2(0, 1379)
 [node name="HLineBottom" parent="Borders" instance=ExtResource("2_cmngc")]
 visible = false
 position = Vector2(0, 2200)
-
-[node name="Title" type="Node2D" parent="."]
-material = SubResource("ShaderMaterial_h5g82")
-position = Vector2(0, -216)
-
-[node name="GameTitle" type="RichTextLabel" parent="Title"]
-use_parent_material = true
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 288.0
-offset_top = 464.0
-offset_right = 864.0
-offset_bottom = 680.0
-grow_horizontal = 2
-theme = ExtResource("2_jsudd")
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("6_747h4")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]Munch[/font][/wave][/center]"
-scroll_active = false
-
-[node name="GameTitle2" type="RichTextLabel" parent="Title"]
-use_parent_material = true
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 576.0
-offset_top = 680.0
-offset_right = 1152.0
-offset_bottom = 896.0
-grow_horizontal = 2
-theme = ExtResource("2_jsudd")
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("6_747h4")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]Bunch[/font][/wave][/center]"
-scroll_active = false
-
-[node name="EaterShowcase" parent="Title" instance=ExtResource("7_ugrdu")]
-position = Vector2(432, 792)
-scale = Vector2(1.2, 1.2)
-
-[node name="EaterShowcase2" parent="Title" instance=ExtResource("7_ugrdu")]
-position = Vector2(1008, 576)
-scale = Vector2(1.2, 1.2)
 
 [node name="CurrentLevel" type="Node2D" parent="."]
 
@@ -241,3 +185,5 @@ offset_top = 792.0
 offset_right = 1008.0
 offset_bottom = 936.0
 script = ExtResource("15_hvyj7")
+
+[node name="Title" parent="GUILayer" instance=ExtResource("3_c4hrn")]

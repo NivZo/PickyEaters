@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 // Progress parameters
 uniform float progress : hint_range(0, 1);
-uniform float diamondPixelSize : hint_range(1.0f, 24.0f) = 10.0f;
+uniform float diamondPixelSize : hint_range(1.0f, 72.0f) = 10.0f;
 uniform bool reverse = false;
 
 // Balatro visual parameters

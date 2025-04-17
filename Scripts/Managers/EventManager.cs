@@ -38,10 +38,9 @@ public static class EventManager
     public static event MoveSelectionCancelHandler MoveSelectionCancelled;
     public static void InvokeMoveSelectionCancelled(Vector2I eaterPosId) => MoveSelectionCancelled.Invoke(eaterPosId);
     
-    // Assuming Eater and Food types are accessible (e.g., via using statements)
     public delegate void MovePerformHandler(Eater eater, Food food, bool IsHint);
     public static event MovePerformHandler MovePerformed;
-    public static void InvokeMovePerformed(Eater eater, Food food, bool isHint) => MovePerformed?.Invoke(eater, food, isHint);
+    public static void InvokeMovePerformed(Eater eater, Food food, bool isHint) => MovePerformed.Invoke(eater, food, isHint);
     
     public delegate void MoveUndoHandler(Vector2I EaterPosId, Vector2I FoodPosId, FoodType FoodType, bool IsLast);
     public static event MoveUndoHandler MoveUndone;
@@ -50,4 +49,8 @@ public static class EventManager
     public delegate void LevelVictoryHandler();
     public static event LevelVictoryHandler LevelVictorious;
     public static void InvokeLevelVictorious() => LevelVictorious.Invoke();
+
+    public delegate void AdRewardGrantHandler(string rewardType);
+    public static event AdRewardGrantHandler AdRewardGranted;
+    public static void InvokeAdRewardGranted(string rewardType) => AdRewardGranted.Invoke(rewardType);
 }

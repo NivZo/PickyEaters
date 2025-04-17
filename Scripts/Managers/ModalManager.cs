@@ -4,7 +4,7 @@ using Godot;
 
 public class ModalManager
 {
-    private static ModalType[] UNCLOSABLE_MODALS = new ModalType[] { ModalType.Victory };
+    private static ModalType[] UNCLOSABLE_MODALS = new ModalType[] { ModalType.Victory, ModalType.MuncherUnlockModal };
 
     private static Node2D _currentModal = null;
     private static CanvasLayer _modalLayer;
@@ -63,6 +63,19 @@ public class ModalManager
 
         OpenModal();
     }
+    
+    public static void OpenAdLoadingModal(bool isError = false)
+    {
+        _currentModal = GD.Load<PackedScene>("res://GUI/Modal/AdLoadingModal.tscn").Instantiate<Node2D>();
+        CurrentOpenModal = ModalType.AdLoadingModal;
+        
+        if (isError)
+        {
+            _currentModal.GetNode<RichTextLabel>("Modal/ModalText").Text = TextUtils.WaveString("ERROR - CAN'T LOAD AD", amplitude: 4f);
+        }
+
+        OpenModal();
+    }
 
     public static void CloseModal(bool overideUnclosable = false)
     {
@@ -91,5 +104,6 @@ public class ModalManager
         AreYouSure,
         StarQuestInfo,
         MuncherUnlockModal,
+        AdLoadingModal,
     }
 }
