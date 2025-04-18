@@ -81,7 +81,7 @@ public partial class EaterShopShowcase : EaterShowcase
         var resource = eaterFace.GetEaterResource();
         Display.EaterFace = eaterFace;
         Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
-        _nameLabel.Text = TextUtils.WaveString($"\n{resource.EaterName}", frequency: 4);
+        _nameLabel.Text = TextUtils.WaveString($"\n{resource.EaterName.ToUpperInvariant()}", frequency: 4);
         _rarityLabel.Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);
         _rarityBadge.Modulate = resource.EaterRarity.GetRarityColor();
         Display.BaseScale = 2.8f;

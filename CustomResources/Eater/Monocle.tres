@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://c4244q2df8eq3"]
+
+[ext_resource type="Texture2D" uid="uid://bgkhxjk7uog0y" path="res://Assets/Faces/MonocleActive.png" id="1_inpfa"]
+[ext_resource type="Texture2D" uid="uid://cobwf12ph1gs2" path="res://Assets/Faces/Monocle.png" id="2_dhqs1"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_632nl"]
+
+[resource]
+script = ExtResource("3_632nl")
+EaterFace = 15
+EaterName = "Sir Clops"
+EaterRarity = 1
+PassiveTexture = ExtResource("2_dhqs1")
+ActiveTexture = ExtResource("1_inpfa")

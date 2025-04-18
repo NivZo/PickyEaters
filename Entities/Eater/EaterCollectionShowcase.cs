@@ -7,7 +7,7 @@ public partial class EaterCollectionShowcase : EaterShowcase
         base._Ready();
 
         var resource = Display.EaterFace.GetEaterResource();
-        var name = SaveManager.ActiveSave.UnlockedFaces.Contains(resource.EaterFace) ? resource.EaterName : "???";
+        var name = SaveManager.ActiveSave.UnlockedFaces.Contains(resource.EaterFace) ? resource.EaterName.ToUpperInvariant() : "???";
 
         GetNode<RichTextLabel>("EaterName").Text = TextUtils.WaveString($"\n{name}", frequency: 4);
         GetNode<RichTextLabel>("EaterRarity").Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);

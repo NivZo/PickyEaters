@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://c43jf8c3fub1d"]
+
+[ext_resource type="Texture2D" uid="uid://dct23i2221bne" path="res://Assets/Faces/DizzyActive.png" id="1_8yt8s"]
+[ext_resource type="Texture2D" uid="uid://c6x7fkvq8jvl1" path="res://Assets/Faces/Dizzy.png" id="2_jgu7v"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_mkug7"]
+
+[resource]
+script = ExtResource("3_mkug7")
+EaterFace = 14
+EaterName = "Dizi"
+EaterRarity = 1
+PassiveTexture = ExtResource("2_jgu7v")
+ActiveTexture = ExtResource("1_8yt8s")

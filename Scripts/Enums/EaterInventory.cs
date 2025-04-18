@@ -15,6 +15,9 @@ public enum EaterFace
     GlassesSmile,
     SquigglyMouth,
     BlueTongue,
+    Monkey,
+    Dizzy,
+    Monocle,
 }
 
 public static class EaterFaceExtensions

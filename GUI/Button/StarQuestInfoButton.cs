@@ -7,8 +7,8 @@ public partial class StarQuestInfoButton : Button
     {
         base._Ready();
         Pressed += OnPress;
-        MouseEntered += OnHover;
-        MouseExited += OnUnhover;
+        ButtonDown += OnButtonDown;
+        ButtonUp += OnButtonUp;
     }
 
     public override void _ExitTree()
@@ -17,13 +17,13 @@ public partial class StarQuestInfoButton : Button
         Pressed -= OnPress;
     }
 
-    private void OnHover()
+    private void OnButtonDown()
     {
         Modulate = new("c8c8c8");
         Scale = new Vector2(0.95f, 0.95f);
     }
 
-    private void OnUnhover()
+    private void OnButtonUp()
     {
         Modulate = new("ffffff");
         Scale = Vector2.One;
