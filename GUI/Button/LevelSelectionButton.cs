@@ -6,6 +6,8 @@ public partial class LevelSelectionButton : Button
     {
         base._Ready();
         Pressed += OnPress;
+        MouseEntered += OnHover;
+        MouseExited += OnUnhover;
     }
 
     public override void _ExitTree()
@@ -14,9 +16,25 @@ public partial class LevelSelectionButton : Button
         Pressed -= OnPress;
     }
 
+    private void OnHover()
+    {
+        Modulate = new("c8c8c8");
+        Scale = new Vector2(0.95f, 0.95f);
+    }
+
+    private void OnUnhover()
+    {
+        Modulate = new("ffffff");
+        Scale = Vector2.One;
+    }
+
     private void OnPress()
     {
-        AudioManager.PlayAudio(AudioType.Undo);
-        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
+        if (ModalManager.CurrentOpenModal == ModalManager.ModalType.None)
+        {
+            AudioManager.PlayAudio(AudioType.Undo);
+            ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
+            OnUnhover();
+        }
     }
 }

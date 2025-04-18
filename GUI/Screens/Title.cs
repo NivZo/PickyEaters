@@ -8,7 +8,8 @@ public partial class Title : Node2D
     private Node2D _content;
     private ColorRect _bg;
     private ColorRect _fade;
-    private Area2D _clickToStart;
+    private RichTextLabel _tapToStartLabel;
+    private Area2D _tapToStartArea;
 
     private readonly Vector2 _contentTargetPosition = new(720, 0);
     private readonly int _contentTargetScale = 1;
@@ -19,8 +20,9 @@ public partial class Title : Node2D
         _content = GetNode<Node2D>("TitleContent");
         _bg = GetNode<ColorRect>("BackgroundEffectTiled");
         _fade = GetNode<ColorRect>("Fade");
-        _clickToStart = GetNode<Area2D>("ClickToStart");
-        _clickToStart.InputEvent += OnInput;
+        _tapToStartLabel = GetNode<RichTextLabel>("TapToStartLabel");
+        _tapToStartArea = GetNode<Area2D>("TapToStartArea");
+        _tapToStartArea.InputEvent += OnInput;
 
         if (Main.PlayedIntro)
         {
@@ -54,22 +56,28 @@ public partial class Title : Node2D
         bottomEater.Scale = Vector2.Zero;
         CutsceneManager.Play(new()
         {
-            new(() => TweenUtils.Color(_fade, new Color(0, 0, 0, 0), 1f), 0),
-            new(() => TweenUtils.Travel(munch, munchTargetPosition, .7f, Tween.TransitionType.Spring), 1.5f),
-            new(() => TweenUtils.Travel(bunch, bunchTargetPosition, .7f, Tween.TransitionType.Spring), .5f),
-            new(() => TweenUtils.Pop(topEater, 1.2f), 0.8f),
-            new(() => TweenUtils.Pop(bottomEater, 1.2f), 0.1f),
+            new(() => TweenUtils.Color(_fade, new Color(0, 0, 0, 0), 1f, Tween.TransitionType.Linear), 0),
+            new(() => { TweenUtils.Pop(topEater, 1.2f); AudioManager.PlayAudio(AudioType.SelectEater); }, 0.5f),
+            new(() => { TweenUtils.Travel(munch, munchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlayAudio(AudioType.FoodConsumed); }, 0.5f),
+            new(() => { TweenUtils.Pop(bottomEater, 1.2f); AudioManager.PlayAudio(AudioType.SelectEater); }, 0.2f),
+            new(() => { TweenUtils.Travel(bunch, bunchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlayAudio(AudioType.FoodConsumed); }, 0.5f),
             new(() => {
-                    _readyToTransition = true;
-                    _bg.MouseFilter = Control.MouseFilterEnum.Pass;
+                _readyToTransition = true;
+                _bg.MouseFilter = Control.MouseFilterEnum.Pass;
                 }, 0),
+            new(() => {
+                _tapToStartLabel.Visible = true;
+                _tapToStartLabel.Scale = Vector2.Zero;
+                TweenUtils.Pop(_tapToStartLabel, 1f);
+            }, 0.5f),
         });
     }
 
     private void ClearPostAnimation()
     {
-        _clickToStart.InputEvent -= OnInput;
-        _clickToStart.QueueFree();
+        _tapToStartLabel.QueueFree();
+        _tapToStartArea.InputEvent -= OnInput;
+        _tapToStartArea.QueueFree();
         _bg.QueueFree();
         _fade.QueueFree();
         _content.GlobalPosition = _contentTargetPosition;
@@ -82,10 +90,11 @@ public partial class Title : Node2D
         {
             _transitioned = true;
             CutsceneManager.Play(new() {
+                new(() => TweenUtils.Pop(_tapToStartLabel, 0f, 0.3f, Tween.TransitionType.Cubic), 0),
                 new(() => {
                     TweenUtils.Pop(_content, _contentTargetScale, 1.5f);
                     TweenUtils.Travel(_content, _contentTargetPosition, 1.5f);
-                }, 0f),
+                }, 0.3f),
                 new(() => TweenUtils.MethodTween(_bg, val => (_bg.Material as ShaderMaterial).SetShaderParameter("progress", val), 0f, 1f, 1, Tween.TransitionType.Linear).Finished += ClearPostAnimation, 0),
             });
         }

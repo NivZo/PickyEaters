@@ -1,30 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=13 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_jsudd"]
 [ext_resource type="PackedScene" uid="uid://cywykxsb628l" path="res://GUI/Screens/Title.tscn" id="3_c4hrn"]
+[ext_resource type="PackedScene" uid="uid://cj2iep638rhv0" path="res://GUI/Indicators/CurrentLevelIndicator.tscn" id="3_y15em"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
 [ext_resource type="PackedScene" uid="uid://byh1yq6x7w41h" path="res://GUI/Indicators/StarsIndicator.tscn" id="8_fo3lq"]
-[ext_resource type="PackedScene" uid="uid://cqn3haj2gx8u4" path="res://GUI/Indicators/DifficultyIndicator.tscn" id="8_q8oh6"]
-[ext_resource type="Script" path="res://GUI/Button/LevelSelectionButton.cs" id="9_c137j"]
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
-[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="11_j4xwe"]
 [ext_resource type="Script" path="res://GUI/Button/StarQuestInfoButton.cs" id="15_hvyj7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5gw3"]
-shader = ExtResource("11_j4xwe")
-shader_parameter/radius_scale = 0.1
-shader_parameter/rounded_corner_top_left = true
-shader_parameter/rounded_corner_top_right = true
-shader_parameter/rounded_corner_bottom_left = true
-shader_parameter/rounded_corner_bottom_right = true
-shader_parameter/width = 1.0
-shader_parameter/height = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pjkq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bud2l"]
 
@@ -41,85 +27,26 @@ position = Vector2(0, 1379)
 visible = false
 position = Vector2(0, 2200)
 
-[node name="CurrentLevel" type="Node2D" parent="."]
-position = Vector2(0, 72)
-
-[node name="BackgroundOverlayOutline" type="ColorRect" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_d5gw3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 348.0
-offset_top = 996.0
-offset_right = 1092.0
-offset_bottom = 1452.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.287295, 0.287295, 0.287295, 0.419608)
-
-[node name="BackgroundOverlay" type="ColorRect" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_d5gw3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="CurrentLevel" parent="." instance=ExtResource("3_y15em")]
 offset_left = 360.0
-offset_top = 1008.0
+offset_top = 1080.0
 offset_right = 1080.0
-offset_bottom = 1440.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0901961, 0.188235, 0.121569, 0.192157)
-
-[node name="LevelLabel" type="RichTextLabel" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_7pjkq")
-use_parent_material = true
-clip_contents = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 360.0
-offset_top = 1040.0
-offset_right = 1080.0
-offset_bottom = 1180.0
-grow_horizontal = 2
-theme = ExtResource("2_jsudd")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
-theme_override_font_sizes/normal_font_size = 80
-bbcode_enabled = true
-text = "[center][font gl=15]LEVEL[/font][/center]"
-scroll_active = false
-shortcut_keys_enabled = false
-text_direction = 2
-
-[node name="NumberLabel" type="RichTextLabel" parent="CurrentLevel"]
-material = SubResource("ShaderMaterial_7pjkq")
-use_parent_material = true
-clip_contents = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 360.0
-offset_top = 1140.0
-offset_right = 1080.0
-offset_bottom = 1408.0
-grow_horizontal = 2
-theme = ExtResource("2_jsudd")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529)
-theme_override_font_sizes/normal_font_size = 220
-bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=25]10[/font][/wave][/center]"
-scroll_active = false
-shortcut_keys_enabled = false
-text_direction = 2
-
-[node name="DifficultyIndicator" parent="CurrentLevel" instance=ExtResource("8_q8oh6")]
-position = Vector2(720, 1440)
+offset_bottom = 1584.0
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="StarsIndicator" parent="GUILayer" instance=ExtResource("8_fo3lq")]
-position = Vector2(720, 936)
+[node name="StarQuestInfo" type="Button" parent="GUILayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 432.0
+offset_top = 864.0
+offset_right = 1008.0
+offset_bottom = 1008.0
+pivot_offset = Vector2(288, 72)
+script = ExtResource("15_hvyj7")
+
+[node name="StarsIndicator" parent="GUILayer/StarQuestInfo" instance=ExtResource("8_fo3lq")]
+position = Vector2(288, 72)
 scale = Vector2(1.4, 1.4)
 
 [node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]
@@ -160,21 +87,5 @@ CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
 Highlight = false
-
-[node name="StarQuestInfo" type="Button" parent="GUILayer"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 432.0
-offset_top = 864.0
-offset_right = 1008.0
-offset_bottom = 1008.0
-script = ExtResource("15_hvyj7")
-
-[node name="LevelSelection" type="Button" parent="GUILayer"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 360.0
-offset_top = 1080.0
-offset_right = 1080.0
-offset_bottom = 1584.0
-script = ExtResource("9_c137j")
 
 [node name="Title" parent="GUILayer" instance=ExtResource("3_c4hrn")]

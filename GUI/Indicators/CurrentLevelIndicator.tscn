@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://cj2iep638rhv0"]
+
+[ext_resource type="Script" path="res://GUI/Button/LevelSelectionButton.cs" id="1_4y6k4"]
+[ext_resource type="Shader" path="res://Shaders/RoundedCorners.gdshader" id="2_hi44l"]
+[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="3_1blvk"]
+[ext_resource type="PackedScene" uid="uid://cqn3haj2gx8u4" path="res://GUI/Indicators/DifficultyIndicator.tscn" id="4_2pq6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5gw3"]
+shader = ExtResource("2_hi44l")
+shader_parameter/radius_scale = 0.1
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pjkq"]
+
+[node name="LevelSelection" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 720.0
+offset_bottom = 504.0
+pivot_offset = Vector2(360, 216)
+script = ExtResource("1_4y6k4")
+
+[node name="BackgroundOverlayOutline" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d5gw3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.287295, 0.287295, 0.287295, 0.419608)
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d5gw3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.0901961, 0.188235, 0.121569, 0.192157)
+
+[node name="LevelLabel" type="RichTextLabel" parent="."]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 172.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("3_1blvk")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][font gl=15]LEVEL[/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="NumberLabel" type="RichTextLabel" parent="."]
+material = SubResource("ShaderMaterial_7pjkq")
+use_parent_material = true
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 144.0
+offset_bottom = 412.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("3_1blvk")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529)
+theme_override_font_sizes/normal_font_size = 220
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=25]10[/font][/wave][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="DifficultyIndicator" parent="." instance=ExtResource("4_2pq6t")]
+position = Vector2(360, 432)

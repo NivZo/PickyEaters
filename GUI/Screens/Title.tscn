@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cywykxsb628l"]
+[gd_scene load_steps=11 format=3 uid="uid://cywykxsb628l"]
 
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="1_geo1k"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_b51by"]
@@ -36,8 +36,6 @@ shader_parameter/texture_opacity = 1.0
 shader_parameter/use_node_color = false
 shader_parameter/overlay_texture = ExtResource("4_56q3m")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jil4h"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mt3c7"]
 size = Vector2(1440, 2560)
 
@@ -62,7 +60,6 @@ color = Color(0.568829, 0.759087, 0.618211, 1)
 position = Vector2(720, 0)
 
 [node name="Munch" type="RichTextLabel" parent="TitleContent"]
-material = SubResource("ShaderMaterial_jil4h")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -432.0
@@ -80,7 +77,6 @@ text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]Munch[/font][/wa
 scroll_active = false
 
 [node name="Bunch" type="RichTextLabel" parent="TitleContent"]
-use_parent_material = true
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -144.0
@@ -112,8 +108,24 @@ offset_bottom = 2560.0
 mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
-[node name="ClickToStart" type="Area2D" parent="."]
+[node name="TapToStartLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 360.0
+offset_top = 1728.0
+offset_right = 1080.0
+offset_bottom = 1944.0
+pivot_offset = Vector2(360, 72)
+mouse_filter = 1
+theme = ExtResource("2_b51by")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center][wave amp=4.0 freq=4.0 connected=1][font gl=25]TAP ANYWHERE
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickToStart"]
+TO START![/font][/wave][/center]"
+fit_content = true
+
+[node name="TapToStartArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapToStartArea"]
 position = Vector2(720, 1280)
 shape = SubResource("RectangleShape2D_mt3c7")
