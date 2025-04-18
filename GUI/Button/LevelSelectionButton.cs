@@ -1,13 +1,22 @@
-public partial class LevelSelectionButton : CustomButton
+using Godot;
+
+public partial class LevelSelectionButton : Button
 {
     public override void _Ready()
     {
         base._Ready();
-    }
-    
-    protected override void OnClick()
-    {
-        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
+        Pressed += OnPress;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Pressed -= OnPress;
+    }
+
+    private void OnPress()
+    {
+        AudioManager.PlayAudio(AudioType.Undo);
+        ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
+    }
 }

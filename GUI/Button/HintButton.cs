@@ -31,7 +31,7 @@ public partial class HintButton : CustomButton
         else
         {
             ModalManager.OpenAreYouSureModal(
-                () => AdmobProvider.Instance.ShowRewardedAd("reset_hints"),
+                () => EventManager.InvokeAdRewardRequested("reset_hints"),
                 "OUT OF HINTS!\nWATCH AN AD TO REFILL?");
         }
     }

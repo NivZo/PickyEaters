@@ -30,7 +30,7 @@ public partial class HourlyAdGoldButton : CustomButton
     
     protected override void OnClick()
     {
-        AdmobProvider.Instance.ShowRewardedAd("hourly_gold");
+        EventManager.InvokeAdRewardRequested("hourly_gold");
     }
 
     private void OnRewardGranted(string rewardType)

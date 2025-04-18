@@ -50,6 +50,15 @@ public static class EventManager
     public static event LevelVictoryHandler LevelVictorious;
     public static void InvokeLevelVictorious() => LevelVictorious.Invoke();
 
+    // AdMob Events
+    public delegate void AdRewardRequestHandler(string rewardType, bool useModal);
+    public static event AdRewardRequestHandler AdRewardRequested;
+    public static void InvokeAdRewardRequested(string rewardType, bool useModal = true) => AdRewardRequested.Invoke(rewardType, useModal);
+
+    public delegate void AdRewardCancelHanlder();
+    public static event AdRewardCancelHanlder AdRewardCancelled;
+    public static void InvokeAdRewardCancelled() => AdRewardCancelled.Invoke();
+    
     public delegate void AdRewardGrantHandler(string rewardType);
     public static event AdRewardGrantHandler AdRewardGranted;
     public static void InvokeAdRewardGranted(string rewardType) => AdRewardGranted.Invoke(rewardType);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cywykxsb628l"]
+[gd_scene load_steps=12 format=3 uid="uid://cywykxsb628l"]
 
 [ext_resource type="Shader" path="res://Shaders/Glint.gdshader" id="1_geo1k"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_b51by"]
@@ -36,6 +36,8 @@ shader_parameter/texture_opacity = 1.0
 shader_parameter/use_node_color = false
 shader_parameter/overlay_texture = ExtResource("4_56q3m")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jil4h"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mt3c7"]
 size = Vector2(1440, 2560)
 
@@ -60,7 +62,7 @@ color = Color(0.568829, 0.759087, 0.618211, 1)
 position = Vector2(720, 0)
 
 [node name="Munch" type="RichTextLabel" parent="TitleContent"]
-use_parent_material = true
+material = SubResource("ShaderMaterial_jil4h")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -432.0

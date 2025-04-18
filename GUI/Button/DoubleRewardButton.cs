@@ -8,7 +8,7 @@ public partial class DoubleRewardButton : CustomButton
 
     protected override void OnClick()
     {
-        AdmobProvider.Instance.ShowRewardedAd("double_gold", false);
+        EventManager.InvokeAdRewardRequested("double_gold", false);
         SetCustomText("LOADING");
     }
 

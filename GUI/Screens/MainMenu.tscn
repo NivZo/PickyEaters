@@ -42,6 +42,7 @@ visible = false
 position = Vector2(0, 2200)
 
 [node name="CurrentLevel" type="Node2D" parent="."]
+position = Vector2(0, 72)
 
 [node name="BackgroundOverlayOutline" type="ColorRect" parent="CurrentLevel"]
 material = SubResource("ShaderMaterial_d5gw3")
@@ -118,7 +119,7 @@ position = Vector2(720, 1440)
 follow_viewport_enabled = true
 
 [node name="StarsIndicator" parent="GUILayer" instance=ExtResource("8_fo3lq")]
-position = Vector2(720, 864)
+position = Vector2(720, 936)
 scale = Vector2(1.4, 1.4)
 
 [node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]
@@ -128,31 +129,13 @@ anchor_top = 0.619
 anchor_right = 0.85
 anchor_bottom = 0.787
 offset_left = -1.52588e-05
-offset_top = -0.640015
-offset_bottom = 1.27979
+offset_top = 71.36
+offset_bottom = 145.28
 theme = ExtResource("2_jsudd")
 script = ExtResource("9_et2y7")
 CustomText = "PLAY"
 CustomTextSize = 240
 Color = Color(0.529412, 0.894118, 0.615686, 1)
-
-[node name="LevelSelectionButton" parent="GUILayer" instance=ExtResource("8_004r3")]
-material = SubResource("ShaderMaterial_bud2l")
-anchor_left = 0.15
-anchor_top = 0.844
-anchor_right = 0.85
-anchor_bottom = 0.872
-offset_left = -1.52588e-05
-offset_top = -72.6401
-offset_bottom = 35.6799
-pivot_offset = Vector2(504, 90)
-theme = ExtResource("2_jsudd")
-script = ExtResource("9_c137j")
-CustomText = "LEVELS"
-CustomTextSize = 100
-Color = Color(0.329412, 0.513726, 0.729412, 1)
-WaveString = false
-Highlight = false
 
 [node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]
 offset_left = 864.0
@@ -181,9 +164,17 @@ Highlight = false
 [node name="StarQuestInfo" type="Button" parent="GUILayer"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 432.0
-offset_top = 792.0
+offset_top = 864.0
 offset_right = 1008.0
-offset_bottom = 936.0
+offset_bottom = 1008.0
 script = ExtResource("15_hvyj7")
+
+[node name="LevelSelection" type="Button" parent="GUILayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 360.0
+offset_top = 1080.0
+offset_right = 1080.0
+offset_bottom = 1584.0
+script = ExtResource("9_c137j")
 
 [node name="Title" parent="GUILayer" instance=ExtResource("3_c4hrn")]

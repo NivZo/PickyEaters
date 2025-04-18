@@ -1,48 +1,79 @@
+using System;
 using Godot;
 
 public partial class AdmobProvider : Node2D
 {
-    public static AdmobProvider Instance { get; private set; }
-
     private GodotObject _admob;
     private string _currentRewardType = string.Empty;
+    private bool _isRequestActive = false;
+    private bool _isLoaded = false;
     private bool _initialized = false;
 
     public override void _Ready()
     {
         base._Ready();
-        Instance = this;
         _admob = GetNode("Admob");
         _admob.Call("initialize");
+
+        EventManager.AdRewardRequested += OnAdRewardRequested;
+        EventManager.AdRewardCancelled += OnAdRewardCancelled;
     }
 
-    // TODO: Replace with event-based system
-    public void ShowRewardedAd(string rewardType, bool withModal = true)
+    private void OnAdRewardCancelled()
     {
+        _isRequestActive = false;
+        ModalManager.CloseModal();
+        _admob.Call("load_rewarded_ad");
+    }
+
+
+    public void OnAdRewardRequested(string rewardType, bool withModal = true)
+    {
+        _isRequestActive = true;
+        _currentRewardType = rewardType;
+        
         if (withModal)
         {
             ModalManager.OpenAdLoadingModal(!_initialized);
         }
+
         if (_initialized)
         {
-            _currentRewardType = rewardType;
-            _admob.Call("load_rewarded_ad");
+            if (_isLoaded)
+            {
+                _admob.Call("show_rewarded_ad");
+            }
+            else
+            {
+                _admob.Call("load_rewarded_ad");
+            }
         }
     }
 
-    private void OnInitializationCompleted(Variant _statusData)
+    private void OnAdmobInitializationCompleted(Variant _statusData)
     {
-        GD.Print("Admob initialized successfully.");
         _initialized = true;
+        _admob.Call("load_rewarded_ad");
     }
 
-    private void OnRewardedAdLoaded(string _adId)
+    private void OnAdmobRewardedAdLoaded(string _adId)
     {
-        _admob.Call("show_rewarded_ad");
-        ModalManager.CloseModal();
+        _isLoaded = true;
+        if (_isRequestActive)
+        {
+            _admob.Call("show_rewarded_ad");
+        }
     }
 
-    private void OnRewardedAdUserEarnedReward(string _adId, Variant _rewardData)
+    private void OnAdmobRewardedAdShown(string _adId)
+    {
+        _isLoaded = false;
+        _isRequestActive = false;
+        ModalManager.CloseModal();
+        _admob.Call("load_rewarded_ad");
+    }
+
+    private void OnAdmobRewardedAdUserEarnedReward(string _adId, Variant _rewardData)
     {
         EventManager.InvokeAdRewardGranted(_currentRewardType);
     }
