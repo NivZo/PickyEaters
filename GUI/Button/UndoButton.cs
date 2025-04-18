@@ -7,33 +7,35 @@ public partial class UndoButton : CustomButton
         base._Ready();
         IsEnabledFunc = () => HistoryManager.MoveCount > 0;
 
-        EventManager.LevelReset += HandleLevelReset;
+        // EventManager.LevelReset += HandleLevelReset;
     }
     
     protected override void OnClick()
     {
-        if (HistoryManager.UndoCount > 0)
-        {
-            HistoryManager.UndoMove();
+        base.OnClick();
+        HistoryManager.UndoMove();
+        // if (HistoryManager.UndoCount > 0)
+        // {
+        //     HistoryManager.UndoMove();
 
-            SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
-        }
-        else
-        {
-            HistoryManager.UndoMove();
+        //     SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
+        // }
+        // else
+        // {
+        //     HistoryManager.UndoMove();
 
-            SetCustomText($"UNDO [!]");
-        }
+        //     SetCustomText($"UNDO [!]");
+        // }
     }
 
-    private void HandleLevelReset()
-    {
-        SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
-    }
+    // private void HandleLevelReset()
+    // {
+    //     SetCustomText($"UNDO [{HistoryManager.UndoCount}]");
+    // }
     
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        EventManager.LevelReset -= HandleLevelReset;
-    }
+    // public override void _ExitTree()
+    // {
+    //     base._ExitTree();
+    //     EventManager.LevelReset -= HandleLevelReset;
+    // }
 }

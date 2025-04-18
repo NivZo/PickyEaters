@@ -8,26 +8,27 @@ public static class HistoryManager
 
     private static Stack<HistoryMove> _moves = new();
     
-    private static int _undoMax = 3;
+    // private static int _undoMax = 3;
 
-    public static int UndoCount { get; private set; } = _undoMax;
+    // public static int UndoCount { get; private set; } = _undoMax;
 
     public static int MoveCount => _moves.Count;
     
-    public static bool UsedUndo => UndoCount < _undoMax;
+    public static bool UsedUndo { get; private set; } = false;
 
     public static void ResetHistory()
     {
         _moves.Clear();
-        _undoMax = Math.Max(LevelManager.CurrentLevelId / 10, 5);
-        _undoMax = Math.Min(_undoMax, 15);
-        ResetUndos();
+        UsedUndo = false;
+        // _undoMax = Math.Max(LevelManager.CurrentLevelId / 10, 5);
+        // _undoMax = Math.Min(_undoMax, 15);
+        // ResetUndos();
     }
 
-    public static void ResetUndos()
-    {
-        UndoCount = _undoMax;
-    }
+    // public static void ResetUndos()
+    // {
+    //     UndoCount = _undoMax;
+    // }
 
     public static void AddMove(Food food, Eater eater, Vector2 eaterPosition)
     {
@@ -38,7 +39,8 @@ public static class HistoryManager
     {
         if (_moves.Count > 0 && ActionManager.IsActionAvailable())
         {
-            UndoCount -= 1;
+            // UndoCount -= 1;
+            UsedUndo = true;
             var lastMove = _moves.Pop();
 
             if (lastMove != null)
