@@ -19,6 +19,7 @@ public static class LevelManager
     private static CanvasLayer _gameLayer;
     private static Level _level;
     private static Lazy<int> _maxLevelLazy = new(DirAccess.GetFilesAt("res://Levels/").Length-1);
+    private static int _totalWhiteFoodCount = 0;
 
     public static int CurrentLevelId;
     public static Level Level => _level;
@@ -31,7 +32,8 @@ public static class LevelManager
     }
 
     public static bool IsVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType != FoodType.White).Count() == 0;
-    public static bool IsFlawlessVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == FoodType.White).Count() == 0;
+    public static bool IsTwoStarVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == FoodType.White).Count() <= _totalWhiteFoodCount / 2;
+    public static bool IsThreeStarVictory() => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == FoodType.White).Count() == 0;
     public static bool CanEatLast(FoodType foodType) => _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == foodType).Count() == 1;
 
     public static void LoadLevel(int levelId)
@@ -57,6 +59,8 @@ public static class LevelManager
             var tut = TutorialLocalManager.Create(TutorialStepContent.GetSteps(CurrentLevelId));
             _level.AddChild(tut);
         }
+
+        _totalWhiteFoodCount = _level.Food.GetChildren().Where(child => child is Food food && food.FoodType == FoodType.White).Count();
     }
 
     public static void ResetLevel() => LoadLevel(CurrentLevelId);

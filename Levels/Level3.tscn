@@ -12,40 +12,33 @@ metadata/solution = PackedVector2Array()
 
 [node name="Food0_0" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(264, 784)
-scale = Vector2(1, 1)
 FoodType = 2
 IsLast = true
 
 [node name="Food0_1" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(720, 784)
-scale = Vector2(1, 1)
 FoodType = 1
 BoardStatePositionId = Vector2i(0, 1)
 
 [node name="Food0_2" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(1176, 784)
-scale = Vector2(1, 1)
 BoardStatePositionId = Vector2i(0, 2)
 
 [node name="Food1_0" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(264, 1240)
-scale = Vector2(1, 1)
 FoodType = 2
 BoardStatePositionId = Vector2i(1, 0)
 
 [node name="Food1_2" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(264, 1696)
-scale = Vector2(1, 1)
 BoardStatePositionId = Vector2i(2, 0)
 
 [node name="Food1_1" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(720, 1240)
-scale = Vector2(1, 1)
 BoardStatePositionId = Vector2i(1, 1)
 
 [node name="Food2_1" parent="Food" instance=ExtResource("2_15xh7")]
 position = Vector2(720, 1696)
-scale = Vector2(1, 1)
 FoodType = 1
 IsLast = true
 BoardStatePositionId = Vector2i(2, 1)

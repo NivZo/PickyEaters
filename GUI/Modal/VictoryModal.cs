@@ -62,28 +62,19 @@ public partial class VictoryModal : Node2D
     {
         _descriptionLabel.Text = string.Empty;
         var currStars = SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId];
-        var nextStar = _starM;
         var cutscenes = new List<CutsceneManager.CutsceneAction>()
         {
             new(CreateAddStarAction(_starL, 1, 1.2f, " • FINISH LEVEL", currStars == 0), 1f),
         };
 
-        if (LevelManager.IsFlawlessVictory())
+        if (LevelManager.IsTwoStarVictory())
         {
-            cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • NEUTRAL BONUS", currStars < 2), 1f));
-            nextStar = _starR;
+            cutscenes.Add(new(CreateAddStarAction(_starM, 2, 1.4f, "\n • 50% NEUTRAL", currStars < 2), 1f));
         }
 
-        if (HistoryManager.UndoCount >= 0)
+        if (LevelManager.IsThreeStarVictory())
         {
-            if (nextStar == _starR) // is third
-            {
-                cutscenes.Add(new(CreateAddStarAction(nextStar, 3, 1.2f, "\n • UNDO BONUS", currStars < 3), 1f));
-            }
-            else
-            {
-                cutscenes.Add(new(CreateAddStarAction(nextStar, 2, 1.4f, "\n • UNDO BONUS", currStars < 3), 1f));
-            }
+            cutscenes.Add(new(CreateAddStarAction(_starR, 2, 1.2f, "\n • 100% NEUTRAL", currStars < 3), 1f));
         }
 
         cutscenes.Add(new(SaveManager.CommitActiveSave, 0));
