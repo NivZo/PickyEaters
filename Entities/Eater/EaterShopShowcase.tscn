@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c466esondrnax"]
+[gd_scene load_steps=11 format=3 uid="uid://c466esondrnax"]
 
 [ext_resource type="Script" path="res://Entities/Eater/EaterShopShowcase.cs" id="1_5rt4g"]
 [ext_resource type="Texture2D" uid="uid://dk7br7oxnjrdi" path="res://Assets/GUI/bar_round_gloss_large.png" id="2_7r2a5"]
 [ext_resource type="PackedScene" uid="uid://cs0gp7qqfuucq" path="res://Entities/Eater/EaterDisplay.tscn" id="3_4ivow"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="4_65h4d"]
+[ext_resource type="Texture2D" uid="uid://reo6hjm8115" path="res://Assets/Entities/eater_hidden.png" id="4_860go"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="5_jsd75"]
 [ext_resource type="Texture2D" uid="uid://c0sgc0hdw03xw" path="res://Assets/Entities/yellow_star_food.png" id="6_v1pmo"]
 [ext_resource type="PackedScene" uid="uid://cjpbu2qbnduj8" path="res://GUI/Indicators/HandGuidanceIndicator.tscn" id="7_rovaq"]
@@ -18,7 +19,7 @@ shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.0
 
 [sub_resource type="Curve" id="Curve_7hu1i"]
-_data = [Vector2(0, 0.987727), 0.0, 0.0, 0, 0, Vector2(0.898204, 0.260562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.401699), 0.0, 0.0, 0, 0, Vector2(0.898204, 0.260562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="EaterShopShowcase" type="Node2D"]
@@ -40,6 +41,28 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 400.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+scale_amount_curve = SubResource("Curve_7hu1i")
+
+[node name="TapParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_w8dn3")
+position = Vector2(0, -72)
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+preprocess = 0.2
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.55
+texture = ExtResource("4_860go")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
 angular_velocity_min = -300.0
 angular_velocity_max = 300.0
 orbit_velocity_min = -0.1

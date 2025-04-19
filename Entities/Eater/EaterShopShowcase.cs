@@ -8,6 +8,7 @@ public partial class EaterShopShowcase : EaterShowcase
     private RichTextLabel _titleLabel;
     private Sprite2D _rarityBadge;
     private CpuParticles2D _purchaseParticles;
+    private CpuParticles2D _tapParticles;
     private HandGuidanceIndicator _tapIndicator;
     private Tween _currentTween;
 
@@ -30,6 +31,7 @@ public partial class EaterShopShowcase : EaterShowcase
         Display.Scale = Vector2.One;
 
         _purchaseParticles = GetNode<CpuParticles2D>("PurchaseParticles");
+        _tapParticles = GetNode<CpuParticles2D>("TapParticles");
         _titleLabel = GetNode<RichTextLabel>("Title");
         _titleLabel.Text = TextUtils.WaveString("TAP!", letterDistance: 15);
         _nameLabel = GetNode<RichTextLabel>("EaterName");
@@ -58,28 +60,46 @@ public partial class EaterShopShowcase : EaterShowcase
         _currentTween?.Kill();
         if (_tapsToReveal >= 1)
         {
-            Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.1f);
             _currentTween = TweenUtils.Pop(Display, 3 - .5f * _tapsToReveal);
-            _tapsToReveal--;
             _tapIndicator.Scale = new(.2f, .2f);
             TweenUtils.Pop(_tapIndicator, 1);
 
             _titleLabel.Scale = new(.5f, .5f);
             _titleLabel.Text = TextUtils.WaveString("TAP" + new string('!', 4 - _tapsToReveal), letterDistance: 15);
             TweenUtils.Pop(_titleLabel, 1, .75f);
+
+            var rarityColor = (_tapsToReveal, _newFace.GetEaterResource().EaterRarity) switch
+            {
+                (1, Rarity.Legendary) => Rarity.Legendary.GetRarityColor(),
+                (<= 2, >= Rarity.Epic) => Rarity.Epic.GetRarityColor(),
+                (<= 3, >= Rarity.Rare) => Rarity.Rare.GetRarityColor(),
+                (_,  >= Rarity.Common) => Rarity.Common.GetRarityColor(),
+                _ => Rarity.Common.GetRarityColor(),
+            };
+            if (_rarityBadge.Modulate != rarityColor)
+            {
+                _rarityBadge.Modulate = rarityColor;
+                _rarityBadge.Scale = new(1.5f, 1.5f);
+                TweenUtils.Pop(_rarityBadge, 2.75f, .75f);
+            }
+
+            Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.1f);
+            AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + 0.25f * (3 - _tapsToReveal));
+            _tapParticles.Emitting = true;
+            _tapsToReveal--;
         }
 
         if (_tapsToReveal == 0)
         {
-            Reveal(_newFace);
+            Reveal();
         }
     }
 
-    public void Reveal(EaterFace eaterFace)
+    public void Reveal()
     {
         Input.VibrateHandheld(200, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.2f);
-        var resource = eaterFace.GetEaterResource();
-        Display.EaterFace = eaterFace;
+        var resource = _newFace.GetEaterResource();
+        Display.EaterFace = _newFace;
         Display.EaterType = EnumUtils.GetRandomValueExcluding(new EaterType[1] { EaterType.Hidden });
         _nameLabel.Text = TextUtils.WaveString($"\n{resource.EaterName.ToUpperInvariant()}", frequency: 4);
         _rarityLabel.Text = TextUtils.WaveString($"\n{resource.EaterRarity}", frequency: 4);

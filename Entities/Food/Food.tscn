@@ -115,7 +115,7 @@ script = ExtResource("1_4jjr8")
 
 [node name="Food" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_68teg")
-position = Vector2(0, -2)
+position = Vector2(0, -1.99999)
 scale = Vector2(0.577639, 0.577639)
 texture = ExtResource("3_qk020")
 

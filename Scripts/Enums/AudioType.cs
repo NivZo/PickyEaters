@@ -1,7 +1,10 @@
 public enum AudioType
 {
+    None,
     SelectEater,
     DeselectEater,
     FoodConsumed,
-    Undo
+    Undo,
+    ButtonPress,
+    ButtonRelease,
 }

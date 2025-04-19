@@ -5,6 +5,7 @@ public class AudioManager
 {
     private static AudioStreamPlayer _musicPlayer;
     private static AudioStreamPlayer _soundEffectPlayer;
+    private static readonly float _soundEffectVolumeFactor = 0.8f;
 
     public static void Setup(AudioStreamPlayer soundEffectPlayer, AudioStreamPlayer musicPlayer)
     {
@@ -32,7 +33,7 @@ public class AudioManager
 
     public static void AdjustSoundEffectsVolume(double volume)
     {
-        _soundEffectPlayer.VolumeDb = VolumeScaleToDB(volume);
+        _soundEffectPlayer.VolumeDb = VolumeScaleToDB(volume * _soundEffectVolumeFactor);
         SaveManager.ActiveSave.SoundEffectsVolumeScale = volume;
     }
 

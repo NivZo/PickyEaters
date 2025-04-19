@@ -14,10 +14,10 @@ public static class RarityExtensions
     {
         return rarity switch
         {
-            Rarity.Common => new("ffffff"),
-            Rarity.Rare => TierColor.Easy.GetColor(),
-            Rarity.Epic => TierColor.Genius.GetColor(),
-            Rarity.Legendary => TierColor.Medium.GetColor(),
+            Rarity.Common => NamedColor.Blank.GetColor(),
+            Rarity.Rare => NamedColor.Blue.GetColor(),
+            Rarity.Epic => NamedColor.Purple.GetColor(),
+            Rarity.Legendary => NamedColor.Yellow.GetColor(),
             _ => new(),
         };
     }

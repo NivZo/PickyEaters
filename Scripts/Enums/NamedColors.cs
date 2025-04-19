@@ -2,6 +2,7 @@ using Godot;
 
 public enum NamedColor
 {
+    Blank,
     Green,
     Blue,
     Red,
@@ -23,6 +24,7 @@ public static class EaterColorExtensions
     {
         return color switch
         {
+            NamedColor.Blank => new("ffffff"),
             NamedColor.Green => new("59b25d"),
             NamedColor.Blue => new("6c77e9"),
             NamedColor.Yellow => new("fec851"),
