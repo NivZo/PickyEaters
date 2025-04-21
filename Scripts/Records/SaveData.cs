@@ -9,8 +9,8 @@ public partial class SaveData : Resource
     [Export] public int Coins { get; set; } = 0;
     [Export] public int CurrentStars { get; set; } = 0;
 
-    [Export] public double LastDailyFreeRewardClaimedOLE { get; set; } = DateTime.MinValue.ToOADate();
-    [Export] public double LastHourlyAdRewardClaimedOLE { get; set; } = DateTime.MinValue.ToOADate();
+    [Export] public long LastDailyFreeRewardClaimedUnixSec { get; set; } = 0;
+    [Export] public long LastHourlyAdRewardClaimedUnixSec { get; set; } = 0;
 
     [Export] public double MusicVolumeScale { get; set; } = 1;
     [Export] public double SoundEffectsVolumeScale { get; set; } = 1;

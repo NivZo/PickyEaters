@@ -69,7 +69,7 @@ anchor_bottom = 1.0
 offset_left = 72.0
 offset_top = 216.0
 offset_right = -792.0
-offset_bottom = -1768.0
+offset_bottom = -1696.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -121,6 +121,22 @@ scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
+[node name="RefreshCountdownLabel" type="RichTextLabel" parent="GUILayer/DailyFreeGold"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 546.0
+offset_bottom = 834.0
+grow_horizontal = 2
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][font gl=10]NEXT: 23:59:59[/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="Coin" type="Sprite2D" parent="GUILayer/DailyFreeGold"]
 position = Vector2(412, 280)
 scale = Vector2(0.6, 0.6)
@@ -134,7 +150,7 @@ anchor_bottom = 1.0
 offset_left = 792.0
 offset_top = 216.0
 offset_right = -72.0
-offset_bottom = -1768.0
+offset_bottom = -1696.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -156,14 +172,32 @@ clip_contents = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 72.0
-offset_bottom = 360.0
+offset_top = 24.0
+offset_bottom = 312.0
 grow_horizontal = 2
+mouse_filter = 1
 theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
 theme_override_font_sizes/normal_font_size = 110
 bbcode_enabled = true
 text = "[center][font gl=10]AD BONUS![/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="HourlyAdStacksLeftLabel" type="RichTextLabel" parent="GUILayer/HourlyAdGold"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 142.0
+offset_bottom = 430.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][font gl=10]LEFT: 5[/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -177,6 +211,7 @@ offset_top = 216.0
 offset_right = -216.0
 offset_bottom = 360.0
 grow_horizontal = 2
+mouse_filter = 1
 theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0.984314, 0.662745, 0, 0.627451)
 theme_override_font_sizes/normal_font_size = 120
@@ -185,6 +220,23 @@ text = "[center][font gl=25][wave amp=20.0 freq=6]100[/wave][/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
+
+[node name="RefreshCountdownLabel" type="RichTextLabel" parent="GUILayer/HourlyAdGold"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 546.0
+offset_bottom = 834.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("5_53xpg")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][font gl=10]NEXT: 3:59:59[/font][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="Coin" type="Sprite2D" parent="GUILayer/HourlyAdGold"]
 position = Vector2(412, 280)
@@ -197,7 +249,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 72.0
-offset_top = 864.0
+offset_top = 936.0
 offset_right = -72.0
 offset_bottom = -256.0
 grow_horizontal = 2
@@ -290,7 +342,7 @@ layout_mode = 1
 offset_left = 72.0
 offset_top = 1008.0
 offset_right = 187.2
-offset_bottom = 1124.64
+offset_bottom = 1064.81
 theme = ExtResource("5_53xpg")
 script = ExtResource("5_sgosm")
 CustomText = "UNLOCK"

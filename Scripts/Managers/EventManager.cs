@@ -62,4 +62,12 @@ public static class EventManager
     public delegate void AdRewardGrantHandler(string rewardType);
     public static event AdRewardGrantHandler AdRewardGranted;
     public static void InvokeAdRewardGranted(string rewardType) => AdRewardGranted.Invoke(rewardType);
+
+    public delegate void DailyGoldButtonClickHandler();
+    public static event DailyGoldButtonClickHandler DailyGoldButtonClicked;
+    public static void InvokeDailyGoldButtonClicked() => DailyGoldButtonClicked?.Invoke();
+
+    public delegate void HourlyGoldButtonClickHandler();
+    public static event HourlyGoldButtonClickHandler HourlyGoldButtonClicked;
+    public static void InvokeHourlyGoldButtonClicked() => HourlyGoldButtonClicked?.Invoke();
 }
