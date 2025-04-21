@@ -9,6 +9,7 @@ public partial class DailyFreeGoldButton : CustomButton
     {
         base._Ready();
         IsEnabledFunc = () => ShopStacksManager.IsDailyRewardAvailable();
+        WaveString = IsEnabled();
     }
 
     protected override void OnClick()

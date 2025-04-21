@@ -9,6 +9,7 @@ public partial class HourlyAdGoldButton : CustomButton
     {
         base._Ready();
         IsEnabledFunc = () => ShopStacksManager.IsHourlyRewardAvailable();
+        WaveString = IsEnabled();
         EventManager.AdRewardGranted += OnRewardGranted;
     }
 

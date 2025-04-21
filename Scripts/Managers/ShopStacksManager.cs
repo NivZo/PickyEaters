@@ -5,18 +5,25 @@ public static class ShopStacksManager
     public const long DAILY_COOLDOWN_SECONDS = 24 * 3600; // 24 hours in seconds
     public const long HOURLY_STACK_WINDOW_SECONDS = 4 * 3600; // 4 hours in seconds
     public const int MAX_HOURLY_STACKS = 6;
-    private const double Epsilon = 1e-9; // Small value for floating point comparisons
 
     private static DateTimeOffset GetUtcNow() => DateTimeOffset.UtcNow;
 
     private static long GetCurrentUnixTimeSeconds() => GetUtcNow().ToUnixTimeSeconds();
 
-    private static DateTimeOffset GetStartOfCurrentUtcDay() => GetUtcNow().Date; // Gets the date part, time is 00:00:00 UTC
+    private static DateTimeOffset GetStartOfCurrentUtcDay()
+    {
+        DateTimeOffset startOfDay = GetUtcNow().Date; // Get the start of the current UTC day (00:00)
+        long startOfDayUnix = startOfDay.ToUnixTimeSeconds();
+        long firstWindowOfDay = startOfDayUnix / HOURLY_STACK_WINDOW_SECONDS * HOURLY_STACK_WINDOW_SECONDS;
+        return DateTimeOffset.FromUnixTimeSeconds(firstWindowOfDay);
+    }
 
     private static long GetStartOfCurrentWindow()
     {
         long currentTime = GetCurrentUnixTimeSeconds();
+        // Calculate how many complete windows have passed since epoch
         long totalWindows = currentTime / HOURLY_STACK_WINDOW_SECONDS;
+        // This gives us the start of the current window
         return totalWindows * HOURLY_STACK_WINDOW_SECONDS;
     }
 
@@ -69,11 +76,11 @@ public static class ShopStacksManager
 
     public static TimeSpan GetTimeUntilHourlyReward()
     {
-        long currentTime = GetCurrentUnixTimeSeconds();
+        DateTimeOffset now = GetUtcNow();
         long currentWindowStart = GetStartOfCurrentWindow();
-        long nextWindowStart = currentWindowStart + HOURLY_STACK_WINDOW_SECONDS;
-        long timeLeftSeconds = nextWindowStart - currentTime;
-        return TimeSpan.FromSeconds(Math.Max(0, timeLeftSeconds));
+        DateTimeOffset nextWindowTime = DateTimeOffset.FromUnixTimeSeconds(currentWindowStart + HOURLY_STACK_WINDOW_SECONDS);
+        TimeSpan timeLeft = nextWindowTime - now;
+        return timeLeft > TimeSpan.Zero ? timeLeft : TimeSpan.Zero;
     }
 
     public static void ConsumeDailyReward()
