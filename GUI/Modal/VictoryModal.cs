@@ -76,7 +76,7 @@ public partial class VictoryModal : Node2D
 
         if (LevelManager.IsThreeStarVictory())
         {
-            cutscenes.Add(new(CreateAddStarAction(_starR, 2, 1.2f, "\n • 100% NEUTRAL", currStars < 3), 1f));
+            cutscenes.Add(new(CreateAddStarAction(_starR, 3, 1.2f, "\n • 100% NEUTRAL", currStars < 3), 1f));
         }
 
         cutscenes.Add(new(SaveManager.CommitActiveSave, 0));

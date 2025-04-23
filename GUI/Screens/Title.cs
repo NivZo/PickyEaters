@@ -23,7 +23,6 @@ public partial class Title : Node2D
         _tapToStartLabel = GetNode<RichTextLabel>("TapToStartLabel");
         _tapToStartArea = GetNode<Area2D>("TapToStartArea");
         _tapToStartArea.InputEvent += OnInput;
-        AudioManager.PlayTitleBackgroundMusic();
 
         if (Main.PlayedIntro)
         {
@@ -31,6 +30,7 @@ public partial class Title : Node2D
         }
         else
         {
+            AudioManager.PlayTitleBackgroundMusic();
             StartupAnimation();
             Main.PlayedIntro = true;
         }
