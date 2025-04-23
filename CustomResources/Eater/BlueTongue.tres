@@ -8,6 +8,6 @@
 script = ExtResource("3_ge7e5")
 EaterFace = 12
 EaterName = "Psyan"
-EaterRarity = 3
+EaterRarity = 2
 PassiveTexture = ExtResource("2_740cx")
 ActiveTexture = ExtResource("1_4eru8")

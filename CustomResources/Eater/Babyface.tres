@@ -8,6 +8,6 @@
 script = ExtResource("3_133i1")
 EaterFace = 18
 EaterName = "Lil Munch"
-EaterRarity = 2
+EaterRarity = 3
 PassiveTexture = ExtResource("2_h1lve")
 ActiveTexture = ExtResource("1_ixf7s")
