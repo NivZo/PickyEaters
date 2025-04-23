@@ -200,7 +200,7 @@ theme = ExtResource("5_53xpg")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.529412)
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center][font gl=10]LEFT: 5[/font][/center]"
+text = "[center][font gl=10]LEFT: 6[/font][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -349,7 +349,7 @@ offset_bottom = 1064.81
 theme = ExtResource("5_53xpg")
 script = ExtResource("5_sgosm")
 CustomText = "UNLOCK"
-CustomTextSize = 200
+CustomTextSize = 160
 Color = Color(1, 0.695721, 0.195682, 1)
 
 [node name="HomeButton" parent="GUILayer" instance=ExtResource("7_a4cr0")]
