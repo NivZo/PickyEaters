@@ -32,7 +32,7 @@ public partial class RewardModal : Node2D
         parent.AddChild(modal);
         modal.GlobalPosition = SizeUtils.ScreenCenter + new Vector2(0, SizeUtils.ScreenH);
         TweenUtils.Travel(modal, SizeUtils.ScreenCenter, 0.4f, Tween.TransitionType.Sine);
-        AudioManager.PlayAudio(AudioType.FoodConsumed);
+        AudioManager.PlaySoundEffect(AudioType.FoodConsumed);
     }
 
     public void EnableFade()

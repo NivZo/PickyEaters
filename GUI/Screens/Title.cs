@@ -23,6 +23,7 @@ public partial class Title : Node2D
         _tapToStartLabel = GetNode<RichTextLabel>("TapToStartLabel");
         _tapToStartArea = GetNode<Area2D>("TapToStartArea");
         _tapToStartArea.InputEvent += OnInput;
+        AudioManager.PlayTitleBackgroundMusic();
 
         if (Main.PlayedIntro)
         {
@@ -57,10 +58,10 @@ public partial class Title : Node2D
         CutsceneManager.Play(new()
         {
             new(() => TweenUtils.Color(_fade, new Color(0, 0, 0, 0), 1f, Tween.TransitionType.Linear), 0),
-            new(() => { TweenUtils.Pop(topEater, 1.2f); AudioManager.PlayAudio(AudioType.SelectEater); }, 0.5f),
-            new(() => { TweenUtils.Travel(munch, munchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlayAudio(AudioType.FoodConsumed); }, 0.5f),
-            new(() => { TweenUtils.Pop(bottomEater, 1.2f); AudioManager.PlayAudio(AudioType.SelectEater); }, 0.2f),
-            new(() => { TweenUtils.Travel(bunch, bunchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlayAudio(AudioType.FoodConsumed); }, 0.5f),
+            new(() => { TweenUtils.Pop(topEater, 1.2f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.5f),
+            new(() => { TweenUtils.Travel(munch, munchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlaySoundEffect(AudioType.Swoosh); }, 0.5f),
+            new(() => { TweenUtils.Pop(bottomEater, 1.2f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.2f),
+            new(() => { TweenUtils.Travel(bunch, bunchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlaySoundEffect(AudioType.Swoosh); }, 0.5f),
             new(() => {
                 _readyToTransition = true;
                 _bg.MouseFilter = Control.MouseFilterEnum.Pass;
@@ -88,6 +89,7 @@ public partial class Title : Node2D
     {
         if (!_transitioned && _readyToTransition && @event is InputEventMouseButton inputEventMouseButton && inputEventMouseButton.IsReleased())
         {
+            AudioManager.PlayBackgroundMusic();
             _transitioned = true;
             CutsceneManager.Play(new() {
                 new(() => TweenUtils.Pop(_tapToStartLabel, 0f, 0.3f, Tween.TransitionType.Cubic), 0),

@@ -4,7 +4,7 @@ using Godot;
 
 public class ModalManager
 {
-    private static ModalType[] UNCLOSABLE_MODALS = new ModalType[] { ModalType.Victory, ModalType.MuncherUnlockModal };
+    private static ModalType[] UNCLOSABLE_MODALS = new ModalType[] { ModalType.Victory, ModalType.MuncherUnlockModal, ModalType.AdLoadingModal };
 
     private static Node2D _currentModal = null;
     private static CanvasLayer _modalLayer;

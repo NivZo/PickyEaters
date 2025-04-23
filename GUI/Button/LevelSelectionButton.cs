@@ -32,7 +32,7 @@ public partial class LevelSelectionButton : Button
     {
         if (ModalManager.CurrentOpenModal == ModalManager.ModalType.None)
         {
-            AudioManager.PlayAudio(AudioType.Undo);
+            AudioManager.PlaySoundEffect(AudioType.Undo);
             ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
             OnButtonUp();
         }

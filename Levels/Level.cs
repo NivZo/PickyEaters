@@ -88,10 +88,9 @@ public partial class Level : Node
         return Vector2.Zero;
     }
 
-    // Updated signature and using food object properties
     private void HandleMove(Eater eater, Food food, bool isHint)
     {
-        if (isHint) // Use the new isHint parameter
+        if (isHint)
         {
             HintManager.ActivateHint();
         }
@@ -114,7 +113,7 @@ public partial class Level : Node
         node.Scale = Vector2.Zero;
         return () => 
         {
-            AudioManager.PlayAudio(AudioType.Undo, 1.5f);
+            AudioManager.PlaySoundEffect(AudioType.Pop);
             TweenUtils.Pop(node, 1);
         };
     }

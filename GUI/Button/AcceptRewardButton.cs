@@ -24,7 +24,6 @@ public partial class AcceptRewardButton : CustomButton
             new(() => {
             Action<Variant> setLabel = (Variant value) => {
                     RewardModal.CoinAmountLabel.Text = $"[right][wave amp=20.0 freq=8.0 connected=1][font gl=15]+{value} [/font][/wave][/right]";
-                    if (value.As<float>() > 10) AudioManager.PlayAudio(AudioType.FoodConsumed, _reward / (value.As<float>() * 5 + _reward));
                 };
                 TweenUtils.MethodTween(this, setLabel, _reward, 0, 3f, Tween.TransitionType.Linear);
                 CoinsManager.AddCoins(_reward);

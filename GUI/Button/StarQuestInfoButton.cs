@@ -33,7 +33,7 @@ public partial class StarQuestInfoButton : Button
     {
         if (ModalManager.CurrentOpenModal == ModalManager.ModalType.None)
         {
-            AudioManager.PlayAudio(AudioType.Undo);
+            AudioManager.PlaySoundEffect(AudioType.Undo);
             ModalManager.OpenStarQuestInfoModal();
         }
     }

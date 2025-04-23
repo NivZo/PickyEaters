@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://c7cdmcassrhdb"]
+
+[ext_resource type="Texture2D" uid="uid://btk4p4qxpcti5" path="res://Assets/Faces/ThreeDGlassesActive.png" id="1_ic5vq"]
+[ext_resource type="Texture2D" uid="uid://d23ejqbtps6s4" path="res://Assets/Faces/ThreeDGlasses.png" id="2_br3ph"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_hddys"]
+
+[resource]
+script = ExtResource("3_hddys")
+EaterFace = 17
+EaterName = "Tridi"
+EaterRarity = 2
+PassiveTexture = ExtResource("2_br3ph")
+ActiveTexture = ExtResource("1_ic5vq")

@@ -110,7 +110,7 @@ public partial class EaterDisplay : Node2D
         TweenUtils.Pop(this, BaseScale * 1.2f);
         TweenUtils.BoldOutline(Body, 8, 12);
 
-        AudioManager.PlayAudio(AudioType.SelectEater);
+        AudioManager.PlaySoundEffect(AudioType.SelectEater);
     }
 
     public void HandleDeactivate()
@@ -119,7 +119,7 @@ public partial class EaterDisplay : Node2D
         TweenUtils.Pop(this, BaseScale * 1);
         TweenUtils.BoldOutline(Body, 4, 8);
 
-        AudioManager.PlayAudio(AudioType.DeselectEater);
+        AudioManager.PlaySoundEffect(AudioType.DeselectEater);
     }
 
     private void StartIdleAnimation()

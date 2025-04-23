@@ -65,7 +65,7 @@ public static class EventManager
 
     public delegate void DailyGoldButtonClickHandler();
     public static event DailyGoldButtonClickHandler DailyGoldButtonClicked;
-    public static void InvokeDailyGoldButtonClicked() => DailyGoldButtonClicked?.Invoke();
+    public static void InvokeDailyGoldButtonClicked() => DailyGoldButtonClicked.Invoke();
 
     public delegate void HourlyGoldButtonClickHandler();
     public static event HourlyGoldButtonClickHandler HourlyGoldButtonClicked;

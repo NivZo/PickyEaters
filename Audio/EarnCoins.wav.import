@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bpx2n6etb2xr4"
-path="res://.godot/imported/Undo.wav-386cfb97172c49351f960a3cc1957dc0.sample"
+uid="uid://dtsa61segmuf"
+path="res://.godot/imported/EarnCoins.wav-7e8c6297fc60b7393c94e8c392824e8b.sample"
 
 [deps]
 
-source_file="res://Audio/Undo.wav"
-dest_files=["res://.godot/imported/Undo.wav-386cfb97172c49351f960a3cc1957dc0.sample"]
+source_file="res://Audio/EarnCoins.wav"
+dest_files=["res://.godot/imported/EarnCoins.wav-7e8c6297fc60b7393c94e8c392824e8b.sample"]
 
 [params]
 

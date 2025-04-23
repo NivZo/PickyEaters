@@ -7,4 +7,9 @@ public enum AudioType
     Undo,
     ButtonPress,
     ButtonRelease,
+    Pop,
+    EarnCoins,
+    EarnStar,
+    LevelComplete,
+    Swoosh,
 }

@@ -41,7 +41,7 @@ public abstract partial class CustomButtonBase : Button
     private void OnClickInternal()
     {
         if (!IsEnabled()) return;
-        if (Sound != AudioType.None) AudioManager.PlayAudio(Sound);
+        if (Sound != AudioType.None) AudioManager.PlaySoundEffect(Sound);
         OnClick();
     }
 
@@ -52,7 +52,7 @@ public abstract partial class CustomButtonBase : Button
             _isMouseOn = true;
             Modulate = new Color(.8f, .8f, .8f);
             HandleButtonDown();
-            AudioManager.PlayAudio(AudioType.ButtonPress);
+            AudioManager.PlaySoundEffect(AudioType.ButtonPress);
             Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
         }
     }
@@ -63,7 +63,7 @@ public abstract partial class CustomButtonBase : Button
         {
             Modulate = new Color(1, 1, 1);
             HandleButtonUp();
-            AudioManager.PlayAudio(AudioType.ButtonRelease);
+            AudioManager.PlaySoundEffect(AudioType.ButtonRelease);
             Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.05f);
 
             if (_isMouseOn)

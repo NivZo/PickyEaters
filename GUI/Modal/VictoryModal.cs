@@ -22,6 +22,8 @@ public partial class VictoryModal : Node2D
         _starM = GetNode<Sprite2D>("Modal/StarM");
         _starR = GetNode<Sprite2D>("Modal/StarR");
 
+        AudioManager.PlaySoundEffect(AudioType.LevelComplete);
+
         PlayCutscene();
     }
 
@@ -53,7 +55,7 @@ public partial class VictoryModal : Node2D
             _descriptionLabel.Scale = new(.8f, .8f);
             TweenUtils.Pop(_descriptionLabel, 1, .4f);
 
-            AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + 0.25f * starNumber);
+            AudioManager.PlaySoundEffect(AudioType.EarnStar, 0.75f + 0.25f * starNumber);
         };
     }
         
@@ -64,7 +66,7 @@ public partial class VictoryModal : Node2D
         var currStars = SaveManager.ActiveSave.LevelStarsObtained[LevelManager.CurrentLevelId];
         var cutscenes = new List<CutsceneManager.CutsceneAction>()
         {
-            new(CreateAddStarAction(_starL, 1, 1.2f, " • FINISH LEVEL", currStars == 0), 1f),
+            new(CreateAddStarAction(_starL, 1, 1.2f, " • FINISH LEVEL", currStars == 0), 2f),
         };
 
         if (LevelManager.IsTwoStarVictory())

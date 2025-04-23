@@ -115,7 +115,7 @@ public partial class Eater : Node2D
             BoardStatePositionId = food.BoardStatePositionId;
             EventManager.InvokeMovePerformed(this, food, isHint); // Pass Eater and Food objects directly
             food.QueueFree();
-            AudioManager.PlayAudio(AudioType.FoodConsumed, 1 + _eatStreak * 0.1f);
+            AudioManager.PlaySoundEffect(AudioType.FoodConsumed, 1 + _eatStreak * 0.1f);
         });
 
         TargetPositionComponent.SetPinPosition(food.GlobalPosition);

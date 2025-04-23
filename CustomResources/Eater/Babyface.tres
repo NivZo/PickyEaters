@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://s0sorer2uvlt"]
+
+[ext_resource type="Texture2D" uid="uid://c6tlvvjfqwi3b" path="res://Assets/Faces/BabyfaceActive.png" id="1_ixf7s"]
+[ext_resource type="Texture2D" uid="uid://dlwqbp087dfvh" path="res://Assets/Faces/Babyface.png" id="2_h1lve"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_133i1"]
+
+[resource]
+script = ExtResource("3_133i1")
+EaterFace = 18
+EaterName = "Lil Munch"
+EaterRarity = 2
+PassiveTexture = ExtResource("2_h1lve")
+ActiveTexture = ExtResource("1_ixf7s")

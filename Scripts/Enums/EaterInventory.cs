@@ -19,6 +19,8 @@ public enum EaterFace
     Dizzy,
     Monocle,
     MustacheAlien,
+    ThreeDGlasses,
+    Babyface,
 }
 
 public static class EaterFaceExtensions
