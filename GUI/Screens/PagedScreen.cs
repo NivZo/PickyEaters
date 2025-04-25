@@ -6,6 +6,7 @@ using System.Linq;
 public abstract partial class PagedScreen<TContent> : Node
     where TContent : Node
 {
+    [Export] public string Title = string.Empty;
     public int CurrentPage = 0;
     private int _pageCount = 0;
     private Node _contents;
@@ -14,6 +15,7 @@ public abstract partial class PagedScreen<TContent> : Node
     public override void _Ready()
     {
         base._Ready();
+        GetNode<RichTextLabel>("PagedScreen/GUILayer/Title").Text = TextUtils.WaveString(Title.ToUpper(), letterDistance: 5);
         _contents = GetNode<Node>("PagedScreen/Contents");
         _pageCountLabel = GetNode<RichTextLabel>("PagedScreen/GUILayer/PageCount");
         _pageCount = GetPageCount();

@@ -27,7 +27,7 @@ public static class AudioManager
 
     public static void PlayTitleBackgroundMusic()
     {
-        _musicPlayer.VolumeDb = VolumeScaleToDB(SaveManager.ActiveSave.MusicVolumeScale * .25f);
+        _musicPlayer.VolumeDb = VolumeScaleToDB(SaveManager.ActiveSave.MusicVolumeScale * .5f);
         _musicPlayer.Play();
     }
 

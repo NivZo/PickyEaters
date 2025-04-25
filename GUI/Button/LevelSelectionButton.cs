@@ -8,6 +8,11 @@ public partial class LevelSelectionButton : Button
         Pressed += OnPress;
         ButtonDown += OnButtonDown;
         ButtonUp += OnButtonUp;
+
+        var backgroundOverlay = GetNode<ColorRect>("BackgroundOverlay");
+        var backgroundOverlayOutline = GetNode<ColorRect>("BackgroundOverlayOutline");
+        backgroundOverlay.Color = LevelManager.GetLevelColor(SaveManager.ActiveSave.LevelReached);
+        backgroundOverlayOutline.Color = backgroundOverlay.Color.Darkened(.2f) with { A = 0.7f };
     }
 
     public override void _ExitTree()

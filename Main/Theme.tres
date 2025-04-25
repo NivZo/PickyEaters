@@ -5,7 +5,7 @@
 
 [resource]
 default_font = ExtResource("2_vuox8")
-default_font_size = 175
+default_font_size = 110
 Button/colors/font_color = Color(0.393512, 0.303451, 0.273408, 1)
 HSlider/icons/grabber = ExtResource("1_lknk7")
 HSlider/icons/grabber_highlight = ExtResource("1_lknk7")

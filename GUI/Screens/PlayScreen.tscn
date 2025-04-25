@@ -138,9 +138,11 @@ CustomIcon = ExtResource("11_08cr1")
 [node name="Borders" type="Node" parent="."]
 
 [node name="HLineBottom" parent="Borders" instance=ExtResource("3_ft4nh")]
+visible = false
 position = Vector2(0, 2348)
 
 [node name="HLineBottomBorder" parent="Borders" instance=ExtResource("3_ft4nh")]
+visible = false
 position = Vector2(0, 2548)
 
 [node name="GameLayer" type="CanvasLayer" parent="."]

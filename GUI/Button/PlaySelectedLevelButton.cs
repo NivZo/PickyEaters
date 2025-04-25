@@ -4,17 +4,6 @@ using Godot;
 public partial class PlaySelectedLevelButton : CustomButton
 {
     [Export] public int LevelId;
-
-    private static readonly Color[] _colors = new[]
-    {
-        TierColor.Easy.GetColor(),
-        TierColor.Medium.GetColor(),
-        TierColor.Hard.GetColor(),
-        TierColor.Expert.GetColor(),
-        TierColor.Genius.GetColor(),
-        TierColor.Super.GetColor(),
-        TierColor.Master.GetColor(),
-    };
     
     public override void _EnterTree()
     {
@@ -31,7 +20,7 @@ public partial class PlaySelectedLevelButton : CustomButton
         GetNode<Sprite2D>("Stars/StarM").Visible = stars > 1;
         GetNode<Sprite2D>("Stars/StarR").Visible = stars > 2;
 
-        Color = new Color(_colors[Math.Max(0, (LevelId-1) / 75)]);
+        Color = LevelManager.GetLevelColor(LevelId);
         IsEnabledFunc = () => LevelId <= SaveManager.ActiveSave.LevelReached;
         if (LevelId <= SaveManager.ActiveSave.LevelReached)
         {

@@ -55,7 +55,7 @@ public partial class VictoryModal : Node2D
             _descriptionLabel.Scale = new(.8f, .8f);
             TweenUtils.Pop(_descriptionLabel, 1, .4f);
 
-            AudioManager.PlaySoundEffect(AudioType.EarnStar, 0.75f + 0.25f * starNumber);
+            AudioManager.PlaySoundEffect(AudioType.EarnStar, 0.7f + 0.2f * starNumber);
         };
     }
         

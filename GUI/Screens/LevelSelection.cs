@@ -33,7 +33,7 @@ public partial class LevelSelection : PagedScreen<PlaySelectedLevelButton>
                     2 => 540,
                     _ => 980,
                 };
-            lvlBtn.Position = new(x, 360 + 360 * Mathf.FloorToInt((i-minLevel)/3));
+            lvlBtn.Position = new(x, 400 + 352 * Mathf.FloorToInt((i-minLevel)/3));
 
             buttons.Add(lvlBtn);
         }

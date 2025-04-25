@@ -84,7 +84,7 @@ public partial class EaterShopShowcase : EaterShowcase
             }
 
             Input.VibrateHandheld(100, (float)SaveManager.ActiveSave.ScreenShakeStrength * 0.1f);
-            AudioManager.PlaySoundEffect(AudioType.FoodConsumed, 1 + 0.25f * (3 - _tapsToReveal));
+            AudioManager.PlaySoundEffect(AudioType.Glint, .75f + 0.25f * (3 - _tapsToReveal));
             _tapParticles.Emitting = true;
             _tapsToReveal--;
         }
@@ -117,6 +117,8 @@ public partial class EaterShopShowcase : EaterShowcase
 
         Display.SelectComponent.ClearActions();
         Display.EnableSelectComponent();
+
+        AudioManager.PlaySoundEffect(AudioType.LevelComplete);
 
         ActionManager.FinishBackgroundAction();
     }

@@ -20,7 +20,8 @@ script = ExtResource("1_ppvc6")
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0.427755, 0.589927, 0.45521, 1)
 material = SubResource("ShaderMaterial_eegjo")
-scale = Vector2(1.81667, 1.8)
+position = Vector2(1.04904e-05, -2.86102e-06)
+scale = Vector2(2.8, 3)
 texture = ExtResource("2_harwn")
 
 [node name="Text" type="RichTextLabel" parent="."]
@@ -30,16 +31,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -30.0
-offset_right = 144.0
-offset_bottom = 26.0
+offset_left = -232.0
+offset_top = -52.0
+offset_right = 228.0
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("5_kx2yb")
-theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center][wave amp=12.0 freq=6.0][font gl=5]EASY I[/font][/wave][/center]"
+text = "[center][wave amp=12.0 freq=6.0][font gl=5]MASTER VI[/font][/wave][/center]"
 scroll_active = false
 shortcut_keys_enabled = false

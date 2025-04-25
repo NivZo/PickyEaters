@@ -1,27 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cydl150lscnd4"]
+[gd_scene load_steps=3 format=3 uid="uid://cydl150lscnd4"]
 
 [ext_resource type="Script" path="res://GUI/Screens/Collection.cs" id="1_v5rii"]
-[ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_i4lv5"]
 [ext_resource type="PackedScene" uid="uid://8ywh4thfktsr" path="res://GUI/Screens/PagedScreen.tscn" id="2_mvojr"]
 
 [node name="Collection" type="Node"]
 script = ExtResource("1_v5rii")
+Title = "COLLECTION"
 
 [node name="PagedScreen" parent="." instance=ExtResource("2_mvojr")]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-
-[node name="Title" type="RichTextLabel" parent="GUILayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 288.0
-offset_top = 48.0
-offset_right = -288.0
-offset_bottom = 208.0
-grow_horizontal = 2
-theme = ExtResource("2_i4lv5")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=1][font gl=5]COLLECTION[/font][/wave][/center]"
-scroll_active = false

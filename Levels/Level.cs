@@ -33,19 +33,19 @@ public partial class Level : Node
             _boardCellIndicatorMapping.Add(food.BoardStatePositionId, ind);
             cutscenes.Add(new(CreatePopNodeCutsceneAction(food), cutsceneDelay));
         }
+        RandomUtils.Shuffle(cutscenes);
 
         foreach (var eater in eaterNodes)
         {
             var ind = BoardCellIndicator.Create(eater.GlobalPosition, eater.BoardStatePositionId, eater);
             _indicators.AddChild(ind);
             _boardCellIndicatorMapping.Add(eater.BoardStatePositionId, ind);
-            cutscenes.Add(new(CreatePopNodeCutsceneAction(eater), cutsceneDelay));
+            cutscenes.Insert(0, new(CreatePopNodeCutsceneAction(eater), cutsceneDelay));
         }
 
         EventManager.MovePerformed += HandleMove;
         EventManager.InvokeLevelReset();
 
-        RandomUtils.Shuffle(cutscenes);
         CutsceneManager.Play(cutscenes);
     }
 

@@ -8,6 +8,8 @@ public enum AudioType
     ButtonPress,
     ButtonRelease,
     Pop,
+    Tap,
+    Glint,
     EarnCoins,
     EarnStar,
     LevelComplete,

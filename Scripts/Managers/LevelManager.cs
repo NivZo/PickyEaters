@@ -1,23 +1,23 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 public static class LevelManager
 {
-    private static readonly Color[] _colors = new[]
+    private static readonly Dictionary<int, Color> _levelColors = new()
     {
-        TierColor.Easy.GetColor(),
-        TierColor.Medium.GetColor(),
-        TierColor.Hard.GetColor(),
-        TierColor.Expert.GetColor(),
-        TierColor.Genius.GetColor(),
-        TierColor.Super.GetColor(),
-        TierColor.Master.GetColor(),
+        { 1, TierColor.Easy.GetColor() },
+        { 16, TierColor.Medium.GetColor() },
+        { 46, TierColor.Hard.GetColor() },
+        { 106, TierColor.Expert.GetColor() },
+        { 181, TierColor.Genius.GetColor() },
+        { 271, TierColor.Master.GetColor() },
     };
 
     private static CanvasLayer _gameLayer;
     private static Level _level;
-    private static Lazy<int> _maxLevelLazy = new(DirAccess.GetFilesAt("res://Levels/").Length-1);
+    private static Lazy<int> _maxLevelLazy = new(DirAccess.GetFilesAt("res://AssetGeneration/Levels/").Length);
     private static int _totalWhiteFoodCount = 0;
 
     public static int CurrentLevelId;
@@ -45,10 +45,10 @@ public static class LevelManager
         }
         
         CurrentLevelId = Math.Min(MaxLevel, levelId);
-        BackgroundManager.ChangeColor(GetLevelColor(CurrentLevelId));
+        BackgroundManager.ChangeColor(GetLevelColor(CurrentLevelId), lightenFactor: 0.2f);
         HistoryManager.ResetHistory();
 
-        _level = GD.Load<PackedScene>($"res://Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();
+        _level = GD.Load<PackedScene>($"res://AssetGeneration/Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();
         _gameLayer.AddChild(_level);
 
         _gameLayer.GetNode<RichTextLabel>("%LevelTitle").Text = TextUtils.WaveString($"LEVEL {levelId}");
@@ -89,5 +89,9 @@ public static class LevelManager
         LoadLevel(CurrentLevelId-1);
     }
 
-    public static Color GetLevelColor(int levelId) => _colors[Math.Max(0, (levelId-1) / 75)];
+    public static Color GetLevelColor(int levelId)
+    {
+        var color = _levelColors.Keys.Where(key => key <= levelId).Max();
+        return _levelColors[color];
+    }
 }
