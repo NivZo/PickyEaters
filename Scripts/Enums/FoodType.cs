@@ -9,7 +9,7 @@ public enum FoodType
     Yellow,
     Purple,
     Pink,
-    Brown,
+    // Brown,
 }
 
 public static class FoodTypeExtensions
@@ -25,7 +25,7 @@ public static class FoodTypeExtensions
             FoodType.Yellow => NamedColor.Yellow,
             FoodType.Purple => NamedColor.Purple,
             FoodType.Pink => NamedColor.Pink,
-            FoodType.Brown => NamedColor.Brown,
+            // FoodType.Brown => NamedColor.Brown,
             _ => NamedColor.Gray
         };
     }

@@ -45,7 +45,7 @@ public static class LevelManager
         }
         
         CurrentLevelId = Math.Min(MaxLevel, levelId);
-        BackgroundManager.ChangeColor(GetLevelColor(CurrentLevelId), lightenFactor: 0.2f);
+        BackgroundManager.ChangeColor(GetLevelColor(CurrentLevelId), lightenFactor: 0.4f);
         HistoryManager.ResetHistory();
 
         _level = GD.Load<PackedScene>($"res://AssetGeneration/Levels/Level{CurrentLevelId}.tscn").Instantiate<Level>();

@@ -18,7 +18,7 @@ public partial class AreYouSure : Node2D
         _confirmButton = GetNode<AreYouSureConfirmButton>("Modal/Confirm");
         _confirmButton.OnConfirm = _onConfirm;
         _textLabel = GetNode<RichTextLabel>("Modal/BannerText");
-        _textLabel.Text = TextUtils.WaveString(_text);
+        _textLabel.Text = TextUtils.WaveString(_text, amplitude: 4);
 
         if (!_text.Contains('\n'))
         {

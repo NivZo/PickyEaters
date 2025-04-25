@@ -5,6 +5,7 @@ using Godot;
 
 public partial class Level : Node
 {
+    private const int _maxIndependentFoodPops = 12;
     public Node Food;
     public Node Eaters;
     private Node _indicators;
@@ -22,16 +23,32 @@ public partial class Level : Node
         AddChild(_indicators);
 
         var cutscenes = new List<CutsceneManager.CutsceneAction>();
-
-        var foodNodes = GetFood();
         var eaterNodes = GetEaters();
-        var cutsceneDelay = 1f / (foodNodes.Count + eaterNodes.Count);
-        foreach (var food in foodNodes)
+        var foodNodes = GetFood();
+        RandomUtils.Shuffle(foodNodes);
+
+        int foodBatchSize = 1;
+        if (foodNodes.Count > _maxIndependentFoodPops)
         {
-            var ind = BoardCellIndicator.Create(food.GlobalPosition, food.BoardStatePositionId);
-            _indicators.AddChild(ind);
-            _boardCellIndicatorMapping.Add(food.BoardStatePositionId, ind);
-            cutscenes.Add(new(CreatePopNodeCutsceneAction(food), cutsceneDelay));
+            foodBatchSize = (int)Math.Ceiling((float)foodNodes.Count / _maxIndependentFoodPops);
+        }
+
+        var numberOfAnimations = Math.Min(foodNodes.Count / foodBatchSize, _maxIndependentFoodPops) + eaterNodes.Count;
+        var cutsceneDelay = 1f / numberOfAnimations;
+
+        for (int i = 0; i < foodNodes.Count; i += foodBatchSize)
+        {
+            var batch = foodNodes.Skip(i).Take(foodBatchSize).ToArray();
+            var batchAction = CreatePopNodeCutsceneAction(batch);
+
+            foreach (var food in batch)
+            {
+                var ind = BoardCellIndicator.Create(food.GlobalPosition, food.BoardStatePositionId);
+                _indicators.AddChild(ind);
+                _boardCellIndicatorMapping.Add(food.BoardStatePositionId, ind);
+            }
+
+            cutscenes.Add(new(batchAction, cutsceneDelay));
         }
         RandomUtils.Shuffle(cutscenes);
 
@@ -124,13 +141,20 @@ public partial class Level : Node
         }
     }
 
-    private static Action CreatePopNodeCutsceneAction(Node2D node)
+    private static Action CreatePopNodeCutsceneAction(params Node2D[] nodes)
     {
-        node.Scale = Vector2.Zero;
-        return () => 
+        foreach (var node in nodes)
+        {
+            node.Scale = Vector2.Zero;
+        }
+        
+        return () =>
         {
             AudioManager.PlaySoundEffect(AudioType.Pop);
-            TweenUtils.Pop(node, 1);
+            foreach (var node in nodes)
+            {
+                TweenUtils.Pop(node, 1);
+            }
         };
     }
 }

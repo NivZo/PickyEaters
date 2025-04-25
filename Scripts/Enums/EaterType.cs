@@ -8,7 +8,7 @@ public enum EaterType
     Yellow,
     Purple,
     Pink,
-    Brown,
+    // Brown,
     Hidden,
 
 }
@@ -25,7 +25,7 @@ public static class EaterTypeExtensions
             EaterType.Yellow => NamedColor.Yellow,
             EaterType.Purple => NamedColor.Purple,
             EaterType.Pink => NamedColor.Pink,
-            EaterType.Brown => NamedColor.Brown,
+            // EaterType.Brown => NamedColor.Brown,
             EaterType.Hidden => NamedColor.Black,
             _ => NamedColor.White,
         };
@@ -59,7 +59,7 @@ public static class EaterTypeExtensions
             EaterType.Yellow => FoodType.Yellow,
             EaterType.Purple => FoodType.Purple,
             EaterType.Pink => FoodType.Pink,
-            EaterType.Brown => FoodType.Brown,
+            // EaterType.Brown => FoodType.Brown,
             _ => FoodType.White,
         };
     }

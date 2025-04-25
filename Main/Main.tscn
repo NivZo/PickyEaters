@@ -138,9 +138,6 @@ position = Vector2(0, 2554)
 [node name="VLineRightBorder" parent="BorderLayer" instance=ExtResource("6_ctjmt")]
 position = Vector2(1440, 0)
 
-[node name="ModalLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
 [node name="GUILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -162,6 +159,9 @@ offset_right = 1368.0
 offset_bottom = 2304.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 40
+
+[node name="ModalLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="IndicatorLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

@@ -62,43 +62,43 @@ position = Vector2(720, 0)
 [node name="Munch" type="RichTextLabel" parent="TitleContent"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -432.0
-offset_top = 288.0
-offset_right = 144.0
+offset_left = -576.0
+offset_top = 216.0
+offset_right = 216.0
 offset_bottom = 504.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("2_b51by")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_nhglo")
-theme_override_font_sizes/normal_font_size = 200
+theme_override_font_sizes/normal_font_size = 280
 bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]Munch[/font][/wave][/center]"
+text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]MUNCH[/font][/wave][/center]"
 scroll_active = false
 
 [node name="Bunch" type="RichTextLabel" parent="TitleContent"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -144.0
+offset_left = -216.0
 offset_top = 508.0
-offset_right = 432.0
-offset_bottom = 724.0
+offset_right = 576.0
+offset_bottom = 792.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("2_b51by")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_nhglo")
-theme_override_font_sizes/normal_font_size = 200
+theme_override_font_sizes/normal_font_size = 280
 bbcode_enabled = true
-text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]Bunch[/font][/wave][/center]"
+text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]BUNCH[/font][/wave][/center]"
 scroll_active = false
 
 [node name="BottomEaterShowcase" parent="TitleContent" instance=ExtResource("4_373q2")]
-position = Vector2(-288, 628)
+position = Vector2(-432, 678)
 scale = Vector2(1.2, 1.2)
 
 [node name="TopEaterShowcase" parent="TitleContent" instance=ExtResource("4_373q2")]
-position = Vector2(288, 412)
+position = Vector2(432, 384)
 scale = Vector2(1.2, 1.2)
 
 [node name="Fade" type="ColorRect" parent="."]

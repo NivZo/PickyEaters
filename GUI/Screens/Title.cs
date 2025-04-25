@@ -39,7 +39,7 @@ public partial class Title : Node2D
     private void StartupAnimation()
     {
         _fade.Visible = true;
-        _content.Scale = new(1.5f, 1.5f);
+        _content.Scale = new(1.2f, 1.2f);
         _content.GlobalPosition = new(720, 432);
         (_bg.Material as ShaderMaterial).SetShaderParameter("progress", 0);
         
@@ -94,7 +94,7 @@ public partial class Title : Node2D
             CutsceneManager.Play(new() {
                 new(() => TweenUtils.Pop(_tapToStartLabel, 0f, 0.3f, Tween.TransitionType.Cubic), 0),
                 new(() => {
-                    TweenUtils.Pop(_content, _contentTargetScale, 1.5f);
+                    TweenUtils.Pop(_content, _contentTargetScale, 1.5f, Tween.TransitionType.Quint);
                     TweenUtils.Travel(_content, _contentTargetPosition, 1.5f);
                 }, 0.3f),
                 new(() => TweenUtils.MethodTween(_bg, val => (_bg.Material as ShaderMaterial).SetShaderParameter("progress", val), 0f, 1f, 1, Tween.TransitionType.Linear).Finished += ClearPostAnimation, 0),

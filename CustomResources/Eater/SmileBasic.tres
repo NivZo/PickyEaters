@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="EaterResource" load_steps=2 format=3 uid="uid://c0vu5iv0dlxr2"]
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://c0vu5iv0dlxr2"]
 
+[ext_resource type="Texture2D" uid="uid://c1gmn3b3xam31" path="res://Assets/Faces/SmileBasicActive.png" id="1_qpcih"]
 [ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="1_tafr0"]
+[ext_resource type="Texture2D" uid="uid://ckeofr6lydgt" path="res://Assets/Faces/SmileBasic.png" id="2_wrnlj"]
 
 [resource]
 script = ExtResource("1_tafr0")
 EaterFace = 1
 EaterName = "Munchy"
 EaterRarity = 0
+PassiveTexture = ExtResource("2_wrnlj")
+ActiveTexture = ExtResource("1_qpcih")
