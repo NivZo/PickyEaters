@@ -34,7 +34,7 @@ offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.287295, 0.287295, 0.287295, 0.419608)
+color = Color(1, 0.756863, 0.113725, 0.313726)
 
 [node name="BackgroundOverlay" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_d5gw3")
@@ -49,7 +49,7 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.0901961, 0.188235, 0.121569, 0.192157)
+color = Color(1, 0.756863, 0.113725, 0.54902)
 
 [node name="LevelLabel" type="RichTextLabel" parent="."]
 material = SubResource("ShaderMaterial_7pjkq")
@@ -78,8 +78,8 @@ clip_contents = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 144.0
-offset_bottom = 412.0
+offset_top = 120.0
+offset_bottom = 388.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("3_1blvk")

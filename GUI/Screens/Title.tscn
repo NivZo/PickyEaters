@@ -54,7 +54,7 @@ offset_bottom = 2560.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.416216, 0.77804, 0.743799, 1)
+color = Color(0.435294, 0.65098, 0.772549, 1)
 
 [node name="TitleContent" type="Node2D" parent="."]
 position = Vector2(720, 0)

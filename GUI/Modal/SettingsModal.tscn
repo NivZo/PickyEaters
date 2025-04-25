@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ywfx6mcf1iw" path="res://Assets/Icons/White/2x/audioOff.png" id="6_2682k"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_v0yov"]
 [ext_resource type="Texture2D" uid="uid://dxiwij7hwrw3d" path="res://Assets/Icons/White/2x/export.png" id="9_rxatc"]
-[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="9_ui6gg"]
+[ext_resource type="Script" path="res://GUI/Button/CloseModalButton.cs" id="9_tj1of"]
 [ext_resource type="Script" path="res://GUI/Button/RestartSaveButtonDEV.cs" id="9_vicnn"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="9_x7sst"]
 [ext_resource type="Texture2D" uid="uid://dvney40okxkrn" path="res://Assets/Icons/White/2x/power.png" id="10_b3cci"]
@@ -209,7 +209,7 @@ bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]SETTINGS[/font][/wave][/center]"
 scroll_active = false
 
-[node name="HomeButton" parent="Modal" instance=ExtResource("8_v0yov")]
+[node name="Close" parent="Modal" instance=ExtResource("8_v0yov")]
 anchors_preset = 10
 anchor_right = 1.0
 anchor_bottom = 0.0
@@ -218,8 +218,8 @@ offset_top = 360.0
 offset_right = 504.0
 offset_bottom = 504.0
 grow_horizontal = 2
-script = ExtResource("9_ui6gg")
-CustomText = "HOME"
+script = ExtResource("9_tj1of")
+CustomText = "BACK"
 CustomTextSize = 80
 Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false

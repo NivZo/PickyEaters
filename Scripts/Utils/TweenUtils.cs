@@ -20,7 +20,14 @@ public static class TweenUtils
 
     public static void Color(Node node, Color to, float duration = 1f, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)
     {
-        AddPropertyTween(node, "self_modulate", to, duration, transitionType);
+        if (node is ColorRect colorRect)
+        {
+            AddPropertyTween(colorRect, "color", to, duration, transitionType);
+        }
+        else
+        {
+            AddPropertyTween(node, "self_modulate", to, duration, transitionType);
+        }
     }
 
     public static Tween MethodTween(Node node, Action<Variant> action, Variant from, Variant to, float duration, Tween.TransitionType transitionType = Tween.TransitionType.Cubic)

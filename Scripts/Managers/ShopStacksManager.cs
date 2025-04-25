@@ -65,9 +65,6 @@ public static class ShopStacksManager
 
     public static TimeSpan GetTimeUntilDailyReward()
     {
-        if (IsDailyRewardAvailable())
-            return TimeSpan.Zero;
-
         DateTimeOffset now = GetUtcNow();
         DateTimeOffset startOfTomorrow = GetStartOfCurrentUtcDay().AddDays(1);
         TimeSpan timeLeft = startOfTomorrow - now;
@@ -87,7 +84,7 @@ public static class ShopStacksManager
     {
         if (IsDailyRewardAvailable())
         {
-            SaveManager.ActiveSave.LastDailyFreeRewardClaimedUnixSec = GetStartOfCurrentUtcDay().ToUnixTimeSeconds();
+            SaveManager.ActiveSave.LastDailyFreeRewardClaimedUnixSec = GetUtcNow().ToUnixTimeSeconds();
             SaveManager.CommitActiveSave();
         }
     }

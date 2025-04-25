@@ -61,7 +61,7 @@ offset_bottom = 145.28
 theme = ExtResource("2_jsudd")
 script = ExtResource("9_et2y7")
 CustomText = "PLAY"
-CustomTextSize = 240
+CustomTextSize = 320
 Color = Color(0.529412, 0.894118, 0.615686, 1)
 
 [node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]

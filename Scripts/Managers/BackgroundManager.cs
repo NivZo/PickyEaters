@@ -12,7 +12,7 @@ public class BackgroundManager
         _transitionBackground = Main.Instance.GetNode<ColorRect>("Shaders/Transition/BackgroundEffectTiled");
     }
 
-    public static void ChangeColor(Color target, float duration = 1.5f, float lightenFactor = 0.2f)
+    public static void ChangeColor(Color target, float duration = 1.5f, float lightenFactor = 0.35f)
     {
         target = target.Lightened(lightenFactor);
         TweenUtils.Color(_background, target, duration);

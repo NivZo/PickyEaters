@@ -83,7 +83,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.411876, 0.781984, 0.719588, 1)
+color = Color(0.435294, 0.65098, 0.772549, 1)
 
 [node name="OverlayTop" type="ColorRect" parent="BackgroundLayer"]
 anchors_preset = 12

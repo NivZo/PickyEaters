@@ -22,12 +22,11 @@ public partial class Shop : Node
         _hourlyAdGoldRefreshCountdownLabel = GetNode<RichTextLabel>("GUILayer/HourlyAdGold/RefreshCountdownLabel");
         _hourlyAdStacksLeftLabel = GetNode<RichTextLabel>("GUILayer/HourlyAdGold/HourlyAdStacksLeftLabel");
 
-        BackgroundManager.ChangeColor(NamedColor.Orange.GetColor(), lightenFactor: .7f);
+        BackgroundManager.ChangeColor(NamedColor.Orange.GetColor(), lightenFactor: 0.2f);
 
         EventManager.DailyGoldButtonClicked += OnDailyGoldButtonClicked;
         EventManager.HourlyGoldButtonClicked += OnHourlyGoldButtonClicked;
 
-        // Initially hide both labels
         _dailyGoldRefreshCountdownLabel.Visible = false;
         _hourlyAdGoldRefreshCountdownLabel.Visible = false;
     }
@@ -68,10 +67,9 @@ public partial class Shop : Node
         // --- Daily Timer Update ---
         bool isDailyAvailable = ShopStacksManager.IsDailyRewardAvailable();
         _dailyGoldRefreshCountdownLabel.Visible = !isDailyAvailable;
-        TimeSpan dailyTimeLeft = TimeSpan.Zero; // Initialize
         if (!isDailyAvailable)
         {
-            dailyTimeLeft = ShopStacksManager.GetTimeUntilDailyReward();
+            var dailyTimeLeft = ShopStacksManager.GetTimeUntilDailyReward();
             UpdateCountdownLabel(_dailyGoldRefreshCountdownLabel, dailyTimeLeft);
         }
 

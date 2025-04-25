@@ -14,6 +14,7 @@ public enum NamedColor
     White,
     Gray,
     Cyan,
+    LightBlue,
     Orange,
     TransparentGray,
 }
@@ -36,7 +37,8 @@ public static class EaterColorExtensions
             NamedColor.White => new("bcbcbc3c"),
             NamedColor.Gray => new("bcc7c9"),
             NamedColor.Cyan => new("87bfc6"),
-            NamedColor.Orange => new("ffaf00"),
+            NamedColor.LightBlue => new("6fa6c5"),
+            NamedColor.Orange => new("cf912a"),
             NamedColor.TransparentGray => new("7e7e7e3c"),
             _ => new()
         };
