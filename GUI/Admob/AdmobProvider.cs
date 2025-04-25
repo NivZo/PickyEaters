@@ -69,7 +69,7 @@ public partial class AdmobProvider : Node2D
     {
         _isLoaded = false;
         _isRequestActive = false;
-        ModalManager.CloseModal();
+        ModalManager.CloseModal(true);
         _admob.Call("load_rewarded_ad");
     }
 

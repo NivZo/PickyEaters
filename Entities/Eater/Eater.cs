@@ -29,7 +29,7 @@ public partial class Eater : Node2D
     {
         base._Ready();
         
-        EaterFace = EaterFace == EaterFace.SmileBasic ? EnumUtils.GetRandomValueOutOf(SaveManager.ActiveSave.UnlockedFaces.ToList()) : EaterFace;
+        EaterFace = LevelManager.Level.GetAvailableEaterFace();
         Display = GetNode<EaterDisplay>("EaterDisplay");
         Display.EaterFace = EaterFace;
         Display.EaterType = EaterType;

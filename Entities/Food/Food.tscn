@@ -115,14 +115,14 @@ script = ExtResource("1_4jjr8")
 
 [node name="Food" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_68teg")
-position = Vector2(0, 0.876181)
+position = Vector2(0, 0.154125)
 scale = Vector2(0.577639, 0.577639)
 texture = ExtResource("3_qk020")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, 88)
-scale = Vector2(0.664048, 1.0281)
+scale = Vector2(0.673073, 1.04615)
 texture = ExtResource("4_yed14")
 
 [node name="Area2D" type="Area2D" parent="."]

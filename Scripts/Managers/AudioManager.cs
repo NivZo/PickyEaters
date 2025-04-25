@@ -33,6 +33,7 @@ public static class AudioManager
 
     public static void PlayBackgroundMusic()
     {
+        PlaySoundEffect(AudioType.Swoosh);
         TweenUtils.MethodTween(_musicPlayer, val => _musicPlayer.VolumeDb = val.As<float>(), VolumeScaleToDB(SaveManager.ActiveSave.MusicVolumeScale * .25f), VolumeScaleToDB(SaveManager.ActiveSave.MusicVolumeScale), 1f);
     }
 

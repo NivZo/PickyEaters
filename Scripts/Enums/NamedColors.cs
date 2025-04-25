@@ -28,7 +28,7 @@ public static class EaterColorExtensions
             NamedColor.Green => new("59b25d"),
             NamedColor.Blue => new("6c77e9"),
             NamedColor.Yellow => new("fec851"),
-            NamedColor.Red => new("ff2e45"),
+            NamedColor.Red => new("ff202b"),
             NamedColor.Pink => new("ff7dbb"),
             NamedColor.Purple => new("7b51cf"),
             NamedColor.Brown => new("944d12"),

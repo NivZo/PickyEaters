@@ -60,7 +60,7 @@ void fragment() {
     float yFraction = fract(FRAGCOORD.y / diamondPixelSize);
     float xDistance = abs(xFraction - 0.5);
     float yDistance = abs(yFraction - 0.5);
-    
+
     // Check if this fragment should be discarded based on progress
     if (reverse) {
         if (xDistance + yDistance + UV.x + UV.y < progress * 4.0f) {
@@ -71,14 +71,14 @@ void fragment() {
             discard;
         }
     }
-    
+
     // Apply the Balatro visual effect to visible fragments
     vec4 effect_color = balatro_effect(1.0 / SCREEN_PIXEL_SIZE, FRAGCOORD.xy);
-    
+
     // Sample the overlay texture with explicit resolution
     vec2 uv = FRAGCOORD.xy / texture_resolution;
     vec4 texture_color = texture(overlay_texture, uv);
-    
+
     // Blend the texture with the effect color, respecting the texture's alpha
     float alpha = texture_color.a * texture_opacity;
     COLOR = mix(effect_color, texture_color, alpha);

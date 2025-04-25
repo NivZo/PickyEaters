@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ced8wfge2ycg"]
+[gd_scene load_steps=16 format=3 uid="uid://ced8wfge2ycg"]
 
 [ext_resource type="Script" path="res://GUI/Modal/SettingsModal.cs" id="1_e8rg8"]
 [ext_resource type="PackedScene" uid="uid://ciuq2s4vwprqy" path="res://GUI/Modal/Modal.tscn" id="1_o1l77"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ywfx6mcf1iw" path="res://Assets/Icons/White/2x/audioOff.png" id="6_2682k"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_v0yov"]
 [ext_resource type="Texture2D" uid="uid://dxiwij7hwrw3d" path="res://Assets/Icons/White/2x/export.png" id="9_rxatc"]
+[ext_resource type="Script" path="res://GUI/Button/HomeButton.cs" id="9_ui6gg"]
 [ext_resource type="Script" path="res://GUI/Button/RestartSaveButtonDEV.cs" id="9_vicnn"]
 [ext_resource type="Texture2D" uid="uid://beq1g42plbjnl" path="res://Assets/GUI/ButtonText_Small_Blank_Square.png" id="9_x7sst"]
 [ext_resource type="Texture2D" uid="uid://dvney40okxkrn" path="res://Assets/Icons/White/2x/power.png" id="10_b3cci"]
@@ -37,6 +38,7 @@ script = ExtResource("1_e8rg8")
 [node name="Modal" parent="." instance=ExtResource("1_o1l77")]
 
 [node name="SmallBackground" type="Sprite2D" parent="Modal"]
+visible = false
 self_modulate = Color(0.345766, 0.423177, 0.359951, 0.392)
 position = Vector2(4, -75.6)
 scale = Vector2(1.8, 2.05234)
@@ -44,15 +46,16 @@ texture = ExtResource("9_x7sst")
 
 [node name="MusicVolume" type="Node2D" parent="Modal"]
 material = SubResource("ShaderMaterial_w4hnx")
+position = Vector2(0, -72)
 
 [node name="IconMusicOn" type="Sprite2D" parent="Modal/MusicVolume"]
 use_parent_material = true
-position = Vector2(390, -172)
+position = Vector2(480, -172)
 texture = ExtResource("5_qavbu")
 
 [node name="IconMusicOff" type="Sprite2D" parent="Modal/MusicVolume"]
 use_parent_material = true
-position = Vector2(390, -172)
+position = Vector2(480, -172)
 texture = ExtResource("6_2682k")
 
 [node name="MusicLabel" type="RichTextLabel" parent="Modal/MusicVolume"]
@@ -62,15 +65,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
+offset_left = -496.0
 offset_top = -206.0
-offset_right = 40.0
+offset_right = -76.0
 offset_bottom = -136.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4_r6oil")
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "MUSIC"
 scroll_active = false
@@ -78,9 +81,9 @@ shortcut_keys_enabled = false
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Modal/MusicVolume"]
 self_modulate = Color(0.376658, 0.376658, 0.376658, 1)
-offset_left = -20.0
+offset_left = -72.0
 offset_top = -214.0
-offset_right = 320.0
+offset_right = 360.0
 offset_bottom = -134.0
 focus_mode = 0
 theme = ExtResource("4_r6oil")
@@ -90,16 +93,16 @@ value = 1.0
 
 [node name="SoundEffectsVolume" type="Node2D" parent="Modal"]
 material = SubResource("ShaderMaterial_1j05n")
-position = Vector2(0, 100)
+position = Vector2(0, 72)
 
 [node name="IconMusicOn" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
 use_parent_material = true
-position = Vector2(390, -172)
+position = Vector2(480, -172)
 texture = ExtResource("5_qavbu")
 
 [node name="IconMusicOff" type="Sprite2D" parent="Modal/SoundEffectsVolume"]
 use_parent_material = true
-position = Vector2(390, -172)
+position = Vector2(480, -172)
 texture = ExtResource("6_2682k")
 
 [node name="SoundEffectLabel" type="RichTextLabel" parent="Modal/SoundEffectsVolume"]
@@ -109,13 +112,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
+offset_left = -496.0
 offset_top = -206.0
-offset_right = 40.0
+offset_right = -76.0
 offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4_r6oil")
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "EFFECTS"
 scroll_active = false
@@ -123,9 +128,9 @@ shortcut_keys_enabled = false
 
 [node name="SoundEffectsVolumeSlider" type="HSlider" parent="Modal/SoundEffectsVolume"]
 self_modulate = Color(0.376471, 0.376471, 0.376471, 1)
-offset_left = -20.0
+offset_left = -72.0
 offset_top = -214.0
-offset_right = 320.0
+offset_right = 360.0
 offset_bottom = -134.0
 focus_mode = 0
 theme = ExtResource("4_r6oil")
@@ -135,7 +140,7 @@ value = 1.0
 
 [node name="ScreenShake" type="Node2D" parent="Modal"]
 material = SubResource("ShaderMaterial_1j05n")
-position = Vector2(0, 200)
+position = Vector2(0, 216)
 
 [node name="ScreenShakeLabel" type="RichTextLabel" parent="Modal/ScreenShake"]
 clip_contents = false
@@ -144,13 +149,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
+offset_left = -496.0
 offset_top = -206.0
-offset_right = 40.0
+offset_right = -76.0
 offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4_r6oil")
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "SCREEN SHAKE"
 scroll_active = false
@@ -163,15 +170,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 360.0
-offset_top = -200.0
-offset_right = 780.0
-offset_bottom = -130.0
+offset_left = 432.0
+offset_top = -216.0
+offset_right = 852.0
+offset_bottom = -146.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4_r6oil")
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "100"
 scroll_active = false
@@ -179,9 +186,9 @@ shortcut_keys_enabled = false
 
 [node name="ScreenShakeStrengthSlider" type="HSlider" parent="Modal/ScreenShake"]
 self_modulate = Color(0.376471, 0.376471, 0.376471, 1)
-offset_left = -20.0
+offset_left = -72.0
 offset_top = -214.0
-offset_right = 320.0
+offset_right = 360.0
 offset_bottom = -134.0
 focus_mode = 0
 theme = ExtResource("4_r6oil")
@@ -201,6 +208,21 @@ theme = ExtResource("4_r6oil")
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]SETTINGS[/font][/wave][/center]"
 scroll_active = false
+
+[node name="HomeButton" parent="Modal" instance=ExtResource("8_v0yov")]
+anchors_preset = 10
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -504.0
+offset_top = 360.0
+offset_right = 504.0
+offset_bottom = 504.0
+grow_horizontal = 2
+script = ExtResource("9_ui6gg")
+CustomText = "HOME"
+CustomTextSize = 80
+Color = Color(0.329412, 0.513726, 0.729412, 1)
+WaveString = false
 
 [node name="Erase" parent="." instance=ExtResource("8_v0yov")]
 offset_left = -504.0

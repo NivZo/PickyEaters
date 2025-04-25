@@ -9,6 +9,7 @@ public partial class Level : Node
     public Node Eaters;
     private Node _indicators;
     private Dictionary<Vector2I, BoardCellIndicator> _boardCellIndicatorMapping = new();
+    private HashSet<EaterFace> _facesInLevel = new();
     
     public override void _Ready()
     {
@@ -21,7 +22,7 @@ public partial class Level : Node
         AddChild(_indicators);
 
         var cutscenes = new List<CutsceneManager.CutsceneAction>();
-        
+
         var foodNodes = GetFood();
         var eaterNodes = GetEaters();
         var cutsceneDelay = 1f / (foodNodes.Count + eaterNodes.Count);
@@ -64,6 +65,21 @@ public partial class Level : Node
         .GetChildren()
         .Where(child => child is Food)
         .Select(eater => eater as Food).ToList();
+
+    public EaterFace GetAvailableEaterFace()
+    {
+        var availableFaces = SaveManager.ActiveSave.UnlockedFaces
+            .Where(face => face != EaterFace.Hidden && !_facesInLevel.Contains(face))
+            .ToList();
+        if (availableFaces.Count == 0)
+        {
+            return EaterFace.SmileBasic;
+        }
+
+        var randomFace = EnumUtils.GetRandomValueOutOf(availableFaces);
+        _facesInLevel.Add(randomFace);
+        return randomFace;
+    }
     
     public List<FoodType> GetUnfinishedFoodTypes() => GetFood().Where(food => food.IsLast).Select(food => food.FoodType).ToList();
     
