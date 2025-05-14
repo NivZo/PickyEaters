@@ -24,6 +24,16 @@ public static class TweenUtils
         {
             AddPropertyTween(colorRect, "color", to, duration, transitionType);
         }
+        else if (node is TextureRect textureRect && textureRect.Texture is GradientTexture2D gradientTexture)
+        {
+            var from = gradientTexture.Gradient.GetColor(0);
+            MethodTween(textureRect, val =>
+            {
+                gradientTexture.Gradient.SetColor(0, val.AsColor());
+                gradientTexture.Gradient.SetColor(1, val.AsColor().Darkened(.15f));
+            }, from, to, duration, transitionType);
+            AddPropertyTween(textureRect, "self_modulate", to, duration, transitionType);
+        }
         else
         {
             AddPropertyTween(node, "self_modulate", to, duration, transitionType);

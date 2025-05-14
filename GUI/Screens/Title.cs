@@ -39,7 +39,7 @@ public partial class Title : Node2D
     private void StartupAnimation()
     {
         _fade.Visible = true;
-        _content.Scale = new(1.2f, 1.2f);
+        _content.Scale = new(1f, 1f);
         _content.GlobalPosition = new(720, 432);
         (_bg.Material as ShaderMaterial).SetShaderParameter("progress", 0);
         
@@ -58,10 +58,10 @@ public partial class Title : Node2D
         CutsceneManager.Play(new()
         {
             new(() => TweenUtils.Color(_fade, new Color(0, 0, 0, 0), 1f, Tween.TransitionType.Linear), 0),
-            new(() => { TweenUtils.Pop(topEater, 1.2f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.5f),
             new(() => { TweenUtils.Travel(munch, munchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlaySoundEffect(AudioType.Swoosh); }, 0.5f),
-            new(() => { TweenUtils.Pop(bottomEater, 1.2f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.2f),
             new(() => { TweenUtils.Travel(bunch, bunchTargetPosition, .5f, Tween.TransitionType.Spring); AudioManager.PlaySoundEffect(AudioType.Swoosh); }, 0.5f),
+            new(() => { TweenUtils.Pop(topEater, 1.5f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.5f),
+            new(() => { TweenUtils.Pop(bottomEater, 1.5f); AudioManager.PlaySoundEffect(AudioType.SelectEater); }, 0.2f),
             new(() => {
                 _readyToTransition = true;
                 _bg.MouseFilter = Control.MouseFilterEnum.Pass;
@@ -94,7 +94,7 @@ public partial class Title : Node2D
             CutsceneManager.Play(new() {
                 new(() => TweenUtils.Pop(_tapToStartLabel, 0f, 0.3f, Tween.TransitionType.Cubic), 0),
                 new(() => {
-                    TweenUtils.Pop(_content, _contentTargetScale, 1.5f, Tween.TransitionType.Quint);
+                    TweenUtils.Pop(_content, _contentTargetScale, 1.5f);
                     TweenUtils.Travel(_content, _contentTargetPosition, 1.5f);
                 }, 0.3f),
                 new(() => TweenUtils.MethodTween(_bg, val => (_bg.Material as ShaderMaterial).SetShaderParameter("progress", val), 0f, 1f, 1, Tween.TransitionType.Linear).Finished += ClearPostAnimation, 0),

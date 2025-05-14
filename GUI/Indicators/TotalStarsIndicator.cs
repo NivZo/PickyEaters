@@ -23,6 +23,6 @@ public partial class TotalStarsIndicator : Node2D
 
     private void UpdateLabel()
     {
-        _label.Text = TextUtils.WaveString($"[left]{SaveManager.ActiveSave.LevelStarsObtained.Sum()} / {LevelManager.MaxLevel * 3}[/left]", amplitude: 12, frequency: 2, center: false);
+        _label.Text = $"[left]{TextUtils.WaveString($"{SaveManager.ActiveSave.LevelStarsObtained.Sum()} / {LevelManager.MaxLevel * 3}", amplitude: 12, frequency: 2, center: false)}[/left]";
     }
 }

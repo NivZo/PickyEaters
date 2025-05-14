@@ -1,21 +1,73 @@
-[gd_scene load_steps=13 format=3 uid="uid://orwk32ls7xjf"]
+[gd_scene load_steps=17 format=3 uid="uid://orwk32ls7xjf"]
 
 [ext_resource type="Script" path="res://GUI/Screens/MainMenu.cs" id="1_gf2r7"]
+[ext_resource type="Texture2D" uid="uid://lvtxfuyg87ar" path="res://Assets/Background/cloud_medium.png" id="2_a4j87"]
 [ext_resource type="PackedScene" uid="uid://be2jitplstwe" path="res://GUI/HLine.tscn" id="2_cmngc"]
+[ext_resource type="Texture2D" uid="uid://csv06xdcbk6tw" path="res://Assets/Background/cloud_large.png" id="2_g75jd"]
 [ext_resource type="Theme" uid="uid://nx28k4tj8ca8" path="res://Main/Theme.tres" id="2_jsudd"]
 [ext_resource type="PackedScene" uid="uid://cywykxsb628l" path="res://GUI/Screens/Title.tscn" id="3_c4hrn"]
 [ext_resource type="PackedScene" uid="uid://cj2iep638rhv0" path="res://GUI/Indicators/CurrentLevelIndicator.tscn" id="3_y15em"]
+[ext_resource type="Texture2D" uid="uid://dysbds1wob7xc" path="res://Assets/Background/cloud_small.png" id="4_0yk4r"]
 [ext_resource type="PackedScene" uid="uid://bbq8sn8u6egp6" path="res://GUI/Button/CustomButton.tscn" id="8_004r3"]
 [ext_resource type="Script" path="res://GUI/Button/CollectionButton.cs" id="8_fcuca"]
 [ext_resource type="PackedScene" uid="uid://byh1yq6x7w41h" path="res://GUI/Indicators/StarsIndicator.tscn" id="8_fo3lq"]
 [ext_resource type="Script" path="res://GUI/Button/PlayButton.cs" id="9_et2y7"]
 [ext_resource type="Script" path="res://GUI/Button/ShopButton.cs" id="11_dmgqw"]
+[ext_resource type="PackedScene" uid="uid://cifoneigsx3eg" path="res://GUI/Indicators/GiftsAvailableIndicator.tscn" id="14_ulecx"]
 [ext_resource type="Script" path="res://GUI/Button/StarQuestInfoButton.cs" id="15_hvyj7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bud2l"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_gf2r7")
+
+[node name="CloudsLarge" type="CPUParticles2D" parent="."]
+position = Vector2(-360, 1152)
+amount = 15
+lifetime = 100.0
+preprocess = 30.0
+texture = ExtResource("2_g75jd")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 720)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.313726)
+
+[node name="CloudsMedium" type="CPUParticles2D" parent="."]
+position = Vector2(-360, 1152)
+amount = 15
+lifetime = 100.0
+preprocess = 30.0
+texture = ExtResource("2_a4j87")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 720)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.313726)
+
+[node name="CloudsSmall" type="CPUParticles2D" parent="."]
+position = Vector2(-360, 1152)
+amount = 15
+lifetime = 100.0
+preprocess = 30.0
+texture = ExtResource("4_0yk4r")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 720)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.313726)
 
 [node name="Borders" type="Node" parent="."]
 
@@ -33,10 +85,7 @@ offset_top = 1080.0
 offset_right = 1080.0
 offset_bottom = 1584.0
 
-[node name="GUILayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="StarQuestInfo" type="Button" parent="GUILayer"]
+[node name="StarQuestInfo" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 432.0
 offset_top = 864.0
@@ -45,11 +94,11 @@ offset_bottom = 1008.0
 pivot_offset = Vector2(288, 72)
 script = ExtResource("15_hvyj7")
 
-[node name="StarsIndicator" parent="GUILayer/StarQuestInfo" instance=ExtResource("8_fo3lq")]
+[node name="StarsIndicator" parent="StarQuestInfo" instance=ExtResource("8_fo3lq")]
 position = Vector2(288, 72)
 scale = Vector2(1.4, 1.4)
 
-[node name="PlayButton" parent="GUILayer" instance=ExtResource("8_004r3")]
+[node name="PlayButton" parent="." instance=ExtResource("8_004r3")]
 material = SubResource("ShaderMaterial_bud2l")
 anchor_left = 0.15
 anchor_top = 0.619
@@ -62,9 +111,9 @@ theme = ExtResource("2_jsudd")
 script = ExtResource("9_et2y7")
 CustomText = "PLAY"
 CustomTextSize = 320
-Color = Color(0.529412, 0.894118, 0.615686, 1)
+Color = Color(0.502301, 0.872932, 0.591659, 1)
 
-[node name="Collection" parent="GUILayer" instance=ExtResource("8_004r3")]
+[node name="Collection" parent="." instance=ExtResource("8_004r3")]
 offset_left = 864.0
 offset_top = 2376.0
 offset_right = 216.0
@@ -76,7 +125,7 @@ Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
 Highlight = false
 
-[node name="Shop" parent="GUILayer" instance=ExtResource("8_004r3")]
+[node name="Shop" parent="." instance=ExtResource("8_004r3")]
 offset_left = 72.0
 offset_top = 2376.0
 offset_right = -576.0
@@ -88,4 +137,7 @@ Color = Color(0.329412, 0.513726, 0.729412, 1)
 WaveString = false
 Highlight = false
 
-[node name="Title" parent="GUILayer" instance=ExtResource("3_c4hrn")]
+[node name="GiftsAvailableIndicator" parent="." instance=ExtResource("14_ulecx")]
+position = Vector2(564, 2400)
+
+[node name="Title" parent="." instance=ExtResource("3_c4hrn")]

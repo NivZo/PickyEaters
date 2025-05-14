@@ -198,6 +198,7 @@ offset_right = 448.0
 offset_bottom = -474.0
 grow_horizontal = 2
 theme = ExtResource("10_adcid")
+theme_override_font_sizes/normal_font_size = 180
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=8.0 connected=1][font gl=15]VICTORY![/font][/wave][/center]"
 scroll_active = false

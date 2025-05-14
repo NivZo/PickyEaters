@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EaterResource" load_steps=4 format=3 uid="uid://dkpj7ld44nv4r"]
+
+[ext_resource type="Texture2D" uid="uid://caybkgonpb37d" path="res://Assets/Faces/GoodSirActive.png" id="1_jngj0"]
+[ext_resource type="Texture2D" uid="uid://b0eoviqt06tlo" path="res://Assets/Faces/GoodSir.png" id="2_yvtpi"]
+[ext_resource type="Script" path="res://Scripts/Records/EaterResource.cs" id="3_i8gvd"]
+
+[resource]
+script = ExtResource("3_i8gvd")
+EaterFace = 12
+EaterName = "Mustachio"
+EaterRarity = 2
+PassiveTexture = ExtResource("2_yvtpi")
+ActiveTexture = ExtResource("1_jngj0")

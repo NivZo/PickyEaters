@@ -9,17 +9,21 @@ script = ExtResource("1_6s1g2")
 [node name="Admob" type="Node" parent="."]
 script = ExtResource("1_kqcio")
 is_real = true
-max_ad_content_rating = 1
+child_directed = 1
+under_age_of_consent = 1
 debug_application_id = "ca-app-pub-3940256099942544~3347511713"
 debug_rewarded_id = "ca-app-pub-3940256099942544/5224354917"
 real_application_id = "ca-app-pub-2018397935749952~6784849869"
 real_rewarded_id = "ca-app-pub-2018397935749952/4485628197"
-max_rewarded_ad_cache = 2
+max_rewarded_ad_cache = 3
 remove_banner_ads_after_scene = false
 remove_interstitial_ads_after_scene = false
 remove_rewarded_interstitial_ads_after_scene = false
 
 [connection signal="initialization_completed" from="Admob" to="." method="OnAdmobInitializationCompleted"]
+[connection signal="rewarded_ad_dismissed_full_screen_content" from="Admob" to="." method="OnAdmobRewardedAdDismissedFullScreen"]
+[connection signal="rewarded_ad_failed_to_load" from="Admob" to="." method="OnAdmobFailedToLoad"]
+[connection signal="rewarded_ad_failed_to_show_full_screen_content" from="Admob" to="." method="OnAdmobFailedToShow"]
 [connection signal="rewarded_ad_loaded" from="Admob" to="." method="OnAdmobRewardedAdLoaded"]
 [connection signal="rewarded_ad_showed_full_screen_content" from="Admob" to="." method="OnAdmobRewardedAdShown"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="OnAdmobRewardedAdUserEarnedReward"]

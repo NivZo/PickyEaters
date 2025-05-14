@@ -40,7 +40,7 @@ public partial class HintButton : CustomButton
     {
         ExecuteHintInternal();
         HintManager.HintUsed();
-        SetCustomText($"HINT [{HintManager.HintsLeft}]");
+        SetCustomText($"HINT [{(HintManager.HintsLeft == 0 ? "AD" : HintManager.HintsLeft)}]");
     }
 
     private void ExecuteHintInternal()

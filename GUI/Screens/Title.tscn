@@ -54,7 +54,7 @@ offset_bottom = 2560.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.435294, 0.65098, 0.772549, 1)
+color = Color(0.282353, 0.666667, 0.843137, 1)
 
 [node name="TitleContent" type="Node2D" parent="."]
 position = Vector2(720, 0)
@@ -63,15 +63,15 @@ position = Vector2(720, 0)
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -576.0
-offset_top = 216.0
-offset_right = 216.0
-offset_bottom = 504.0
+offset_top = 160.0
+offset_right = 576.0
+offset_bottom = 592.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("2_b51by")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_nhglo")
-theme_override_font_sizes/normal_font_size = 280
+theme_override_font_sizes/normal_font_size = 340
 bbcode_enabled = true
 text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]MUNCH[/font][/wave][/center]"
 scroll_active = false
@@ -79,9 +79,9 @@ scroll_active = false
 [node name="Bunch" type="RichTextLabel" parent="TitleContent"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -216.0
+offset_left = -720.0
 offset_top = 508.0
-offset_right = 576.0
+offset_right = 720.0
 offset_bottom = 792.0
 grow_horizontal = 2
 mouse_filter = 1
@@ -94,12 +94,12 @@ text = "[center][wave amp=40.0 freq=2.0 connected=0][font gl=15]BUNCH[/font][/wa
 scroll_active = false
 
 [node name="BottomEaterShowcase" parent="TitleContent" instance=ExtResource("4_373q2")]
-position = Vector2(-432, 678)
-scale = Vector2(1.2, 1.2)
+position = Vector2(-540, 676)
+scale = Vector2(1.5, 1.5)
 
 [node name="TopEaterShowcase" parent="TitleContent" instance=ExtResource("4_373q2")]
-position = Vector2(432, 384)
-scale = Vector2(1.2, 1.2)
+position = Vector2(540, 676)
+scale = Vector2(1.5, 1.5)
 
 [node name="Fade" type="ColorRect" parent="."]
 visible = false

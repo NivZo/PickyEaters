@@ -76,6 +76,7 @@ public partial class BoardCellIndicator : Node2D
         if (foodPosId == _boardStatePositionId)
         {
             Highlight(_originalColor, true);
+            _isConsumed = false;
         }
     }
 

@@ -12,10 +12,9 @@ public static class ShopStacksManager
 
     private static DateTimeOffset GetStartOfCurrentUtcDay()
     {
-        DateTimeOffset startOfDay = GetUtcNow().Date; // Get the start of the current UTC day (00:00)
-        long startOfDayUnix = startOfDay.ToUnixTimeSeconds();
-        long firstWindowOfDay = startOfDayUnix / HOURLY_STACK_WINDOW_SECONDS * HOURLY_STACK_WINDOW_SECONDS;
-        return DateTimeOffset.FromUnixTimeSeconds(firstWindowOfDay);
+        var now = GetUtcNow();
+        // Create a new DateTimeOffset at UTC midnight for the current UTC day
+        return new DateTimeOffset(now.Year, now.Month, now.Day, 0, 0, 0, TimeSpan.Zero);
     }
 
     private static long GetStartOfCurrentWindow()
@@ -30,12 +29,14 @@ public static class ShopStacksManager
     public static bool IsDailyRewardAvailable()
     {
         long lastClaimUnixSeconds = SaveManager.ActiveSave.LastDailyFreeRewardClaimedUnixSec;
-        DateTimeOffset lastClaimTime = (lastClaimUnixSeconds > 0)
-            ? DateTimeOffset.FromUnixTimeSeconds(lastClaimUnixSeconds)
-            : DateTimeOffset.MinValue;
+        if (lastClaimUnixSeconds <= 0)
+            return true;
 
+        DateTimeOffset lastClaimTime = DateTimeOffset.FromUnixTimeSeconds(lastClaimUnixSeconds);
         DateTimeOffset startOfToday = GetStartOfCurrentUtcDay();
-        return lastClaimTime < startOfToday;
+        
+        // Ensure we're comparing UTC times
+        return lastClaimTime.UtcDateTime < startOfToday.UtcDateTime;
     }
 
     public static bool IsHourlyRewardAvailable()

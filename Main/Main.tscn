@@ -83,7 +83,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.435294, 0.65098, 0.772549, 1)
+color = Color(0.28198, 0.66663, 0.842472, 1)
 
 [node name="OverlayTop" type="ColorRect" parent="BackgroundLayer"]
 anchors_preset = 12
@@ -160,10 +160,10 @@ offset_bottom = 2304.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 40
 
-[node name="ModalLayer" type="CanvasLayer" parent="."]
+[node name="IndicatorLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="IndicatorLayer" type="CanvasLayer" parent="."]
+[node name="ModalLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="Shaders" type="CanvasLayer" parent="."]

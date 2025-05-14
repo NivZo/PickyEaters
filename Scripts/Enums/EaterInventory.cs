@@ -14,7 +14,7 @@ public enum EaterFace
     AngryGrumpy,
     GlassesSmile,
     SquigglyMouth,
-    BlueTongue,
+    GoodSir,
     Monkey,
     Dizzy,
     Monocle,

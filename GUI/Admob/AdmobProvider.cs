@@ -8,6 +8,7 @@ public partial class AdmobProvider : Node2D
     private bool _isRequestActive = false;
     private bool _isLoaded = false;
     private bool _initialized = false;
+    private bool _isRewardGranted = false;
 
     public override void _Ready()
     {
@@ -22,6 +23,7 @@ public partial class AdmobProvider : Node2D
     private void OnAdRewardCancelled()
     {
         _isRequestActive = false;
+        _isRewardGranted = false;
         ModalManager.CloseModal();
         _admob.Call("load_rewarded_ad");
     }
@@ -31,7 +33,7 @@ public partial class AdmobProvider : Node2D
     {
         _isRequestActive = true;
         _currentRewardType = rewardType;
-        
+
         if (withModal)
         {
             ModalManager.OpenAdLoadingModal(!_initialized);
@@ -49,6 +51,25 @@ public partial class AdmobProvider : Node2D
             }
         }
     }
+
+    private void OnAdmobFailedToLoad(string _error)
+    {
+        if (_isRequestActive)
+        {
+            _isRequestActive = false;
+            _isRewardGranted = false;
+            _isLoaded = false;
+            if (ModalManager.CurrentOpenModal == ModalManager.ModalType.AdLoadingModal)
+            {
+                ModalManager.CloseModal(true);
+                ModalManager.OpenAdLoadingModal(true);
+            }
+
+            _admob.Call("load_rewarded_ad");
+        }
+    }
+
+    private void OnAdmobFailedToShow(string _adId, string _error) => OnAdmobFailedToLoad(_error);
 
     private void OnAdmobInitializationCompleted(Variant _statusData)
     {
@@ -69,12 +90,25 @@ public partial class AdmobProvider : Node2D
     {
         _isLoaded = false;
         _isRequestActive = false;
-        ModalManager.CloseModal(true);
+        if (ModalManager.CurrentOpenModal == ModalManager.ModalType.AdLoadingModal)
+        {
+            ModalManager.CloseModal(true);
+        }
+        
         _admob.Call("load_rewarded_ad");
     }
 
     private void OnAdmobRewardedAdUserEarnedReward(string _adId, Variant _rewardData)
     {
-        EventManager.InvokeAdRewardGranted(_currentRewardType);
+        _isRewardGranted = true;
+    }
+    
+    private void OnAdmobRewardedAdDismissedFullScreen(string _adId)
+    {
+        if (_isRewardGranted)
+        {
+            EventManager.InvokeAdRewardGranted(_currentRewardType);
+            _isRewardGranted = false;
+        }
     }
 }

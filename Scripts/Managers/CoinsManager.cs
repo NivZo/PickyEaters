@@ -7,7 +7,7 @@ public static class CoinsManager
 
     public static void AddCoins(int amount)
     {
-        AudioManager.PlaySoundEffect(AudioType.EarnCoins);
+        AudioManager.PlaySoundEffect(AudioType.EarnCoins, 1.5f);
         SaveManager.ActiveSave.Coins += amount;
         SaveManager.CommitActiveSave();
     }

@@ -15,6 +15,17 @@ public static class UnlockManager
     };
     public static EaterFace GetEaterFaceToUnlock()
     {
+        // Guranteed to unlock an epic first
+        if (SaveManager.ActiveSave.UnlockedFaces.Count == 1)
+        {
+            return Enum.GetValues<EaterFace>()
+                .Except(SaveManager.ActiveSave.UnlockedFaces.Concat(new[] { EaterFace.Hidden }))
+                .Where(face => face.GetEaterResource().EaterRarity == Rarity.Epic)
+                .ToList()
+                .Shuffle()
+                .FirstOrDefault();
+        }
+
         var weightedFacesAvailable = Enum.GetValues<EaterFace>()
             .Except(SaveManager.ActiveSave.UnlockedFaces.Concat(new[] { EaterFace.Hidden }))
             .Select(face => (Face: face, Rarity: face.GetEaterResource().EaterRarity))

@@ -9,10 +9,11 @@ public partial class LevelSelectionButton : Button
         ButtonDown += OnButtonDown;
         ButtonUp += OnButtonUp;
 
-        var backgroundOverlay = GetNode<ColorRect>("BackgroundOverlay");
-        var backgroundOverlayOutline = GetNode<ColorRect>("BackgroundOverlayOutline");
-        backgroundOverlay.Color = LevelManager.GetLevelColor(SaveManager.ActiveSave.LevelReached);
-        backgroundOverlayOutline.Color = backgroundOverlay.Color.Darkened(.2f) with { A = 0.7f };
+        var backgroundOverlay = GetNode<TextureRect>("BackgroundOverlay");
+        // var backgroundOverlayOutline = GetNode<TextureRect>("BackgroundOverlayOutline");
+        var color = LevelManager.GetLevelColor(SaveManager.ActiveSave.LevelReached).Lightened(.3f);
+        SetTextureRectColor(backgroundOverlay, color);
+        // SetTextureRectColor(backgroundOverlayOutline, color with { A = 0.7f });
     }
 
     public override void _ExitTree()
@@ -40,6 +41,15 @@ public partial class LevelSelectionButton : Button
             AudioManager.PlaySoundEffect(AudioType.Undo);
             ScreenManager.TransitionToScreen(ScreenManager.ScreenType.LevelSelection);
             OnButtonUp();
+        }
+    }
+        
+    private void SetTextureRectColor(TextureRect textureRect, Color color)
+    {
+        if (textureRect.Texture is GradientTexture2D gradientTexture)
+        {
+            gradientTexture.Gradient.SetColor(0, color);
+            gradientTexture.Gradient.SetColor(1, color.Darkened(.15f));
         }
     }
 }

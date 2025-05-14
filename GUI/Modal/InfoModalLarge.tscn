@@ -78,7 +78,7 @@ texture = ExtResource("3_r83kf")
 expand_mode = 1
 
 [node name="Background" type="TextureRect" parent="."]
-self_modulate = Color(0.344738, 0.318829, 0.32989, 1)
+self_modulate = Color(0.567556, 0.550824, 0.424208, 1)
 material = SubResource("ShaderMaterial_0ntrx")
 offset_left = -432.0
 offset_top = -718.0
