@@ -31,7 +31,10 @@ buses/default_bus_layout=""
 window/size/viewport_width=1440
 window/size/viewport_height=2560
 window/size/mode=2
+window/size/window_width_override=1440
+window/size/window_height_override=3120
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 window/canvas_textures/default_texture_filter=0
 
@@ -54,5 +57,7 @@ enabled=PackedStringArray("res://addons/AdmobPlugin/plugin.cfg")
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+viewport/hdr_2d=true

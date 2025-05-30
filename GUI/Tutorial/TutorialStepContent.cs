@@ -6,7 +6,7 @@ public static class TutorialStepContent
     {
         { 1, new()
             {
-                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=10]PRESS A [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]MUNCHER[/color][/wave]\nTO SEE POSSIBLE MOVES[/font][/center]", new(1, 0)),
+                new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=10]PRESS AND HOLD A [wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]MUNCHER[/color][/wave]\nTO SEE POSSIBLE MOVES[/font][/center]", new(1, 0)),
                 new(TutorialLocalManager.TutorialStepType.PerformMove, $"[center][font gl=10]SWIPE TOWARDS [color=#{NamedColor.Green.GetColor().ToHtml()}][wave amp=40.0 freq=2.0 connected=1]FOOD[/wave][/color]\nTO EAT IT![/font][/center]", new(1, 0), new(0, 0)),
 
                 new(TutorialLocalManager.TutorialStepType.StartMove, $"[center][font gl=10]MUNCHERS MUST EAT ALL\n[wave amp=40.0 freq=2.0 connected=1][color=#{NamedColor.Green.GetColor().ToHtml()}]FOOD OF THEIR COLOR[/color][/wave][/font][/center]", new(0, 0)),

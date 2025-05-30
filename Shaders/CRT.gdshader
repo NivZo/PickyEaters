@@ -1,4 +1,5 @@
 shader_type canvas_item;
+render_mode blend_mix;
 
 //*** IMPORTANT! ***/
 // - If you are using this shader to affect the node it is applied to set 'overlay' to false (unchecked in the instepctor).
@@ -12,7 +13,7 @@ uniform bool overlay = false;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.4;
 uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
-uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
+// uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
 uniform vec2 resolution = vec2(640.0, 480.0); // Set the number of rows and columns the texture will be divided in. Scanlines and grille will make a square based on these values
 
 uniform bool pixelate = true; // Fill each square ("pixel") with a sampled color, creating a pixel look and a more accurate representation of how a CRT monitor would work.
@@ -141,18 +142,18 @@ void fragment()
 
 	// CRT monitors don't have pixels but groups of red, green and blue dots or lines, called grille. We isolate the texture's color channels
 	// and divide it up in 3 offsetted lines to show the red, green and blue colors next to each other, with a small black gap between.
-	if (grille_opacity > 0.0){
+	// if (grille_opacity > 0.0){
 
-		float g_r = smoothstep(0.85, 0.95, abs(sin(uv.x * (resolution.x * 3.14159265))));
-		r = mix(r, r * g_r, grille_opacity);
+	// 	float g_r = smoothstep(0.85, 0.95, abs(sin(uv.x * (resolution.x * 3.14159265))));
+	// 	r = mix(r, r * g_r, grille_opacity);
 
-		float g_g = smoothstep(0.85, 0.95, abs(sin(1.05 + uv.x * (resolution.x * 3.14159265))));
-		g = mix(g, g * g_g, grille_opacity);
+	// 	float g_g = smoothstep(0.85, 0.95, abs(sin(1.05 + uv.x * (resolution.x * 3.14159265))));
+	// 	g = mix(g, g * g_g, grille_opacity);
 
-		float b_b = smoothstep(0.85, 0.95, abs(sin(2.1 + uv.x * (resolution.x * 3.14159265))));
-		b = mix(b, b * b_b, grille_opacity);
+	// 	float b_b = smoothstep(0.85, 0.95, abs(sin(2.1 + uv.x * (resolution.x * 3.14159265))));
+	// 	b = mix(b, b * b_b, grille_opacity);
 
-	}
+	// }
 
 	// Apply the grille to the texture's color channels and apply Brightness. Since the grille and the scanlines (below) make the image very dark you
 	// can compensate by increasing the brightness.
